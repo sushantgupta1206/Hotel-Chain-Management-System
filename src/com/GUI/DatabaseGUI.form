@@ -1,0 +1,2704 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Container class="javax.swing.JDialog" name="insertHotelDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="insertHotelHotelCity" min="-2" max="-2" attributes="0"/>
+                              <Component id="insertHotelHotelName" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="insertHotelHotelAddressWhere" min="-2" pref="160" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
+                                  <Component id="insertHotelHotelCityWhere" pref="160" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="insertHotelHotelAddress" min="-2" max="-2" attributes="0"/>
+                              <Component id="insertHotelHotelID" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="insertHotelHotelPhone" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="insertHotelTitle" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="insertHotelPerformActionButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="insertHotelHotelIDNew" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="insertHotelHotelPhoneNew" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="insertHotelHotelAddressNew" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="insertHotelHotelNameNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="insertHotelHotelCityNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="insertHotelHotelIDWhere" min="-2" pref="158" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="insertHotelHotelPhoneWhere" max="32767" attributes="0"/>
+                                          <Component id="insertHotelHotelNameWhere" pref="160" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="insertHotelNewLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="insertHotelWhereLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertHotelPerformActionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertHotelTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertHotelWhereLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertHotelNewLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertHotelHotelIDNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertHotelHotelIDWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertHotelHotelID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertHotelHotelPhoneWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertHotelHotelPhoneNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertHotelHotelPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="insertHotelHotelAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="insertHotelHotelAddressNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="insertHotelHotelNameWhere" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="insertHotelHotelAddressWhere" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="insertHotelHotelNameNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="insertHotelHotelName" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertHotelHotelCityNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertHotelHotelCityWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertHotelHotelCity" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="insertHotelHotelID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hotel ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertHotelHotelIDNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertHotelHotelIDWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertHotelHotelPhoneWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertHotelHotelPhoneNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertHotelHotelPhone">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hotel Phone"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertHotelHotelAddress">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hotel Address"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertHotelHotelAddressNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertHotelHotelNameWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertHotelHotelAddressWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertHotelHotelNameNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertHotelHotelName">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hotel Name"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertHotelHotelCity">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hotel City"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertHotelHotelCityNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertHotelHotelCityWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="insertHotelPerformActionButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Perform Action"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertHotelPerformActionButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertHotelNewLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="New Value"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertHotelWhereLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="WHERE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertHotelTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Insert Hotel"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="updateHotelDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="updateHotelHotelCity" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="updateHotelHotelName" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="updateHotelHotelAddressWhere" min="-2" pref="160" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
+                                  <Component id="updateHotelHotelCityWhere" pref="160" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="updateHotelHotelAddress" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="updateHotelHotelPhone" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="updateHotelHotelID" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="updateHotelTitle" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="updateHotelPerformActionButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="updateHotelHotelIDNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="updateHotelHotelPhoneNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="updateHotelHotelAddressNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="updateHotelHotelNameNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="updateHotelHotelCityNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="updateHotelHotelIDWhere" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="updateHotelHotelPhoneWhere" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="updateHotelHotelNameWhere" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="updateHotelNewLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="updateHotelWhereLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateHotelPerformActionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateHotelTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateHotelWhereLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateHotelNewLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateHotelHotelIDNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateHotelHotelIDWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateHotelHotelID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateHotelHotelPhoneWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateHotelHotelPhoneNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateHotelHotelPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="updateHotelHotelAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="updateHotelHotelAddressNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="updateHotelHotelNameWhere" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="updateHotelHotelAddressWhere" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="updateHotelHotelNameNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="updateHotelHotelName" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateHotelHotelCityNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateHotelHotelCityWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateHotelHotelCity" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="updateHotelHotelID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hotel ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateHotelHotelIDNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateHotelHotelIDWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateHotelHotelPhoneWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateHotelHotelPhoneNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateHotelHotelPhone">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hotel Phone"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateHotelHotelAddress">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hotel Address"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateHotelHotelAddressNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateHotelHotelNameWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateHotelHotelAddressWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateHotelHotelNameNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateHotelHotelName">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hotel Name"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateHotelHotelCity">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hotel City"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateHotelHotelCityNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateHotelHotelCityWhere">
+        </Component>
+        <Component class="javax.swing.JButton" name="updateHotelPerformActionButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Perform Action"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateHotelPerformActionButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateHotelNewLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="New Value"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateHotelWhereLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="WHERE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateHotelTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Update Hotel"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="deleteHotelDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="deleteHotelHotelID" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="deleteHotelTitle" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="deleteHotelPerformActionButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="deleteHotelHotelIDNew" min="-2" pref="160" max="-2" attributes="0"/>
+                          <EmptySpace pref="42" max="32767" attributes="0"/>
+                          <Component id="deleteHotelHotelIDWhere" min="-2" pref="158" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="deleteHotelNewLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="deleteHotelWhereLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deleteHotelPerformActionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteHotelTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deleteHotelWhereLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteHotelNewLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deleteHotelHotelIDNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteHotelHotelIDWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteHotelHotelID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="deleteHotelHotelID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hotel ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="deleteHotelHotelIDNew">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="deleteHotelHotelIDWhere">
+        </Component>
+        <Component class="javax.swing.JButton" name="deleteHotelPerformActionButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Perform Action"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteHotelPerformActionButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="deleteHotelNewLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="New Value"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="deleteHotelWhereLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="WHERE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="deleteHotelTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Delete Hotel"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="insertRoomsDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="insertRoomsAvailability" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="insertRoomsNightlyRate" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="insertRoomsNightlyRateWhere" min="-2" pref="160" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="insertRoomsMaxOccupan" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="insertRoomsHotelID" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="insertRoomsRoomNum" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="insertRoomsTitle" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="insertRoomsPerformActionButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="insertRoomsRoomNumNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="insertRoomsHotelIDNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="insertRoomsMaxOccupanNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="insertRoomsNightlyRateNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="insertRoomsAvailabilityNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace pref="44" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="insertRoomsRoomNumWhere" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="insertRoomsHotelIDWhere" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="insertRoomsMaxOccupanWhere" alignment="0" pref="160" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                          <Component id="insertRoomsAvailabilityWhere" pref="160" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="insertRoomsNewLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="insertRoomsWhereLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertRoomsPerformActionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertRoomsTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertRoomsWhereLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertRoomsNewLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertRoomsRoomNumNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertRoomsRoomNumWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertRoomsRoomNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertRoomsHotelIDWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertRoomsHotelIDNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertRoomsHotelID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="insertRoomsMaxOccupan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="insertRoomsMaxOccupanNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="insertRoomsMaxOccupanWhere" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="insertRoomsNightlyRateWhere" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="insertRoomsNightlyRateNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="insertRoomsNightlyRate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertRoomsAvailabilityNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertRoomsAvailabilityWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertRoomsAvailability" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="insertRoomsRoomNum">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Room Num"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertRoomsRoomNumNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertRoomsRoomNumWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertRoomsHotelIDWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertRoomsHotelIDNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertRoomsHotelID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hotel ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertRoomsMaxOccupan">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Max Occupan"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertRoomsMaxOccupanNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertRoomsMaxOccupanWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertRoomsNightlyRateWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertRoomsNightlyRateNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertRoomsNightlyRate">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nightly Rate"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertRoomsAvailability">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Availability"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertRoomsAvailabilityNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertRoomsAvailabilityWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="insertRoomsPerformActionButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Perform Action"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertRoomsPerformActionButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertRoomsNewLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="New Value"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertRoomsWhereLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="WHERE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertRoomsTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Insert Rooms"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="updateRoomsDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="updateRoomsAvailability" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="updateRoomsNightlyRate" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="updateRoomsNightlyRateWhere" min="-2" pref="160" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="updateRoomsMaxOccupan" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="updateRoomsHotelID" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="updateRoomsRoomNum" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="updateRoomsTitle" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="updateRoomsPerformActionButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="updateRoomsRoomNumNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="updateRoomsHotelIDNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="updateRoomsMaxOccupanNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="updateRoomsNightlyRateNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="updateRoomsAvailabilityNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace pref="44" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="updateRoomsRoomNumWhere" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="updateRoomsHotelIDWhere" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="updateRoomsMaxOccupanWhere" alignment="0" pref="160" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                          <Component id="updateRoomsAvailabilityWhere" pref="160" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="updateRoomsNewLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="updateRoomsWhereLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateRoomsPerformActionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateRoomsTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateRoomsWhereLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateRoomsNewLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateRoomsRoomNumNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateRoomsRoomNumWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateRoomsRoomNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateRoomsHotelIDWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateRoomsHotelIDNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateRoomsHotelID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="updateRoomsMaxOccupan" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="updateRoomsMaxOccupanNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="updateRoomsMaxOccupanWhere" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="updateRoomsNightlyRateWhere" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="updateRoomsNightlyRateNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="updateRoomsNightlyRate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateRoomsAvailabilityNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateRoomsAvailabilityWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateRoomsAvailability" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="updateRoomsRoomNum">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Room Num"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateRoomsRoomNumNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateRoomsRoomNumWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateRoomsHotelIDWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateRoomsHotelIDNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateRoomsHotelID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hotel ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateRoomsMaxOccupan">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Max Occupan"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateRoomsMaxOccupanNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateRoomsMaxOccupanWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateRoomsNightlyRateWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateRoomsNightlyRateNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateRoomsNightlyRate">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nightly Rate"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateRoomsAvailability">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Availability"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateRoomsAvailabilityNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateRoomsAvailabilityWhere">
+        </Component>
+        <Component class="javax.swing.JButton" name="updateRoomsPerformActionButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Perform Action"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateRoomsPerformActionButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateRoomsNewLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="New Value"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateRoomsWhereLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="WHERE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateRoomsTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Update Rooms"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="deleteRoomsDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="deleteRoomsHotelID" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteRoomsRoomNum" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="deleteRoomsTitle" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="deleteRoomsPerformActionButton1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="deleteRoomsRoomNumNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="deleteRoomsHotelIDNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="44" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="deleteRoomsRoomNumWhere" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+                              <Component id="deleteRoomsHotelIDWhere" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="deleteRoomsNewLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="deleteRoomsWhereLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deleteRoomsPerformActionButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteRoomsTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deleteRoomsWhereLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteRoomsNewLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deleteRoomsRoomNumNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteRoomsRoomNumWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteRoomsRoomNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deleteRoomsHotelIDWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteRoomsHotelIDNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteRoomsHotelID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="35" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="deleteRoomsRoomNum">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Room Num"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="deleteRoomsRoomNumNew">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="deleteRoomsRoomNumWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="deleteRoomsHotelIDWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="deleteRoomsHotelIDNew">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="deleteRoomsHotelID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hotel ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="deleteRoomsPerformActionButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Perform Action"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteRoomsPerformActionButton1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="deleteRoomsNewLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="New Value"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="deleteRoomsWhereLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="WHERE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="deleteRoomsTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Delete Rooms"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="insertStaffDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="insertStaffStaffDOB" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="insertStaffStaffAddress" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="insertStaffStaffAddressNew" min="-2" pref="160" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="insertStaffStaffName" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="insertStaffStaffID" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="insertStaffStaffPhone" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="insertStaffStaffAge" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="insertStaffStaffPhoneNew" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      <Component id="insertStaffStaffNameNew" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      <Component id="insertStaffStaffIDNew" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="52" pref="52" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="insertStaffStaffAgeWhere" max="32767" attributes="0"/>
+                                      <Component id="insertStaffStaffTitleWhere" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="insertStaffStaffDepartWhere" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="insertStaffStaffIDWhere" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+                                      <Component id="insertStaffStaffNameWhere" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      <Component id="insertStaffStaffAddressWhere" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      <Component id="insertStaffStaffPhoneWhere" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      <Component id="insertStaffStaffDOBWhere" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="insertStaffTitle" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="insertStaffPerformActionButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="insertStaffNewLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="169" max="32767" attributes="0"/>
+                  <Component id="insertStaffWhereLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="insertStaffStaffDepart" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertStaffStaffTitle" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="insertStaffStaffDepartNew" pref="157" max="32767" attributes="0"/>
+                          <Component id="insertStaffStaffTitleNew" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="insertStaffStaffAgeNew" min="-2" pref="157" max="-2" attributes="0"/>
+                      <Component id="insertStaffStaffDOBNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertStaffPerformActionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertStaffTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertStaffWhereLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertStaffNewLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertStaffStaffIDNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertStaffStaffIDWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertStaffStaffID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="insertStaffStaffPhoneWhere" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="insertStaffStaffPhoneNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="insertStaffStaffPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="insertStaffStaffName" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="insertStaffStaffNameWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="insertStaffStaffNameNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertStaffStaffAddressNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertStaffStaffAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertStaffStaffAddressWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertStaffStaffDOBNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertStaffStaffDOBWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertStaffStaffDOB" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="insertStaffStaffDepart" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="insertStaffStaffDepartNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="insertStaffStaffDepartWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertStaffStaffTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertStaffStaffTitleNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertStaffStaffTitleWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertStaffStaffAgeNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertStaffStaffAgeWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertStaffStaffAge" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="insertStaffStaffID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffIDNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffIDWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffPhoneWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffPhoneNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertStaffStaffPhone">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff Phone"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertStaffStaffName">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff Name"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffNameNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffNameWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffAddressWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffAddressNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertStaffStaffAddress">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff Address"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertStaffStaffDOB">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff DOB"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffDOBNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffDOBWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="insertStaffPerformActionButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Perform Action"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertStaffPerformActionButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertStaffNewLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="New Value"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertStaffWhereLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="WHERE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertStaffTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Insert Staff"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertStaffStaffDepart">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff Depart"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertStaffStaffTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff Title"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertStaffStaffAge">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff Age"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffDepartNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffDepartWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffTitleNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffTitleWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffAgeNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertStaffStaffAgeWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="updateStaffDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="updateStaffStaffDOB" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="updateStaffStaffAddress" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="updateStaffStaffAddressNew" min="-2" pref="160" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="updateStaffStaffName" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="updateStaffStaffID" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="updateStaffStaffPhone" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="updateStaffStaffAge" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="updateStaffStaffPhoneNew" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      <Component id="updateStaffStaffNameNew" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      <Component id="updateStaffStaffIDNew" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="52" pref="52" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="updateStaffStaffAgeWhere" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="updateStaffStaffTitleWhere" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="updateStaffStaffDepartWhere" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="updateStaffStaffIDWhere" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+                                      <Component id="updateStaffStaffNameWhere" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      <Component id="updateStaffStaffAddressWhere" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      <Component id="updateStaffStaffPhoneWhere" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      <Component id="updateStaffStaffDOBWhere" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="updateStaffTitle" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="updateStaffPerformActionButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="updateStaffNewLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="updateStaffWhereLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="updateStaffStaffDepart" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateStaffStaffTitle" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="updateStaffStaffDepartNew" alignment="0" pref="157" max="32767" attributes="0"/>
+                          <Component id="updateStaffStaffTitleNew" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="updateStaffStaffAgeNew" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
+                      <Component id="updateStaffStaffDOBNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateStaffPerformActionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateStaffTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateStaffWhereLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateStaffNewLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateStaffStaffIDNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateStaffStaffIDWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateStaffStaffID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="updateStaffStaffPhoneWhere" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="updateStaffStaffPhoneNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="updateStaffStaffPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="updateStaffStaffName" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="updateStaffStaffNameWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="updateStaffStaffNameNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateStaffStaffAddressNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateStaffStaffAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateStaffStaffAddressWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateStaffStaffDOBNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateStaffStaffDOBWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateStaffStaffDOB" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="updateStaffStaffDepart" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="updateStaffStaffDepartNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="updateStaffStaffDepartWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateStaffStaffTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateStaffStaffTitleNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateStaffStaffTitleWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateStaffStaffAgeNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateStaffStaffAgeWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateStaffStaffAge" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="updateStaffStaffID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffIDNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffIDWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffPhoneWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffPhoneNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateStaffStaffPhone">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff Phone"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateStaffStaffName">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff Name"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffNameNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffNameWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffAddressWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffAddressNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateStaffStaffAddress">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff Address"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateStaffStaffDOB">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff DOB"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffDOBNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffDOBWhere">
+        </Component>
+        <Component class="javax.swing.JButton" name="updateStaffPerformActionButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Perform Action"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateStaffPerformActionButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateStaffNewLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="New Value"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateStaffWhereLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="WHERE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateStaffTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Update Staff"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateStaffStaffDepart">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff Depart"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateStaffStaffTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff Title"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateStaffStaffAge">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff Age"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffDepartNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffDepartWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffTitleNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffTitleWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffAgeNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateStaffStaffAgeWhere">
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="deleteStaffDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="deleteStaffStaffID" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="deleteStaffStaffIDNew" min="-2" pref="160" max="-2" attributes="0"/>
+                          <EmptySpace min="52" pref="52" max="-2" attributes="0"/>
+                          <Component id="deleteStaffStaffIDWhere" min="-2" pref="158" max="-2" attributes="0"/>
+                          <EmptySpace pref="22" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="deleteStaffTitle" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="deleteStaffPerformActionButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="deleteStaffNewLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="deleteStaffWhereLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deleteStaffPerformActionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteStaffTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deleteStaffWhereLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteStaffNewLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deleteStaffStaffIDNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteStaffStaffIDWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteStaffStaffID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="27" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="deleteStaffStaffID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Staff ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="deleteStaffStaffIDNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="deleteStaffStaffIDWhere">
+        </Component>
+        <Component class="javax.swing.JButton" name="deleteStaffPerformActionButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Perform Action"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteStaffPerformActionButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="deleteStaffNewLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="New Value"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="deleteStaffWhereLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="WHERE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="deleteStaffTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Delete Staff"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="insertCustomerDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="insertCustomerCustomerDOB" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="insertCustomerCustomerEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="insertCustomerCustomerDOBWhere" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="insertCustomerCustomerEmailWhere" min="-2" pref="160" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="insertCustomerCustomerName" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="insertCustomerCustomerID" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="insertCustomerCustomerPhone" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="insertCustomerTitle" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="insertCustomerPerformActionButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="insertCustomerCustomerIDNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="insertCustomerCustomerPhoneNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="insertCustomerCustomerNameNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="insertCustomerCustomerEmailNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="insertCustomerCustomerDOBNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="insertCustomerCustomerIDWhere" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="insertCustomerCustomerPhoneWhere" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="insertCustomerCustomerNameWhere" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="insertCustomerNewLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="insertCustomerWhereLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertCustomerPerformActionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertCustomerTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertCustomerWhereLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertCustomerNewLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertCustomerCustomerIDNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertCustomerCustomerIDWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertCustomerCustomerID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertCustomerCustomerPhoneWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertCustomerCustomerPhoneNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertCustomerCustomerPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="insertCustomerCustomerName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="insertCustomerCustomerNameNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="insertCustomerCustomerNameWhere" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="insertCustomerCustomerEmailWhere" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="insertCustomerCustomerEmailNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="insertCustomerCustomerEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="insertCustomerCustomerDOBNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertCustomerCustomerDOBWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="insertCustomerCustomerDOB" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="insertCustomerCustomerID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Customer ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertCustomerCustomerIDNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertCustomerCustomerIDWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertCustomerCustomerPhoneWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertCustomerCustomerPhoneNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertCustomerCustomerPhone">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Customer Phone"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertCustomerCustomerName">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Customer Name"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertCustomerCustomerNameNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertCustomerCustomerNameWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertCustomerCustomerEmailWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertCustomerCustomerEmailNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertCustomerCustomerEmail">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Customer Email"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertCustomerCustomerDOB">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Customer DOB"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertCustomerCustomerDOBNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="insertCustomerCustomerDOBWhere">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="insertCustomerPerformActionButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Perform Action"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertCustomerPerformActionButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertCustomerNewLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="New Value"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertCustomerWhereLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="WHERE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="insertCustomerTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Insert Customer"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="updateCustomerDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="updateCustomerCustomerDOB" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="updateCustomerCustomerEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="updateCustomerCustomerDOBWhere" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Component id="updateCustomerCustomerEmailWhere" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="updateCustomerCustomerName" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="updateCustomerCustomerID" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="updateCustomerCustomerPhone" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="updateCustomerTitle" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="updateCustomerPerformActionButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="updateCustomerCustomerIDNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="updateCustomerCustomerPhoneNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="updateCustomerCustomerNameNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="updateCustomerCustomerEmailNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="updateCustomerCustomerDOBNew" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="updateCustomerCustomerIDWhere" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="updateCustomerCustomerPhoneWhere" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="updateCustomerCustomerNameWhere" alignment="0" pref="160" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="updateCustomerNewLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="updateCustomerWhereLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateCustomerPerformActionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateCustomerTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateCustomerWhereLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateCustomerNewLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateCustomerCustomerIDNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateCustomerCustomerIDWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateCustomerCustomerID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateCustomerCustomerPhoneWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateCustomerCustomerPhoneNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateCustomerCustomerPhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="updateCustomerCustomerName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="updateCustomerCustomerNameNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="updateCustomerCustomerNameWhere" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="updateCustomerCustomerEmailWhere" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="updateCustomerCustomerEmailNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="updateCustomerCustomerEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="updateCustomerCustomerDOBNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateCustomerCustomerDOBWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateCustomerCustomerDOB" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="updateCustomerCustomerID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Customer ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateCustomerCustomerIDNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateCustomerCustomerIDWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateCustomerCustomerPhoneWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateCustomerCustomerPhoneNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateCustomerCustomerPhone">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Customer Phone"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateCustomerCustomerName">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Customer Name"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateCustomerCustomerNameNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateCustomerCustomerNameWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateCustomerCustomerEmailWhere">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateCustomerCustomerEmailNew">
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateCustomerCustomerEmail">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Customer Email"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateCustomerCustomerDOB">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Customer DOB"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateCustomerCustomerDOBNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="updateCustomerCustomerDOBWhere">
+        </Component>
+        <Component class="javax.swing.JButton" name="updateCustomerPerformActionButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Perform Action"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateCustomerPerformActionButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateCustomerNewLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="New Value"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateCustomerWhereLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="WHERE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="updateCustomerTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Update Customer"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="deleteCustomerDialog">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="deleteCustomerCustomerID" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="deleteCustomerTitle" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="deleteCustomerPerformActionButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="deleteCustomerCustomerIDNew" min="-2" pref="160" max="-2" attributes="0"/>
+                          <EmptySpace pref="30" max="32767" attributes="0"/>
+                          <Component id="deleteCustomerCustomerIDWhere" min="-2" pref="158" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="deleteCustomerNewLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="deleteCustomerWhereLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deleteCustomerPerformActionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteCustomerTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deleteCustomerWhereLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteCustomerNewLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="deleteCustomerCustomerIDNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteCustomerCustomerIDWhere" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteCustomerCustomerID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="deleteCustomerCustomerID">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Customer ID"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="deleteCustomerCustomerIDNew">
+        </Component>
+        <Component class="javax.swing.JTextField" name="deleteCustomerCustomerIDWhere">
+        </Component>
+        <Component class="javax.swing.JButton" name="deleteCustomerPerformActionButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Perform Action"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteCustomerPerformActionButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="deleteCustomerNewLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="New Value"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="deleteCustomerWhereLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="WHERE"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="deleteCustomerTitle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Delete Customer"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jTabbedPane1" min="-2" pref="535" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="displayTablePane">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Display Table Data">
+                <Property name="tabTitle" type="java.lang.String" value="Display Table Data"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="displayTableCombo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="248" max="32767" attributes="0"/>
+                              <Component id="displayTableButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="displayTableButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="displayTableCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="176" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="displayTableButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Display Data"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayTableButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="displayTableCombo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="26">
+                    <StringItem index="0" value="ADDSTO"/>
+                    <StringItem index="1" value="ADMINISTER"/>
+                    <StringItem index="2" value="ASSIGNED"/>
+                    <StringItem index="3" value="ASSIGNS"/>
+                    <StringItem index="4" value="BILLS"/>
+                    <StringItem index="5" value="CONTROLS"/>
+                    <StringItem index="6" value="CUSTOMER"/>
+                    <StringItem index="7" value="FRONTDESKREP"/>
+                    <StringItem index="8" value="GENERATES"/>
+                    <StringItem index="9" value="HOTELS"/>
+                    <StringItem index="10" value="HOTEL_ADMINISTRATOR"/>
+                    <StringItem index="11" value="MANAGER"/>
+                    <StringItem index="12" value="OFFERED"/>
+                    <StringItem index="13" value="PAYMENT"/>
+                    <StringItem index="14" value="PAYS"/>
+                    <StringItem index="15" value="PRESIDENTIAL_SUITES"/>
+                    <StringItem index="16" value="PROVIDES"/>
+                    <StringItem index="17" value="REGISTERS"/>
+                    <StringItem index="18" value="ROOMS"/>
+                    <StringItem index="19" value="ROOM_CATEGORY"/>
+                    <StringItem index="20" value="ROOM_HAS"/>
+                    <StringItem index="21" value="SERVICE_RECORDS"/>
+                    <StringItem index="22" value="SERVICE_STAFF"/>
+                    <StringItem index="23" value="SHWORKSFOR"/>
+                    <StringItem index="24" value="SSRWORKS_FOR"/>
+                    <StringItem index="25" value="STAFF"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="displayTableArea">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="informationProcessingPane">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Information Processing">
+                <Property name="tabTitle" type="java.lang.String" value="Information Processing"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="informationProcessingCombo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="informationProcessingWriteQueryButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="informationProcessingResultLabel" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jScrollPane2" alignment="1" min="-2" pref="471" max="-2" attributes="0"/>
+                                  <Component id="jSeparator1" alignment="0" min="-2" pref="500" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="informationProcessingCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="informationProcessingWriteQueryButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="informationProcessingResultLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace pref="83" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="informationProcessingWriteQueryButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Write Query"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="informationProcessingWriteQueryButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="informationProcessingCombo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="15">
+                    <StringItem index="0" value="Insert Hotels"/>
+                    <StringItem index="1" value="Update Hotels"/>
+                    <StringItem index="2" value="Delete Hotels"/>
+                    <StringItem index="3" value="Insert Rooms"/>
+                    <StringItem index="4" value="Update Rooms"/>
+                    <StringItem index="5" value="Delete Rooms"/>
+                    <StringItem index="6" value="Insert Staff"/>
+                    <StringItem index="7" value="Update Staff"/>
+                    <StringItem index="8" value="Delete Staff"/>
+                    <StringItem index="9" value="Insert Customer"/>
+                    <StringItem index="10" value="Update Customer"/>
+                    <StringItem index="11" value="Delete Customer"/>
+                    <StringItem index="12" value="Check Room Availability"/>
+                    <StringItem index="13" value="Set Room Availability"/>
+                    <StringItem index="14" value="Assign Room"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="informationProcessingResultArea">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="informationProcessingResultLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Action Results"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator1">
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="maintaingServicePane">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Maintaining Service Records">
+                <Property name="tabTitle" type="java.lang.String" value="Maintaining Service Records"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jSeparator4" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="maintainingServiceCombo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="263" max="32767" attributes="0"/>
+                              <Component id="maintainingServicePerformButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
+                          <Component id="maintainingServiceResultLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="maintainingServiceCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="maintainingServicePerformButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="maintainingServiceResultLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jScrollPane5" pref="142" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="maintainingServicePerformButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Perform Action"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="maintainingServiceCombo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="2">
+                    <StringItem index="0" value="Enter Services"/>
+                    <StringItem index="1" value="Update Services"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maintainingServiceComboActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator4">
+            </Component>
+            <Component class="javax.swing.JLabel" name="maintainingServiceResultLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Action Results"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="maintainingServiceResultArea">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="maintainingBillingPane">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Maintaining Billing Accounts">
+                <Property name="tabTitle" type="java.lang.String" value="Maintaining Billing Accounts"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="maintainingBillingCombo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="69" max="32767" attributes="0"/>
+                      <Component id="maintainingBillingPerformButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator2" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+                          <Component id="maintainingBillingResultLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="maintainingBillingCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="maintainingBillingPerformButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="maintainingBillingResultLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" min="-2" pref="147" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="maintainingBillingPerformButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Perform Action"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="maintainingBillingCombo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="7">
+                    <StringItem index="0" value="Generate Bill"/>
+                    <StringItem index="1" value="Update a Bill"/>
+                    <StringItem index="2" value="Delete a Bill"/>
+                    <StringItem index="3" value="During check-out, return the total amount to the customer"/>
+                    <StringItem index="4" value="Itemized Receipt of Services Used"/>
+                    <StringItem index="5" value="Generate Customer&apos;s Payment Method"/>
+                    <StringItem index="6" value="Generate a note on which staff created a bill"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="maintainingBillingComboActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator2">
+            </Component>
+            <Component class="javax.swing.JLabel" name="maintainingBillingResultLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Action Results"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="maintainingBillingResultArea">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="reportsPane">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Reports">
+                <Property name="tabTitle" type="java.lang.String" value="Reports"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="reportsCombo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="reportsPerformButton" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jSeparator3" alignment="1" min="-2" pref="500" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jScrollPane4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="reportsResultLabel" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="reportsPerformButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="reportsCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="reportsResultLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane4" pref="147" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="reportsPerformButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Perform Action"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="reportsCombo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="7">
+                    <StringItem index="0" value="Occupancy and Percent Occupancy by Hotel on a given date"/>
+                    <StringItem index="1" value="Occupancy and Percent Occupancy by City on a given date"/>
+                    <StringItem index="2" value="Total Occupancy and Percent Occupancy by Room Type on a given date"/>
+                    <StringItem index="3" value="Total Occupancy and Percent Occupancy by Date Range"/>
+                    <StringItem index="4" value="Staff Information by Role"/>
+                    <StringItem index="5" value="Staff associated to a given Customer during a specific Stay"/>
+                    <StringItem index="6" value="Generate the Revenue of each Hotel during a given Time Period"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reportsComboActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator3">
+            </Component>
+            <Component class="javax.swing.JLabel" name="reportsResultLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Action Results"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="reportsResultArea">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="rows" type="int" value="5"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>
