@@ -1,17 +1,24 @@
 package com.startup;
 
-import com.databaserepo.InformationProcessingDAO;
-import com.dataobject.Hotel;
+import com.dataconfig.ConfigHotel;
 
 public class WolfInnStart {
 	public static void main(String args[]) {
-		WolfInnStart innStart = new WolfInnStart();
+		ConfigHotel configHotel = new ConfigHotel();
 		if (args.length > 0) {
 			switch (args[0]) {
 			case "addhotel":
-				innStart.addHotel(args);
+				configHotel.addHotel(args);
 				break;
-
+			case "showhotel":
+				configHotel.showHotel(args);
+				break;
+			case "showhotels":
+				configHotel.showHotels(args);
+				break;
+			case "updatehotel":
+				configHotel.updateHotel(args);
+				break;
 			default:
 				System.out.println("Invalid command.  Available options:");
 				printHelp();
@@ -23,18 +30,8 @@ public class WolfInnStart {
 
 	private static void printHelp() {
 		System.out.println("java -jar WolfInn.jar addhotel [<Id> <Phone> <Name> <Address> <City> <DBflag>]");
-	}
-	
-	public void addHotel(String args[]){
-		Hotel hotelData = new Hotel();
-		hotelData.setId(Integer.parseInt(args[1]));
-		hotelData.setPhone(Integer.parseInt(args[2]));
-		hotelData.setName(args[3]);
-		hotelData.setAddress(args[4]);
-		hotelData.setCity(args[5]);
-		int dbFlag = Integer.parseInt(args[6]);
-		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-		informationProcessingDAO.addHotelDB(hotelData, dbFlag);
-		
+		System.out.println("java -jar WolfInn.jar showhotel [<Id> <DBflag>]");
+		System.out.println("java -jar WolfInn.jar showhotels [<DBflag>]");
+		System.out.println("java -jar WolfInn.jar updatehotel [<Id> <Phone> <Name> <Address> <City> <Id> <DBflag>]");
 	}
 }

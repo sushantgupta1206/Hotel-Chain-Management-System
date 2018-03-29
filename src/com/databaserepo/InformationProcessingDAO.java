@@ -16,46 +16,6 @@ public class InformationProcessingDAO {
 	private static String sourceClass = InformationProcessingDAO.class.getName();
 	private static Logger log = Logger.getLogger(sourceClass);
 	
-	public void getFileDataList(int flag) {
-		String sourceMethod = "getFileDataList";
-		/*List<CustomerLogFile> logFileCustomDetails = new ArrayList<CustomerLogFile>();*/
-		ResultSet selectQueryRS = null;
-		Connection dbConn = null;
-		Statement stmt = null;
-		try {
-			dbConn = dbUtil.getConnection(flag);
-			stmt = dbConn.createStatement();
-			String selectStatement = "SELECT fd.id FROM UPLOADS.FILE_DATA fd WHERE fd.DISPOSITON_ID != 1";
-			selectQueryRS = stmt.executeQuery(selectStatement);
-			while (selectQueryRS.next()) {
-				System.out.println(selectQueryRS.getInt("id"));
-				/*CustomerLogFile customerLogFileCustomDetail = new CustomerLogFile();
-				customerLogFileCustomDetail.setId(selectQueryRS.getInt("id"));
-				customerLogFileCustomDetail.setUrl(uriInfo.getRequestUri().getPath()+"upload/files/"+ customerLogFileCustomDetail.getId());
-				logFileCustomDetails.add(customerLogFileCustomDetail);*/
-			}
-		} catch (Exception e) {
-			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-		} finally {
-			try {
-				if (selectQueryRS != null) {
-					selectQueryRS.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				} 
-				if (dbConn != null) {
-					dbConn.close();
-				}
-			} catch (Exception e) {
-				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-			}
-		}
-
-	}
-	
-	
-	
 	public int addHotelDB(Hotel hotelData, int dbFlag){
 		String sourceMethod = "addHotelDB";
 		String insertHotelDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".HOTELS ( HOTEL_ID, PHONE, NAME, ADDRESS, CITY ) VALUES (?,?,?,?,?)";
@@ -74,7 +34,7 @@ public class InformationProcessingDAO {
 			preparedStatement.execute();
 			rs = preparedStatement.getGeneratedKeys();
 			if (rs.next()) {
-			    generatedKey = rs.getInt(1);
+			    generatedKey = hotelData.getId();
 			}
 		} catch (Exception e) {
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
@@ -95,6 +55,129 @@ public class InformationProcessingDAO {
 		}
 		log.exiting(sourceClass, sourceMethod, generatedKey);
 		return generatedKey;
+	}
+
+
+
+	public void showHotels(int dbFlag) {
+		String sourceMethod = "showHotels";
+		List<Hotel> hotelDetails = new ArrayList<Hotel>();
+		ResultSet selectQueryRS = null;
+		Connection dbConn = null;
+		Statement stmt = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			stmt = dbConn.createStatement();
+			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".HOTELS";
+			selectQueryRS = stmt.executeQuery(selectStatement);
+			while (selectQueryRS.next()) {
+				Hotel hotel = new Hotel();
+				hotel.setId(selectQueryRS.getInt("HOTEL_ID"));
+				hotel.setPhone(selectQueryRS.getInt("PHONE"));
+				hotel.setName(selectQueryRS.getString("NAME"));
+				hotel.setAddress(selectQueryRS.getString("ADDRESS"));
+				hotel.setCity(selectQueryRS.getString("CITY"));
+				hotelDetails.add(hotel);
+				System.out.println(hotel);
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+
+		
+	}
+
+
+
+	public void showHotel(Hotel hotelData, int dbFlag) {
+		String sourceMethod = "showHotel";
+		PreparedStatement stmt = null;
+		Connection dbConn = null;
+		ResultSet selectQueryRS = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".HOTELS WHERE HOTEL_ID=?";
+			stmt = dbConn.prepareStatement(selectStatement);
+			stmt.setInt(1, hotelData.getId());
+			selectQueryRS = stmt.executeQuery();
+			while (selectQueryRS.next()) {
+				Hotel hotel = new Hotel();
+				hotel.setId(selectQueryRS.getInt("HOTEL_ID"));
+				hotel.setPhone(selectQueryRS.getInt("PHONE"));
+				hotel.setName(selectQueryRS.getString("NAME"));
+				hotel.setAddress(selectQueryRS.getString("ADDRESS"));
+				hotel.setCity(selectQueryRS.getString("CITY"));
+				System.out.println(hotel);
+			}
+			
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		
+	}
+
+
+
+	public void updateHotelDB(Hotel hotelData, int oldHotelId, int dbFlag) {
+		String sourceMethod = "updateHotelDB";
+		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".HOTELS SET HOTEL_ID = ?, PHONE = ?, NAME = ?, ADDRESS = ?, CITY = ? WHERE HOTEL_ID = ?";
+		PreparedStatement preparedStatement = null;
+		int numberOfUpdatedRows = 0;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, hotelData.getId());
+			preparedStatement.setInt(2, hotelData.getPhone());
+			preparedStatement.setString(3, hotelData.getName());
+			preparedStatement.setString(4, hotelData.getAddress());
+			preparedStatement.setString(5, hotelData.getCity());
+			preparedStatement.setInt(6, oldHotelId);
+			numberOfUpdatedRows = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfUpdatedRows);
+		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
 	}
 	
 	

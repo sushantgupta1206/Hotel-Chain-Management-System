@@ -47,4 +47,10 @@ public class Hotel {
 		this.city = city;
 	}
 
+	@Override
+	public String toString() {
+		return "Hotel [id=" + id + ", phone=" + phone + ", name=" + name + ", address=" + address + ", city=" + city
+				+ "]";
+	}
+
 }
