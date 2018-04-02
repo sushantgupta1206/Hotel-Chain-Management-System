@@ -204,4 +204,19 @@ public class ConfigInformationProcessingData {
 		informationProcessingDAO.deleteCustomer(customer, dbFlag);
 	}
 
+	public void checkRoomAvailability(String[] args) {
+		int roomNo = Integer.parseInt(args[1]);
+		int hotelId = Integer.parseInt(args[2]);
+		int dbFlag = Integer.parseInt(args[3]);
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		informationProcessingDAO.checkRoomAvailability(roomNo, hotelId, dbFlag);
+	}
+
+	public void checkRoomTypeAvailability(String[] args) {
+		String roomType = args[1];
+		int hotelId = Integer.parseInt(args[2]);
+		int dbFlag = Integer.parseInt(args[3]);
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		informationProcessingDAO.checkRoomTypeAvailability(roomType, hotelId, dbFlag);
+	}
 }

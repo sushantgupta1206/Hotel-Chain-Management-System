@@ -738,4 +738,86 @@ public class InformationProcessingDAO {
 		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
 	}
 	
+	public String checkRoomAvailability(int roomNo, int hotelId, int dbFlag) {
+		String sourceMethod = "checkRoomAvailability";
+		PreparedStatement stmt = null;
+		Connection dbConn = null;
+		ResultSet selectQueryRS = null;
+		String response = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			String selectStatement = "SELECT (CASE WHEN AVAILABILITY=0 THEN 'FALSE' ELSE 'TRUE' END) AS AVAILABILITY FROM "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ROOM_NO=? AND HOTEL_ID=?";
+			stmt = dbConn.prepareStatement(selectStatement);
+			stmt.setInt(1, roomNo);
+			stmt.setInt(2, hotelId);
+			selectQueryRS = stmt.executeQuery();
+			while (selectQueryRS.next()) {
+				response = selectQueryRS.getString("AVAILABILITY");
+				System.out.println(response);
+			}
+			
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		return response;
+		
+	}
+
+
+
+	public String checkRoomTypeAvailability(String roomType, int hotelId, int dbFlag) {
+		String sourceMethod = "checkRoomTypeAvailability";
+		PreparedStatement stmt = null;
+		Connection dbConn = null;
+		ResultSet selectQueryRS = null;
+		String response = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			String selectStatement = "SELECT R.ROOM_NO, R.HOTEL_ID, RC.TYPE, (CASE WHEN AVAILABILITY=0 THEN 'FALSE' ELSE "+
+									"'TRUE' END) AS AVAILABILITY FROM "+DBConnectUtils.DBSCHEMA+".ROOMS AS R, "+DBConnectUtils.DBSCHEMA+".ROOM_HAS AS RH, "+DBConnectUtils.DBSCHEMA+". ROOM_CATEGORY AS RC "+
+									"WHERE R.ROOM_NO=RH.ROOM_NO AND R.HOTEL_ID=RH.HOTEL_ID AND "+
+									"RH.ROOM_CATEGORY_ID=RC.ID AND RC.TYPE=? AND R.HOTEL_ID=?";
+			stmt = dbConn.prepareStatement(selectStatement);
+			stmt.setString(1, roomType);
+			stmt.setInt(2, hotelId);
+			selectQueryRS = stmt.executeQuery();
+			while (selectQueryRS.next()) {
+				response = selectQueryRS.getString("ROOM_NO");
+				System.out.println(response);
+			}
+			
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		return response;
+	}
+	
 }

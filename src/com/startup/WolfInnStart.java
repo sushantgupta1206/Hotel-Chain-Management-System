@@ -90,6 +90,14 @@ public class WolfInnStart {
 				configHotel.deleteCustomer(args);
 				break;
 				
+			
+			case "checkRoomAvailability":
+				configHotel.checkRoomAvailability(args);
+				break;
+				
+			case "checkRoomTypeAvailability":
+				configHotel.checkRoomTypeAvailability(args);
+				break;
 			default:
 				System.out.println("Invalid command.  Available options:");
 				printHelp();
@@ -123,5 +131,8 @@ public class WolfInnStart {
 		System.out.println("java -jar WolfInn.jar updatecustomer [<CUSTOMER_ID> <PHONE> <NAME> <EMAIL_ADDRESS> <DOB> <For which CUSTOMER_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar showcustomers [<DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar deletecustomer [<For which CUSTOMER_ID> <DBflag=2 for MariaDB>]");
+		
+		System.out.println("java -jar WolfInn.jar checkRoomAvailability [<ROOM_NO> <HOTEL_ID> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar checkRoomTypeAvailability [<ROOM_TYPE_NAME> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 	}
 }
