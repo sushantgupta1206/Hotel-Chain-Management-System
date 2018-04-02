@@ -1955,7 +1955,9 @@ public class DatabaseGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_informationProcessingWriteQueryButtonActionPerformed
 
     private void insertHotelPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertHotelPerformActionButtonActionPerformed
-        informationProcessingResultArea.setText("AAAAAA");
+    	String val= insertHotelHotelID.getText();
+    	String val1=insertHotelHotelIDNew.getText();
+    	informationProcessingResultArea.setText("AAAAAA");
         ConfigInformationProcessingData configHotel = new ConfigInformationProcessingData();
         
         
