@@ -16,6 +16,7 @@ public class InformationProcessingDAO {
 	private static String sourceClass = InformationProcessingDAO.class.getName();
 	private static Logger log = Logger.getLogger(sourceClass);
 	
+	//Insert Hotel Record.
 	public int addHotelDB(Hotel hotelData, int dbFlag){
 		String sourceMethod = "addHotelDB";
 		String insertHotelDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".HOTELS ( HOTEL_ID, PHONE, NAME, ADDRESS, CITY ) VALUES (?,?,?,?,?)";
@@ -58,7 +59,7 @@ public class InformationProcessingDAO {
 	}
 
 
-
+	//Show all Hotel records.
 	public void showHotels(int dbFlag) {
 		String sourceMethod = "showHotels";
 		List<Hotel> hotelDetails = new ArrayList<Hotel>();
@@ -102,7 +103,7 @@ public class InformationProcessingDAO {
 	}
 
 
-
+	//Show Hotel record By Id.
 	public void showHotel(Hotel hotelData, int dbFlag) {
 		String sourceMethod = "showHotel";
 		PreparedStatement stmt = null;
@@ -145,7 +146,7 @@ public class InformationProcessingDAO {
 	}
 
 
-
+	//Update Hotel Record by ID
 	public void updateHotelDB(Hotel hotelData, int oldHotelId, int dbFlag) {
 		String sourceMethod = "updateHotelDB";
 		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".HOTELS SET HOTEL_ID = ?, PHONE = ?, NAME = ?, ADDRESS = ?, CITY = ? WHERE HOTEL_ID = ?";
@@ -178,6 +179,37 @@ public class InformationProcessingDAO {
 		}
 		log.exiting(sourceClass, sourceMethod, numberOfUpdatedRows);
 		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
+	}
+
+
+	//Delete Hotel Record by ID
+	public void deleteHotels(Hotel hotelData, int dbFlag) {
+		String sourceMethod = "deleteHotels";
+		String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".HOTELS WHERE HOTEL_ID = ?";
+		PreparedStatement preparedStatement = null;
+		int numberOfDeletedRows = 0;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, hotelData.getId());
+			numberOfDeletedRows = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfDeletedRows);
+		System.out.println("numberOfDeletedRows: "+numberOfDeletedRows);
 	}
 	
 	

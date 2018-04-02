@@ -43,4 +43,12 @@ public class ConfigHotel {
 		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 		System.out.println("Added hotel: "+informationProcessingDAO.addHotelDB(hotelData, dbFlag));
 	}
+
+	public void deleteHotel(String[] args) {
+		Hotel hotelData = new Hotel();
+		hotelData.setId(Integer.parseInt(args[1]));
+		int dbFlag = Integer.parseInt(args[2]);
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		informationProcessingDAO.deleteHotels(hotelData, dbFlag);
+	}
 }
