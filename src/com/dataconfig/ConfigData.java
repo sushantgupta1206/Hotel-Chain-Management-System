@@ -14,6 +14,11 @@ import com.dataobject.Staff;
  */
 public class ConfigData {
 	
+	private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
+        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+        return sDate;
+    }
+	
 	public void updateHotel(String[] args) {
 		Hotel hotelData = new Hotel();
 		hotelData.setId(Integer.parseInt(args[1]));
@@ -106,12 +111,11 @@ public class ConfigData {
 	public void addStaff(String[] args) throws ParseException {
 		Staff staff = new Staff();
 		staff.setStaffId(Integer.parseInt(args[1]));
-		staff.setPhone(Long.parseLong(args[2]));
+		staff.setPhone(args[2]);
 		staff.setName(args[3]);
 		staff.setAddress(args[4]);
 		String date=args[5];
 		java.util.Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(date);
-		
 		staff.setDob(convertUtilToSql(date1));
 		staff.setDepartment(args[6]);
 		staff.setTitle(args[7]);
@@ -121,9 +125,38 @@ public class ConfigData {
 		System.out.println("Added hotel: "+informationProcessingDAO.addStaff(staff, dbFlag));
 		
 	}
-	private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
-		        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
-		        return sDate;
-		    }
+
+	public void updateStaff(String[] args) throws ParseException {
+		Staff staff = new Staff();
+		staff.setStaffId(Integer.parseInt(args[1]));
+		staff.setPhone(args[2]);
+		staff.setName(args[3]);
+		staff.setAddress(args[4]);
+		String date=args[5];
+		java.util.Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(date);
+		staff.setDob(convertUtilToSql(date1));
+		staff.setDepartment(args[6]);
+		staff.setTitle(args[7]);
+		staff.setAge(Integer.parseInt(args[8]));
+		
+		int oldStaffId=Integer.parseInt(args[9]);
+		int dbFlag = Integer.parseInt(args[10]);
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		informationProcessingDAO.updateStaff(staff, oldStaffId, dbFlag);
+	}
+
+	public void showStaffs(String[] args) {
+		int dbFlag = Integer.parseInt(args[1]);
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		informationProcessingDAO.showStaffs(dbFlag);
+	}
+
+	public void deleteStaff(String[] args) {
+		Staff staff = new Staff();
+		staff.setStaffId(Integer.parseInt(args[1]));
+		int dbFlag = Integer.parseInt(args[2]);
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		informationProcessingDAO.deleteStaff(staff, dbFlag);
+	}
 
 }

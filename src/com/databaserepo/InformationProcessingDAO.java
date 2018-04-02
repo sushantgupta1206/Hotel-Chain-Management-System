@@ -425,7 +425,7 @@ public class InformationProcessingDAO {
 			dbConn = dbUtil.getConnection(dbFlag);
 			preparedStatement = dbConn.prepareStatement(insertDataQuery,Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setInt(1, staff.getStaffId());
-			preparedStatement.setLong(2, staff.getPhone());
+			preparedStatement.setString(2, staff.getPhone());
 			preparedStatement.setString(3, staff.getName());
 			preparedStatement.setString(4, staff.getAddress());
 			preparedStatement.setDate(5, staff.getDob());
@@ -456,6 +456,128 @@ public class InformationProcessingDAO {
 		}
 		log.exiting(sourceClass, sourceMethod, generatedKey);
 		return generatedKey;
+	}
+
+
+
+	/**Show all staffs
+	 * @param dbFlag
+	 */
+	public void showStaffs(int dbFlag) {
+		String sourceMethod = "showStaffs";
+		List<Staff> details = new ArrayList<Staff>();
+		ResultSet selectQueryRS = null;
+		Connection dbConn = null;
+		Statement stmt = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			stmt = dbConn.createStatement();
+			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".STAFF";
+			selectQueryRS = stmt.executeQuery(selectStatement);
+			while (selectQueryRS.next()) {
+				Staff detail=new Staff();
+				detail.setStaffId(selectQueryRS.getInt("STAFF_ID"));
+				detail.setPhone(selectQueryRS.getString("PHONE"));
+				detail.setName(selectQueryRS.getString("NAME"));
+				detail.setAddress(selectQueryRS.getString("ADDRESS"));
+				detail.setDob(selectQueryRS.getDate("DOB"));
+				detail.setDepartment(selectQueryRS.getString("DEPARTMENT"));
+				detail.setTitle(selectQueryRS.getString("TITLE"));
+				detail.setAge(selectQueryRS.getInt("AGE"));
+				details.add(detail);
+				System.out.println(detail);
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+	}
+
+
+
+	/**Delete staff record by staff id 
+	 * @param staff
+	 * @param dbFlag
+	 */
+	public void deleteStaff(Staff staff, int dbFlag) {
+		String sourceMethod = "deleteStaff";
+		String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".STAFF WHERE STAFF_ID = ?";
+		PreparedStatement preparedStatement = null;
+		int numberOfDeletedRows = 0;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, staff.getStaffId());
+			numberOfDeletedRows = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfDeletedRows);
+		System.out.println("numberOfDeletedRows: "+numberOfDeletedRows);
+	}
+
+
+
+	public void updateStaff(Staff staff, int oldStaffId, int dbFlag) {
+		String sourceMethod = "updateRoom";
+		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".STAFF SET STAFF_ID = ?, PHONE = ?, NAME = ?, ADDRESS =?, DOB = ?, DEPARTMENT = ?, TITLE =?, AGE = ? WHERE STAFF_ID = ?";
+		PreparedStatement preparedStatement = null;
+		int numberOfUpdatedRows = 0;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, staff.getStaffId());
+			preparedStatement.setString(2, staff.getPhone());
+			preparedStatement.setString(3, staff.getName());
+			preparedStatement.setString(4, staff.getAddress());
+			preparedStatement.setDate(5, staff.getDob());
+			preparedStatement.setString(6, staff.getDepartment());
+			preparedStatement.setString(7, staff.getTitle());
+			preparedStatement.setInt(8, staff.getAge());
+			preparedStatement.setInt(9, oldStaffId);
+			numberOfUpdatedRows = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfUpdatedRows);
+		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
 	}
 	
 }

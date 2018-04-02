@@ -52,15 +52,20 @@ public class WolfInnStart {
 					e.printStackTrace();
 				}
 				break;
-			/*case "updatestaff":
-				configHotel.updateStaff(args);
+			case "updatestaff":
+				try {
+					configHotel.updateStaff(args);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			case "showstaffs":
 				configHotel.showStaffs(args);
 				break;
 			case "deletestaff":
 				configHotel.deleteStaff(args);
-				break;*/
+				break;
 				
 			default:
 				System.out.println("Invalid command.  Available options:");
@@ -82,5 +87,10 @@ public class WolfInnStart {
 		System.out.println("java -jar WolfInn.jar updateroom [<ROOM_NO> <HOTEL_ID> <MAX_OCCUPANCY> <NIGHTLY_RATE> <AVAILABILITY> <For which Room Num> <For which Hotel Id> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar showrooms [<DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar deleteroom [<For which Room Num> <For which Hotel Id> <DBflag=2 for MariaDB>]");
+		
+		System.out.println("java -jar WolfInn.jar addstaff [<STAFF_ID> <PHONE> <NAME> <ADDRESS> <DOB> <DEPARTMENT> <TITLE> <AGE> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar updatestaff [<STAFF_ID> <PHONE> <NAME> <ADDRESS> <DOB> <DEPARTMENT> <TITLE> <AGE> <For which STAFF_ID> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar showstaffs [<DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar deletestaff [<For which Staff Id> <DBflag=2 for MariaDB>]");
 	}
 }

@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Staff {
 	private int staffId;
-	private Long phone;
+	private String phone;
 	private String name;
 	private String address;
 	private Date dob;
@@ -20,11 +20,11 @@ public class Staff {
 		this.staffId = staffId;
 	}
 
-	public Long getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Long phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
