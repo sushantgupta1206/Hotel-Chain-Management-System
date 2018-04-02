@@ -2,7 +2,14 @@ package com.startup;
 
 import com.dataconfig.ConfigData;
 
+/**
+ * @author Kartik  Shah
+ *
+ */
 public class WolfInnStart {
+	/**
+	 * @param args
+	 */
 	public static void main(String args[]) {
 		ConfigData configHotel = new ConfigData();
 		if (args.length > 0) {

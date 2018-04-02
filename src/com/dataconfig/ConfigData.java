@@ -4,6 +4,10 @@ import com.databaserepo.InformationProcessingDAO;
 import com.dataobject.Hotel;
 import com.dataobject.Room;
 
+/**
+ * @author Kartik Shah
+ *
+ */
 public class ConfigData {
 	
 	public void updateHotel(String[] args) {

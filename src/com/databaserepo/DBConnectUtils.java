@@ -6,6 +6,10 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 
+/**
+ * @author Kartik Shah
+ *
+ */
 public class DBConnectUtils {
 	private static String sourceClass = DBConnectUtils.class.getName();
 	private static Logger log = Logger.getLogger(sourceClass);

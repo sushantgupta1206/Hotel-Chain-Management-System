@@ -12,12 +12,22 @@ import java.util.logging.Logger;
 import com.dataobject.Hotel;
 import com.dataobject.Room;
 
+/**
+ * @author Kartik Shah
+ *
+ */
 public class InformationProcessingDAO {
 	private DBConnectUtils dbUtil = new DBConnectUtils();
 	private static String sourceClass = InformationProcessingDAO.class.getName();
 	private static Logger log = Logger.getLogger(sourceClass);
 	
+	
 	//Insert Hotel Record.
+	/**
+	 * @param hotelData
+	 * @param dbFlag
+	 * @return
+	 */
 	public int addHotel(Hotel hotelData, int dbFlag){
 		String sourceMethod = "addHotel";
 		String insertHotelDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".HOTELS ( HOTEL_ID, PHONE, NAME, ADDRESS, CITY ) VALUES (?,?,?,?,?)";
@@ -61,6 +71,9 @@ public class InformationProcessingDAO {
 
 
 	//Show all Hotel records.
+	/**
+	 * @param dbFlag
+	 */
 	public void showHotels(int dbFlag) {
 		String sourceMethod = "showHotels";
 		List<Hotel> hotelDetails = new ArrayList<Hotel>();
@@ -105,6 +118,10 @@ public class InformationProcessingDAO {
 
 
 	//Show Hotel record By Id.
+	/**
+	 * @param hotelData
+	 * @param dbFlag
+	 */
 	public void showHotel(Hotel hotelData, int dbFlag) {
 		String sourceMethod = "showHotel";
 		PreparedStatement stmt = null;
@@ -148,6 +165,11 @@ public class InformationProcessingDAO {
 
 
 	//Update Hotel Record by ID
+	/**
+	 * @param hotelData
+	 * @param oldHotelId
+	 * @param dbFlag
+	 */
 	public void updateHotel(Hotel hotelData, int oldHotelId, int dbFlag) {
 		String sourceMethod = "updateHotel";
 		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".HOTELS SET HOTEL_ID = ?, PHONE = ?, NAME = ?, ADDRESS = ?, CITY = ? WHERE HOTEL_ID = ?";
@@ -184,6 +206,10 @@ public class InformationProcessingDAO {
 
 
 	//Delete Hotel Record by ID
+	/**
+	 * @param hotelData
+	 * @param dbFlag
+	 */
 	public void deleteHotel(Hotel hotelData, int dbFlag) {
 		String sourceMethod = "deleteHotels";
 		String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".HOTELS WHERE HOTEL_ID = ?";
@@ -214,6 +240,11 @@ public class InformationProcessingDAO {
 	}
 
 	//Insert Room record
+	/**
+	 * @param room
+	 * @param dbFlag
+	 * @return
+	 */
 	public int addRoom(Room room, int dbFlag) {
 		String sourceMethod = "addRoom";
 		String insertHotelDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".ROOMS ( ROOM_NO, HOTEL_ID, MAX_OCCUPANCY, NIGHTLY_RATE ) VALUES (?,?,?,?)";
@@ -255,6 +286,12 @@ public class InformationProcessingDAO {
 	}
 
 	//Update Room record by Room Num and Hotel Id
+	/**
+	 * @param room
+	 * @param oldRoomNum
+	 * @param oldHotelId
+	 * @param dbFlag
+	 */
 	public void updateRoom(Room room, int oldRoomNum, int oldHotelId, int dbFlag) {
 		String sourceMethod = "updateRoom";
 		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOMS SET ROOM_NO = ?, HOTEL_ID = ?,MAX_OCCUPANCY=?, NIGHTLY_RATE=?, AVAILABILITY=? WHERE ROOM_NO = ? AND HOTEL_ID = ?";
@@ -290,7 +327,10 @@ public class InformationProcessingDAO {
 		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
 	}
 
-
+	//Show All Rooms
+	/**
+	 * @param dbFlag
+	 */
 	public void showRooms(int dbFlag) {
 		String sourceMethod = "showRooms";
 		List<Room> roomDetails = new ArrayList<Room>();
@@ -331,7 +371,12 @@ public class InformationProcessingDAO {
 		}
 	}
 
-
+	
+	//Delete room by room num and hotel id
+	/**
+	 * @param room
+	 * @param dbFlag
+	 */
 	public void deleteRoom(Room room, int dbFlag) {
 		String sourceMethod = "deleteRoom";
 		String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ROOM_NO = ? AND HOTEL_ID = ?";
