@@ -2,7 +2,7 @@ package com.startup;
 
 import java.text.ParseException;
 
-import com.dataconfig.ConfigData;
+import com.dataconfig.ConfigInformationProcessingData;
 
 /**
  * @author Kartik  Shah
@@ -13,7 +13,7 @@ public class WolfInnStart {
 	 * @param args
 	 */
 	public static void main(String args[]) {
-		ConfigData configHotel = new ConfigData();
+		ConfigInformationProcessingData configHotel = new ConfigInformationProcessingData();
 		if (args.length > 0) {
 			switch (args[0]) {
 			case "addhotel":

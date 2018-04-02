@@ -13,7 +13,7 @@ import com.dataobject.Staff;
  * @author Kartik Shah
  *
  */
-public class ConfigData {
+public class ConfigInformationProcessingData {
 	
 	private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
         java.sql.Date sDate = new java.sql.Date(uDate.getTime());
