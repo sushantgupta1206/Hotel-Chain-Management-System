@@ -98,6 +98,14 @@ public class WolfInnStart {
 			case "checkRoomTypeAvailability":
 				configHotel.checkRoomTypeAvailability(args);
 				break;
+				
+			case "setRoomAvailability":
+				configHotel.setRoomAvailability(args);
+				break;
+				
+			case "assignroom":
+				configHotel.assignroom(args);
+				break;
 			default:
 				System.out.println("Invalid command.  Available options:");
 				printHelp();
@@ -134,5 +142,6 @@ public class WolfInnStart {
 		
 		System.out.println("java -jar WolfInn.jar checkRoomAvailability [<ROOM_NO> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar checkRoomTypeAvailability [<ROOM_TYPE_NAME> <HOTEL_ID> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar setRoomAvailability [<AVAILABILITY> <ROOM_NO> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 	}
 }

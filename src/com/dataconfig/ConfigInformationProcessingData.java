@@ -219,4 +219,18 @@ public class ConfigInformationProcessingData {
 		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 		informationProcessingDAO.checkRoomTypeAvailability(roomType, hotelId, dbFlag);
 	}
+
+	public void setRoomAvailability(String[] args) {
+		int availability = Integer.parseInt(args[1]);
+		int roomNo = Integer.parseInt(args[2]);
+		int hotelId = Integer.parseInt(args[3]);
+		int dbFlag = Integer.parseInt(args[4]);
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		informationProcessingDAO.setRoomAvailability(availability, roomNo, hotelId, dbFlag);
+	}
+
+	public void assignroom(String[] args) {
+		// TODO Auto-generated method stub
+		//Shushant will write the code
+	}
 }

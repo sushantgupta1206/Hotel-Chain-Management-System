@@ -588,6 +588,11 @@ public class InformationProcessingDAO {
 
 
 
+	/**Add customer record
+	 * @param customer
+	 * @param dbFlag
+	 * @return
+	 */
 	public int addCustomer(Customer customer, int dbFlag) {
 		String sourceMethod = "addCustomer";
 		String insertDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".CUSTOMER (CUSTOMER_ID, PHONE, NAME, EMAIL_ADDRESS, DOB) VALUES (?,?,?,?,?)";
@@ -631,6 +636,9 @@ public class InformationProcessingDAO {
 
 
 
+	/**Show all customers
+	 * @param dbFlag
+	 */
 	public void showCustomers(int dbFlag) {
 		String sourceMethod = "showCustomers";
 		List<Customer> details = new ArrayList<Customer>();
@@ -673,6 +681,10 @@ public class InformationProcessingDAO {
 
 
 
+	/**Delete customer by customer id
+	 * @param customer
+	 * @param dbFlag
+	 */
 	public void deleteCustomer(Customer customer, int dbFlag) {
 		String sourceMethod = "deleteCustomer";
 		String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".CUSTOMER WHERE CUSTOMER_ID = ?";
@@ -704,6 +716,11 @@ public class InformationProcessingDAO {
 
 
 
+	/**Update Customer record by customer id
+	 * @param customer
+	 * @param oldCustomerId
+	 * @param dbFlag
+	 */
 	public void updateCustomer(Customer customer, int oldCustomerId, int dbFlag) {
 		String sourceMethod = "updateCustomer";
 		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".CUSTOMER SET CUSTOMER_ID = ?, PHONE = ?, NAME = ?, EMAIL_ADDRESS = ?, DOB = ? WHERE CUSTOMER_ID = ?";
@@ -738,6 +755,12 @@ public class InformationProcessingDAO {
 		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
 	}
 	
+	/**Pass roomNo and hotelId as argument and get response as room type is available or not
+	 * @param roomNo
+	 * @param hotelId
+	 * @param dbFlag
+	 * @return
+	 */
 	public String checkRoomAvailability(int roomNo, int hotelId, int dbFlag) {
 		String sourceMethod = "checkRoomAvailability";
 		PreparedStatement stmt = null;
@@ -779,6 +802,12 @@ public class InformationProcessingDAO {
 
 
 
+	/**Pass roomType and hotelId as argument and get response as room type is available or not
+	 * @param roomType
+	 * @param hotelId
+	 * @param dbFlag
+	 * @return
+	 */
 	public String checkRoomTypeAvailability(String roomType, int hotelId, int dbFlag) {
 		String sourceMethod = "checkRoomTypeAvailability";
 		PreparedStatement stmt = null;
@@ -818,6 +847,42 @@ public class InformationProcessingDAO {
 			}
 		}
 		return response;
+	}
+
+
+
+	public String setRoomAvailability(int availability, int roomNo, int hotelId, int dbFlag) {
+		String sourceMethod = "setRoomAvailability";
+		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOMS SET AVAILABILITY=? WHERE ROOM_NO=? AND HOTEL_ID=?";
+		PreparedStatement preparedStatement = null;
+		int numberOfUpdatedRows = 0;
+		String responsenumberOfUpdatedRows = null;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, availability);
+			preparedStatement.setInt(2, roomNo);
+			preparedStatement.setInt(3, hotelId);
+			numberOfUpdatedRows = preparedStatement.executeUpdate();
+			responsenumberOfUpdatedRows = ""+numberOfUpdatedRows;
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfUpdatedRows);
+		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
+		return responsenumberOfUpdatedRows;
 	}
 	
 }
