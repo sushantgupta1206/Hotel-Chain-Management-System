@@ -1,8 +1,12 @@
 package com.dataconfig;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import com.databaserepo.InformationProcessingDAO;
 import com.dataobject.Hotel;
 import com.dataobject.Room;
+import com.dataobject.Staff;
 
 /**
  * @author Kartik Shah
@@ -98,4 +102,28 @@ public class ConfigData {
 		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 		informationProcessingDAO.deleteRoom(room, dbFlag);
 	}
+
+	public void addStaff(String[] args) throws ParseException {
+		Staff staff = new Staff();
+		staff.setStaffId(Integer.parseInt(args[1]));
+		staff.setPhone(Long.parseLong(args[2]));
+		staff.setName(args[3]);
+		staff.setAddress(args[4]);
+		String date=args[5];
+		java.util.Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(date);
+		
+		staff.setDob(convertUtilToSql(date1));
+		staff.setDepartment(args[6]);
+		staff.setTitle(args[7]);
+		staff.setAge(Integer.parseInt(args[8]));
+		int dbFlag = Integer.parseInt(args[9]);
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		System.out.println("Added hotel: "+informationProcessingDAO.addStaff(staff, dbFlag));
+		
+	}
+	private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
+		        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+		        return sDate;
+		    }
+
 }

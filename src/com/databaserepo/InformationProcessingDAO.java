@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 import com.dataobject.Hotel;
 import com.dataobject.Room;
+import com.dataobject.Staff;
 
 /**
  * @author Kartik Shah
@@ -22,8 +23,8 @@ public class InformationProcessingDAO {
 	private static Logger log = Logger.getLogger(sourceClass);
 	
 	
-	//Insert Hotel Record.
-	/**
+	
+	/**Insert Hotel Record.
 	 * @param hotelData
 	 * @param dbFlag
 	 * @return
@@ -70,8 +71,8 @@ public class InformationProcessingDAO {
 	}
 
 
-	//Show all Hotel records.
-	/**
+	
+	/**Show all Hotel records.
 	 * @param dbFlag
 	 */
 	public void showHotels(int dbFlag) {
@@ -117,8 +118,8 @@ public class InformationProcessingDAO {
 	}
 
 
-	//Show Hotel record By Id.
-	/**
+	
+	/**Show Hotel record By Id.
 	 * @param hotelData
 	 * @param dbFlag
 	 */
@@ -164,8 +165,8 @@ public class InformationProcessingDAO {
 	}
 
 
-	//Update Hotel Record by ID
-	/**
+	
+	/**Update Hotel Record by ID
 	 * @param hotelData
 	 * @param oldHotelId
 	 * @param dbFlag
@@ -205,8 +206,8 @@ public class InformationProcessingDAO {
 	}
 
 
-	//Delete Hotel Record by ID
-	/**
+	
+	/**Delete Hotel Record by ID
 	 * @param hotelData
 	 * @param dbFlag
 	 */
@@ -239,8 +240,8 @@ public class InformationProcessingDAO {
 		System.out.println("numberOfDeletedRows: "+numberOfDeletedRows);
 	}
 
-	//Insert Room record
-	/**
+	
+	/**Insert Room record
 	 * @param room
 	 * @param dbFlag
 	 * @return
@@ -285,8 +286,8 @@ public class InformationProcessingDAO {
 		return generatedKey;
 	}
 
-	//Update Room record by Room Num and Hotel Id
-	/**
+	
+	/**Update Room record by Room Num and Hotel Id
 	 * @param room
 	 * @param oldRoomNum
 	 * @param oldHotelId
@@ -327,8 +328,8 @@ public class InformationProcessingDAO {
 		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
 	}
 
-	//Show All Rooms
-	/**
+	
+	/**Show All Rooms
 	 * @param dbFlag
 	 */
 	public void showRooms(int dbFlag) {
@@ -372,8 +373,8 @@ public class InformationProcessingDAO {
 	}
 
 	
-	//Delete room by room num and hotel id
-	/**
+	
+	/**Delete room by room num and hotel id
 	 * @param room
 	 * @param dbFlag
 	 */
@@ -405,6 +406,56 @@ public class InformationProcessingDAO {
 		}
 		log.exiting(sourceClass, sourceMethod, numberOfDeletedRows);
 		System.out.println("numberOfDeletedRows: "+numberOfDeletedRows);
+	}
+
+	
+	/**Insert staff
+	 * @param staff
+	 * @param dbFlag
+	 * @return
+	 */
+	public int addStaff(Staff staff, int dbFlag) {
+		String sourceMethod = "addStaff";
+		String insertDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".STAFF (STAFF_ID, PHONE, NAME, ADDRESS, DOB, DEPARTMENT, TITLE, AGE) VALUES (?,?,?,?,?,?,?,?)";
+		PreparedStatement preparedStatement = null;
+		int generatedKey = 0;
+		Connection dbConn = null;
+		ResultSet rs = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(insertDataQuery,Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setInt(1, staff.getStaffId());
+			preparedStatement.setLong(2, staff.getPhone());
+			preparedStatement.setString(3, staff.getName());
+			preparedStatement.setString(4, staff.getAddress());
+			preparedStatement.setDate(5, staff.getDob());
+			preparedStatement.setString(6, staff.getDepartment());
+			preparedStatement.setString(7, staff.getTitle());
+			preparedStatement.setInt(8, staff.getAge());
+			preparedStatement.execute();
+			rs = preparedStatement.getGeneratedKeys();
+			if (rs.next()) {
+			    generatedKey = staff.getStaffId();
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, generatedKey);
+		return generatedKey;
 	}
 	
 }

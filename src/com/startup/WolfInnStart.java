@@ -1,5 +1,7 @@
 package com.startup;
 
+import java.text.ParseException;
+
 import com.dataconfig.ConfigData;
 
 /**
@@ -42,6 +44,23 @@ public class WolfInnStart {
 			case "deleteroom":
 				configHotel.deleteRoom(args);
 				break;
+			
+			case "addstaff":
+				try {
+					configHotel.addStaff(args);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				break;
+			/*case "updatestaff":
+				configHotel.updateStaff(args);
+				break;
+			case "showstaffs":
+				configHotel.showStaffs(args);
+				break;
+			case "deletestaff":
+				configHotel.deleteStaff(args);
+				break;*/
 				
 			default:
 				System.out.println("Invalid command.  Available options:");
