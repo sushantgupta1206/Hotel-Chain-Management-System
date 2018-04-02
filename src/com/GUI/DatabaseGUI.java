@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
-import com.dataconfig.ConfigHotel;
+import com.dataconfig.ConfigData;
 
 public class DatabaseGUI extends javax.swing.JFrame {
     
@@ -1956,7 +1956,7 @@ public class DatabaseGUI extends javax.swing.JFrame {
 
     private void insertHotelPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertHotelPerformActionButtonActionPerformed
         informationProcessingResultArea.setText("AAAAAA");
-        ConfigHotel configHotel = new ConfigHotel();
+        ConfigData configHotel = new ConfigData();
         
         
         insertHotelDialog.dispose();
