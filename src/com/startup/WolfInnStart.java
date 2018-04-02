@@ -9,7 +9,7 @@ import com.dataconfig.ConfigData;
  *
  */
 public class WolfInnStart {
-	/**
+	/**Accept arguments from user
 	 * @param args
 	 */
 	public static void main(String args[]) {
@@ -67,6 +67,29 @@ public class WolfInnStart {
 				configHotel.deleteStaff(args);
 				break;
 				
+				
+			case "addcustomer":
+				try {
+					configHotel.addCustomer(args);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				break;
+			case "updatecustomer":
+				try {
+					configHotel.updateCustomer(args);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+			case "showcustomers":
+				configHotel.showCustomers(args);
+				break;
+			case "deletecustomer":
+				configHotel.deleteCustomer(args);
+				break;
+				
 			default:
 				System.out.println("Invalid command.  Available options:");
 				printHelp();
@@ -76,6 +99,9 @@ public class WolfInnStart {
 		}
 	}
 
+	/**
+	 * Help to execute commands
+	 */
 	private static void printHelp() {
 		System.out.println("java -jar WolfInn.jar addhotel [<Id> <Phone> <Name> <Address> <City> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar showhotel [<For which Hotel Id> <DBflag=2 for MariaDB>]");
@@ -92,5 +118,10 @@ public class WolfInnStart {
 		System.out.println("java -jar WolfInn.jar updatestaff [<STAFF_ID> <PHONE> <NAME> <ADDRESS> <DOB> <DEPARTMENT> <TITLE> <AGE> <For which STAFF_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar showstaffs [<DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar deletestaff [<For which Staff Id> <DBflag=2 for MariaDB>]");
+		
+		System.out.println("java -jar WolfInn.jar addcustomer [<CUSTOMER_ID> <PHONE> <NAME> <EMAIL_ADDRESS> <DOB> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar updatecustomer [<CUSTOMER_ID> <PHONE> <NAME> <EMAIL_ADDRESS> <DOB> <For which CUSTOMER_ID> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar showcustomers [<DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar deletecustomer [<For which CUSTOMER_ID> <DBflag=2 for MariaDB>]");
 	}
 }

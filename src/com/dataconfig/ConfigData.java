@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import com.databaserepo.InformationProcessingDAO;
+import com.dataobject.Customer;
 import com.dataobject.Hotel;
 import com.dataobject.Room;
 import com.dataobject.Staff;
@@ -157,6 +158,50 @@ public class ConfigData {
 		int dbFlag = Integer.parseInt(args[2]);
 		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 		informationProcessingDAO.deleteStaff(staff, dbFlag);
+	}
+
+	public void addCustomer(String[] args) throws ParseException {
+		Customer customer =  new Customer();
+		customer.setCustomerId(Integer.parseInt(args[1]));
+		customer.setPhone(args[2]);
+		customer.setName(args[3]);
+		customer.setEmail(args[4]);
+		String date=args[5];
+		java.util.Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(date);
+		customer.setDob(convertUtilToSql(date1));
+		int dbFlag = Integer.parseInt(args[6]);
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		System.out.println("Added hotel: "+informationProcessingDAO.addCustomer(customer, dbFlag));
+	}
+
+	public void updateCustomer(String[] args) throws ParseException {
+		Customer customer =  new Customer();
+		customer.setCustomerId(Integer.parseInt(args[1]));
+		customer.setPhone(args[2]);
+		customer.setName(args[3]);
+		customer.setEmail(args[4]);
+		String date=args[5];
+		java.util.Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(date);
+		customer.setDob(convertUtilToSql(date1));
+		
+		int oldCustomerId=Integer.parseInt(args[6]);
+		int dbFlag = Integer.parseInt(args[7]);
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		informationProcessingDAO.updateCustomer(customer, oldCustomerId, dbFlag);
+	}
+
+	public void showCustomers(String[] args) {
+		int dbFlag = Integer.parseInt(args[1]);
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		informationProcessingDAO.showCustomers(dbFlag);
+	}
+
+	public void deleteCustomer(String[] args) {
+		Customer customer =  new Customer();
+		customer.setCustomerId(Integer.parseInt(args[1]));
+		int dbFlag = Integer.parseInt(args[2]);
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		informationProcessingDAO.deleteCustomer(customer, dbFlag);
 	}
 
 }

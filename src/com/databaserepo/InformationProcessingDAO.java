@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.dataobject.Customer;
 import com.dataobject.Hotel;
 import com.dataobject.Room;
 import com.dataobject.Staff;
@@ -543,6 +544,11 @@ public class InformationProcessingDAO {
 
 
 
+	/**Update staff record by staff id
+	 * @param staff
+	 * @param oldStaffId
+	 * @param dbFlag
+	 */
 	public void updateStaff(Staff staff, int oldStaffId, int dbFlag) {
 		String sourceMethod = "updateRoom";
 		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".STAFF SET STAFF_ID = ?, PHONE = ?, NAME = ?, ADDRESS =?, DOB = ?, DEPARTMENT = ?, TITLE =?, AGE = ? WHERE STAFF_ID = ?";
@@ -561,6 +567,158 @@ public class InformationProcessingDAO {
 			preparedStatement.setString(7, staff.getTitle());
 			preparedStatement.setInt(8, staff.getAge());
 			preparedStatement.setInt(9, oldStaffId);
+			numberOfUpdatedRows = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfUpdatedRows);
+		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
+	}
+
+
+
+	public int addCustomer(Customer customer, int dbFlag) {
+		String sourceMethod = "addCustomer";
+		String insertDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".CUSTOMER (CUSTOMER_ID, PHONE, NAME, EMAIL_ADDRESS, DOB) VALUES (?,?,?,?,?)";
+		PreparedStatement preparedStatement = null;
+		int generatedKey = 0;
+		Connection dbConn = null;
+		ResultSet rs = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(insertDataQuery,Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setInt(1, customer.getCustomerId());
+			preparedStatement.setString(2, customer.getPhone());
+			preparedStatement.setString(3, customer.getName());
+			preparedStatement.setString(4, customer.getEmail());
+			preparedStatement.setDate(5, customer.getDob());
+			preparedStatement.execute();
+			rs = preparedStatement.getGeneratedKeys();
+			if (rs.next()) {
+			    generatedKey = customer.getCustomerId();
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, generatedKey);
+		return generatedKey;
+	}
+
+
+
+	public void showCustomers(int dbFlag) {
+		String sourceMethod = "showCustomers";
+		List<Customer> details = new ArrayList<Customer>();
+		ResultSet selectQueryRS = null;
+		Connection dbConn = null;
+		Statement stmt = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			stmt = dbConn.createStatement();
+			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".CUSTOMER";
+			selectQueryRS = stmt.executeQuery(selectStatement);
+			while (selectQueryRS.next()) {
+				Customer detail=new Customer();
+				detail.setCustomerId(selectQueryRS.getInt("CUSTOMER_ID"));
+				detail.setPhone(selectQueryRS.getString("PHONE"));
+				detail.setName(selectQueryRS.getString("NAME"));
+				detail.setEmail(selectQueryRS.getString("EMAIL_ADDRESS"));
+				detail.setDob(selectQueryRS.getDate("DOB"));
+				details.add(detail);
+				System.out.println(detail);
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+	}
+
+
+
+	public void deleteCustomer(Customer customer, int dbFlag) {
+		String sourceMethod = "deleteCustomer";
+		String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".CUSTOMER WHERE CUSTOMER_ID = ?";
+		PreparedStatement preparedStatement = null;
+		int numberOfDeletedRows = 0;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, customer.getCustomerId());
+			numberOfDeletedRows = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfDeletedRows);
+		System.out.println("numberOfDeletedRows: "+numberOfDeletedRows);
+	}
+
+
+
+	public void updateCustomer(Customer customer, int oldCustomerId, int dbFlag) {
+		String sourceMethod = "updateCustomer";
+		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".CUSTOMER SET CUSTOMER_ID = ?, PHONE = ?, NAME = ?, EMAIL_ADDRESS = ?, DOB = ? WHERE CUSTOMER_ID = ?";
+		PreparedStatement preparedStatement = null;
+		int numberOfUpdatedRows = 0;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, customer.getCustomerId());
+			preparedStatement.setString(2, customer.getPhone());
+			preparedStatement.setString(3, customer.getName());
+			preparedStatement.setString(4, customer.getEmail());
+			preparedStatement.setDate(5, customer.getDob());
+			preparedStatement.setInt(6, oldCustomerId);
 			numberOfUpdatedRows = preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
