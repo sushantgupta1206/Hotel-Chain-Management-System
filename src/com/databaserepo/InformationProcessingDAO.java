@@ -9,15 +9,29 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.dataobject.Customer;
 import com.dataobject.Hotel;
+import com.dataobject.Room;
+import com.dataobject.Staff;
 
+/**
+ * @author Kartik Shah
+ *
+ */
 public class InformationProcessingDAO {
 	private DBConnectUtils dbUtil = new DBConnectUtils();
 	private static String sourceClass = InformationProcessingDAO.class.getName();
 	private static Logger log = Logger.getLogger(sourceClass);
 	
-	public int addHotelDB(Hotel hotelData, int dbFlag){
-		String sourceMethod = "addHotelDB";
+	
+	
+	/**Insert Hotel Record.
+	 * @param hotelData
+	 * @param dbFlag
+	 * @return
+	 */
+	public int addHotel(Hotel hotelData, int dbFlag){
+		String sourceMethod = "addHotel";
 		String insertHotelDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".HOTELS ( HOTEL_ID, PHONE, NAME, ADDRESS, CITY ) VALUES (?,?,?,?,?)";
 		PreparedStatement preparedStatement = null;
 		int generatedKey = 0;
@@ -58,7 +72,10 @@ public class InformationProcessingDAO {
 	}
 
 
-
+	
+	/**Show all Hotel records.
+	 * @param dbFlag
+	 */
 	public void showHotels(int dbFlag) {
 		String sourceMethod = "showHotels";
 		List<Hotel> hotelDetails = new ArrayList<Hotel>();
@@ -102,7 +119,11 @@ public class InformationProcessingDAO {
 	}
 
 
-
+	
+	/**Show Hotel record By Id.
+	 * @param hotelData
+	 * @param dbFlag
+	 */
 	public void showHotel(Hotel hotelData, int dbFlag) {
 		String sourceMethod = "showHotel";
 		PreparedStatement stmt = null;
@@ -145,9 +166,14 @@ public class InformationProcessingDAO {
 	}
 
 
-
-	public void updateHotelDB(Hotel hotelData, int oldHotelId, int dbFlag) {
-		String sourceMethod = "updateHotelDB";
+	
+	/**Update Hotel Record by ID
+	 * @param hotelData
+	 * @param oldHotelId
+	 * @param dbFlag
+	 */
+	public void updateHotel(Hotel hotelData, int oldHotelId, int dbFlag) {
+		String sourceMethod = "updateHotel";
 		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".HOTELS SET HOTEL_ID = ?, PHONE = ?, NAME = ?, ADDRESS = ?, CITY = ? WHERE HOTEL_ID = ?";
 		PreparedStatement preparedStatement = null;
 		int numberOfUpdatedRows = 0;
@@ -179,6 +205,684 @@ public class InformationProcessingDAO {
 		log.exiting(sourceClass, sourceMethod, numberOfUpdatedRows);
 		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
 	}
+
+
 	
+	/**Delete Hotel Record by ID
+	 * @param hotelData
+	 * @param dbFlag
+	 */
+	public void deleteHotel(Hotel hotelData, int dbFlag) {
+		String sourceMethod = "deleteHotels";
+		String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".HOTELS WHERE HOTEL_ID = ?";
+		PreparedStatement preparedStatement = null;
+		int numberOfDeletedRows = 0;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, hotelData.getId());
+			numberOfDeletedRows = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfDeletedRows);
+		System.out.println("numberOfDeletedRows: "+numberOfDeletedRows);
+	}
+
+	
+	/**Insert Room record
+	 * @param room
+	 * @param dbFlag
+	 * @return
+	 */
+	public int addRoom(Room room, int dbFlag) {
+		String sourceMethod = "addRoom";
+		String insertHotelDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".ROOMS ( ROOM_NO, HOTEL_ID, MAX_OCCUPANCY, NIGHTLY_RATE ) VALUES (?,?,?,?)";
+		PreparedStatement preparedStatement = null;
+		int generatedKey = 0;
+		Connection dbConn = null;
+		ResultSet rs = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(insertHotelDataQuery,Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setInt(1, room.getRoomNum());
+			preparedStatement.setInt(2, room.getHotelId());
+			preparedStatement.setInt(3, room.getMaxOccu());
+			preparedStatement.setInt(4, room.getNightRate());
+			preparedStatement.execute();
+			rs = preparedStatement.getGeneratedKeys();
+			if (rs.next()) {
+			    generatedKey = room.getRoomNum();
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, generatedKey);
+		return generatedKey;
+	}
+
+	
+	/**Update Room record by Room Num and Hotel Id
+	 * @param room
+	 * @param oldRoomNum
+	 * @param oldHotelId
+	 * @param dbFlag
+	 */
+	public void updateRoom(Room room, int oldRoomNum, int oldHotelId, int dbFlag) {
+		String sourceMethod = "updateRoom";
+		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOMS SET ROOM_NO = ?, HOTEL_ID = ?,MAX_OCCUPANCY=?, NIGHTLY_RATE=?, AVAILABILITY=? WHERE ROOM_NO = ? AND HOTEL_ID = ?";
+		PreparedStatement preparedStatement = null;
+		int numberOfUpdatedRows = 0;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, room.getRoomNum());
+			preparedStatement.setInt(2, room.getHotelId());
+			preparedStatement.setInt(3, room.getMaxOccu());
+			preparedStatement.setInt(4, room.getNightRate());
+			preparedStatement.setInt(5, room.getAvailability());
+			preparedStatement.setInt(6, oldRoomNum);
+			preparedStatement.setInt(7, oldHotelId);
+			numberOfUpdatedRows = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfUpdatedRows);
+		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
+	}
+
+	
+	/**Show All Rooms
+	 * @param dbFlag
+	 */
+	public void showRooms(int dbFlag) {
+		String sourceMethod = "showRooms";
+		List<Room> roomDetails = new ArrayList<Room>();
+		ResultSet selectQueryRS = null;
+		Connection dbConn = null;
+		Statement stmt = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			stmt = dbConn.createStatement();
+			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".ROOMS";
+			selectQueryRS = stmt.executeQuery(selectStatement);
+			while (selectQueryRS.next()) {
+				Room room=new Room();
+				room.setRoomNum(selectQueryRS.getInt("ROOM_NO"));
+				room.setHotelId(selectQueryRS.getInt("HOTEL_ID"));
+				room.setMaxOccu(selectQueryRS.getInt("MAX_OCCUPANCY"));
+				room.setNightRate(selectQueryRS.getInt("NIGHTLY_RATE"));
+				room.setAvailability(selectQueryRS.getInt("AVAILABILITY"));
+				roomDetails.add(room);
+				System.out.println(room);
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+	}
+
+	
+	
+	/**Delete room by room num and hotel id
+	 * @param room
+	 * @param dbFlag
+	 */
+	public void deleteRoom(Room room, int dbFlag) {
+		String sourceMethod = "deleteRoom";
+		String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ROOM_NO = ? AND HOTEL_ID = ?";
+		PreparedStatement preparedStatement = null;
+		int numberOfDeletedRows = 0;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, room.getRoomNum());
+			preparedStatement.setInt(2, room.getHotelId());
+			numberOfDeletedRows = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfDeletedRows);
+		System.out.println("numberOfDeletedRows: "+numberOfDeletedRows);
+	}
+
+	
+	/**Insert staff
+	 * @param staff
+	 * @param dbFlag
+	 * @return
+	 */
+	public int addStaff(Staff staff, int dbFlag) {
+		String sourceMethod = "addStaff";
+		String insertDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".STAFF (STAFF_ID, PHONE, NAME, ADDRESS, DOB, DEPARTMENT, TITLE, AGE) VALUES (?,?,?,?,?,?,?,?)";
+		PreparedStatement preparedStatement = null;
+		int generatedKey = 0;
+		Connection dbConn = null;
+		ResultSet rs = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(insertDataQuery,Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setInt(1, staff.getStaffId());
+			preparedStatement.setString(2, staff.getPhone());
+			preparedStatement.setString(3, staff.getName());
+			preparedStatement.setString(4, staff.getAddress());
+			preparedStatement.setDate(5, staff.getDob());
+			preparedStatement.setString(6, staff.getDepartment());
+			preparedStatement.setString(7, staff.getTitle());
+			preparedStatement.setInt(8, staff.getAge());
+			preparedStatement.execute();
+			rs = preparedStatement.getGeneratedKeys();
+			if (rs.next()) {
+			    generatedKey = staff.getStaffId();
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, generatedKey);
+		return generatedKey;
+	}
+
+
+
+	/**Show all staffs
+	 * @param dbFlag
+	 */
+	public void showStaffs(int dbFlag) {
+		String sourceMethod = "showStaffs";
+		List<Staff> details = new ArrayList<Staff>();
+		ResultSet selectQueryRS = null;
+		Connection dbConn = null;
+		Statement stmt = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			stmt = dbConn.createStatement();
+			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".STAFF";
+			selectQueryRS = stmt.executeQuery(selectStatement);
+			while (selectQueryRS.next()) {
+				Staff detail=new Staff();
+				detail.setStaffId(selectQueryRS.getInt("STAFF_ID"));
+				detail.setPhone(selectQueryRS.getString("PHONE"));
+				detail.setName(selectQueryRS.getString("NAME"));
+				detail.setAddress(selectQueryRS.getString("ADDRESS"));
+				detail.setDob(selectQueryRS.getDate("DOB"));
+				detail.setDepartment(selectQueryRS.getString("DEPARTMENT"));
+				detail.setTitle(selectQueryRS.getString("TITLE"));
+				detail.setAge(selectQueryRS.getInt("AGE"));
+				details.add(detail);
+				System.out.println(detail);
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+	}
+
+
+
+	/**Delete staff record by staff id 
+	 * @param staff
+	 * @param dbFlag
+	 */
+	public void deleteStaff(Staff staff, int dbFlag) {
+		String sourceMethod = "deleteStaff";
+		String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".STAFF WHERE STAFF_ID = ?";
+		PreparedStatement preparedStatement = null;
+		int numberOfDeletedRows = 0;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, staff.getStaffId());
+			numberOfDeletedRows = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfDeletedRows);
+		System.out.println("numberOfDeletedRows: "+numberOfDeletedRows);
+	}
+
+
+
+	/**Update staff record by staff id
+	 * @param staff
+	 * @param oldStaffId
+	 * @param dbFlag
+	 */
+	public void updateStaff(Staff staff, int oldStaffId, int dbFlag) {
+		String sourceMethod = "updateRoom";
+		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".STAFF SET STAFF_ID = ?, PHONE = ?, NAME = ?, ADDRESS =?, DOB = ?, DEPARTMENT = ?, TITLE =?, AGE = ? WHERE STAFF_ID = ?";
+		PreparedStatement preparedStatement = null;
+		int numberOfUpdatedRows = 0;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, staff.getStaffId());
+			preparedStatement.setString(2, staff.getPhone());
+			preparedStatement.setString(3, staff.getName());
+			preparedStatement.setString(4, staff.getAddress());
+			preparedStatement.setDate(5, staff.getDob());
+			preparedStatement.setString(6, staff.getDepartment());
+			preparedStatement.setString(7, staff.getTitle());
+			preparedStatement.setInt(8, staff.getAge());
+			preparedStatement.setInt(9, oldStaffId);
+			numberOfUpdatedRows = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfUpdatedRows);
+		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
+	}
+
+
+
+	/**Add customer record
+	 * @param customer
+	 * @param dbFlag
+	 * @return
+	 */
+	public int addCustomer(Customer customer, int dbFlag) {
+		String sourceMethod = "addCustomer";
+		String insertDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".CUSTOMER (CUSTOMER_ID, PHONE, NAME, EMAIL_ADDRESS, DOB) VALUES (?,?,?,?,?)";
+		PreparedStatement preparedStatement = null;
+		int generatedKey = 0;
+		Connection dbConn = null;
+		ResultSet rs = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(insertDataQuery,Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setInt(1, customer.getCustomerId());
+			preparedStatement.setString(2, customer.getPhone());
+			preparedStatement.setString(3, customer.getName());
+			preparedStatement.setString(4, customer.getEmail());
+			preparedStatement.setDate(5, customer.getDob());
+			preparedStatement.execute();
+			rs = preparedStatement.getGeneratedKeys();
+			if (rs.next()) {
+			    generatedKey = customer.getCustomerId();
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, generatedKey);
+		return generatedKey;
+	}
+
+
+
+	/**Show all customers
+	 * @param dbFlag
+	 */
+	public void showCustomers(int dbFlag) {
+		String sourceMethod = "showCustomers";
+		List<Customer> details = new ArrayList<Customer>();
+		ResultSet selectQueryRS = null;
+		Connection dbConn = null;
+		Statement stmt = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			stmt = dbConn.createStatement();
+			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".CUSTOMER";
+			selectQueryRS = stmt.executeQuery(selectStatement);
+			while (selectQueryRS.next()) {
+				Customer detail=new Customer();
+				detail.setCustomerId(selectQueryRS.getInt("CUSTOMER_ID"));
+				detail.setPhone(selectQueryRS.getString("PHONE"));
+				detail.setName(selectQueryRS.getString("NAME"));
+				detail.setEmail(selectQueryRS.getString("EMAIL_ADDRESS"));
+				detail.setDob(selectQueryRS.getDate("DOB"));
+				details.add(detail);
+				System.out.println(detail);
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+	}
+
+
+
+	/**Delete customer by customer id
+	 * @param customer
+	 * @param dbFlag
+	 */
+	public void deleteCustomer(Customer customer, int dbFlag) {
+		String sourceMethod = "deleteCustomer";
+		String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".CUSTOMER WHERE CUSTOMER_ID = ?";
+		PreparedStatement preparedStatement = null;
+		int numberOfDeletedRows = 0;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, customer.getCustomerId());
+			numberOfDeletedRows = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfDeletedRows);
+		System.out.println("numberOfDeletedRows: "+numberOfDeletedRows);
+	}
+
+
+
+	/**Update Customer record by customer id
+	 * @param customer
+	 * @param oldCustomerId
+	 * @param dbFlag
+	 */
+	public void updateCustomer(Customer customer, int oldCustomerId, int dbFlag) {
+		String sourceMethod = "updateCustomer";
+		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".CUSTOMER SET CUSTOMER_ID = ?, PHONE = ?, NAME = ?, EMAIL_ADDRESS = ?, DOB = ? WHERE CUSTOMER_ID = ?";
+		PreparedStatement preparedStatement = null;
+		int numberOfUpdatedRows = 0;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, customer.getCustomerId());
+			preparedStatement.setString(2, customer.getPhone());
+			preparedStatement.setString(3, customer.getName());
+			preparedStatement.setString(4, customer.getEmail());
+			preparedStatement.setDate(5, customer.getDob());
+			preparedStatement.setInt(6, oldCustomerId);
+			numberOfUpdatedRows = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfUpdatedRows);
+		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
+	}
+	
+	/**Pass roomNo and hotelId as argument and get response as room type is available or not
+	 * @param roomNo
+	 * @param hotelId
+	 * @param dbFlag
+	 * @return
+	 */
+	public String checkRoomAvailability(int roomNo, int hotelId, int dbFlag) {
+		String sourceMethod = "checkRoomAvailability";
+		PreparedStatement stmt = null;
+		Connection dbConn = null;
+		ResultSet selectQueryRS = null;
+		String response = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			String selectStatement = "SELECT (CASE WHEN AVAILABILITY=0 THEN 'FALSE' ELSE 'TRUE' END) AS AVAILABILITY FROM "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ROOM_NO=? AND HOTEL_ID=?";
+			stmt = dbConn.prepareStatement(selectStatement);
+			stmt.setInt(1, roomNo);
+			stmt.setInt(2, hotelId);
+			selectQueryRS = stmt.executeQuery();
+			while (selectQueryRS.next()) {
+				response = selectQueryRS.getString("AVAILABILITY");
+				System.out.println(response);
+			}
+			
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		return response;
+		
+	}
+
+
+
+	/**Pass roomType and hotelId as argument and get response as room type is available or not
+	 * @param roomType
+	 * @param hotelId
+	 * @param dbFlag
+	 * @return
+	 */
+	public String checkRoomTypeAvailability(String roomType, int hotelId, int dbFlag) {
+		String sourceMethod = "checkRoomTypeAvailability";
+		PreparedStatement stmt = null;
+		Connection dbConn = null;
+		ResultSet selectQueryRS = null;
+		String response = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			String selectStatement = "SELECT R.ROOM_NO, R.HOTEL_ID, RC.TYPE, (CASE WHEN AVAILABILITY=0 THEN 'FALSE' ELSE "+
+									"'TRUE' END) AS AVAILABILITY FROM "+DBConnectUtils.DBSCHEMA+".ROOMS AS R, "+DBConnectUtils.DBSCHEMA+".ROOM_HAS AS RH, "+DBConnectUtils.DBSCHEMA+". ROOM_CATEGORY AS RC "+
+									"WHERE R.ROOM_NO=RH.ROOM_NO AND R.HOTEL_ID=RH.HOTEL_ID AND "+
+									"RH.ROOM_CATEGORY_ID=RC.ID AND RC.TYPE=? AND R.HOTEL_ID=?";
+			stmt = dbConn.prepareStatement(selectStatement);
+			stmt.setString(1, roomType);
+			stmt.setInt(2, hotelId);
+			selectQueryRS = stmt.executeQuery();
+			while (selectQueryRS.next()) {
+				response = selectQueryRS.getString("ROOM_NO");
+				System.out.println(response);
+			}
+			
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		return response;
+	}
+
+
+
+	public String setRoomAvailability(int availability, int roomNo, int hotelId, int dbFlag) {
+		String sourceMethod = "setRoomAvailability";
+		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOMS SET AVAILABILITY=? WHERE ROOM_NO=? AND HOTEL_ID=?";
+		PreparedStatement preparedStatement = null;
+		int numberOfUpdatedRows = 0;
+		String responsenumberOfUpdatedRows = null;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, availability);
+			preparedStatement.setInt(2, roomNo);
+			preparedStatement.setInt(3, hotelId);
+			numberOfUpdatedRows = preparedStatement.executeUpdate();
+			responsenumberOfUpdatedRows = ""+numberOfUpdatedRows;
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfUpdatedRows);
+		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
+		return responsenumberOfUpdatedRows;
+	}
 	
 }
