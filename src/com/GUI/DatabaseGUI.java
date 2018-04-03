@@ -12,6 +12,7 @@ import com.dataconfig.ConfigInformationProcessingData;
 
 public class DatabaseGUI extends javax.swing.JFrame {
     
+    // Set-up variables
     private static final String jdbcURL = "jdbc:mariadb://classdb2.csc.ncsu.edu:3306/ljackma"; // Using SERVICE_NAME
     private static final String user = "ljackma";
     private static final String password = "group4";    
@@ -109,12 +110,6 @@ public class DatabaseGUI extends javax.swing.JFrame {
         updateRoomsMaxOccupan = new javax.swing.JLabel();
         updateRoomsMaxOccupanNew = new javax.swing.JTextField();
         updateRoomsMaxOccupanWhere = new javax.swing.JTextField();
-        updateRoomsNightlyRateWhere = new javax.swing.JTextField();
-        updateRoomsNightlyRateNew = new javax.swing.JTextField();
-        updateRoomsNightlyRate = new javax.swing.JLabel();
-        updateRoomsAvailability = new javax.swing.JLabel();
-        updateRoomsAvailabilityNew = new javax.swing.JTextField();
-        updateRoomsAvailabilityWhere = new javax.swing.JTextField();
         updateRoomsPerformActionButton = new javax.swing.JButton();
         updateRoomsNewLabel = new javax.swing.JLabel();
         updateRoomsWhereLabel = new javax.swing.JLabel();
@@ -126,7 +121,7 @@ public class DatabaseGUI extends javax.swing.JFrame {
         deleteRoomsHotelIDWhere = new javax.swing.JTextField();
         deleteRoomsHotelIDNew = new javax.swing.JTextField();
         deleteRoomsHotelID = new javax.swing.JLabel();
-        deleteRoomsPerformActionButton1 = new javax.swing.JButton();
+        deleteRoomsPerformActionButton = new javax.swing.JButton();
         deleteRoomsNewLabel = new javax.swing.JLabel();
         deleteRoomsWhereLabel = new javax.swing.JLabel();
         deleteRoomsTitle = new javax.swing.JLabel();
@@ -244,7 +239,268 @@ public class DatabaseGUI extends javax.swing.JFrame {
         deleteCustomerNewLabel = new javax.swing.JLabel();
         deleteCustomerWhereLabel = new javax.swing.JLabel();
         deleteCustomerTitle = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        checkRoomAvailabilityDialog = new javax.swing.JDialog();
+        CheckRoomAvailabilityRoomNum = new javax.swing.JLabel();
+        CheckRoomAvailabilityRoomNumNew = new javax.swing.JTextField();
+        CheckRoomAvailabilityRoomNumWhere = new javax.swing.JTextField();
+        CheckRoomAvailabilityHotelIDWhere = new javax.swing.JTextField();
+        CheckRoomAvailabilityHotelIDNew = new javax.swing.JTextField();
+        CheckRoomAvailabilityHotelID = new javax.swing.JLabel();
+        CheckRoomAvailabilityPerformActionButton = new javax.swing.JButton();
+        CheckRoomAvailabilityNewLabel = new javax.swing.JLabel();
+        CheckRoomAvailabilityWhereLabel = new javax.swing.JLabel();
+        CheckRoomAvailabilityTitle = new javax.swing.JLabel();
+        checkRoomTypeAvailabilityDialog = new javax.swing.JDialog();
+        CheckRoomTypeAvailabilityRoomNum = new javax.swing.JLabel();
+        CheckRoomTypeAvailabilityRoomNumNew = new javax.swing.JTextField();
+        CheckRoomTypeAvailabilityRoomNumWhere = new javax.swing.JTextField();
+        CheckRoomTypeAvailabilityHotelIDWhere = new javax.swing.JTextField();
+        CheckRoomTypeAvailabilityHotelIDNew = new javax.swing.JTextField();
+        CheckRoomTypeAvailabilityHotelID = new javax.swing.JLabel();
+        CheckRoomTypeAvailabilityPerformActionButton = new javax.swing.JButton();
+        CheckRoomTypeAvailabilityNewLabel = new javax.swing.JLabel();
+        CheckRoomTypeAvailabilityWhereLabel = new javax.swing.JLabel();
+        CheckRoomTypeAvailabilityTitle = new javax.swing.JLabel();
+        setRoomAvailabilityDialog = new javax.swing.JDialog();
+        setRoomAvailabilityRoomNum = new javax.swing.JLabel();
+        setRoomAvailabilityRoomNumNew = new javax.swing.JTextField();
+        setRoomAvailabilityRoomNumWhere = new javax.swing.JTextField();
+        setRoomAvailabilityHotelIDWhere = new javax.swing.JTextField();
+        setRoomAvailabilityHotelIDNew = new javax.swing.JTextField();
+        setRoomAvailabilityHotelID = new javax.swing.JLabel();
+        setRoomAvailabilityAvailability = new javax.swing.JLabel();
+        setRoomAvailabilityAvailabilityNew = new javax.swing.JTextField();
+        setRoomAvailabilityAvailabilityWhere = new javax.swing.JTextField();
+        setRoomAvailabilityPerformActionButton = new javax.swing.JButton();
+        setRoomAvailabilityNewLabel = new javax.swing.JLabel();
+        setRoomAvailabilityWhereLabel = new javax.swing.JLabel();
+        setRoomAvailabilityTitle = new javax.swing.JLabel();
+        assignRoomDialog = new javax.swing.JDialog();
+        assignRoomRoomNum = new javax.swing.JLabel();
+        assignRoomRoomNumNew = new javax.swing.JTextField();
+        assignRoomRoomNumWhere = new javax.swing.JTextField();
+        assignRoomHotelIDWhere = new javax.swing.JTextField();
+        assignRoomHotelIDNew = new javax.swing.JTextField();
+        assignRoomHotelID = new javax.swing.JLabel();
+        assignRoomStaffID = new javax.swing.JLabel();
+        assignRoomStaffIDNew = new javax.swing.JTextField();
+        assignRoomStaffIDWhere = new javax.swing.JTextField();
+        assignRoomCustomerIDWhere = new javax.swing.JTextField();
+        assignRoomCustomerIDNew = new javax.swing.JTextField();
+        assignRoomCustomerID = new javax.swing.JLabel();
+        assignRoomNumGuest = new javax.swing.JLabel();
+        assignRoomNumGuestNew = new javax.swing.JTextField();
+        assignRoomNumGuestWhere = new javax.swing.JTextField();
+        assignRoomPerformActionButton = new javax.swing.JButton();
+        assignRoomNewLabel = new javax.swing.JLabel();
+        assignRoomWhereLabel = new javax.swing.JLabel();
+        assignRoomTitle = new javax.swing.JLabel();
+        occupancyByHotelDialog = new javax.swing.JDialog();
+        occupancyByHotelCheckinDate = new javax.swing.JLabel();
+        occupancyByHotelCheckinDateNew = new javax.swing.JTextField();
+        occupancyByHotelCheckinDateWhere = new javax.swing.JTextField();
+        occupancyByHotelCheckoutDateWhere = new javax.swing.JTextField();
+        occupancyByHotelCheckoutDateNew = new javax.swing.JTextField();
+        occupancyByHotelCheckoutDate = new javax.swing.JLabel();
+        occupancyByHotelPerformActionButton = new javax.swing.JButton();
+        occupancyByHotelNewLabel = new javax.swing.JLabel();
+        occupancyByHotelWhere = new javax.swing.JLabel();
+        occupancyByHotelTitle = new javax.swing.JLabel();
+        occupancyByCityDialog = new javax.swing.JDialog();
+        occupancyByCityCheckinDate = new javax.swing.JLabel();
+        occupancyByCityCheckinDateNew = new javax.swing.JTextField();
+        occupancyByCityCheckinDateWhere = new javax.swing.JTextField();
+        occupancyByCityCheckoutDateWhere = new javax.swing.JTextField();
+        occupancyByCityCheckoutDateNew = new javax.swing.JTextField();
+        occupancyByCityCheckoutDate = new javax.swing.JLabel();
+        occupancyByCityPerformActionButton = new javax.swing.JButton();
+        occupancyByCityNewLabel = new javax.swing.JLabel();
+        occupancyByCityWhere = new javax.swing.JLabel();
+        occupancyByCityTitle = new javax.swing.JLabel();
+        occupancyByRoomTypeDialog = new javax.swing.JDialog();
+        occupancyByRoomTypeCheckinDate = new javax.swing.JLabel();
+        occupancyByRoomTypeCheckinDateNew = new javax.swing.JTextField();
+        occupancyByRoomTypeCheckinDateWhere = new javax.swing.JTextField();
+        occupancyByRoomTypeCheckoutDateWhere = new javax.swing.JTextField();
+        occupancyByRoomTypeCheckoutDateNew = new javax.swing.JTextField();
+        occupancyByRoomTypeCheckoutDate = new javax.swing.JLabel();
+        occupancyByRoomTypePerformActionButton = new javax.swing.JButton();
+        occupancyByRoomTypeNewLabel = new javax.swing.JLabel();
+        occupancyByRoomTypeWhere = new javax.swing.JLabel();
+        occupancyByRoomTypeTitle = new javax.swing.JLabel();
+        occupancyByDateRangeDialog = new javax.swing.JDialog();
+        occupancyByDateRangeCheckinDate = new javax.swing.JLabel();
+        occupancyByDateRangeCheckinDateNew = new javax.swing.JTextField();
+        occupancyByDateRangeCheckinDateWhere = new javax.swing.JTextField();
+        occupancyByDateRangeCheckoutDateWhere = new javax.swing.JTextField();
+        occupancyByDateRangeCheckoutDateNew = new javax.swing.JTextField();
+        occupancyByDateRangeCheckoutDate = new javax.swing.JLabel();
+        occupancyByDateRangePerformActionButton = new javax.swing.JButton();
+        occupancyByDateRangeNewLabel = new javax.swing.JLabel();
+        occupancyByDateRangeWhere = new javax.swing.JLabel();
+        occupancyByDateRangeTitle = new javax.swing.JLabel();
+        occupancyByDateRangeOccupancyDate = new javax.swing.JLabel();
+        occupancyByDateRangeOccupancyDateNew = new javax.swing.JTextField();
+        occupancyByDateRangeOccupancyDateWhere = new javax.swing.JTextField();
+        staffInformationByRoleDialog = new javax.swing.JDialog();
+        staffInformationByRolePerformActionButton = new javax.swing.JButton();
+        staffInformationByRoleTitle = new javax.swing.JLabel();
+        staffAssociatedSpecificCustomerDialog = new javax.swing.JDialog();
+        staffAssociatedSpecificCustomerCheckinDate = new javax.swing.JLabel();
+        staffAssociatedSpecificCustomerCheckinDateNew = new javax.swing.JTextField();
+        staffAssociatedSpecificCustomerCheckinDateWhere = new javax.swing.JTextField();
+        staffAssociatedSpecificCustomerCustomerIDWhere = new javax.swing.JTextField();
+        staffAssociatedSpecificCustomerCustomerIDNew = new javax.swing.JTextField();
+        staffAssociatedSpecificCustomerCustomerID = new javax.swing.JLabel();
+        staffAssociatedSpecificCustomerPerformActionButton = new javax.swing.JButton();
+        staffAssociatedSpecificCustomerNewLabel = new javax.swing.JLabel();
+        staffAssociatedSpecificCustomerWhere = new javax.swing.JLabel();
+        staffAssociatedSpecificCustomerTitle = new javax.swing.JLabel();
+        staffAssociatedSpecificCustomerTitle2 = new javax.swing.JLabel();
+        timePeriodRevenueDialog = new javax.swing.JDialog();
+        timePeriodRevenueCheckinFrom = new javax.swing.JLabel();
+        timePeriodRevenueCheckinFromNew = new javax.swing.JTextField();
+        timePeriodRevenueCheckinFromWhere = new javax.swing.JTextField();
+        timePeriodRevenueCheckinToWhere = new javax.swing.JTextField();
+        timePeriodRevenueCheckinToNew = new javax.swing.JTextField();
+        timePeriodRevenueCheckinTo = new javax.swing.JLabel();
+        timePeriodRevenueCheckoutFrom = new javax.swing.JLabel();
+        timePeriodRevenueCheckoutFromNew = new javax.swing.JTextField();
+        timePeriodRevenueCheckoutFromWhere = new javax.swing.JTextField();
+        timePeriodRevenueCheckoutToWhere = new javax.swing.JTextField();
+        timePeriodRevenueCheckoutToNew = new javax.swing.JTextField();
+        timePeriodRevenueCheckoutTo = new javax.swing.JLabel();
+        timePeriodRevenuePerformActionButton = new javax.swing.JButton();
+        timePeriodRevenueNewLabel = new javax.swing.JLabel();
+        timePeriodRevenueWhereLabel = new javax.swing.JLabel();
+        timePeriodRevenueTitle = new javax.swing.JLabel();
+        generateBillDialog = new javax.swing.JDialog();
+        generateBillBillID = new javax.swing.JLabel();
+        generateBillBillIDNew = new javax.swing.JTextField();
+        generateBillBillIDWhere = new javax.swing.JTextField();
+        generateBillAmountWhere = new javax.swing.JTextField();
+        generateBillAmountNew = new javax.swing.JTextField();
+        generateBillAmount = new javax.swing.JLabel();
+        generateBillDiscountedAmt = new javax.swing.JLabel();
+        generateBillDiscountedAmtNew = new javax.swing.JTextField();
+        generateBillDiscountedAmtWhere = new javax.swing.JTextField();
+        generateBillBillingAddressWhere = new javax.swing.JTextField();
+        generateBillBillingAddressNew = new javax.swing.JTextField();
+        generateBillBillingAddress = new javax.swing.JLabel();
+        generateBillPerformActionButton = new javax.swing.JButton();
+        generateBillNewLabel = new javax.swing.JLabel();
+        generateBillWhereLabel = new javax.swing.JLabel();
+        generateBillTitle = new javax.swing.JLabel();
+        updateBillDialog = new javax.swing.JDialog();
+        updateBillBillID = new javax.swing.JLabel();
+        updateBillBillIDNew = new javax.swing.JTextField();
+        updateBillBillIDWhere = new javax.swing.JTextField();
+        updateBillAmountWhere = new javax.swing.JTextField();
+        updateBillAmountNew = new javax.swing.JTextField();
+        updateBillAmount = new javax.swing.JLabel();
+        updateBillDiscountedAmt = new javax.swing.JLabel();
+        updateBillDiscountedAmtNew = new javax.swing.JTextField();
+        updateBillDiscountedAmtWhere = new javax.swing.JTextField();
+        updateBillBillingAddressWhere = new javax.swing.JTextField();
+        updateBillBillingAddressNew = new javax.swing.JTextField();
+        updateBillBillingAddress = new javax.swing.JLabel();
+        updateBillPerformActionButton = new javax.swing.JButton();
+        updateBillNewLabel = new javax.swing.JLabel();
+        updateBillWhereLabel = new javax.swing.JLabel();
+        updateBillTitle = new javax.swing.JLabel();
+        deleteBillDialog = new javax.swing.JDialog();
+        deleteBillBillID = new javax.swing.JLabel();
+        deleteBillBillIDNew = new javax.swing.JTextField();
+        deleteBillBillIDWhere = new javax.swing.JTextField();
+        deleteBillPerformActionButton = new javax.swing.JButton();
+        deleteBillNewLabel = new javax.swing.JLabel();
+        deleteBillWhereLabel = new javax.swing.JLabel();
+        deleteBillTitle = new javax.swing.JLabel();
+        customerTotalAmountDialog = new javax.swing.JDialog();
+        customerTotalAmountCustomerID = new javax.swing.JLabel();
+        customerTotalAmountCustomerIDNew = new javax.swing.JTextField();
+        customerTotalAmountCustomerIDWhere = new javax.swing.JTextField();
+        customerTotalAmountPerformActionButton = new javax.swing.JButton();
+        customerTotalAmountNewLabel = new javax.swing.JLabel();
+        customerTotalAmountWhereLabel = new javax.swing.JLabel();
+        customerTotalAmountTitle = new javax.swing.JLabel();
+        customerServiceReceiptDialog = new javax.swing.JDialog();
+        customerServiceReceiptCustomerID = new javax.swing.JLabel();
+        customerServiceReceiptCustomerIDNew = new javax.swing.JTextField();
+        customerServiceReceiptCustomerIDWhere = new javax.swing.JTextField();
+        customerServiceReceiptPerformActionButton = new javax.swing.JButton();
+        customerServiceReceiptNewLabel = new javax.swing.JLabel();
+        customerServiceReceiptWhereLabel = new javax.swing.JLabel();
+        customerServiceReceiptTitle = new javax.swing.JLabel();
+        generatePaymentMethodDialog = new javax.swing.JDialog();
+        generatePaymentMethodCustomerID = new javax.swing.JLabel();
+        generatePaymentMethodCustomerIDNew = new javax.swing.JTextField();
+        generatePaymentMethodCustomerIDWhere = new javax.swing.JTextField();
+        generatePaymentMethodBillIDWhere = new javax.swing.JTextField();
+        generatePaymentMethodBillIDNew = new javax.swing.JTextField();
+        generatePaymentMethodBillID = new javax.swing.JLabel();
+        generatePaymentMethodPayID = new javax.swing.JLabel();
+        generatePaymentMethodPayIDNew = new javax.swing.JTextField();
+        generatePaymentMethodPayIDWhere = new javax.swing.JTextField();
+        generatePaymentMethodPayerSSNWhere = new javax.swing.JTextField();
+        generatePaymentMethodPayerSSNNew = new javax.swing.JTextField();
+        generatePaymentMethodPayerSSN = new javax.swing.JLabel();
+        generatePaymentMethodPerformActionButton = new javax.swing.JButton();
+        generatePaymentMethodNewLabel = new javax.swing.JLabel();
+        generatePaymentMethodWhereLabel = new javax.swing.JLabel();
+        generatePaymentMethodTitle = new javax.swing.JLabel();
+        billCreationStaffNoteDialog = new javax.swing.JDialog();
+        billCreationStaffNoteStaffID = new javax.swing.JLabel();
+        billCreationStaffNoteStaffIDNew = new javax.swing.JTextField();
+        billCreationStaffNoteStaffIDWhere = new javax.swing.JTextField();
+        billCreationStaffNoteBillIDWhere = new javax.swing.JTextField();
+        billCreationStaffNoteBillIDNew = new javax.swing.JTextField();
+        billCreationStaffNoteBillID = new javax.swing.JLabel();
+        billCreationStaffNotePerformActionButton = new javax.swing.JButton();
+        billCreationStaffNoteNewLabel = new javax.swing.JLabel();
+        billCreationStaffNoteWhereLabel = new javax.swing.JLabel();
+        billCreationStaffNoteTitle = new javax.swing.JLabel();
+        enterServicesDialog = new javax.swing.JDialog();
+        enterServicesRoomNum = new javax.swing.JLabel();
+        enterServicesRoomNumNew = new javax.swing.JTextField();
+        enterServicesRoomNumWhere = new javax.swing.JTextField();
+        enterServicesHotelIDWhere = new javax.swing.JTextField();
+        enterServicesHotelIDNew = new javax.swing.JTextField();
+        enterServicesHotelID = new javax.swing.JLabel();
+        enterServicesDate = new javax.swing.JLabel();
+        enterServicesDateNew = new javax.swing.JTextField();
+        enterServicesDateWhere = new javax.swing.JTextField();
+        enterServicesServiceTypeWhere = new javax.swing.JTextField();
+        enterServicesServiceTypeNew = new javax.swing.JTextField();
+        enterServicesServiceType = new javax.swing.JLabel();
+        enterServicesServiceQuantity = new javax.swing.JLabel();
+        enterServicesServiceQuantityNew = new javax.swing.JTextField();
+        enterServicesServiceQuantityWhere = new javax.swing.JTextField();
+        enterServicesPerformActionButton = new javax.swing.JButton();
+        enterServicesNewLabel = new javax.swing.JLabel();
+        enterServicesWhereLabel = new javax.swing.JLabel();
+        enterServicesTitle = new javax.swing.JLabel();
+        updateServicesDialog = new javax.swing.JDialog();
+        updateServicesRoomNum = new javax.swing.JLabel();
+        updateServicesRoomNumNew = new javax.swing.JTextField();
+        updateServicesRoomNumWhere = new javax.swing.JTextField();
+        updateServicesHotelIDWhere = new javax.swing.JTextField();
+        updateServicesHotelIDNew = new javax.swing.JTextField();
+        updateServicesHotelID = new javax.swing.JLabel();
+        updateServicesDate = new javax.swing.JLabel();
+        updateServicesDateNew = new javax.swing.JTextField();
+        updateServicesDateWhere = new javax.swing.JTextField();
+        updateServicesServiceTypeWhere = new javax.swing.JTextField();
+        updateServicesServiceTypeNew = new javax.swing.JTextField();
+        updateServicesServiceType = new javax.swing.JLabel();
+        updateServicesServiceQuantity = new javax.swing.JLabel();
+        updateServicesServiceQuantityNew = new javax.swing.JTextField();
+        updateServicesServiceQuantityWhere = new javax.swing.JTextField();
+        updateServicesPerformActionButton = new javax.swing.JButton();
+        updateServicesNewLabel = new javax.swing.JLabel();
+        updateServicesWhereLabel = new javax.swing.JLabel();
+        updateServicesTitle = new javax.swing.JLabel();
+        customQueryPane = new javax.swing.JTabbedPane();
         displayTablePane = new javax.swing.JPanel();
         displayTableButton = new javax.swing.JButton();
         displayTableCombo = new javax.swing.JComboBox<>();
@@ -258,26 +514,33 @@ public class DatabaseGUI extends javax.swing.JFrame {
         informationProcessingResultLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         maintaingServicePane = new javax.swing.JPanel();
-        maintainingServicePerformButton = new javax.swing.JButton();
+        maintainingServiceWriteQueryButton = new javax.swing.JButton();
         maintainingServiceCombo = new javax.swing.JComboBox<>();
         jSeparator4 = new javax.swing.JSeparator();
         maintainingServiceResultLabel = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         maintainingServiceResultArea = new javax.swing.JTextArea();
         maintainingBillingPane = new javax.swing.JPanel();
-        maintainingBillingPerformButton = new javax.swing.JButton();
+        maintainingBillingWriteQueryButton = new javax.swing.JButton();
         maintainingBillingCombo = new javax.swing.JComboBox<>();
         jSeparator2 = new javax.swing.JSeparator();
         maintainingBillingResultLabel = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         maintainingBillingResultArea = new javax.swing.JTextArea();
         reportsPane = new javax.swing.JPanel();
-        reportsPerformButton = new javax.swing.JButton();
+        reportsPerformWriteQueryButton = new javax.swing.JButton();
         reportsCombo = new javax.swing.JComboBox<>();
         jSeparator3 = new javax.swing.JSeparator();
         reportsResultLabel = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         reportsResultArea = new javax.swing.JTextArea();
+        customQueryPanel = new javax.swing.JPanel();
+        customQueryPerformButton = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        customQueryQueryArea = new javax.swing.JTextArea();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        customQueryResultArea = new javax.swing.JTextArea();
+        customQueryResultLabel = new javax.swing.JLabel();
 
         insertHotelHotelID.setText("Hotel ID");
 
@@ -715,10 +978,6 @@ public class DatabaseGUI extends javax.swing.JFrame {
 
         updateRoomsMaxOccupan.setText("Max Occupan");
 
-        updateRoomsNightlyRate.setText("Nightly Rate");
-
-        updateRoomsAvailability.setText("Availability");
-
         updateRoomsPerformActionButton.setText("Perform Action");
         updateRoomsPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -739,50 +998,38 @@ public class DatabaseGUI extends javax.swing.JFrame {
             .addGroup(updateRoomsDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(updateRoomsHotelID)
+                    .addComponent(updateRoomsRoomNum))
+                .addGap(32, 32, 32)
+                .addGroup(updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(updateRoomsDialogLayout.createSequentialGroup()
+                        .addComponent(updateRoomsTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(updateRoomsPerformActionButton)
+                        .addGap(35, 35, 35))
                     .addGroup(updateRoomsDialogLayout.createSequentialGroup()
                         .addGroup(updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(updateRoomsAvailability)
-                            .addComponent(updateRoomsNightlyRate))
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(updateRoomsNightlyRateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(updateRoomsDialogLayout.createSequentialGroup()
+                            .addComponent(updateRoomsRoomNumNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(updateRoomsHotelIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                         .addGroup(updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(updateRoomsMaxOccupan)
-                            .addComponent(updateRoomsHotelID)
-                            .addComponent(updateRoomsRoomNum))
-                        .addGap(18, 18, 18)
-                        .addGroup(updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(updateRoomsDialogLayout.createSequentialGroup()
-                                .addComponent(updateRoomsTitle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(updateRoomsPerformActionButton)
-                                .addGap(35, 35, 35))
-                            .addGroup(updateRoomsDialogLayout.createSequentialGroup()
-                                .addGroup(updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(updateRoomsRoomNumNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(updateRoomsHotelIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(updateRoomsMaxOccupanNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(updateRoomsNightlyRateNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(updateRoomsAvailabilityNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(updateRoomsDialogLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                                        .addGroup(updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(updateRoomsRoomNumWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(updateRoomsHotelIDWhere)
-                                                .addComponent(updateRoomsMaxOccupanWhere, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))))
-                                    .addGroup(updateRoomsDialogLayout.createSequentialGroup()
-                                        .addGap(44, 44, 44)
-                                        .addComponent(updateRoomsAvailabilityWhere, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))
-                                .addContainerGap())))))
+                            .addComponent(updateRoomsRoomNumWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(updateRoomsHotelIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateRoomsDialogLayout.createSequentialGroup()
                 .addGap(150, 150, 150)
                 .addComponent(updateRoomsNewLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(updateRoomsWhereLabel)
                 .addGap(72, 72, 72))
+            .addGroup(updateRoomsDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(updateRoomsMaxOccupan)
+                .addGap(18, 18, 18)
+                .addComponent(updateRoomsMaxOccupanNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(updateRoomsMaxOccupanWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         updateRoomsDialogLayout.setVerticalGroup(
             updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -805,24 +1052,12 @@ public class DatabaseGUI extends javax.swing.JFrame {
                     .addComponent(updateRoomsHotelIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updateRoomsHotelIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updateRoomsHotelID))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addGroup(updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(updateRoomsMaxOccupan)
-                        .addComponent(updateRoomsMaxOccupanNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(updateRoomsMaxOccupanWhere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(updateRoomsNightlyRateWhere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(updateRoomsNightlyRateNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(updateRoomsNightlyRate)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(updateRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateRoomsAvailabilityNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateRoomsAvailabilityWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateRoomsAvailability))
-                .addGap(34, 34, 34))
+                    .addComponent(updateRoomsMaxOccupan)
+                    .addComponent(updateRoomsMaxOccupanNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateRoomsMaxOccupanWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
         );
 
         deleteRoomsRoomNum.setText("Room Num");
@@ -833,10 +1068,10 @@ public class DatabaseGUI extends javax.swing.JFrame {
 
         deleteRoomsHotelID.setText("Hotel ID");
 
-        deleteRoomsPerformActionButton1.setText("Perform Action");
-        deleteRoomsPerformActionButton1.addActionListener(new java.awt.event.ActionListener() {
+        deleteRoomsPerformActionButton.setText("Perform Action");
+        deleteRoomsPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteRoomsPerformActionButton1ActionPerformed(evt);
+                deleteRoomsPerformActionButtonActionPerformed(evt);
             }
         });
 
@@ -860,7 +1095,7 @@ public class DatabaseGUI extends javax.swing.JFrame {
                     .addGroup(deleteRoomsDialogLayout.createSequentialGroup()
                         .addComponent(deleteRoomsTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(deleteRoomsPerformActionButton1)
+                        .addComponent(deleteRoomsPerformActionButton)
                         .addGap(35, 35, 35))
                     .addGroup(deleteRoomsDialogLayout.createSequentialGroup()
                         .addGroup(deleteRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -883,7 +1118,7 @@ public class DatabaseGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deleteRoomsDialogLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(deleteRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteRoomsPerformActionButton1)
+                    .addComponent(deleteRoomsPerformActionButton)
                     .addComponent(deleteRoomsTitle))
                 .addGap(18, 18, 18)
                 .addGroup(deleteRoomsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1220,6 +1455,8 @@ public class DatabaseGUI extends javax.swing.JFrame {
 
         deleteStaffStaffID.setText("Staff ID");
 
+        deleteStaffStaffIDNew.setEnabled(false);
+
         deleteStaffPerformActionButton.setText("Perform Action");
         deleteStaffPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1516,6 +1753,8 @@ public class DatabaseGUI extends javax.swing.JFrame {
 
         deleteCustomerCustomerID.setText("Customer ID");
 
+        deleteCustomerCustomerIDNew.setEnabled(false);
+
         deleteCustomerPerformActionButton.setText("Perform Action");
         deleteCustomerPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1574,6 +1813,1764 @@ public class DatabaseGUI extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
+        CheckRoomAvailabilityRoomNum.setText("Room Num");
+
+        CheckRoomAvailabilityRoomNumNew.setEnabled(false);
+
+        CheckRoomAvailabilityHotelIDNew.setEnabled(false);
+
+        CheckRoomAvailabilityHotelID.setText("Hotel ID");
+
+        CheckRoomAvailabilityPerformActionButton.setText("Perform Action");
+        CheckRoomAvailabilityPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckRoomAvailabilityPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        CheckRoomAvailabilityNewLabel.setText("New Value");
+
+        CheckRoomAvailabilityWhereLabel.setText("WHERE");
+
+        CheckRoomAvailabilityTitle.setText("Check Room Availability");
+
+        javax.swing.GroupLayout checkRoomAvailabilityDialogLayout = new javax.swing.GroupLayout(checkRoomAvailabilityDialog.getContentPane());
+        checkRoomAvailabilityDialog.getContentPane().setLayout(checkRoomAvailabilityDialogLayout);
+        checkRoomAvailabilityDialogLayout.setHorizontalGroup(
+            checkRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(checkRoomAvailabilityDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(checkRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CheckRoomAvailabilityHotelID)
+                    .addComponent(CheckRoomAvailabilityRoomNum))
+                .addGap(32, 32, 32)
+                .addGroup(checkRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(checkRoomAvailabilityDialogLayout.createSequentialGroup()
+                        .addComponent(CheckRoomAvailabilityTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CheckRoomAvailabilityPerformActionButton)
+                        .addGap(35, 35, 35))
+                    .addGroup(checkRoomAvailabilityDialogLayout.createSequentialGroup()
+                        .addGroup(checkRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CheckRoomAvailabilityRoomNumNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CheckRoomAvailabilityHotelIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(checkRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CheckRoomAvailabilityRoomNumWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CheckRoomAvailabilityHotelIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, checkRoomAvailabilityDialogLayout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(CheckRoomAvailabilityNewLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CheckRoomAvailabilityWhereLabel)
+                .addGap(72, 72, 72))
+        );
+        checkRoomAvailabilityDialogLayout.setVerticalGroup(
+            checkRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, checkRoomAvailabilityDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(checkRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckRoomAvailabilityPerformActionButton)
+                    .addComponent(CheckRoomAvailabilityTitle))
+                .addGap(18, 18, 18)
+                .addGroup(checkRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckRoomAvailabilityWhereLabel)
+                    .addComponent(CheckRoomAvailabilityNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(checkRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckRoomAvailabilityRoomNumNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CheckRoomAvailabilityRoomNumWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CheckRoomAvailabilityRoomNum))
+                .addGap(18, 18, 18)
+                .addGroup(checkRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckRoomAvailabilityHotelIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CheckRoomAvailabilityHotelIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CheckRoomAvailabilityHotelID))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
+        CheckRoomTypeAvailabilityRoomNum.setText("Room Category Type");
+
+        CheckRoomTypeAvailabilityRoomNumNew.setEnabled(false);
+
+        CheckRoomTypeAvailabilityHotelIDNew.setEnabled(false);
+
+        CheckRoomTypeAvailabilityHotelID.setText("Hotel ID");
+
+        CheckRoomTypeAvailabilityPerformActionButton.setText("Perform Action");
+        CheckRoomTypeAvailabilityPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckRoomTypeAvailabilityPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        CheckRoomTypeAvailabilityNewLabel.setText("New Value");
+
+        CheckRoomTypeAvailabilityWhereLabel.setText("WHERE");
+
+        CheckRoomTypeAvailabilityTitle.setText("Check Room Type Availability");
+
+        javax.swing.GroupLayout checkRoomTypeAvailabilityDialogLayout = new javax.swing.GroupLayout(checkRoomTypeAvailabilityDialog.getContentPane());
+        checkRoomTypeAvailabilityDialog.getContentPane().setLayout(checkRoomTypeAvailabilityDialogLayout);
+        checkRoomTypeAvailabilityDialogLayout.setHorizontalGroup(
+            checkRoomTypeAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(checkRoomTypeAvailabilityDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(checkRoomTypeAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CheckRoomTypeAvailabilityHotelID)
+                    .addComponent(CheckRoomTypeAvailabilityRoomNum))
+                .addGap(32, 32, 32)
+                .addGroup(checkRoomTypeAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(checkRoomTypeAvailabilityDialogLayout.createSequentialGroup()
+                        .addComponent(CheckRoomTypeAvailabilityTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CheckRoomTypeAvailabilityPerformActionButton)
+                        .addGap(35, 35, 35))
+                    .addGroup(checkRoomTypeAvailabilityDialogLayout.createSequentialGroup()
+                        .addGroup(checkRoomTypeAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CheckRoomTypeAvailabilityRoomNumNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CheckRoomTypeAvailabilityHotelIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(checkRoomTypeAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CheckRoomTypeAvailabilityRoomNumWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CheckRoomTypeAvailabilityHotelIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, checkRoomTypeAvailabilityDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CheckRoomTypeAvailabilityNewLabel)
+                .addGap(128, 128, 128)
+                .addComponent(CheckRoomTypeAvailabilityWhereLabel)
+                .addGap(72, 72, 72))
+        );
+        checkRoomTypeAvailabilityDialogLayout.setVerticalGroup(
+            checkRoomTypeAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, checkRoomTypeAvailabilityDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(checkRoomTypeAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckRoomTypeAvailabilityPerformActionButton)
+                    .addComponent(CheckRoomTypeAvailabilityTitle))
+                .addGap(18, 18, 18)
+                .addGroup(checkRoomTypeAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckRoomTypeAvailabilityWhereLabel)
+                    .addComponent(CheckRoomTypeAvailabilityNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(checkRoomTypeAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckRoomTypeAvailabilityRoomNumNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CheckRoomTypeAvailabilityRoomNumWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CheckRoomTypeAvailabilityRoomNum))
+                .addGap(18, 18, 18)
+                .addGroup(checkRoomTypeAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CheckRoomTypeAvailabilityHotelIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CheckRoomTypeAvailabilityHotelIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CheckRoomTypeAvailabilityHotelID))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
+        setRoomAvailabilityRoomNum.setText("Room Num");
+
+        setRoomAvailabilityHotelID.setText("Hotel ID");
+
+        setRoomAvailabilityAvailability.setText("Availability");
+
+        setRoomAvailabilityPerformActionButton.setText("Perform Action");
+        setRoomAvailabilityPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setRoomAvailabilityPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        setRoomAvailabilityNewLabel.setText("New Value");
+
+        setRoomAvailabilityWhereLabel.setText("WHERE");
+
+        setRoomAvailabilityTitle.setText("Set Room Availability");
+
+        javax.swing.GroupLayout setRoomAvailabilityDialogLayout = new javax.swing.GroupLayout(setRoomAvailabilityDialog.getContentPane());
+        setRoomAvailabilityDialog.getContentPane().setLayout(setRoomAvailabilityDialogLayout);
+        setRoomAvailabilityDialogLayout.setHorizontalGroup(
+            setRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(setRoomAvailabilityDialogLayout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addComponent(setRoomAvailabilityTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(setRoomAvailabilityPerformActionButton)
+                .addGap(35, 35, 35))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setRoomAvailabilityDialogLayout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(setRoomAvailabilityNewLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(setRoomAvailabilityWhereLabel)
+                .addGap(72, 72, 72))
+            .addGroup(setRoomAvailabilityDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(setRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(setRoomAvailabilityAvailability)
+                    .addComponent(setRoomAvailabilityHotelID)
+                    .addComponent(setRoomAvailabilityRoomNum))
+                .addGap(18, 18, 18)
+                .addGroup(setRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(setRoomAvailabilityDialogLayout.createSequentialGroup()
+                        .addComponent(setRoomAvailabilityAvailabilityNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                        .addComponent(setRoomAvailabilityAvailabilityWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setRoomAvailabilityDialogLayout.createSequentialGroup()
+                        .addGroup(setRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(setRoomAvailabilityHotelIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(setRoomAvailabilityRoomNumNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(setRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(setRoomAvailabilityRoomNumWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(setRoomAvailabilityHotelIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+        setRoomAvailabilityDialogLayout.setVerticalGroup(
+            setRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, setRoomAvailabilityDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(setRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(setRoomAvailabilityPerformActionButton)
+                    .addComponent(setRoomAvailabilityTitle))
+                .addGap(18, 18, 18)
+                .addGroup(setRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(setRoomAvailabilityWhereLabel)
+                    .addComponent(setRoomAvailabilityNewLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(setRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(setRoomAvailabilityRoomNumNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(setRoomAvailabilityRoomNumWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(setRoomAvailabilityRoomNum))
+                .addGap(18, 18, 18)
+                .addGroup(setRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(setRoomAvailabilityHotelIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(setRoomAvailabilityHotelID)
+                    .addComponent(setRoomAvailabilityHotelIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(setRoomAvailabilityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(setRoomAvailabilityAvailability)
+                    .addComponent(setRoomAvailabilityAvailabilityNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(setRoomAvailabilityAvailabilityWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        assignRoomRoomNum.setText("Room Num");
+
+        assignRoomRoomNumWhere.setEnabled(false);
+
+        assignRoomHotelIDWhere.setEnabled(false);
+
+        assignRoomHotelID.setText("Hotel ID");
+
+        assignRoomStaffID.setText("Staff ID");
+
+        assignRoomStaffIDWhere.setEnabled(false);
+
+        assignRoomCustomerIDWhere.setEnabled(false);
+
+        assignRoomCustomerID.setText("Customer ID");
+
+        assignRoomNumGuest.setText("# of Guests");
+
+        assignRoomNumGuestWhere.setEnabled(false);
+
+        assignRoomPerformActionButton.setText("Perform Action");
+        assignRoomPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignRoomPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        assignRoomNewLabel.setText("New Value");
+
+        assignRoomWhereLabel.setText("WHERE");
+
+        assignRoomTitle.setText("Assign Room");
+
+        javax.swing.GroupLayout assignRoomDialogLayout = new javax.swing.GroupLayout(assignRoomDialog.getContentPane());
+        assignRoomDialog.getContentPane().setLayout(assignRoomDialogLayout);
+        assignRoomDialogLayout.setHorizontalGroup(
+            assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(assignRoomDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(assignRoomDialogLayout.createSequentialGroup()
+                        .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(assignRoomNumGuest)
+                            .addComponent(assignRoomCustomerID))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(assignRoomCustomerIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(assignRoomDialogLayout.createSequentialGroup()
+                        .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(assignRoomStaffID)
+                            .addComponent(assignRoomHotelID)
+                            .addComponent(assignRoomRoomNum))
+                        .addGap(18, 18, 18)
+                        .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(assignRoomDialogLayout.createSequentialGroup()
+                                .addComponent(assignRoomTitle)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(assignRoomPerformActionButton)
+                                .addGap(35, 35, 35))
+                            .addGroup(assignRoomDialogLayout.createSequentialGroup()
+                                .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(assignRoomRoomNumNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(assignRoomHotelIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(assignRoomStaffIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(assignRoomCustomerIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(assignRoomNumGuestNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(assignRoomDialogLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(assignRoomRoomNumWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(assignRoomHotelIDWhere)
+                                                .addComponent(assignRoomStaffIDWhere, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))))
+                                    .addGroup(assignRoomDialogLayout.createSequentialGroup()
+                                        .addGap(58, 58, 58)
+                                        .addComponent(assignRoomNumGuestWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, assignRoomDialogLayout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(assignRoomNewLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(assignRoomWhereLabel)
+                .addGap(72, 72, 72))
+        );
+        assignRoomDialogLayout.setVerticalGroup(
+            assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, assignRoomDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(assignRoomPerformActionButton)
+                    .addComponent(assignRoomTitle))
+                .addGap(18, 18, 18)
+                .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(assignRoomWhereLabel)
+                    .addComponent(assignRoomNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(assignRoomRoomNumNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(assignRoomRoomNumWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(assignRoomRoomNum))
+                .addGap(18, 18, 18)
+                .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(assignRoomHotelIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(assignRoomHotelIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(assignRoomHotelID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(assignRoomStaffID)
+                        .addComponent(assignRoomStaffIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(assignRoomStaffIDWhere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(assignRoomCustomerIDWhere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(assignRoomCustomerIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(assignRoomCustomerID)))
+                .addGap(18, 18, 18)
+                .addGroup(assignRoomDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(assignRoomNumGuestNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(assignRoomNumGuestWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(assignRoomNumGuest))
+                .addGap(34, 34, 34))
+        );
+
+        occupancyByHotelCheckinDate.setText("Check-in Date");
+
+        occupancyByHotelCheckinDateNew.setEnabled(false);
+
+        occupancyByHotelCheckoutDateNew.setEnabled(false);
+
+        occupancyByHotelCheckoutDate.setText("Check-out Date");
+
+        occupancyByHotelPerformActionButton.setText("Perform Action");
+        occupancyByHotelPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                occupancyByHotelPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        occupancyByHotelNewLabel.setText("New Value");
+
+        occupancyByHotelWhere.setText("WHERE");
+
+        occupancyByHotelTitle.setText("Occupancy by Hotel on a Date");
+
+        javax.swing.GroupLayout occupancyByHotelDialogLayout = new javax.swing.GroupLayout(occupancyByHotelDialog.getContentPane());
+        occupancyByHotelDialog.getContentPane().setLayout(occupancyByHotelDialogLayout);
+        occupancyByHotelDialogLayout.setHorizontalGroup(
+            occupancyByHotelDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(occupancyByHotelDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(occupancyByHotelDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(occupancyByHotelCheckoutDate)
+                    .addComponent(occupancyByHotelCheckinDate))
+                .addGap(32, 32, 32)
+                .addGroup(occupancyByHotelDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(occupancyByHotelDialogLayout.createSequentialGroup()
+                        .addComponent(occupancyByHotelTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(occupancyByHotelPerformActionButton)
+                        .addGap(35, 35, 35))
+                    .addGroup(occupancyByHotelDialogLayout.createSequentialGroup()
+                        .addGroup(occupancyByHotelDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(occupancyByHotelCheckinDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(occupancyByHotelCheckoutDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addGroup(occupancyByHotelDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(occupancyByHotelCheckinDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(occupancyByHotelCheckoutDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, occupancyByHotelDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(occupancyByHotelNewLabel)
+                .addGap(142, 142, 142)
+                .addComponent(occupancyByHotelWhere)
+                .addGap(72, 72, 72))
+        );
+        occupancyByHotelDialogLayout.setVerticalGroup(
+            occupancyByHotelDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, occupancyByHotelDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(occupancyByHotelDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByHotelPerformActionButton)
+                    .addComponent(occupancyByHotelTitle))
+                .addGap(18, 18, 18)
+                .addGroup(occupancyByHotelDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByHotelWhere)
+                    .addComponent(occupancyByHotelNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(occupancyByHotelDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByHotelCheckinDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByHotelCheckinDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByHotelCheckinDate))
+                .addGap(18, 18, 18)
+                .addGroup(occupancyByHotelDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByHotelCheckoutDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByHotelCheckoutDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByHotelCheckoutDate))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+
+        occupancyByCityCheckinDate.setText("Check-in Date");
+
+        occupancyByCityCheckinDateNew.setEnabled(false);
+
+        occupancyByCityCheckoutDateNew.setEnabled(false);
+
+        occupancyByCityCheckoutDate.setText("Check-out Date");
+
+        occupancyByCityPerformActionButton.setText("Perform Action");
+        occupancyByCityPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                occupancyByCityPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        occupancyByCityNewLabel.setText("New Value");
+
+        occupancyByCityWhere.setText("WHERE");
+
+        occupancyByCityTitle.setText("Occupancy by City on a Date");
+
+        javax.swing.GroupLayout occupancyByCityDialogLayout = new javax.swing.GroupLayout(occupancyByCityDialog.getContentPane());
+        occupancyByCityDialog.getContentPane().setLayout(occupancyByCityDialogLayout);
+        occupancyByCityDialogLayout.setHorizontalGroup(
+            occupancyByCityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(occupancyByCityDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(occupancyByCityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(occupancyByCityCheckoutDate)
+                    .addComponent(occupancyByCityCheckinDate))
+                .addGap(32, 32, 32)
+                .addGroup(occupancyByCityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(occupancyByCityDialogLayout.createSequentialGroup()
+                        .addComponent(occupancyByCityTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(occupancyByCityPerformActionButton)
+                        .addGap(35, 35, 35))
+                    .addGroup(occupancyByCityDialogLayout.createSequentialGroup()
+                        .addGroup(occupancyByCityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(occupancyByCityCheckinDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(occupancyByCityCheckoutDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addGroup(occupancyByCityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(occupancyByCityCheckinDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(occupancyByCityCheckoutDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, occupancyByCityDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(occupancyByCityNewLabel)
+                .addGap(142, 142, 142)
+                .addComponent(occupancyByCityWhere)
+                .addGap(72, 72, 72))
+        );
+        occupancyByCityDialogLayout.setVerticalGroup(
+            occupancyByCityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, occupancyByCityDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(occupancyByCityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByCityPerformActionButton)
+                    .addComponent(occupancyByCityTitle))
+                .addGap(18, 18, 18)
+                .addGroup(occupancyByCityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByCityWhere)
+                    .addComponent(occupancyByCityNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(occupancyByCityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByCityCheckinDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByCityCheckinDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByCityCheckinDate))
+                .addGap(18, 18, 18)
+                .addGroup(occupancyByCityDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByCityCheckoutDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByCityCheckoutDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByCityCheckoutDate))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+
+        occupancyByRoomTypeCheckinDate.setText("Check-in Date");
+
+        occupancyByRoomTypeCheckinDateNew.setEnabled(false);
+
+        occupancyByRoomTypeCheckoutDateNew.setEnabled(false);
+
+        occupancyByRoomTypeCheckoutDate.setText("Check-out Date");
+
+        occupancyByRoomTypePerformActionButton.setText("Perform Action");
+        occupancyByRoomTypePerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                occupancyByRoomTypePerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        occupancyByRoomTypeNewLabel.setText("New Value");
+
+        occupancyByRoomTypeWhere.setText("WHERE");
+
+        occupancyByRoomTypeTitle.setText("Occupancy by Room Type on a Date");
+
+        javax.swing.GroupLayout occupancyByRoomTypeDialogLayout = new javax.swing.GroupLayout(occupancyByRoomTypeDialog.getContentPane());
+        occupancyByRoomTypeDialog.getContentPane().setLayout(occupancyByRoomTypeDialogLayout);
+        occupancyByRoomTypeDialogLayout.setHorizontalGroup(
+            occupancyByRoomTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(occupancyByRoomTypeDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(occupancyByRoomTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(occupancyByRoomTypeCheckoutDate)
+                    .addComponent(occupancyByRoomTypeCheckinDate))
+                .addGap(32, 32, 32)
+                .addGroup(occupancyByRoomTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(occupancyByRoomTypeDialogLayout.createSequentialGroup()
+                        .addComponent(occupancyByRoomTypeTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(occupancyByRoomTypePerformActionButton)
+                        .addGap(35, 35, 35))
+                    .addGroup(occupancyByRoomTypeDialogLayout.createSequentialGroup()
+                        .addGroup(occupancyByRoomTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(occupancyByRoomTypeCheckinDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(occupancyByRoomTypeCheckoutDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addGroup(occupancyByRoomTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(occupancyByRoomTypeCheckinDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(occupancyByRoomTypeCheckoutDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, occupancyByRoomTypeDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(occupancyByRoomTypeNewLabel)
+                .addGap(142, 142, 142)
+                .addComponent(occupancyByRoomTypeWhere)
+                .addGap(72, 72, 72))
+        );
+        occupancyByRoomTypeDialogLayout.setVerticalGroup(
+            occupancyByRoomTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, occupancyByRoomTypeDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(occupancyByRoomTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByRoomTypePerformActionButton)
+                    .addComponent(occupancyByRoomTypeTitle))
+                .addGap(18, 18, 18)
+                .addGroup(occupancyByRoomTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByRoomTypeWhere)
+                    .addComponent(occupancyByRoomTypeNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(occupancyByRoomTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByRoomTypeCheckinDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByRoomTypeCheckinDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByRoomTypeCheckinDate))
+                .addGap(18, 18, 18)
+                .addGroup(occupancyByRoomTypeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByRoomTypeCheckoutDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByRoomTypeCheckoutDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByRoomTypeCheckoutDate))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+
+        occupancyByDateRangeCheckinDate.setText("Check-in Date");
+
+        occupancyByDateRangeCheckinDateNew.setEnabled(false);
+
+        occupancyByDateRangeCheckoutDateNew.setEnabled(false);
+
+        occupancyByDateRangeCheckoutDate.setText("Check-out Date");
+
+        occupancyByDateRangePerformActionButton.setText("Perform Action");
+        occupancyByDateRangePerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                occupancyByDateRangePerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        occupancyByDateRangeNewLabel.setText("New Value");
+
+        occupancyByDateRangeWhere.setText("WHERE");
+
+        occupancyByDateRangeTitle.setText("Occupancy by Date Range");
+
+        occupancyByDateRangeOccupancyDate.setText("Occupancy Date");
+
+        occupancyByDateRangeOccupancyDateNew.setEnabled(false);
+
+        javax.swing.GroupLayout occupancyByDateRangeDialogLayout = new javax.swing.GroupLayout(occupancyByDateRangeDialog.getContentPane());
+        occupancyByDateRangeDialog.getContentPane().setLayout(occupancyByDateRangeDialogLayout);
+        occupancyByDateRangeDialogLayout.setHorizontalGroup(
+            occupancyByDateRangeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, occupancyByDateRangeDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(occupancyByDateRangeNewLabel)
+                .addGap(142, 142, 142)
+                .addComponent(occupancyByDateRangeWhere)
+                .addGap(72, 72, 72))
+            .addGroup(occupancyByDateRangeDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(occupancyByDateRangeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(occupancyByDateRangeCheckoutDate)
+                    .addComponent(occupancyByDateRangeCheckinDate)
+                    .addComponent(occupancyByDateRangeOccupancyDate))
+                .addGap(28, 28, 28)
+                .addGroup(occupancyByDateRangeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(occupancyByDateRangeDialogLayout.createSequentialGroup()
+                        .addComponent(occupancyByDateRangeTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(occupancyByDateRangePerformActionButton)
+                        .addGap(35, 35, 35))
+                    .addGroup(occupancyByDateRangeDialogLayout.createSequentialGroup()
+                        .addGroup(occupancyByDateRangeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(occupancyByDateRangeOccupancyDateNew, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(occupancyByDateRangeCheckinDateNew, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(occupancyByDateRangeCheckoutDateNew, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addGroup(occupancyByDateRangeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(occupancyByDateRangeCheckinDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(occupancyByDateRangeCheckoutDateWhere, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                            .addComponent(occupancyByDateRangeOccupancyDateWhere))
+                        .addContainerGap())))
+        );
+        occupancyByDateRangeDialogLayout.setVerticalGroup(
+            occupancyByDateRangeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, occupancyByDateRangeDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(occupancyByDateRangeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByDateRangePerformActionButton)
+                    .addComponent(occupancyByDateRangeTitle))
+                .addGap(18, 18, 18)
+                .addGroup(occupancyByDateRangeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByDateRangeWhere)
+                    .addComponent(occupancyByDateRangeNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(occupancyByDateRangeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByDateRangeCheckinDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByDateRangeCheckinDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByDateRangeCheckinDate))
+                .addGap(18, 18, 18)
+                .addGroup(occupancyByDateRangeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(occupancyByDateRangeCheckoutDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByDateRangeCheckoutDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(occupancyByDateRangeCheckoutDate))
+                .addGap(18, 18, 18)
+                .addGroup(occupancyByDateRangeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(occupancyByDateRangeOccupancyDate)
+                    .addGroup(occupancyByDateRangeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(occupancyByDateRangeOccupancyDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(occupancyByDateRangeOccupancyDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        staffInformationByRolePerformActionButton.setText("Perform Action");
+        staffInformationByRolePerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                staffInformationByRolePerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        staffInformationByRoleTitle.setText("Staff Information by Role");
+
+        javax.swing.GroupLayout staffInformationByRoleDialogLayout = new javax.swing.GroupLayout(staffInformationByRoleDialog.getContentPane());
+        staffInformationByRoleDialog.getContentPane().setLayout(staffInformationByRoleDialogLayout);
+        staffInformationByRoleDialogLayout.setHorizontalGroup(
+            staffInformationByRoleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(staffInformationByRoleDialogLayout.createSequentialGroup()
+                .addGap(117, 117, 117)
+                .addComponent(staffInformationByRoleTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addComponent(staffInformationByRolePerformActionButton)
+                .addGap(35, 35, 35))
+        );
+        staffInformationByRoleDialogLayout.setVerticalGroup(
+            staffInformationByRoleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, staffInformationByRoleDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(staffInformationByRoleDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(staffInformationByRolePerformActionButton)
+                    .addComponent(staffInformationByRoleTitle))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        staffAssociatedSpecificCustomerCheckinDate.setText("Check-in Date");
+
+        staffAssociatedSpecificCustomerCheckinDateNew.setEnabled(false);
+
+        staffAssociatedSpecificCustomerCustomerIDNew.setEnabled(false);
+
+        staffAssociatedSpecificCustomerCustomerID.setText("Customer ID");
+
+        staffAssociatedSpecificCustomerPerformActionButton.setText("Perform Action");
+        staffAssociatedSpecificCustomerPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                staffAssociatedSpecificCustomerPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        staffAssociatedSpecificCustomerNewLabel.setText("New Value");
+
+        staffAssociatedSpecificCustomerWhere.setText("WHERE");
+
+        staffAssociatedSpecificCustomerTitle.setText("Staff Associated with a Specific");
+
+        staffAssociatedSpecificCustomerTitle2.setText(" Customer during a Specific Stay");
+
+        javax.swing.GroupLayout staffAssociatedSpecificCustomerDialogLayout = new javax.swing.GroupLayout(staffAssociatedSpecificCustomerDialog.getContentPane());
+        staffAssociatedSpecificCustomerDialog.getContentPane().setLayout(staffAssociatedSpecificCustomerDialogLayout);
+        staffAssociatedSpecificCustomerDialogLayout.setHorizontalGroup(
+            staffAssociatedSpecificCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(staffAssociatedSpecificCustomerDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(staffAssociatedSpecificCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(staffAssociatedSpecificCustomerDialogLayout.createSequentialGroup()
+                        .addGroup(staffAssociatedSpecificCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(staffAssociatedSpecificCustomerCustomerID)
+                            .addComponent(staffAssociatedSpecificCustomerCheckinDate))
+                        .addGap(32, 32, 32)
+                        .addGroup(staffAssociatedSpecificCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(staffAssociatedSpecificCustomerCheckinDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(staffAssociatedSpecificCustomerCustomerIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(staffAssociatedSpecificCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(staffAssociatedSpecificCustomerCheckinDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(staffAssociatedSpecificCustomerCustomerIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, staffAssociatedSpecificCustomerDialogLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(staffAssociatedSpecificCustomerNewLabel)
+                        .addGap(142, 142, 142)
+                        .addComponent(staffAssociatedSpecificCustomerWhere)
+                        .addGap(62, 62, 62)))
+                .addContainerGap())
+            .addGroup(staffAssociatedSpecificCustomerDialogLayout.createSequentialGroup()
+                .addGap(112, 112, 112)
+                .addGroup(staffAssociatedSpecificCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(staffAssociatedSpecificCustomerTitle2)
+                    .addComponent(staffAssociatedSpecificCustomerTitle))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(staffAssociatedSpecificCustomerPerformActionButton)
+                .addGap(35, 35, 35))
+        );
+        staffAssociatedSpecificCustomerDialogLayout.setVerticalGroup(
+            staffAssociatedSpecificCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, staffAssociatedSpecificCustomerDialogLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(staffAssociatedSpecificCustomerTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(staffAssociatedSpecificCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(staffAssociatedSpecificCustomerTitle2)
+                    .addComponent(staffAssociatedSpecificCustomerPerformActionButton))
+                .addGap(28, 28, 28)
+                .addGroup(staffAssociatedSpecificCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(staffAssociatedSpecificCustomerWhere)
+                    .addComponent(staffAssociatedSpecificCustomerNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(staffAssociatedSpecificCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(staffAssociatedSpecificCustomerCheckinDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(staffAssociatedSpecificCustomerCheckinDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(staffAssociatedSpecificCustomerCheckinDate))
+                .addGap(18, 18, 18)
+                .addGroup(staffAssociatedSpecificCustomerDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(staffAssociatedSpecificCustomerCustomerIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(staffAssociatedSpecificCustomerCustomerIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(staffAssociatedSpecificCustomerCustomerID))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        timePeriodRevenueCheckinFrom.setText("Check-in From");
+
+        timePeriodRevenueCheckinFromNew.setEnabled(false);
+
+        timePeriodRevenueCheckinToNew.setEnabled(false);
+
+        timePeriodRevenueCheckinTo.setText("Check-in To");
+
+        timePeriodRevenueCheckoutFrom.setText("Check-out From");
+
+        timePeriodRevenueCheckoutFromNew.setEnabled(false);
+
+        timePeriodRevenueCheckoutToNew.setEnabled(false);
+
+        timePeriodRevenueCheckoutTo.setText("Check-out To");
+
+        timePeriodRevenuePerformActionButton.setText("Perform Action");
+        timePeriodRevenuePerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timePeriodRevenuePerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        timePeriodRevenueNewLabel.setText("New Value");
+
+        timePeriodRevenueWhereLabel.setText("WHERE");
+
+        timePeriodRevenueTitle.setText("Revenue of Hotel During Time Period");
+
+        javax.swing.GroupLayout timePeriodRevenueDialogLayout = new javax.swing.GroupLayout(timePeriodRevenueDialog.getContentPane());
+        timePeriodRevenueDialog.getContentPane().setLayout(timePeriodRevenueDialogLayout);
+        timePeriodRevenueDialogLayout.setHorizontalGroup(
+            timePeriodRevenueDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(timePeriodRevenueDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(timePeriodRevenueDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(timePeriodRevenueDialogLayout.createSequentialGroup()
+                        .addComponent(timePeriodRevenueCheckinFrom)
+                        .addGap(18, 18, 18)
+                        .addGroup(timePeriodRevenueDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(timePeriodRevenueDialogLayout.createSequentialGroup()
+                                .addComponent(timePeriodRevenueCheckinFromNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(timePeriodRevenueCheckinFromWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(timePeriodRevenueDialogLayout.createSequentialGroup()
+                                .addComponent(timePeriodRevenueTitle)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(timePeriodRevenuePerformActionButton)
+                                .addGap(36, 36, 36))))
+                    .addGroup(timePeriodRevenueDialogLayout.createSequentialGroup()
+                        .addGroup(timePeriodRevenueDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(timePeriodRevenueCheckoutTo)
+                            .addComponent(timePeriodRevenueCheckoutFrom)
+                            .addComponent(timePeriodRevenueCheckinTo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(timePeriodRevenueDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(timePeriodRevenueDialogLayout.createSequentialGroup()
+                                .addComponent(timePeriodRevenueCheckinToNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                                .addComponent(timePeriodRevenueCheckinToWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(timePeriodRevenueDialogLayout.createSequentialGroup()
+                                .addComponent(timePeriodRevenueCheckoutFromNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(timePeriodRevenueCheckoutFromWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(timePeriodRevenueDialogLayout.createSequentialGroup()
+                                .addComponent(timePeriodRevenueCheckoutToNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(timePeriodRevenueCheckoutToWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, timePeriodRevenueDialogLayout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(timePeriodRevenueNewLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(timePeriodRevenueWhereLabel)
+                .addGap(72, 72, 72))
+        );
+        timePeriodRevenueDialogLayout.setVerticalGroup(
+            timePeriodRevenueDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, timePeriodRevenueDialogLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(timePeriodRevenueDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(timePeriodRevenueTitle)
+                    .addComponent(timePeriodRevenuePerformActionButton))
+                .addGap(31, 31, 31)
+                .addGroup(timePeriodRevenueDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(timePeriodRevenueWhereLabel)
+                    .addComponent(timePeriodRevenueNewLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(timePeriodRevenueDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(timePeriodRevenueCheckinFromWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timePeriodRevenueCheckinFromNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timePeriodRevenueCheckinFrom))
+                .addGap(18, 18, 18)
+                .addGroup(timePeriodRevenueDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(timePeriodRevenueCheckinToNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timePeriodRevenueCheckinTo)
+                    .addComponent(timePeriodRevenueCheckinToWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(timePeriodRevenueDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(timePeriodRevenueCheckoutFrom)
+                    .addComponent(timePeriodRevenueCheckoutFromNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timePeriodRevenueCheckoutFromWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(timePeriodRevenueDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(timePeriodRevenueCheckoutToNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timePeriodRevenueCheckoutToWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timePeriodRevenueCheckoutTo))
+                .addGap(58, 58, 58))
+        );
+
+        generateBillBillID.setText("Bill ID");
+
+        generateBillBillIDWhere.setEnabled(false);
+
+        generateBillAmountWhere.setEnabled(false);
+
+        generateBillAmount.setText("Amount");
+
+        generateBillDiscountedAmt.setText("Discounted Amt");
+
+        generateBillDiscountedAmtWhere.setEnabled(false);
+
+        generateBillBillingAddressWhere.setEnabled(false);
+
+        generateBillBillingAddress.setText("Billing Address");
+
+        generateBillPerformActionButton.setText("Perform Action");
+        generateBillPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateBillPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        generateBillNewLabel.setText("New Value");
+
+        generateBillWhereLabel.setText("WHERE");
+
+        generateBillTitle.setText("Generate Bill");
+
+        javax.swing.GroupLayout generateBillDialogLayout = new javax.swing.GroupLayout(generateBillDialog.getContentPane());
+        generateBillDialog.getContentPane().setLayout(generateBillDialogLayout);
+        generateBillDialogLayout.setHorizontalGroup(
+            generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(generateBillDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(generateBillDialogLayout.createSequentialGroup()
+                        .addComponent(generateBillBillingAddress)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(generateBillBillingAddressWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(generateBillDialogLayout.createSequentialGroup()
+                        .addGroup(generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(generateBillDiscountedAmt)
+                            .addComponent(generateBillBillID)
+                            .addComponent(generateBillAmount))
+                        .addGap(18, 18, 18)
+                        .addGroup(generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(generateBillDialogLayout.createSequentialGroup()
+                                .addComponent(generateBillTitle)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(generateBillPerformActionButton)
+                                .addGap(35, 35, 35))
+                            .addGroup(generateBillDialogLayout.createSequentialGroup()
+                                .addGroup(generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(generateBillBillIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(generateBillAmountNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(generateBillDiscountedAmtNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(generateBillBillingAddressNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                                .addGroup(generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(generateBillBillIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(generateBillAmountWhere)
+                                        .addComponent(generateBillDiscountedAmtWhere, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))
+                                .addContainerGap())))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generateBillDialogLayout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(generateBillNewLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(generateBillWhereLabel)
+                .addGap(72, 72, 72))
+        );
+        generateBillDialogLayout.setVerticalGroup(
+            generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generateBillDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(generateBillPerformActionButton)
+                    .addComponent(generateBillTitle))
+                .addGap(18, 18, 18)
+                .addGroup(generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(generateBillWhereLabel)
+                    .addComponent(generateBillNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(generateBillBillIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generateBillBillIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generateBillBillID))
+                .addGap(18, 18, 18)
+                .addGroup(generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(generateBillAmountWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generateBillAmountNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generateBillAmount))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(generateBillDiscountedAmt)
+                        .addComponent(generateBillDiscountedAmtNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(generateBillDiscountedAmtWhere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(generateBillBillingAddressWhere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(generateBillBillingAddressNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(generateBillBillingAddress)))
+                .addGap(72, 72, 72))
+        );
+
+        updateBillBillID.setText("Bill ID");
+
+        updateBillBillIDNew.setEnabled(false);
+
+        updateBillAmountWhere.setEnabled(false);
+
+        updateBillAmount.setText("Amount");
+
+        updateBillDiscountedAmt.setText("Discounted Amt");
+
+        updateBillDiscountedAmtWhere.setEnabled(false);
+
+        updateBillBillingAddressWhere.setEnabled(false);
+
+        updateBillBillingAddress.setText("Billing Address");
+
+        updateBillPerformActionButton.setText("Perform Action");
+        updateBillPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBillPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        updateBillNewLabel.setText("New Value");
+
+        updateBillWhereLabel.setText("WHERE");
+
+        updateBillTitle.setText("Update Bill");
+
+        javax.swing.GroupLayout updateBillDialogLayout = new javax.swing.GroupLayout(updateBillDialog.getContentPane());
+        updateBillDialog.getContentPane().setLayout(updateBillDialogLayout);
+        updateBillDialogLayout.setHorizontalGroup(
+            updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(updateBillDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(updateBillDialogLayout.createSequentialGroup()
+                        .addComponent(updateBillBillingAddress)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(updateBillBillingAddressWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(updateBillDialogLayout.createSequentialGroup()
+                        .addGroup(updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(updateBillDiscountedAmt)
+                            .addComponent(updateBillBillID)
+                            .addComponent(updateBillAmount))
+                        .addGap(18, 18, 18)
+                        .addGroup(updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(updateBillDialogLayout.createSequentialGroup()
+                                .addComponent(updateBillTitle)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(updateBillPerformActionButton)
+                                .addGap(35, 35, 35))
+                            .addGroup(updateBillDialogLayout.createSequentialGroup()
+                                .addGroup(updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(updateBillBillIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(updateBillAmountNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(updateBillDiscountedAmtNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(updateBillBillingAddressNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                                .addGroup(updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(updateBillBillIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(updateBillAmountWhere)
+                                        .addComponent(updateBillDiscountedAmtWhere, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))
+                                .addContainerGap())))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateBillDialogLayout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(updateBillNewLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(updateBillWhereLabel)
+                .addGap(72, 72, 72))
+        );
+        updateBillDialogLayout.setVerticalGroup(
+            updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateBillDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateBillPerformActionButton)
+                    .addComponent(updateBillTitle))
+                .addGap(18, 18, 18)
+                .addGroup(updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateBillWhereLabel)
+                    .addComponent(updateBillNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateBillBillIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateBillBillIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateBillBillID))
+                .addGap(18, 18, 18)
+                .addGroup(updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateBillAmountWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateBillAmountNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateBillAmount))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(updateBillDiscountedAmt)
+                        .addComponent(updateBillDiscountedAmtNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(updateBillDiscountedAmtWhere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(updateBillBillingAddressWhere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(updateBillBillingAddressNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(updateBillBillingAddress)))
+                .addGap(72, 72, 72))
+        );
+
+        deleteBillBillID.setText("Bill ID");
+
+        deleteBillBillIDWhere.setEnabled(false);
+
+        deleteBillPerformActionButton.setText("Perform Action");
+        deleteBillPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBillPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        deleteBillNewLabel.setText("New Value");
+
+        deleteBillWhereLabel.setText("WHERE");
+
+        deleteBillTitle.setText("Delete Bill");
+
+        javax.swing.GroupLayout deleteBillDialogLayout = new javax.swing.GroupLayout(deleteBillDialog.getContentPane());
+        deleteBillDialog.getContentPane().setLayout(deleteBillDialogLayout);
+        deleteBillDialogLayout.setHorizontalGroup(
+            deleteBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deleteBillDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(deleteBillBillID)
+                .addGap(67, 67, 67)
+                .addGroup(deleteBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(deleteBillDialogLayout.createSequentialGroup()
+                        .addComponent(deleteBillTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(deleteBillPerformActionButton)
+                        .addGap(35, 35, 35))
+                    .addGroup(deleteBillDialogLayout.createSequentialGroup()
+                        .addComponent(deleteBillBillIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addComponent(deleteBillBillIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deleteBillDialogLayout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(deleteBillNewLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(deleteBillWhereLabel)
+                .addGap(72, 72, 72))
+        );
+        deleteBillDialogLayout.setVerticalGroup(
+            deleteBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deleteBillDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(deleteBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteBillPerformActionButton)
+                    .addComponent(deleteBillTitle))
+                .addGap(18, 18, 18)
+                .addGroup(deleteBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteBillWhereLabel)
+                    .addComponent(deleteBillNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(deleteBillDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteBillBillIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteBillBillIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteBillBillID))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+
+        customerTotalAmountCustomerID.setText("Customer ID");
+
+        customerTotalAmountCustomerIDNew.setEnabled(false);
+
+        customerTotalAmountPerformActionButton.setText("Perform Action");
+        customerTotalAmountPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerTotalAmountPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        customerTotalAmountNewLabel.setText("New Value");
+
+        customerTotalAmountWhereLabel.setText("WHERE");
+
+        customerTotalAmountTitle.setText("Total Amount Owed by Customer");
+
+        javax.swing.GroupLayout customerTotalAmountDialogLayout = new javax.swing.GroupLayout(customerTotalAmountDialog.getContentPane());
+        customerTotalAmountDialog.getContentPane().setLayout(customerTotalAmountDialogLayout);
+        customerTotalAmountDialogLayout.setHorizontalGroup(
+            customerTotalAmountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customerTotalAmountDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(customerTotalAmountCustomerID)
+                .addGroup(customerTotalAmountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(customerTotalAmountDialogLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(customerTotalAmountTitle))
+                    .addGroup(customerTotalAmountDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(customerTotalAmountCustomerIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35)
+                .addGroup(customerTotalAmountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerTotalAmountDialogLayout.createSequentialGroup()
+                        .addComponent(customerTotalAmountCustomerIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerTotalAmountDialogLayout.createSequentialGroup()
+                        .addComponent(customerTotalAmountPerformActionButton)
+                        .addGap(35, 35, 35))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerTotalAmountDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(customerTotalAmountNewLabel)
+                .addGap(155, 155, 155)
+                .addComponent(customerTotalAmountWhereLabel)
+                .addGap(72, 72, 72))
+        );
+        customerTotalAmountDialogLayout.setVerticalGroup(
+            customerTotalAmountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerTotalAmountDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(customerTotalAmountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customerTotalAmountPerformActionButton)
+                    .addComponent(customerTotalAmountTitle))
+                .addGap(18, 18, 18)
+                .addGroup(customerTotalAmountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customerTotalAmountWhereLabel)
+                    .addComponent(customerTotalAmountNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(customerTotalAmountDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customerTotalAmountCustomerIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerTotalAmountCustomerIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerTotalAmountCustomerID))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+
+        customerServiceReceiptCustomerID.setText("Customer ID");
+
+        customerServiceReceiptCustomerIDNew.setEnabled(false);
+
+        customerServiceReceiptPerformActionButton.setText("Perform Action");
+        customerServiceReceiptPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerServiceReceiptPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        customerServiceReceiptNewLabel.setText("New Value");
+
+        customerServiceReceiptWhereLabel.setText("WHERE");
+
+        customerServiceReceiptTitle.setText("Itemized Receipt of Services Used");
+
+        javax.swing.GroupLayout customerServiceReceiptDialogLayout = new javax.swing.GroupLayout(customerServiceReceiptDialog.getContentPane());
+        customerServiceReceiptDialog.getContentPane().setLayout(customerServiceReceiptDialogLayout);
+        customerServiceReceiptDialogLayout.setHorizontalGroup(
+            customerServiceReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customerServiceReceiptDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(customerServiceReceiptCustomerID)
+                .addGroup(customerServiceReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(customerServiceReceiptDialogLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(customerServiceReceiptTitle))
+                    .addGroup(customerServiceReceiptDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(customerServiceReceiptCustomerIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35)
+                .addGroup(customerServiceReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerServiceReceiptDialogLayout.createSequentialGroup()
+                        .addComponent(customerServiceReceiptCustomerIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerServiceReceiptDialogLayout.createSequentialGroup()
+                        .addComponent(customerServiceReceiptPerformActionButton)
+                        .addGap(35, 35, 35))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerServiceReceiptDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(customerServiceReceiptNewLabel)
+                .addGap(155, 155, 155)
+                .addComponent(customerServiceReceiptWhereLabel)
+                .addGap(72, 72, 72))
+        );
+        customerServiceReceiptDialogLayout.setVerticalGroup(
+            customerServiceReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerServiceReceiptDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(customerServiceReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customerServiceReceiptPerformActionButton)
+                    .addComponent(customerServiceReceiptTitle))
+                .addGap(18, 18, 18)
+                .addGroup(customerServiceReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customerServiceReceiptWhereLabel)
+                    .addComponent(customerServiceReceiptNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(customerServiceReceiptDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customerServiceReceiptCustomerIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerServiceReceiptCustomerIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerServiceReceiptCustomerID))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+
+        generatePaymentMethodCustomerID.setText("Customer ID");
+
+        generatePaymentMethodCustomerIDWhere.setEnabled(false);
+
+        generatePaymentMethodBillIDWhere.setEnabled(false);
+
+        generatePaymentMethodBillID.setText("Bill ID");
+
+        generatePaymentMethodPayID.setText("Pay ID");
+
+        generatePaymentMethodPayIDWhere.setEnabled(false);
+
+        generatePaymentMethodPayerSSNWhere.setEnabled(false);
+
+        generatePaymentMethodPayerSSN.setText("Payer's SSN");
+
+        generatePaymentMethodPerformActionButton.setText("Perform Action");
+        generatePaymentMethodPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generatePaymentMethodPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        generatePaymentMethodNewLabel.setText("New Value");
+
+        generatePaymentMethodWhereLabel.setText("WHERE");
+
+        generatePaymentMethodTitle.setText("Generate Customer's Payment Method");
+
+        javax.swing.GroupLayout generatePaymentMethodDialogLayout = new javax.swing.GroupLayout(generatePaymentMethodDialog.getContentPane());
+        generatePaymentMethodDialog.getContentPane().setLayout(generatePaymentMethodDialogLayout);
+        generatePaymentMethodDialogLayout.setHorizontalGroup(
+            generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(generatePaymentMethodDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(generatePaymentMethodDialogLayout.createSequentialGroup()
+                        .addComponent(generatePaymentMethodPayerSSN)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(generatePaymentMethodPayerSSNWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(generatePaymentMethodDialogLayout.createSequentialGroup()
+                        .addGroup(generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(generatePaymentMethodPayID)
+                            .addComponent(generatePaymentMethodCustomerID)
+                            .addComponent(generatePaymentMethodBillID))
+                        .addGap(18, 18, 18)
+                        .addGroup(generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(generatePaymentMethodDialogLayout.createSequentialGroup()
+                                .addComponent(generatePaymentMethodTitle)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(generatePaymentMethodPerformActionButton)
+                                .addGap(35, 35, 35))
+                            .addGroup(generatePaymentMethodDialogLayout.createSequentialGroup()
+                                .addGroup(generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(generatePaymentMethodCustomerIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(generatePaymentMethodBillIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(generatePaymentMethodPayIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(generatePaymentMethodPayerSSNNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                                .addGroup(generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(generatePaymentMethodCustomerIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(generatePaymentMethodBillIDWhere)
+                                        .addComponent(generatePaymentMethodPayIDWhere, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))
+                                .addContainerGap())))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generatePaymentMethodDialogLayout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(generatePaymentMethodNewLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(generatePaymentMethodWhereLabel)
+                .addGap(72, 72, 72))
+        );
+        generatePaymentMethodDialogLayout.setVerticalGroup(
+            generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generatePaymentMethodDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(generatePaymentMethodPerformActionButton)
+                    .addComponent(generatePaymentMethodTitle))
+                .addGap(18, 18, 18)
+                .addGroup(generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(generatePaymentMethodWhereLabel)
+                    .addComponent(generatePaymentMethodNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(generatePaymentMethodCustomerIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generatePaymentMethodCustomerIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generatePaymentMethodCustomerID))
+                .addGap(18, 18, 18)
+                .addGroup(generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(generatePaymentMethodBillIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generatePaymentMethodBillIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(generatePaymentMethodBillID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(generatePaymentMethodPayID)
+                        .addComponent(generatePaymentMethodPayIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(generatePaymentMethodPayIDWhere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(generatePaymentMethodPayerSSNWhere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, generatePaymentMethodDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(generatePaymentMethodPayerSSNNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(generatePaymentMethodPayerSSN)))
+                .addGap(72, 72, 72))
+        );
+
+        billCreationStaffNoteStaffID.setText("Staff ID");
+
+        billCreationStaffNoteStaffIDWhere.setEnabled(false);
+
+        billCreationStaffNoteBillIDWhere.setEnabled(false);
+
+        billCreationStaffNoteBillID.setText("Bill ID");
+
+        billCreationStaffNotePerformActionButton.setText("Perform Action");
+        billCreationStaffNotePerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                billCreationStaffNotePerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        billCreationStaffNoteNewLabel.setText("New Value");
+
+        billCreationStaffNoteWhereLabel.setText("WHERE");
+
+        billCreationStaffNoteTitle.setText("Generate Note on Staff that Created Bill");
+
+        javax.swing.GroupLayout billCreationStaffNoteDialogLayout = new javax.swing.GroupLayout(billCreationStaffNoteDialog.getContentPane());
+        billCreationStaffNoteDialog.getContentPane().setLayout(billCreationStaffNoteDialogLayout);
+        billCreationStaffNoteDialogLayout.setHorizontalGroup(
+            billCreationStaffNoteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(billCreationStaffNoteDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(billCreationStaffNoteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(billCreationStaffNoteStaffID)
+                    .addComponent(billCreationStaffNoteBillID))
+                .addGap(18, 29, Short.MAX_VALUE)
+                .addGroup(billCreationStaffNoteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, billCreationStaffNoteDialogLayout.createSequentialGroup()
+                        .addComponent(billCreationStaffNoteTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(billCreationStaffNotePerformActionButton)
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, billCreationStaffNoteDialogLayout.createSequentialGroup()
+                        .addGroup(billCreationStaffNoteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(billCreationStaffNoteStaffIDNew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(billCreationStaffNoteBillIDNew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(billCreationStaffNoteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(billCreationStaffNoteStaffIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(billCreationStaffNoteBillIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, billCreationStaffNoteDialogLayout.createSequentialGroup()
+                .addGap(131, 131, 131)
+                .addComponent(billCreationStaffNoteNewLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(billCreationStaffNoteWhereLabel)
+                .addGap(72, 72, 72))
+        );
+        billCreationStaffNoteDialogLayout.setVerticalGroup(
+            billCreationStaffNoteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, billCreationStaffNoteDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(billCreationStaffNoteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(billCreationStaffNotePerformActionButton)
+                    .addComponent(billCreationStaffNoteTitle))
+                .addGap(18, 18, 18)
+                .addGroup(billCreationStaffNoteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(billCreationStaffNoteWhereLabel)
+                    .addComponent(billCreationStaffNoteNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(billCreationStaffNoteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(billCreationStaffNoteStaffIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(billCreationStaffNoteStaffIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(billCreationStaffNoteStaffID))
+                .addGap(18, 18, 18)
+                .addGroup(billCreationStaffNoteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(billCreationStaffNoteBillIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(billCreationStaffNoteBillIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(billCreationStaffNoteBillID))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
+        enterServicesRoomNum.setText("Room Num");
+
+        enterServicesRoomNumWhere.setEnabled(false);
+
+        enterServicesHotelIDWhere.setEnabled(false);
+
+        enterServicesHotelID.setText("Hotel ID");
+
+        enterServicesDate.setText("Date");
+
+        enterServicesDateWhere.setEnabled(false);
+
+        enterServicesServiceTypeWhere.setEnabled(false);
+
+        enterServicesServiceType.setText("Service Type");
+
+        enterServicesServiceQuantity.setText("Service Quantity");
+
+        enterServicesServiceQuantityWhere.setEnabled(false);
+
+        enterServicesPerformActionButton.setText("Perform Action");
+        enterServicesPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterServicesPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        enterServicesNewLabel.setText("New Value");
+
+        enterServicesWhereLabel.setText("WHERE");
+
+        enterServicesTitle.setText("Enter Services");
+
+        javax.swing.GroupLayout enterServicesDialogLayout = new javax.swing.GroupLayout(enterServicesDialog.getContentPane());
+        enterServicesDialog.getContentPane().setLayout(enterServicesDialogLayout);
+        enterServicesDialogLayout.setHorizontalGroup(
+            enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(enterServicesDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(enterServicesDialogLayout.createSequentialGroup()
+                        .addComponent(enterServicesServiceQuantity)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(enterServicesServiceQuantityNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(enterServicesDialogLayout.createSequentialGroup()
+                        .addGroup(enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(enterServicesDialogLayout.createSequentialGroup()
+                                .addComponent(enterServicesServiceType)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(enterServicesServiceTypeWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(enterServicesDialogLayout.createSequentialGroup()
+                                .addGroup(enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(enterServicesDate)
+                                    .addComponent(enterServicesHotelID)
+                                    .addComponent(enterServicesRoomNum))
+                                .addGap(18, 39, Short.MAX_VALUE)
+                                .addGroup(enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enterServicesDialogLayout.createSequentialGroup()
+                                        .addGroup(enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(enterServicesHotelIDNew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(enterServicesDateNew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(enterServicesRoomNumNew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(enterServicesServiceTypeNew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(37, 37, 37)
+                                        .addGroup(enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(enterServicesRoomNumWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(enterServicesHotelIDWhere)
+                                                .addComponent(enterServicesDateWhere, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))))
+                                    .addComponent(enterServicesServiceQuantityWhere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enterServicesDialogLayout.createSequentialGroup()
+                                        .addComponent(enterServicesTitle)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(enterServicesPerformActionButton)
+                                        .addGap(25, 25, 25)))))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enterServicesDialogLayout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(enterServicesNewLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(enterServicesWhereLabel)
+                .addGap(72, 72, 72))
+        );
+        enterServicesDialogLayout.setVerticalGroup(
+            enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enterServicesDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enterServicesPerformActionButton)
+                    .addComponent(enterServicesTitle))
+                .addGap(18, 18, 18)
+                .addGroup(enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enterServicesWhereLabel)
+                    .addComponent(enterServicesNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enterServicesRoomNumNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterServicesRoomNumWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterServicesRoomNum))
+                .addGap(18, 18, 18)
+                .addGroup(enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enterServicesHotelIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterServicesHotelIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterServicesHotelID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(enterServicesDate, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(enterServicesDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(enterServicesDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(enterServicesServiceTypeWhere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(enterServicesServiceTypeNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(enterServicesServiceType)))
+                .addGap(18, 18, 18)
+                .addGroup(enterServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enterServicesServiceQuantityNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterServicesServiceQuantityWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enterServicesServiceQuantity))
+                .addGap(34, 34, 34))
+        );
+
+        updateServicesRoomNum.setText("Room Num");
+
+        updateServicesRoomNumWhere.setEnabled(false);
+
+        updateServicesHotelIDWhere.setEnabled(false);
+
+        updateServicesHotelID.setText("Hotel ID");
+
+        updateServicesDate.setText("Date");
+
+        updateServicesDateWhere.setEnabled(false);
+
+        updateServicesServiceTypeWhere.setEnabled(false);
+
+        updateServicesServiceType.setText("Service Type");
+
+        updateServicesServiceQuantity.setText("Service Quantity");
+
+        updateServicesServiceQuantityWhere.setEnabled(false);
+
+        updateServicesPerformActionButton.setText("Perform Action");
+        updateServicesPerformActionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateServicesPerformActionButtonActionPerformed(evt);
+            }
+        });
+
+        updateServicesNewLabel.setText("New Value");
+
+        updateServicesWhereLabel.setText("WHERE");
+
+        updateServicesTitle.setText("Update Services");
+
+        javax.swing.GroupLayout updateServicesDialogLayout = new javax.swing.GroupLayout(updateServicesDialog.getContentPane());
+        updateServicesDialog.getContentPane().setLayout(updateServicesDialogLayout);
+        updateServicesDialogLayout.setHorizontalGroup(
+            updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(updateServicesDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(updateServicesDialogLayout.createSequentialGroup()
+                        .addComponent(updateServicesServiceQuantity)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(updateServicesServiceQuantityNew, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(updateServicesDialogLayout.createSequentialGroup()
+                        .addGroup(updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(updateServicesDialogLayout.createSequentialGroup()
+                                .addComponent(updateServicesServiceType)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(updateServicesServiceTypeWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(updateServicesDialogLayout.createSequentialGroup()
+                                .addGroup(updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(updateServicesDate)
+                                    .addComponent(updateServicesHotelID)
+                                    .addComponent(updateServicesRoomNum))
+                                .addGap(18, 39, Short.MAX_VALUE)
+                                .addGroup(updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateServicesDialogLayout.createSequentialGroup()
+                                        .addGroup(updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(updateServicesHotelIDNew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(updateServicesDateNew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(updateServicesRoomNumNew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(updateServicesServiceTypeNew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(37, 37, 37)
+                                        .addGroup(updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(updateServicesRoomNumWhere, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(updateServicesHotelIDWhere)
+                                                .addComponent(updateServicesDateWhere, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))))
+                                    .addComponent(updateServicesServiceQuantityWhere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateServicesDialogLayout.createSequentialGroup()
+                                        .addComponent(updateServicesTitle)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(updateServicesPerformActionButton)
+                                        .addGap(25, 25, 25)))))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateServicesDialogLayout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addComponent(updateServicesNewLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(updateServicesWhereLabel)
+                .addGap(72, 72, 72))
+        );
+        updateServicesDialogLayout.setVerticalGroup(
+            updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateServicesDialogLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateServicesPerformActionButton)
+                    .addComponent(updateServicesTitle))
+                .addGap(18, 18, 18)
+                .addGroup(updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateServicesWhereLabel)
+                    .addComponent(updateServicesNewLabel))
+                .addGap(17, 17, 17)
+                .addGroup(updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateServicesRoomNumNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateServicesRoomNumWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateServicesRoomNum))
+                .addGap(18, 18, 18)
+                .addGroup(updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateServicesHotelIDWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateServicesHotelIDNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateServicesHotelID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(updateServicesDate, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(updateServicesDateWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(updateServicesDateNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(updateServicesServiceTypeWhere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(updateServicesServiceTypeNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(updateServicesServiceType)))
+                .addGap(18, 18, 18)
+                .addGroup(updateServicesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateServicesServiceQuantityNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateServicesServiceQuantityWhere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(updateServicesServiceQuantity))
+                .addGap(34, 34, 34))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         displayTableButton.setText("Display Data");
@@ -1585,6 +3582,7 @@ public class DatabaseGUI extends javax.swing.JFrame {
 
         displayTableCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADDSTO", "ADMINISTER", "ASSIGNED", "ASSIGNS", "BILLS", "CONTROLS", "CUSTOMER", "FRONTDESKREP", "GENERATES", "HOTELS", "HOTEL_ADMINISTRATOR", "MANAGER", "OFFERED", "PAYMENT", "PAYS", "PRESIDENTIAL_SUITES", "PROVIDES", "REGISTERS", "ROOMS", "ROOM_CATEGORY", "ROOM_HAS", "SERVICE_RECORDS", "SERVICE_STAFF", "SHWORKSFOR", "SSRWORKS_FOR", "STAFF" }));
 
+        displayTableArea.setEditable(false);
         displayTableArea.setColumns(20);
         displayTableArea.setRows(5);
         jScrollPane1.setViewportView(displayTableArea);
@@ -1611,11 +3609,11 @@ public class DatabaseGUI extends javax.swing.JFrame {
                     .addComponent(displayTableButton)
                     .addComponent(displayTableCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Display Table Data", displayTablePane);
+        customQueryPane.addTab("Display Table Data", displayTablePane);
 
         informationProcessingWriteQueryButton.setText("Write Query");
         informationProcessingWriteQueryButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1624,8 +3622,9 @@ public class DatabaseGUI extends javax.swing.JFrame {
             }
         });
 
-        informationProcessingCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Insert Hotels", "Update Hotels", "Delete Hotels", "Insert Rooms", "Update Rooms", "Delete Rooms", "Insert Staff", "Update Staff", "Delete Staff", "Insert Customer", "Update Customer", "Delete Customer", "Check Room Availability", "Set Room Availability", "Assign Room" }));
+        informationProcessingCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Insert Hotels", "Update Hotels", "Delete Hotels", "Insert Rooms", "Update Rooms", "Delete Rooms", "Insert Staff", "Update Staff", "Delete Staff", "Insert Customer", "Update Customer", "Delete Customer", "Check Room Availability", "Check Room Type Availability", "Set Room Availability", "Assign Room" }));
 
+        informationProcessingResultArea.setEditable(false);
         informationProcessingResultArea.setColumns(20);
         informationProcessingResultArea.setRows(5);
         jScrollPane2.setViewportView(informationProcessingResultArea);
@@ -1667,22 +3666,23 @@ public class DatabaseGUI extends javax.swing.JFrame {
                 .addComponent(informationProcessingResultLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Information Processing", informationProcessingPane);
+        customQueryPane.addTab("Information Processing", informationProcessingPane);
 
-        maintainingServicePerformButton.setText("Perform Action");
-
-        maintainingServiceCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enter Services", "Update Services" }));
-        maintainingServiceCombo.addActionListener(new java.awt.event.ActionListener() {
+        maintainingServiceWriteQueryButton.setText("Perform Action");
+        maintainingServiceWriteQueryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                maintainingServiceComboActionPerformed(evt);
+                maintainingServiceWriteQueryButtonActionPerformed(evt);
             }
         });
 
+        maintainingServiceCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enter Services", "Update Services" }));
+
         maintainingServiceResultLabel.setText("Action Results");
 
+        maintainingServiceResultArea.setEditable(false);
         maintainingServiceResultArea.setColumns(20);
         maintainingServiceResultArea.setRows(5);
         jScrollPane5.setViewportView(maintainingServiceResultArea);
@@ -1700,14 +3700,14 @@ public class DatabaseGUI extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(maintainingServiceCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
-                        .addComponent(maintainingServicePerformButton)))
+                        .addComponent(maintainingServiceWriteQueryButton)))
                 .addGap(21, 21, 21))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, maintaingServicePaneLayout.createSequentialGroup()
+            .addGroup(maintaingServicePaneLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(maintaingServicePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maintainingServiceResultLabel))
-                .addGap(55, 55, 55))
+                    .addComponent(maintainingServiceResultLabel)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         maintaingServicePaneLayout.setVerticalGroup(
             maintaingServicePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1715,29 +3715,30 @@ public class DatabaseGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(maintaingServicePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(maintainingServiceCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maintainingServicePerformButton))
+                    .addComponent(maintainingServiceWriteQueryButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(maintainingServiceResultLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Maintaining Service Records", maintaingServicePane);
+        customQueryPane.addTab("Maintaining Service Records", maintaingServicePane);
 
-        maintainingBillingPerformButton.setText("Perform Action");
-
-        maintainingBillingCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Generate Bill", "Update a Bill", "Delete a Bill", "During check-out, return the total amount to the customer", "Itemized Receipt of Services Used", "Generate Customer's Payment Method", "Generate a note on which staff created a bill" }));
-        maintainingBillingCombo.addActionListener(new java.awt.event.ActionListener() {
+        maintainingBillingWriteQueryButton.setText("Perform Action");
+        maintainingBillingWriteQueryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                maintainingBillingComboActionPerformed(evt);
+                maintainingBillingWriteQueryButtonActionPerformed(evt);
             }
         });
 
+        maintainingBillingCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Generate Bill", "Update a Bill", "Delete a Bill", "During check-out, return the total amount to the customer", "Itemized Receipt of Services Used", "Generate Customer's Payment Method", "Generate a note on which staff created a bill" }));
+
         maintainingBillingResultLabel.setText("Action Results");
 
+        maintainingBillingResultArea.setEditable(false);
         maintainingBillingResultArea.setColumns(20);
         maintainingBillingResultArea.setRows(5);
         jScrollPane3.setViewportView(maintainingBillingResultArea);
@@ -1750,18 +3751,18 @@ public class DatabaseGUI extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(maintainingBillingCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addComponent(maintainingBillingPerformButton)
+                .addComponent(maintainingBillingWriteQueryButton)
                 .addGap(19, 19, 19))
             .addGroup(maintainingBillingPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator2)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, maintainingBillingPaneLayout.createSequentialGroup()
+            .addGroup(maintainingBillingPaneLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(maintainingBillingPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maintainingBillingResultLabel))
-                .addGap(35, 35, 35))
+                    .addComponent(maintainingBillingResultLabel)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         maintainingBillingPaneLayout.setVerticalGroup(
             maintainingBillingPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1769,29 +3770,30 @@ public class DatabaseGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(maintainingBillingPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(maintainingBillingCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maintainingBillingPerformButton))
+                    .addComponent(maintainingBillingWriteQueryButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(maintainingBillingResultLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Maintaining Billing Accounts", maintainingBillingPane);
+        customQueryPane.addTab("Maintaining Billing Accounts", maintainingBillingPane);
 
-        reportsPerformButton.setText("Perform Action");
-
-        reportsCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Occupancy and Percent Occupancy by Hotel on a given date", "Occupancy and Percent Occupancy by City on a given date", "Total Occupancy and Percent Occupancy by Room Type on a given date", "Total Occupancy and Percent Occupancy by Date Range", "Staff Information by Role", "Staff associated to a given Customer during a specific Stay", "Generate the Revenue of each Hotel during a given Time Period" }));
-        reportsCombo.addActionListener(new java.awt.event.ActionListener() {
+        reportsPerformWriteQueryButton.setText("Perform Action");
+        reportsPerformWriteQueryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reportsComboActionPerformed(evt);
+                reportsPerformWriteQueryButtonActionPerformed(evt);
             }
         });
 
+        reportsCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Occupancy and Percent Occupancy by Hotel on a given date", "Occupancy and Percent Occupancy by City on a given date", "Total Occupancy and Percent Occupancy by Room Type on a given date", "Total Occupancy and Percent Occupancy by Date Range", "Staff Information by Role", "Staff associated to a given Customer during a specific Stay", "Generate the Revenue of each Hotel during a given Time Period" }));
+
         reportsResultLabel.setText("Action Results");
 
+        reportsResultArea.setEditable(false);
         reportsResultArea.setColumns(20);
         reportsResultArea.setRows(5);
         jScrollPane4.setViewportView(reportsResultArea);
@@ -1804,53 +3806,108 @@ public class DatabaseGUI extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(reportsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportsPaneLayout.createSequentialGroup()
-                        .addGroup(reportsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportsPaneLayout.createSequentialGroup()
-                                .addComponent(reportsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(reportsPerformButton))
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportsPaneLayout.createSequentialGroup()
-                        .addGroup(reportsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(reportsResultLabel))
-                        .addGap(41, 41, 41))))
+                        .addComponent(reportsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(reportsPerformWriteQueryButton))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addGroup(reportsPaneLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(reportsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(reportsResultLabel)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         reportsPaneLayout.setVerticalGroup(
             reportsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reportsPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(reportsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(reportsPerformButton)
+                    .addComponent(reportsPerformWriteQueryButton)
                     .addComponent(reportsCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(reportsResultLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(reportsResultLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Reports", reportsPane);
+        customQueryPane.addTab("Reports", reportsPane);
+
+        customQueryPerformButton.setText("Perform Query");
+        customQueryPerformButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customQueryPerformButtonActionPerformed(evt);
+            }
+        });
+
+        customQueryQueryArea.setColumns(20);
+        customQueryQueryArea.setRows(5);
+        jScrollPane6.setViewportView(customQueryQueryArea);
+
+        customQueryResultArea.setEditable(false);
+        customQueryResultArea.setColumns(20);
+        customQueryResultArea.setRows(5);
+        jScrollPane7.setViewportView(customQueryResultArea);
+
+        customQueryResultLabel.setText("Query Result");
+
+        javax.swing.GroupLayout customQueryPanelLayout = new javax.swing.GroupLayout(customQueryPanel);
+        customQueryPanel.setLayout(customQueryPanelLayout);
+        customQueryPanelLayout.setHorizontalGroup(
+            customQueryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customQueryPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(customQueryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customQueryPanelLayout.createSequentialGroup()
+                        .addGroup(customQueryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+                            .addComponent(jScrollPane6)
+                            .addGroup(customQueryPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(customQueryPerformButton)))
+                        .addGap(22, 22, 22))
+                    .addGroup(customQueryPanelLayout.createSequentialGroup()
+                        .addComponent(customQueryResultLabel)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        customQueryPanelLayout.setVerticalGroup(
+            customQueryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customQueryPanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(customQueryPerformButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(customQueryResultLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        customQueryPane.addTab("Custom", customQueryPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(customQueryPane, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(customQueryPane)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Takes input, one of the table's name, and selects * from it
+    // Prints out table info in columns
+    // Closes statement at the end
     private void displayTableButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayTableButtonActionPerformed
         displayTableArea.setText("");
         Statement statement = null;        
@@ -1879,18 +3936,6 @@ public class DatabaseGUI extends javax.swing.JFrame {
             close(statement);
         }
     }//GEN-LAST:event_displayTableButtonActionPerformed
-
-    private void maintainingServiceComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintainingServiceComboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_maintainingServiceComboActionPerformed
-
-    private void maintainingBillingComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintainingBillingComboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_maintainingBillingComboActionPerformed
-
-    private void reportsComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsComboActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reportsComboActionPerformed
 
     private void informationProcessingWriteQueryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informationProcessingWriteQueryButtonActionPerformed
         informationProcessingResultArea.setText("");
@@ -1944,13 +3989,20 @@ public class DatabaseGUI extends javax.swing.JFrame {
             deleteCustomerDialog.setVisible(true);
         } 
         if (informationProcessingCombo.getSelectedItem().equals("Check Room Availability")) {
-            
+            checkRoomAvailabilityDialog.pack();
+            checkRoomAvailabilityDialog.setVisible(true);
         }
+        if (informationProcessingCombo.getSelectedItem().equals("Check Room Type Availability")) {
+            checkRoomTypeAvailabilityDialog.pack();
+            checkRoomTypeAvailabilityDialog.setVisible(true);
+        }                        
         if (informationProcessingCombo.getSelectedItem().equals("Set Room Availability")) {
-            
+            setRoomAvailabilityDialog.pack();
+            setRoomAvailabilityDialog.setVisible(true);
         }
         if (informationProcessingCombo.getSelectedItem().equals("Assign Room")) {
-            
+            assignRoomDialog.pack();
+            assignRoomDialog.setVisible(true);
         }         
     }//GEN-LAST:event_informationProcessingWriteQueryButtonActionPerformed
 
@@ -1959,7 +4011,6 @@ public class DatabaseGUI extends javax.swing.JFrame {
     	String val1=insertHotelHotelIDNew.getText();
     	informationProcessingResultArea.setText("AAAAAA");
         ConfigInformationProcessingData configHotel = new ConfigInformationProcessingData();
-        
         
         insertHotelDialog.dispose();
     }//GEN-LAST:event_insertHotelPerformActionButtonActionPerformed
@@ -1985,19 +4036,12 @@ public class DatabaseGUI extends javax.swing.JFrame {
         insertRoomsDialog.dispose();
     }//GEN-LAST:event_insertRoomsPerformActionButtonActionPerformed
 
-    private void updateRoomsPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateRoomsPerformActionButtonActionPerformed
-        informationProcessingResultArea.setText("AAAAAA");
-        
-        
-        updateRoomsDialog.dispose();
-    }//GEN-LAST:event_updateRoomsPerformActionButtonActionPerformed
-
-    private void deleteRoomsPerformActionButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRoomsPerformActionButton1ActionPerformed
+    private void deleteRoomsPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRoomsPerformActionButtonActionPerformed
         informationProcessingResultArea.setText("AAAAAA");
         
         
         deleteRoomsDialog.dispose();
-    }//GEN-LAST:event_deleteRoomsPerformActionButton1ActionPerformed
+    }//GEN-LAST:event_deleteRoomsPerformActionButtonActionPerformed
 
     private void insertStaffPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertStaffPerformActionButtonActionPerformed
         informationProcessingResultArea.setText("AAAAAA");
@@ -2040,10 +4084,513 @@ public class DatabaseGUI extends javax.swing.JFrame {
         
         deleteCustomerDialog.dispose();
     }//GEN-LAST:event_deleteCustomerPerformActionButtonActionPerformed
+
+    private void CheckRoomAvailabilityPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckRoomAvailabilityPerformActionButtonActionPerformed
+        informationProcessingResultArea.setText("AAAAAA");
+        
+        
+        checkRoomAvailabilityDialog.dispose();
+    }//GEN-LAST:event_CheckRoomAvailabilityPerformActionButtonActionPerformed
+
+    private void CheckRoomTypeAvailabilityPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckRoomTypeAvailabilityPerformActionButtonActionPerformed
+        informationProcessingResultArea.setText("AAAAAA");
+        
+        
+        checkRoomTypeAvailabilityDialog.dispose();
+    }//GEN-LAST:event_CheckRoomTypeAvailabilityPerformActionButtonActionPerformed
+
+    private void setRoomAvailabilityPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setRoomAvailabilityPerformActionButtonActionPerformed
+        informationProcessingResultArea.setText("AAAAAA");
+
+        setRoomAvailabilityDialog.dispose();
+    }//GEN-LAST:event_setRoomAvailabilityPerformActionButtonActionPerformed
+
+    private void updateRoomsPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateRoomsPerformActionButtonActionPerformed
+        informationProcessingResultArea.setText("AAAAAA");
+
+        updateRoomsDialog.dispose();
+    }//GEN-LAST:event_updateRoomsPerformActionButtonActionPerformed
+
+    private void assignRoomPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignRoomPerformActionButtonActionPerformed
+        informationProcessingResultArea.setText("AAAAAA");
+
+        assignRoomDialog.dispose();
+    }//GEN-LAST:event_assignRoomPerformActionButtonActionPerformed
+
+    private void reportsPerformWriteQueryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsPerformWriteQueryButtonActionPerformed
+        reportsResultArea.setText("");
+        
+        if (informationProcessingCombo.getSelectedItem().equals("Occupancy and Percent Occupancy by Hotel on a given date")) {
+            occupancyByHotelDialog.pack();
+            occupancyByHotelDialog.setVisible(true);
+        }        
+        if (informationProcessingCombo.getSelectedItem().equals("Occupancy and Percent Occupancy by City on a given date")) {
+            occupancyByCityDialog.pack();
+            occupancyByCityDialog.setVisible(true);
+        }
+        if (informationProcessingCombo.getSelectedItem().equals("Total Occupancy and Percent Occupancy by Room Type on a given date")) {
+            occupancyByRoomTypeDialog.pack();
+            occupancyByRoomTypeDialog.setVisible(true);
+        }
+        if (informationProcessingCombo.getSelectedItem().equals("Total Occupancy and Percent Occupancy by Date Range")) {
+            occupancyByDateRangeDialog.pack();
+            occupancyByDateRangeDialog.setVisible(true);
+        }        
+        if (informationProcessingCombo.getSelectedItem().equals("Staff Information by Role")) {
+            staffInformationByRoleDialog.pack();          
+            staffInformationByRoleDialog.setVisible(true);
+        }
+        if (informationProcessingCombo.getSelectedItem().equals("Staff associated to a given Customer during a specific Stay")) {
+            staffAssociatedSpecificCustomerDialog.pack();
+            staffAssociatedSpecificCustomerDialog.setVisible(true);
+        }     
+        if (informationProcessingCombo.getSelectedItem().equals("Generate the Revenue of each Hotel during a given Time Period")) {
+            timePeriodRevenueDialog.pack();
+            timePeriodRevenueDialog.setVisible(true);
+        }
+    }//GEN-LAST:event_reportsPerformWriteQueryButtonActionPerformed
+
+    private void occupancyByHotelPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_occupancyByHotelPerformActionButtonActionPerformed
+        reportsResultArea.setText("AAAAAA");
+
+        occupancyByHotelDialog.dispose();        
+    }//GEN-LAST:event_occupancyByHotelPerformActionButtonActionPerformed
+
+    private void occupancyByCityPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_occupancyByCityPerformActionButtonActionPerformed
+        reportsResultArea.setText("AAAAAA");
+
+        occupancyByCityDialog.dispose(); 
+    }//GEN-LAST:event_occupancyByCityPerformActionButtonActionPerformed
+
+    private void occupancyByRoomTypePerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_occupancyByRoomTypePerformActionButtonActionPerformed
+        reportsResultArea.setText("AAAAAA");
+
+        occupancyByRoomTypeDialog.dispose(); 
+    }//GEN-LAST:event_occupancyByRoomTypePerformActionButtonActionPerformed
+
+    private void occupancyByDateRangePerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_occupancyByDateRangePerformActionButtonActionPerformed
+        reportsResultArea.setText("AAAAAA");
+
+        occupancyByDateRangeDialog.dispose(); 
+    }//GEN-LAST:event_occupancyByDateRangePerformActionButtonActionPerformed
+
+    private void staffInformationByRolePerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffInformationByRolePerformActionButtonActionPerformed
+        reportsResultArea.setText("AAAAAA");
+
+        staffInformationByRoleDialog.dispose(); 
+    }//GEN-LAST:event_staffInformationByRolePerformActionButtonActionPerformed
+
+    private void staffAssociatedSpecificCustomerPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffAssociatedSpecificCustomerPerformActionButtonActionPerformed
+        reportsResultArea.setText("AAAAAA");
+
+        staffAssociatedSpecificCustomerDialog.dispose();
+    }//GEN-LAST:event_staffAssociatedSpecificCustomerPerformActionButtonActionPerformed
+
+    private void timePeriodRevenuePerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timePeriodRevenuePerformActionButtonActionPerformed
+        reportsResultArea.setText("AAAAAA");
+
+        timePeriodRevenueDialog.dispose();        
+    }//GEN-LAST:event_timePeriodRevenuePerformActionButtonActionPerformed
+
+    private void maintainingBillingWriteQueryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintainingBillingWriteQueryButtonActionPerformed
+        maintainingBillingResultArea.setText("");
+        
+        if (maintainingBillingCombo.getSelectedItem().equals("Generate Bill")) {
+            generateBillDialog.pack();
+            generateBillDialog.setVisible(true);
+        }        
+        if (maintainingBillingCombo.getSelectedItem().equals("Update a Bill")) {
+            updateBillDialog.pack();
+            updateBillDialog.setVisible(true);
+        }
+        if (maintainingBillingCombo.getSelectedItem().equals("Delete a Bill")) {
+            deleteBillDialog.pack();
+            deleteBillDialog.setVisible(true);
+        }
+        if (maintainingBillingCombo.getSelectedItem().equals("During check-out, return the total amount to the customer")) {
+            customerTotalAmountDialog.pack();
+            customerTotalAmountDialog.setVisible(true);
+        }        
+        if (maintainingBillingCombo.getSelectedItem().equals("Itemized Receipt of Services Used")) {
+            customerServiceReceiptDialog.pack();          
+            customerServiceReceiptDialog.setVisible(true);
+        }
+        if (maintainingBillingCombo.getSelectedItem().equals("Generate Customer's Payment Method")) {
+            generatePaymentMethodDialog.pack();
+            generatePaymentMethodDialog.setVisible(true);
+        }        
+        if (maintainingBillingCombo.getSelectedItem().equals("Generate a note on which staff created a bill")) {
+            billCreationStaffNoteDialog.pack();
+            billCreationStaffNoteDialog.setVisible(true);
+        }        
+    }//GEN-LAST:event_maintainingBillingWriteQueryButtonActionPerformed
+
+    private void generateBillPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateBillPerformActionButtonActionPerformed
+        maintainingBillingResultArea.setText("");
+        Statement statement = null;        
+        
+        int Discounted_Amt = 0;
+
+        if (!generateBillDiscountedAmtNew.getText().isEmpty()) {
+            Discounted_Amt = Integer.parseInt(generateBillDiscountedAmtNew.getText());
+        }
+        
+        if (!generateBillBillIDNew.getText().isEmpty()) {
+            int Bill_ID = Integer.parseInt(generateBillBillIDNew.getText());
+            
+            if (!generateBillAmountNew.getText().isEmpty()) {
+                int Amount = Integer.parseInt(generateBillAmountNew.getText());
+                
+                if (!generateBillBillingAddressNew.getText().isEmpty()) {
+                    String Billing_Address = "'" + generateBillBillingAddressNew.getText() + "'";
+                    
+                    String query = "INSERT INTO BILLS (BILL_ID, AMOUNT, DISCOUNTED_AMT, BILLING_ADDRESS) VALUES(" + Bill_ID + ", " + Amount + ", " + Discounted_Amt + ", " + Billing_Address + ")";        
+                    System.out.println(query);
+                    try {
+                        statement = connection.createStatement();
+                        ResultSet rs = statement.executeQuery(query);
+                        ResultSetMetaData rsmd = rs.getMetaData();
+
+                        maintainingBillingResultArea.setText("Query executed successfully");
+
+                    } catch (SQLException e ) {
+                        e.printStackTrace();
+                        maintainingBillingResultArea.setText("Query execution failed");
+                    } finally {
+                        close(statement);
+                    }  
+                }
+                else {
+                    maintainingBillingResultArea.append("Billing Address is empty. /n");
+                }
+            }
+            else {
+                maintainingBillingResultArea.append("Bill Amount is empty. /n");
+            }
+        }
+        else {
+            maintainingBillingResultArea.append("Bill ID is empty. /n");
+        }
+                      
+        generateBillDialog.dispose(); 
+    }//GEN-LAST:event_generateBillPerformActionButtonActionPerformed
+
+    private void updateBillPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBillPerformActionButtonActionPerformed
+        maintainingBillingResultArea.setText("");
+        Statement statement = null;        
+
+        String toUpdateWith = "SET ";
+        boolean somethingChanged = false;
+        if (!updateBillAmountNew.getText().isEmpty()) {
+            toUpdateWith += "AMOUNT = " + Integer.parseInt(updateBillAmountNew.getText());
+            
+            somethingChanged = true;
+        }
+        if (!updateBillDiscountedAmtNew.getText().isEmpty()) {
+            if (somethingChanged == true) {
+                toUpdateWith += ", ";
+            }
+            else {
+                somethingChanged = true;
+            }
+            
+            toUpdateWith += "DISCOUNTED_AMT = " + Integer.parseInt(updateBillDiscountedAmtNew.getText());
+        }
+        if (!updateBillBillingAddressNew.getText().isEmpty()) {
+            if (somethingChanged == true) {
+                toUpdateWith += ", ";
+            }
+            else {
+                somethingChanged = true;
+            }
+            
+            toUpdateWith += "BILLING_ADDRESS = " + "'" + updateBillBillingAddressNew.getText() + "'";;
+        }                
+        
+        if (somethingChanged == true) {
+            if (!updateBillBillIDWhere.getText().isEmpty()) {
+                int Bill_ID_New = Integer.parseInt(updateBillBillIDWhere.getText());
+
+                String query = "UPDATE BILLS " +  toUpdateWith + " WHERE BILL_ID = " + Bill_ID_New;        
+                System.out.println(query);
+                try {
+                    statement = connection.createStatement();
+                    ResultSet rs = statement.executeQuery(query);
+                    ResultSetMetaData rsmd = rs.getMetaData();
+
+                    maintainingBillingResultArea.setText("Query executed successfully");
+
+                } catch (SQLException e ) {
+                    e.printStackTrace();
+                    maintainingBillingResultArea.setText("Query execution failed");
+                } finally {
+                    close(statement);
+                }    
+            }       
+            else {
+                maintainingBillingResultArea.append("The Bill ID to search for is empty. /n");
+            }
+        }
+        else {
+            maintainingBillingResultArea.setText("No new values entered");
+        }
+       
+        updateBillDialog.dispose();
+    }//GEN-LAST:event_updateBillPerformActionButtonActionPerformed
+
+    private void deleteBillPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBillPerformActionButtonActionPerformed
+        maintainingBillingResultArea.setText("");
+        Statement statement = null;        
+
+        if (!deleteBillBillIDNew.getText().isEmpty()) {
+            int Bill_ID = Integer.parseInt(deleteBillBillIDNew.getText());
+
+            String query = "DELETE FROM BILLS WHERE BILL_ID = " + Bill_ID;             
+            System.out.println(query);
+            try {
+                statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery(query);
+                ResultSetMetaData rsmd = rs.getMetaData();
+
+                maintainingBillingResultArea.setText("Query executed successfully");
+
+            } catch (SQLException e ) {
+                e.printStackTrace();
+                maintainingBillingResultArea.setText("Query execution failed");
+            } finally {
+                close(statement);
+            } 
+        }
+        else {
+            maintainingBillingResultArea.setText("Bill ID is empty");            
+        }        
+        
+        deleteBillDialog.dispose(); 
+    }//GEN-LAST:event_deleteBillPerformActionButtonActionPerformed
+
+    private void customerTotalAmountPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerTotalAmountPerformActionButtonActionPerformed
+        maintainingBillingResultArea.setText("");
+        Statement statement = null;        
+
+        if (!customerTotalAmountCustomerIDWhere.getText().isEmpty()) {
+            int Customer_ID = Integer.parseInt(customerTotalAmountCustomerIDWhere.getText());
+
+            String query = "SELECT CUSTOMER.NAME, BILLS.AMOUNT, AMOUNT-DISCOUNTED_AMT AS 'Total Amount Due After Discount' FROM ((CUSTOMER INNER JOIN PAYS ON CUSTOMER.CUSTOMER_ID=PAYS.CUSTOMER_ID) INNER JOIN BILLS ON BILLS.BILL_ID=PAYS.BILL_ID) WHERE CUSTOMER.CUSTOMER_ID=" + Customer_ID;             
+            System.out.println(query);
+            try {
+                statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery(query);
+                ResultSetMetaData rsmd = rs.getMetaData();
+                int columnNumbers = rsmd.getColumnCount();
+
+                for (int c = 1; c < columnNumbers + 1; c++) {
+                    maintainingBillingResultArea.append(rsmd.getColumnName(c) + " ");                    
+                }
+                maintainingBillingResultArea.append("\n");            
+                while (rs.next()) {
+                    for(int i = 1 ; i <= columnNumbers; i++){
+                        maintainingBillingResultArea.append(rs.getString(i) + " ");
+                    }
+                    maintainingBillingResultArea.append("\n");
+                }
+            } catch (SQLException e ) {
+                e.printStackTrace();
+                maintainingBillingResultArea.setText("Query execution failed");
+            } finally {
+                close(statement);
+            } 
+        }
+        else {
+            maintainingBillingResultArea.setText("Bill ID is empty");            
+        } 
+
+        customerTotalAmountDialog.dispose(); 
+    }//GEN-LAST:event_customerTotalAmountPerformActionButtonActionPerformed
+
+    private void customerServiceReceiptPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerServiceReceiptPerformActionButtonActionPerformed
+        maintainingBillingResultArea.setText("");
+        Statement statement = null;        
+
+        if (!customerServiceReceiptCustomerIDWhere.getText().isEmpty()) {
+            int Customer_ID = Integer.parseInt(customerServiceReceiptCustomerIDWhere.getText());
+
+            String query = "SELECT CUSTOMER.NAME, SERVICE_RECORDS.NAME, SERVICE_RECORDS.COST, PROVIDES.TIMESTATE FROM ((CUSTOMER INNER JOIN PROVIDES ON CUSTOMER.CUSTOMER_ID=PROVIDES.CUSTOMER_ID) INNER JOIN SERVICE_RECORDS ON PROVIDES.SERVICE_ID=SERVICE_RECORDS.SERVICE_RECORD_ID) WHERE CUSTOMER.CUSTOMER_ID=" + Customer_ID;             
+            System.out.println(query);
+            try {
+                statement = connection.createStatement();
+                ResultSet rs = statement.executeQuery(query);
+                ResultSetMetaData rsmd = rs.getMetaData();
+                int columnNumbers = rsmd.getColumnCount();
+
+                for (int c = 1; c < columnNumbers + 1; c++) {
+                    maintainingBillingResultArea.append(rsmd.getColumnName(c) + " ");                    
+                }
+                maintainingBillingResultArea.append("\n");            
+                while (rs.next()) {
+                    for(int i = 1 ; i <= columnNumbers; i++){
+                        maintainingBillingResultArea.append(rs.getString(i) + " ");
+                    }
+                    maintainingBillingResultArea.append("\n");
+                }
+            } catch (SQLException e ) {
+                e.printStackTrace();
+                maintainingBillingResultArea.setText("Query execution failed");
+            } finally {
+                close(statement);
+            } 
+        }
+        else {
+            maintainingBillingResultArea.setText("Bill ID is empty");            
+        } 
+
+        customerServiceReceiptDialog.dispose(); 
+    }//GEN-LAST:event_customerServiceReceiptPerformActionButtonActionPerformed
+
+    private void generatePaymentMethodPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generatePaymentMethodPerformActionButtonActionPerformed
+        maintainingBillingResultArea.setText("");
+        Statement statement = null;        
+        
+        if (!generatePaymentMethodCustomerIDNew.getText().isEmpty()) {
+            int Customer_ID = Integer.parseInt(generatePaymentMethodCustomerIDNew.getText());
+            
+            if (!generatePaymentMethodBillIDNew.getText().isEmpty()) {
+                int Bill_ID = Integer.parseInt(generatePaymentMethodBillIDNew.getText());
+                
+                if (!generatePaymentMethodPayIDNew.getText().isEmpty()) {
+                    int Pay_ID = Integer.parseInt(generatePaymentMethodPayIDNew.getText());
+                    
+                    if (!generatePaymentMethodPayerSSNNew.getText().isEmpty()) {
+                        int Pay_SSN = Integer.parseInt(generatePaymentMethodPayerSSNNew.getText());
+                    
+                        String query = "INSERT INTO PAYS ( CUSTOMER_ID, BILL_ID, PAY_ID, PAYPERSONSSN) VALUES(" + Customer_ID + ", " + Bill_ID + ", " + Pay_ID + ", " + Pay_SSN + ")";        
+                        System.out.println(query);
+                        try {
+                            statement = connection.createStatement();
+                            ResultSet rs = statement.executeQuery(query);
+                            ResultSetMetaData rsmd = rs.getMetaData();
+
+                            maintainingBillingResultArea.setText("Query executed successfully");
+
+                        } catch (SQLException e ) {
+                            e.printStackTrace();
+                            maintainingBillingResultArea.setText("Query execution failed");
+                        } finally {
+                            close(statement);
+                        }
+                    }
+                    else {
+                        maintainingBillingResultArea.append("Payer SSN is empty. /n");
+                    }
+                }
+                else {
+                    maintainingBillingResultArea.append("Payment ID is empty. /n");
+                }
+            }
+            else {
+                maintainingBillingResultArea.append("Bill ID is empty. /n");
+            }
+        }
+        else {
+            maintainingBillingResultArea.append("Customer ID is empty. /n");
+        }
+
+        generatePaymentMethodDialog.dispose(); 
+    }//GEN-LAST:event_generatePaymentMethodPerformActionButtonActionPerformed
+
+    private void billCreationStaffNotePerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_billCreationStaffNotePerformActionButtonActionPerformed
+        maintainingBillingResultArea.setText("");
+        Statement statement = null;        
+        
+        if (!billCreationStaffNoteStaffIDNew.getText().isEmpty()) {
+            int Staff_ID = Integer.parseInt(billCreationStaffNoteStaffIDNew.getText());
+            
+            if (!billCreationStaffNoteBillIDNew.getText().isEmpty()) {
+                int Bill_ID = Integer.parseInt(billCreationStaffNoteBillIDNew.getText());
+                
+                String query = "INSERT INTO GENERATES ( STAFF_ID, BILL_ID) VALUES(" + Staff_ID + ", " + Bill_ID + ")";        
+                System.out.println(query);
+                try {
+                    statement = connection.createStatement();
+                    ResultSet rs = statement.executeQuery(query);
+                    ResultSetMetaData rsmd = rs.getMetaData();
+
+                    maintainingBillingResultArea.setText("Query executed successfully");
+
+                } catch (SQLException e ) {
+                    e.printStackTrace();
+                    maintainingBillingResultArea.setText("Query execution failed");
+                } finally {
+                    close(statement);
+                }
+            }            
+            else {
+                maintainingBillingResultArea.append("Bill ID is empty. /n");
+            }
+        }
+        else {
+            maintainingBillingResultArea.append("Customer ID is empty. /n");
+        }
+        
+        billCreationStaffNoteDialog.dispose(); 
+    }//GEN-LAST:event_billCreationStaffNotePerformActionButtonActionPerformed
+
+    private void maintainingServiceWriteQueryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maintainingServiceWriteQueryButtonActionPerformed
+        if (informationProcessingCombo.getSelectedItem().equals("Enter Services")) {
+            enterServicesDialog.pack();
+            enterServicesDialog.setVisible(true);
+        }        
+        if (informationProcessingCombo.getSelectedItem().equals("Update Services")) {
+            updateServicesDialog.pack();
+            updateServicesDialog.setVisible(true);
+        }                 
+    }//GEN-LAST:event_maintainingServiceWriteQueryButtonActionPerformed
+
+    private void enterServicesPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterServicesPerformActionButtonActionPerformed
+        maintainingServiceResultArea.setText("AAAAAA");
+
+        enterServicesDialog.dispose(); 
+    }//GEN-LAST:event_enterServicesPerformActionButtonActionPerformed
+
+    private void updateServicesPerformActionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateServicesPerformActionButtonActionPerformed
+        maintainingServiceResultArea.setText("AAAAAA");
+
+        updateServicesDialog.dispose(); 
+    }//GEN-LAST:event_updateServicesPerformActionButtonActionPerformed
+
+    private void customQueryPerformButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customQueryPerformButtonActionPerformed
+        customQueryResultArea.setText("");
+        Statement statement = null;        
+        
+        String query = customQueryQueryArea.getText();
+             
+        try {
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnNumbers = rsmd.getColumnCount();
+            
+            for (int c = 1; c < columnNumbers + 1; c++) {
+                customQueryResultArea.append(rsmd.getColumnName(c) + " ");                    
+            }
+            customQueryResultArea.append("\n");            
+            while (rs.next()) {
+                for(int i = 1 ; i <= columnNumbers; i++){
+                    customQueryResultArea.append(rs.getString(i) + " ");
+                }
+                customQueryResultArea.append("\n");
+            }
+        } catch (SQLException e ) {
+            e.printStackTrace();
+        } finally {
+            close(statement);
+        }
+    }//GEN-LAST:event_customQueryPerformButtonActionPerformed
     
     /**
      * @param args the command line arguments
      */
+    // Open connection
+    // When user closes the window, the connection is closed first
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -2091,6 +4638,7 @@ public class DatabaseGUI extends javax.swing.JFrame {
         });              
     }            
     
+    // Close statements
     static void close(Connection connection) {
         if(connection != null) {
             try {
@@ -2108,6 +4656,89 @@ public class DatabaseGUI extends javax.swing.JFrame {
     }    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel CheckRoomAvailabilityHotelID;
+    private javax.swing.JTextField CheckRoomAvailabilityHotelIDNew;
+    private javax.swing.JTextField CheckRoomAvailabilityHotelIDWhere;
+    private javax.swing.JLabel CheckRoomAvailabilityNewLabel;
+    private javax.swing.JButton CheckRoomAvailabilityPerformActionButton;
+    private javax.swing.JLabel CheckRoomAvailabilityRoomNum;
+    private javax.swing.JTextField CheckRoomAvailabilityRoomNumNew;
+    private javax.swing.JTextField CheckRoomAvailabilityRoomNumWhere;
+    private javax.swing.JLabel CheckRoomAvailabilityTitle;
+    private javax.swing.JLabel CheckRoomAvailabilityWhereLabel;
+    private javax.swing.JLabel CheckRoomTypeAvailabilityHotelID;
+    private javax.swing.JTextField CheckRoomTypeAvailabilityHotelIDNew;
+    private javax.swing.JTextField CheckRoomTypeAvailabilityHotelIDWhere;
+    private javax.swing.JLabel CheckRoomTypeAvailabilityNewLabel;
+    private javax.swing.JButton CheckRoomTypeAvailabilityPerformActionButton;
+    private javax.swing.JLabel CheckRoomTypeAvailabilityRoomNum;
+    private javax.swing.JTextField CheckRoomTypeAvailabilityRoomNumNew;
+    private javax.swing.JTextField CheckRoomTypeAvailabilityRoomNumWhere;
+    private javax.swing.JLabel CheckRoomTypeAvailabilityTitle;
+    private javax.swing.JLabel CheckRoomTypeAvailabilityWhereLabel;
+    private javax.swing.JLabel assignRoomCustomerID;
+    private javax.swing.JTextField assignRoomCustomerIDNew;
+    private javax.swing.JTextField assignRoomCustomerIDWhere;
+    private javax.swing.JDialog assignRoomDialog;
+    private javax.swing.JLabel assignRoomHotelID;
+    private javax.swing.JTextField assignRoomHotelIDNew;
+    private javax.swing.JTextField assignRoomHotelIDWhere;
+    private javax.swing.JLabel assignRoomNewLabel;
+    private javax.swing.JLabel assignRoomNumGuest;
+    private javax.swing.JTextField assignRoomNumGuestNew;
+    private javax.swing.JTextField assignRoomNumGuestWhere;
+    private javax.swing.JButton assignRoomPerformActionButton;
+    private javax.swing.JLabel assignRoomRoomNum;
+    private javax.swing.JTextField assignRoomRoomNumNew;
+    private javax.swing.JTextField assignRoomRoomNumWhere;
+    private javax.swing.JLabel assignRoomStaffID;
+    private javax.swing.JTextField assignRoomStaffIDNew;
+    private javax.swing.JTextField assignRoomStaffIDWhere;
+    private javax.swing.JLabel assignRoomTitle;
+    private javax.swing.JLabel assignRoomWhereLabel;
+    private javax.swing.JLabel billCreationStaffNoteBillID;
+    private javax.swing.JTextField billCreationStaffNoteBillIDNew;
+    private javax.swing.JTextField billCreationStaffNoteBillIDWhere;
+    private javax.swing.JDialog billCreationStaffNoteDialog;
+    private javax.swing.JLabel billCreationStaffNoteNewLabel;
+    private javax.swing.JButton billCreationStaffNotePerformActionButton;
+    private javax.swing.JLabel billCreationStaffNoteStaffID;
+    private javax.swing.JTextField billCreationStaffNoteStaffIDNew;
+    private javax.swing.JTextField billCreationStaffNoteStaffIDWhere;
+    private javax.swing.JLabel billCreationStaffNoteTitle;
+    private javax.swing.JLabel billCreationStaffNoteWhereLabel;
+    private javax.swing.JDialog checkRoomAvailabilityDialog;
+    private javax.swing.JDialog checkRoomTypeAvailabilityDialog;
+    private javax.swing.JTabbedPane customQueryPane;
+    private javax.swing.JPanel customQueryPanel;
+    private javax.swing.JButton customQueryPerformButton;
+    private javax.swing.JTextArea customQueryQueryArea;
+    private javax.swing.JTextArea customQueryResultArea;
+    private javax.swing.JLabel customQueryResultLabel;
+    private javax.swing.JLabel customerServiceReceiptCustomerID;
+    private javax.swing.JTextField customerServiceReceiptCustomerIDNew;
+    private javax.swing.JTextField customerServiceReceiptCustomerIDWhere;
+    private javax.swing.JDialog customerServiceReceiptDialog;
+    private javax.swing.JLabel customerServiceReceiptNewLabel;
+    private javax.swing.JButton customerServiceReceiptPerformActionButton;
+    private javax.swing.JLabel customerServiceReceiptTitle;
+    private javax.swing.JLabel customerServiceReceiptWhereLabel;
+    private javax.swing.JLabel customerTotalAmountCustomerID;
+    private javax.swing.JTextField customerTotalAmountCustomerIDNew;
+    private javax.swing.JTextField customerTotalAmountCustomerIDWhere;
+    private javax.swing.JDialog customerTotalAmountDialog;
+    private javax.swing.JLabel customerTotalAmountNewLabel;
+    private javax.swing.JButton customerTotalAmountPerformActionButton;
+    private javax.swing.JLabel customerTotalAmountTitle;
+    private javax.swing.JLabel customerTotalAmountWhereLabel;
+    private javax.swing.JLabel deleteBillBillID;
+    private javax.swing.JTextField deleteBillBillIDNew;
+    private javax.swing.JTextField deleteBillBillIDWhere;
+    private javax.swing.JDialog deleteBillDialog;
+    private javax.swing.JLabel deleteBillNewLabel;
+    private javax.swing.JButton deleteBillPerformActionButton;
+    private javax.swing.JLabel deleteBillTitle;
+    private javax.swing.JLabel deleteBillWhereLabel;
     private javax.swing.JLabel deleteCustomerCustomerID;
     private javax.swing.JTextField deleteCustomerCustomerIDNew;
     private javax.swing.JTextField deleteCustomerCustomerIDWhere;
@@ -2129,7 +4760,7 @@ public class DatabaseGUI extends javax.swing.JFrame {
     private javax.swing.JTextField deleteRoomsHotelIDNew;
     private javax.swing.JTextField deleteRoomsHotelIDWhere;
     private javax.swing.JLabel deleteRoomsNewLabel;
-    private javax.swing.JButton deleteRoomsPerformActionButton1;
+    private javax.swing.JButton deleteRoomsPerformActionButton;
     private javax.swing.JLabel deleteRoomsRoomNum;
     private javax.swing.JTextField deleteRoomsRoomNumNew;
     private javax.swing.JTextField deleteRoomsRoomNumWhere;
@@ -2147,6 +4778,60 @@ public class DatabaseGUI extends javax.swing.JFrame {
     private javax.swing.JButton displayTableButton;
     private javax.swing.JComboBox<String> displayTableCombo;
     private javax.swing.JPanel displayTablePane;
+    private javax.swing.JLabel enterServicesDate;
+    private javax.swing.JTextField enterServicesDateNew;
+    private javax.swing.JTextField enterServicesDateWhere;
+    private javax.swing.JDialog enterServicesDialog;
+    private javax.swing.JLabel enterServicesHotelID;
+    private javax.swing.JTextField enterServicesHotelIDNew;
+    private javax.swing.JTextField enterServicesHotelIDWhere;
+    private javax.swing.JLabel enterServicesNewLabel;
+    private javax.swing.JButton enterServicesPerformActionButton;
+    private javax.swing.JLabel enterServicesRoomNum;
+    private javax.swing.JTextField enterServicesRoomNumNew;
+    private javax.swing.JTextField enterServicesRoomNumWhere;
+    private javax.swing.JLabel enterServicesServiceQuantity;
+    private javax.swing.JTextField enterServicesServiceQuantityNew;
+    private javax.swing.JTextField enterServicesServiceQuantityWhere;
+    private javax.swing.JLabel enterServicesServiceType;
+    private javax.swing.JTextField enterServicesServiceTypeNew;
+    private javax.swing.JTextField enterServicesServiceTypeWhere;
+    private javax.swing.JLabel enterServicesTitle;
+    private javax.swing.JLabel enterServicesWhereLabel;
+    private javax.swing.JLabel generateBillAmount;
+    private javax.swing.JTextField generateBillAmountNew;
+    private javax.swing.JTextField generateBillAmountWhere;
+    private javax.swing.JLabel generateBillBillID;
+    private javax.swing.JTextField generateBillBillIDNew;
+    private javax.swing.JTextField generateBillBillIDWhere;
+    private javax.swing.JLabel generateBillBillingAddress;
+    private javax.swing.JTextField generateBillBillingAddressNew;
+    private javax.swing.JTextField generateBillBillingAddressWhere;
+    private javax.swing.JDialog generateBillDialog;
+    private javax.swing.JLabel generateBillDiscountedAmt;
+    private javax.swing.JTextField generateBillDiscountedAmtNew;
+    private javax.swing.JTextField generateBillDiscountedAmtWhere;
+    private javax.swing.JLabel generateBillNewLabel;
+    private javax.swing.JButton generateBillPerformActionButton;
+    private javax.swing.JLabel generateBillTitle;
+    private javax.swing.JLabel generateBillWhereLabel;
+    private javax.swing.JLabel generatePaymentMethodBillID;
+    private javax.swing.JTextField generatePaymentMethodBillIDNew;
+    private javax.swing.JTextField generatePaymentMethodBillIDWhere;
+    private javax.swing.JLabel generatePaymentMethodCustomerID;
+    private javax.swing.JTextField generatePaymentMethodCustomerIDNew;
+    private javax.swing.JTextField generatePaymentMethodCustomerIDWhere;
+    private javax.swing.JDialog generatePaymentMethodDialog;
+    private javax.swing.JLabel generatePaymentMethodNewLabel;
+    private javax.swing.JLabel generatePaymentMethodPayID;
+    private javax.swing.JTextField generatePaymentMethodPayIDNew;
+    private javax.swing.JTextField generatePaymentMethodPayIDWhere;
+    private javax.swing.JLabel generatePaymentMethodPayerSSN;
+    private javax.swing.JTextField generatePaymentMethodPayerSSNNew;
+    private javax.swing.JTextField generatePaymentMethodPayerSSNWhere;
+    private javax.swing.JButton generatePaymentMethodPerformActionButton;
+    private javax.swing.JLabel generatePaymentMethodTitle;
+    private javax.swing.JLabel generatePaymentMethodWhereLabel;
     private javax.swing.JComboBox<String> informationProcessingCombo;
     private javax.swing.JPanel informationProcessingPane;
     private javax.swing.JTextArea informationProcessingResultArea;
@@ -2246,26 +4931,137 @@ public class DatabaseGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel maintaingServicePane;
     private javax.swing.JComboBox<String> maintainingBillingCombo;
     private javax.swing.JPanel maintainingBillingPane;
-    private javax.swing.JButton maintainingBillingPerformButton;
     private javax.swing.JTextArea maintainingBillingResultArea;
     private javax.swing.JLabel maintainingBillingResultLabel;
+    private javax.swing.JButton maintainingBillingWriteQueryButton;
     private javax.swing.JComboBox<String> maintainingServiceCombo;
-    private javax.swing.JButton maintainingServicePerformButton;
     private javax.swing.JTextArea maintainingServiceResultArea;
     private javax.swing.JLabel maintainingServiceResultLabel;
+    private javax.swing.JButton maintainingServiceWriteQueryButton;
+    private javax.swing.JLabel occupancyByCityCheckinDate;
+    private javax.swing.JTextField occupancyByCityCheckinDateNew;
+    private javax.swing.JTextField occupancyByCityCheckinDateWhere;
+    private javax.swing.JLabel occupancyByCityCheckoutDate;
+    private javax.swing.JTextField occupancyByCityCheckoutDateNew;
+    private javax.swing.JTextField occupancyByCityCheckoutDateWhere;
+    private javax.swing.JDialog occupancyByCityDialog;
+    private javax.swing.JLabel occupancyByCityNewLabel;
+    private javax.swing.JButton occupancyByCityPerformActionButton;
+    private javax.swing.JLabel occupancyByCityTitle;
+    private javax.swing.JLabel occupancyByCityWhere;
+    private javax.swing.JLabel occupancyByDateRangeCheckinDate;
+    private javax.swing.JTextField occupancyByDateRangeCheckinDateNew;
+    private javax.swing.JTextField occupancyByDateRangeCheckinDateWhere;
+    private javax.swing.JLabel occupancyByDateRangeCheckoutDate;
+    private javax.swing.JTextField occupancyByDateRangeCheckoutDateNew;
+    private javax.swing.JTextField occupancyByDateRangeCheckoutDateWhere;
+    private javax.swing.JDialog occupancyByDateRangeDialog;
+    private javax.swing.JLabel occupancyByDateRangeNewLabel;
+    private javax.swing.JLabel occupancyByDateRangeOccupancyDate;
+    private javax.swing.JTextField occupancyByDateRangeOccupancyDateNew;
+    private javax.swing.JTextField occupancyByDateRangeOccupancyDateWhere;
+    private javax.swing.JButton occupancyByDateRangePerformActionButton;
+    private javax.swing.JLabel occupancyByDateRangeTitle;
+    private javax.swing.JLabel occupancyByDateRangeWhere;
+    private javax.swing.JLabel occupancyByHotelCheckinDate;
+    private javax.swing.JTextField occupancyByHotelCheckinDateNew;
+    private javax.swing.JTextField occupancyByHotelCheckinDateWhere;
+    private javax.swing.JLabel occupancyByHotelCheckoutDate;
+    private javax.swing.JTextField occupancyByHotelCheckoutDateNew;
+    private javax.swing.JTextField occupancyByHotelCheckoutDateWhere;
+    private javax.swing.JDialog occupancyByHotelDialog;
+    private javax.swing.JLabel occupancyByHotelNewLabel;
+    private javax.swing.JButton occupancyByHotelPerformActionButton;
+    private javax.swing.JLabel occupancyByHotelTitle;
+    private javax.swing.JLabel occupancyByHotelWhere;
+    private javax.swing.JLabel occupancyByRoomTypeCheckinDate;
+    private javax.swing.JTextField occupancyByRoomTypeCheckinDateNew;
+    private javax.swing.JTextField occupancyByRoomTypeCheckinDateWhere;
+    private javax.swing.JLabel occupancyByRoomTypeCheckoutDate;
+    private javax.swing.JTextField occupancyByRoomTypeCheckoutDateNew;
+    private javax.swing.JTextField occupancyByRoomTypeCheckoutDateWhere;
+    private javax.swing.JDialog occupancyByRoomTypeDialog;
+    private javax.swing.JLabel occupancyByRoomTypeNewLabel;
+    private javax.swing.JButton occupancyByRoomTypePerformActionButton;
+    private javax.swing.JLabel occupancyByRoomTypeTitle;
+    private javax.swing.JLabel occupancyByRoomTypeWhere;
     private javax.swing.JComboBox<String> reportsCombo;
     private javax.swing.JPanel reportsPane;
-    private javax.swing.JButton reportsPerformButton;
+    private javax.swing.JButton reportsPerformWriteQueryButton;
     private javax.swing.JTextArea reportsResultArea;
     private javax.swing.JLabel reportsResultLabel;
+    private javax.swing.JLabel setRoomAvailabilityAvailability;
+    private javax.swing.JTextField setRoomAvailabilityAvailabilityNew;
+    private javax.swing.JTextField setRoomAvailabilityAvailabilityWhere;
+    private javax.swing.JDialog setRoomAvailabilityDialog;
+    private javax.swing.JLabel setRoomAvailabilityHotelID;
+    private javax.swing.JTextField setRoomAvailabilityHotelIDNew;
+    private javax.swing.JTextField setRoomAvailabilityHotelIDWhere;
+    private javax.swing.JLabel setRoomAvailabilityNewLabel;
+    private javax.swing.JButton setRoomAvailabilityPerformActionButton;
+    private javax.swing.JLabel setRoomAvailabilityRoomNum;
+    private javax.swing.JTextField setRoomAvailabilityRoomNumNew;
+    private javax.swing.JTextField setRoomAvailabilityRoomNumWhere;
+    private javax.swing.JLabel setRoomAvailabilityTitle;
+    private javax.swing.JLabel setRoomAvailabilityWhereLabel;
+    private javax.swing.JLabel staffAssociatedSpecificCustomerCheckinDate;
+    private javax.swing.JTextField staffAssociatedSpecificCustomerCheckinDateNew;
+    private javax.swing.JTextField staffAssociatedSpecificCustomerCheckinDateWhere;
+    private javax.swing.JLabel staffAssociatedSpecificCustomerCustomerID;
+    private javax.swing.JTextField staffAssociatedSpecificCustomerCustomerIDNew;
+    private javax.swing.JTextField staffAssociatedSpecificCustomerCustomerIDWhere;
+    private javax.swing.JDialog staffAssociatedSpecificCustomerDialog;
+    private javax.swing.JLabel staffAssociatedSpecificCustomerNewLabel;
+    private javax.swing.JButton staffAssociatedSpecificCustomerPerformActionButton;
+    private javax.swing.JLabel staffAssociatedSpecificCustomerTitle;
+    private javax.swing.JLabel staffAssociatedSpecificCustomerTitle2;
+    private javax.swing.JLabel staffAssociatedSpecificCustomerWhere;
+    private javax.swing.JDialog staffInformationByRoleDialog;
+    private javax.swing.JButton staffInformationByRolePerformActionButton;
+    private javax.swing.JLabel staffInformationByRoleTitle;
+    private javax.swing.JLabel timePeriodRevenueCheckinFrom;
+    private javax.swing.JTextField timePeriodRevenueCheckinFromNew;
+    private javax.swing.JTextField timePeriodRevenueCheckinFromWhere;
+    private javax.swing.JLabel timePeriodRevenueCheckinTo;
+    private javax.swing.JTextField timePeriodRevenueCheckinToNew;
+    private javax.swing.JTextField timePeriodRevenueCheckinToWhere;
+    private javax.swing.JLabel timePeriodRevenueCheckoutFrom;
+    private javax.swing.JTextField timePeriodRevenueCheckoutFromNew;
+    private javax.swing.JTextField timePeriodRevenueCheckoutFromWhere;
+    private javax.swing.JLabel timePeriodRevenueCheckoutTo;
+    private javax.swing.JTextField timePeriodRevenueCheckoutToNew;
+    private javax.swing.JTextField timePeriodRevenueCheckoutToWhere;
+    private javax.swing.JDialog timePeriodRevenueDialog;
+    private javax.swing.JLabel timePeriodRevenueNewLabel;
+    private javax.swing.JButton timePeriodRevenuePerformActionButton;
+    private javax.swing.JLabel timePeriodRevenueTitle;
+    private javax.swing.JLabel timePeriodRevenueWhereLabel;
+    private javax.swing.JLabel updateBillAmount;
+    private javax.swing.JTextField updateBillAmountNew;
+    private javax.swing.JTextField updateBillAmountWhere;
+    private javax.swing.JLabel updateBillBillID;
+    private javax.swing.JTextField updateBillBillIDNew;
+    private javax.swing.JTextField updateBillBillIDWhere;
+    private javax.swing.JLabel updateBillBillingAddress;
+    private javax.swing.JTextField updateBillBillingAddressNew;
+    private javax.swing.JTextField updateBillBillingAddressWhere;
+    private javax.swing.JDialog updateBillDialog;
+    private javax.swing.JLabel updateBillDiscountedAmt;
+    private javax.swing.JTextField updateBillDiscountedAmtNew;
+    private javax.swing.JTextField updateBillDiscountedAmtWhere;
+    private javax.swing.JLabel updateBillNewLabel;
+    private javax.swing.JButton updateBillPerformActionButton;
+    private javax.swing.JLabel updateBillTitle;
+    private javax.swing.JLabel updateBillWhereLabel;
     private javax.swing.JLabel updateCustomerCustomerDOB;
     private javax.swing.JTextField updateCustomerCustomerDOBNew;
     private javax.swing.JTextField updateCustomerCustomerDOBWhere;
@@ -2306,9 +5102,6 @@ public class DatabaseGUI extends javax.swing.JFrame {
     private javax.swing.JButton updateHotelPerformActionButton;
     private javax.swing.JLabel updateHotelTitle;
     private javax.swing.JLabel updateHotelWhereLabel;
-    private javax.swing.JLabel updateRoomsAvailability;
-    private javax.swing.JTextField updateRoomsAvailabilityNew;
-    private javax.swing.JTextField updateRoomsAvailabilityWhere;
     private javax.swing.JDialog updateRoomsDialog;
     private javax.swing.JLabel updateRoomsHotelID;
     private javax.swing.JTextField updateRoomsHotelIDNew;
@@ -2317,15 +5110,32 @@ public class DatabaseGUI extends javax.swing.JFrame {
     private javax.swing.JTextField updateRoomsMaxOccupanNew;
     private javax.swing.JTextField updateRoomsMaxOccupanWhere;
     private javax.swing.JLabel updateRoomsNewLabel;
-    private javax.swing.JLabel updateRoomsNightlyRate;
-    private javax.swing.JTextField updateRoomsNightlyRateNew;
-    private javax.swing.JTextField updateRoomsNightlyRateWhere;
     private javax.swing.JButton updateRoomsPerformActionButton;
     private javax.swing.JLabel updateRoomsRoomNum;
     private javax.swing.JTextField updateRoomsRoomNumNew;
     private javax.swing.JTextField updateRoomsRoomNumWhere;
     private javax.swing.JLabel updateRoomsTitle;
     private javax.swing.JLabel updateRoomsWhereLabel;
+    private javax.swing.JLabel updateServicesDate;
+    private javax.swing.JTextField updateServicesDateNew;
+    private javax.swing.JTextField updateServicesDateWhere;
+    private javax.swing.JDialog updateServicesDialog;
+    private javax.swing.JLabel updateServicesHotelID;
+    private javax.swing.JTextField updateServicesHotelIDNew;
+    private javax.swing.JTextField updateServicesHotelIDWhere;
+    private javax.swing.JLabel updateServicesNewLabel;
+    private javax.swing.JButton updateServicesPerformActionButton;
+    private javax.swing.JLabel updateServicesRoomNum;
+    private javax.swing.JTextField updateServicesRoomNumNew;
+    private javax.swing.JTextField updateServicesRoomNumWhere;
+    private javax.swing.JLabel updateServicesServiceQuantity;
+    private javax.swing.JTextField updateServicesServiceQuantityNew;
+    private javax.swing.JTextField updateServicesServiceQuantityWhere;
+    private javax.swing.JLabel updateServicesServiceType;
+    private javax.swing.JTextField updateServicesServiceTypeNew;
+    private javax.swing.JTextField updateServicesServiceTypeWhere;
+    private javax.swing.JLabel updateServicesTitle;
+    private javax.swing.JLabel updateServicesWhereLabel;
     private javax.swing.JDialog updateStaffDialog;
     private javax.swing.JLabel updateStaffNewLabel;
     private javax.swing.JButton updateStaffPerformActionButton;
