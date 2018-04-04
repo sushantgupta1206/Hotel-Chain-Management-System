@@ -104,7 +104,7 @@ public class WolfInnStart {
 				break;
 				
 			case "assignroom":
-				configHotel.assignroom(args);
+				configHotel.assignRoom(args);
 				break;
 			default:
 				System.out.println("Invalid command.  Available options:");

@@ -19,8 +19,14 @@ public class DBConnectUtils {
 	public static final String DATABASE_NAME_DB2 = "Multidb";
 	public static final String DATABASE_USERNAME_DB2 = "custlogs";
 	public static final String DATABASE_PASSWORD_DB2 = "zaq12wsx";
+	
+	private static final String jdbcURL = "jdbc:mariadb://classdb2.csc.ncsu.edu:3306/ljackma"; // Using SERVICE_NAME
+    private static final String user = "ljackma";
+    private static final String password = "group4";    
 
-	public static final String DBSCHEMA="DB2INST2";
+
+	//public static final String DBSCHEMA="DB2INST2";
+	public static final String DBSCHEMA="ljackma";
 	
 	public final Connection getConnection(int flag) throws SQLException {
 		String sourceMethod = "getConnection";
@@ -40,7 +46,15 @@ public class DBConnectUtils {
 
 	private Connection getMariaDBConnection() {
 		// TODO Auto-generated method stub
-		return null;
+		try {
+			Connection connection = DriverManager.getConnection(jdbcURL, user, password);
+			return connection;
+		} catch(Throwable oops) {
+            oops.printStackTrace();
+            return null;
+        }
+		
+		//return null;
 	}
 
 	private Connection getDB2Connection() throws SQLException {

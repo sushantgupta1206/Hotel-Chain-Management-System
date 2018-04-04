@@ -229,8 +229,16 @@ public class ConfigInformationProcessingData {
 		informationProcessingDAO.setRoomAvailability(availability, roomNo, hotelId, dbFlag);
 	}
 
-	public void assignroom(String[] args) {
+	public void assignRoom(String[] args) {
 		// TODO Auto-generated method stub
 		//Shushant will write the code
+		int staffId = Integer.parseInt(args[1]);
+		int customerId = Integer.parseInt(args[2]);
+		int noOfGuests = Integer.parseInt(args[3]);
+		int roomNo = Integer.parseInt(args[4]);
+		int hotelId = Integer.parseInt(args[5]);
+		int dbFlag = Integer.parseInt(args[6]);
+		InformationProcessingDAO informationProcessingDAO = new InformationProcessingDAO();
+		informationProcessingDAO.assignRoom(staffId, customerId, noOfGuests, roomNo, hotelId, dbFlag);
 	}
 }
