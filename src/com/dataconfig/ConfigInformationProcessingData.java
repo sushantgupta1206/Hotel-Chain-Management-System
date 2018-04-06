@@ -26,12 +26,17 @@ public class ConfigInformationProcessingData {
 		hotelData.setId(Integer.parseInt(args[1]));
 		hotelData.setPhone(Integer.parseInt(args[2]));
 		hotelData.setName(args[3]);
+		String name= args[3];
 		hotelData.setAddress(args[4]);
 		hotelData.setCity(args[5]);
 		int oldHotelId=Integer.parseInt(args[6]);
 		int dbFlag = Integer.parseInt(args[7]);
+		if(name !=null){
 		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 		informationProcessingDAO.updateHotel(hotelData, oldHotelId, dbFlag);
+		}else{
+			System.out.println("Not valid data");
+		}
 	}
 	
 	public void showHotels(String args[]){
