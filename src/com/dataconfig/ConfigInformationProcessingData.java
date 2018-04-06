@@ -8,6 +8,7 @@ import com.dataobject.Customer;
 import com.dataobject.Hotel;
 import com.dataobject.Room;
 import com.dataobject.Staff;
+import com.dataobject.Assigns;
 
 /**
  * @author Kartik Shah
@@ -231,7 +232,8 @@ public class ConfigInformationProcessingData {
 
 	public void assignRoom(String[] args) {
 		// TODO Auto-generated method stub
-		//Shushant will write the code
+		//Sushant will write the code
+		Assigns assigns = new Assigns();
 		int staffId = Integer.parseInt(args[1]);
 		int customerId = Integer.parseInt(args[2]);
 		int noOfGuests = Integer.parseInt(args[3]);
@@ -239,6 +241,6 @@ public class ConfigInformationProcessingData {
 		int hotelId = Integer.parseInt(args[5]);
 		int dbFlag = Integer.parseInt(args[6]);
 		InformationProcessingDAO informationProcessingDAO = new InformationProcessingDAO();
-		informationProcessingDAO.assignRoom(staffId, customerId, noOfGuests, roomNo, hotelId, dbFlag);
+		informationProcessingDAO.assignRoom(assigns, staffId, customerId, noOfGuests, roomNo, hotelId, dbFlag);
 	}
 }

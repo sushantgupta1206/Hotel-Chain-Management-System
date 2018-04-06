@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.dataobject.Assigns;
 import com.dataobject.Customer;
 import com.dataobject.Hotel;
 import com.dataobject.Room;
@@ -885,45 +886,45 @@ public class InformationProcessingDAO {
 		return responsenumberOfUpdatedRows;
 	}
 	
-	public void assignRoom(int staffId, int customerId, int noOfGuests, int roomNo, int hotelId, int dbFlag){
-//		String sourceMethod = "assignRoom";
-//		String insertDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".ASSIGNS (STAFF_ID, CUSTOMER_ID, NO_OF_GUESTS, HOTEL_ID, ROOM_NO) VALUES (?,?,?,?,?) SELECT " + staffId +","+ customerId +","+ noOfGuests +","+ roomNo +","+ hotelId + 
-//				"FROM ROOMS AS R WHERE R.ROOM_NO= "+ roomNo + " AND HOTEL_ID = "+hotelId+" AND MAX_OCCUPANCY >= "+ noOfGuests +" AND AVAILABILITY=0";
-//		PreparedStatement preparedStatement = null;
-//		//int generatedKey = 0;
-//		Connection dbConn = null;
-//		ResultSet rs = null;
-//		try {
-//			dbConn = dbUtil.getConnection(dbFlag);
-//			preparedStatement = dbConn.prepareStatement(insertDataQuery,Statement.RETURN_GENERATED_KEYS);
-//			preparedStatement.setInt(1, assigns.getCustomerId());
-//			preparedStatement.setString(2, assigns.getPhone());
-//			preparedStatement.setString(3, assigns.getName());
-//			preparedStatement.setString(4, assigns.getEmail());
-//			preparedStatement.setDate(5, assigns.getDob());
-//			preparedStatement.execute();
-//			rs = preparedStatement.getGeneratedKeys();
-//			if (rs.next()) {
-//			    generatedKey = customer.getCustomerId();
-//			}
-//		} catch (Exception e) {
-//			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-//		} finally {
-//			try {
-//				if (rs != null) {
-//					rs.close();
-//				}
-//				if (preparedStatement != null) {
-//					preparedStatement.close();
-//				} 
-//				if (dbConn != null) {
-//					dbConn.close();
-//				}
-//			}catch (Exception e) {
-//				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-//			}
-//		}
-//		log.exiting(sourceClass, sourceMethod, generatedKey);		
+	public void assignRoom(Assigns assigns, int staffId, int customerId, int noOfGuests, int roomNo, int hotelId, int dbFlag){
+		String sourceMethod = "assignRoom";
+		String insertDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".ASSIGNS (STAFF_ID, CUSTOMER_ID, NO_OF_GUESTS, HOTEL_ID, ROOM_NO) VALUES (?,?,?,?,?) SELECT " + staffId +","+ customerId +","+ noOfGuests +","+ roomNo +","+ hotelId + 
+				"FROM ROOMS AS R WHERE R.ROOM_NO= "+ roomNo + " AND HOTEL_ID = "+hotelId+" AND MAX_OCCUPANCY >= "+ noOfGuests +" AND AVAILABILITY=0";
+		PreparedStatement preparedStatement = null;
+		int generatedKey = 0;
+		Connection dbConn = null;
+		ResultSet rs = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(insertDataQuery,Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setInt(1, assigns.getStaffId());
+			preparedStatement.setInt(2, assigns.getCustomerId());
+			preparedStatement.setInt(3, assigns.getNoOfGuests());
+			preparedStatement.setInt(4, assigns.getRoomNo());
+			preparedStatement.setInt(5, assigns.getHotelId());
+			preparedStatement.execute();
+			rs = preparedStatement.getGeneratedKeys();
+			if (rs.next()) {
+			    generatedKey = assigns.getCustomerId();
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, generatedKey);		
 	}
 	
 }
