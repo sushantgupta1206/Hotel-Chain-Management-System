@@ -110,9 +110,14 @@ public class WolfInnStart {
 				break;
 				
 				
-			case "assignservices":
+			case "providesservices":
 				serviceRecords.addProvidesServices(args);
 				break;
+				
+			case "updateservices":
+				serviceRecords.updateProvidesServices(args);
+				break;
+				
 			default:
 				System.out.println("Invalid command.  Available options:");
 				printHelp();

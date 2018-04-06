@@ -54,4 +54,37 @@ public class MaintainingServiceRecordsDAO {
 		log.exiting(sourceClass, sourceMethod, "Added");
 		return "Added Service Records";
 	}
+	
+	public void updateProvidesServices(int serviceID, int staffId, String serviceTime, int customerId, int dbFlag) {
+		String sourceMethod = "updateProvidesServices";
+		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".PROVIDES SET SERVICE_ID = ?, STAFF_ID=? WHERE TIMESTATE = ? and CUSTOMER_ID=?";
+		PreparedStatement preparedStatement = null;
+		int numberOfUpdatedRows = 0;
+		Connection dbConn = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, serviceID);
+			preparedStatement.setInt(2, staffId);
+			preparedStatement.setString(3, serviceTime);
+			preparedStatement.setInt(4, customerId);
+			numberOfUpdatedRows = preparedStatement.executeUpdate();
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod, numberOfUpdatedRows);
+		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
+	}
+	
 }
