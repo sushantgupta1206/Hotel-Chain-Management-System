@@ -2,6 +2,7 @@ package com.startup;
 
 import java.text.ParseException;
 
+import com.dataconfig.ConfigBillingAccounts;
 import com.dataconfig.ConfigInformationProcessingData;
 import com.dataconfig.ConfigMaintainingServiceRecords;
 
@@ -16,6 +17,8 @@ public class WolfInnStart {
 	public static void main(String args[]) {
 		ConfigInformationProcessingData configHotel = new ConfigInformationProcessingData();
 		ConfigMaintainingServiceRecords serviceRecords =new ConfigMaintainingServiceRecords();
+		ConfigBillingAccounts billingAccounts = new ConfigBillingAccounts();
+		
 		if (args.length > 0) {
 			switch (args[0]) {
 			case "addhotel":
@@ -113,9 +116,31 @@ public class WolfInnStart {
 			case "providesservices":
 				serviceRecords.addProvidesServices(args);
 				break;
-				
 			case "updateservices":
 				serviceRecords.updateProvidesServices(args);
+				break;
+
+				
+			case "addbill":
+				billingAccounts.addBill(args);
+				break;
+			case "updatebill":
+				billingAccounts.updateBill(args);
+				break;
+			case "deletebill":
+				billingAccounts.deleteBill(args);
+				break;
+			case "addpay":
+				billingAccounts.addPay(args);
+				break;
+			case "addgenerate":
+				billingAccounts.addGenerate(args);
+				break;
+			case "checktotalamount":
+				billingAccounts.checkTotalAmount(args);
+				break;	
+			case "checkitemizedtotalamount":
+				billingAccounts.checkItemizedTotalAmount(args);
 				break;
 				
 			default:
