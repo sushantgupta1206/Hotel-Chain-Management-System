@@ -3,6 +3,7 @@ package com.startup;
 import java.text.ParseException;
 
 import com.dataconfig.ConfigInformationProcessingData;
+import com.dataconfig.ConfigMaintainingServiceRecords;
 
 /**
  * @author Kartik  Shah
@@ -14,6 +15,7 @@ public class WolfInnStart {
 	 */
 	public static void main(String args[]) {
 		ConfigInformationProcessingData configHotel = new ConfigInformationProcessingData();
+		ConfigMaintainingServiceRecords serviceRecords =new ConfigMaintainingServiceRecords();
 		if (args.length > 0) {
 			switch (args[0]) {
 			case "addhotel":
@@ -105,6 +107,11 @@ public class WolfInnStart {
 				
 			case "assignroom":
 				configHotel.assignRoom(args);
+				break;
+				
+				
+			case "assignservices":
+				serviceRecords.addProvidesServices(args);
 				break;
 			default:
 				System.out.println("Invalid command.  Available options:");

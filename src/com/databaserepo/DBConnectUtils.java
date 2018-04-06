@@ -25,19 +25,21 @@ public class DBConnectUtils {
     private static final String password = "group4";    
 
 
-	//public static final String DBSCHEMA="DB2INST2";
-	public static final String DBSCHEMA="ljackma";
+	//
+	public static String DBSCHEMA="db2inst2";
 	
 	public final Connection getConnection(int flag) throws SQLException {
 		String sourceMethod = "getConnection";
 
 		if (flag == 1) {
 			// If DB2 connection
+			DBSCHEMA="db2inst2";
 			Connection dbConn = getDB2Connection();
 			log.exiting(sourceClass, sourceMethod);
 			return dbConn;
 		} else {
 			//If Maria DB connection
+			DBSCHEMA="ljackma";
 			Connection dbConn = getMariaDBConnection();
 			log.exiting(sourceClass, sourceMethod);
 			return dbConn;
