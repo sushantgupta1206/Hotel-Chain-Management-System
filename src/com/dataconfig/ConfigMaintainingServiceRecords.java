@@ -22,8 +22,14 @@ public class ConfigMaintainingServiceRecords {
 		int staffId = Integer.parseInt(args[2]);
 		int serviceID = Integer.parseInt(args[3]);
 		int dbFlag = Integer.parseInt(args[4]);
-		MaintainingServiceRecordsDAO maintainingServiceRecordsDAO = new MaintainingServiceRecordsDAO();
-		maintainingServiceRecordsDAO.addProvidesServices(customerId, staffId, serviceID, convertDateToCurrent(), dbFlag);
+                
+                if (customerId > 0 && staffId > 0 && serviceID > 0 && dbFlag > 0) {
+                    MaintainingServiceRecordsDAO maintainingServiceRecordsDAO = new MaintainingServiceRecordsDAO();
+                    maintainingServiceRecordsDAO.addProvidesServices(customerId, staffId, serviceID, convertDateToCurrent(), dbFlag);
+                }
+                else {
+                    System.out.println("Not valid data");
+                }
 	}
 	
 	public void updateProvidesServices(String[] args) {
@@ -32,9 +38,14 @@ public class ConfigMaintainingServiceRecords {
 		String serviceTime = args[3];
 		int customerId = Integer.parseInt(args[4]);
 		int dbFlag = Integer.parseInt(args[5]);
-		MaintainingServiceRecordsDAO maintainingServiceRecordsDAO = new MaintainingServiceRecordsDAO();
-		maintainingServiceRecordsDAO.updateProvidesServices(serviceID, staffId, serviceTime, customerId, dbFlag);
-		
+                
+                if (serviceID > 0 && staffId > 0 && serviceTime != null && customerId > 0 && dbFlag > 0) {
+                    MaintainingServiceRecordsDAO maintainingServiceRecordsDAO = new MaintainingServiceRecordsDAO();
+                    maintainingServiceRecordsDAO.updateProvidesServices(serviceID, staffId, serviceTime, customerId, dbFlag);
+                }
+                else {
+                    System.out.println("Not valid data");
+                }
 	}
 	
 }
