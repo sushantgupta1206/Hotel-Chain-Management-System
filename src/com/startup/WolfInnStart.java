@@ -5,6 +5,7 @@ import java.text.ParseException;
 import com.dataconfig.ConfigBillingAccounts;
 import com.dataconfig.ConfigInformationProcessingData;
 import com.dataconfig.ConfigMaintainingServiceRecords;
+import com.dataconfig.ConfigReportsData;
 
 /**
  * @author Kartik  Shah
@@ -18,7 +19,7 @@ public class WolfInnStart {
 		ConfigInformationProcessingData configHotel = new ConfigInformationProcessingData();
 		ConfigMaintainingServiceRecords serviceRecords =new ConfigMaintainingServiceRecords();
 		ConfigBillingAccounts billingAccounts = new ConfigBillingAccounts();
-		
+		ConfigReportsData configReports = new ConfigReportsData();
 		if (args.length > 0) {
 			switch (args[0]) {
 			case "addhotel":
@@ -142,7 +143,27 @@ public class WolfInnStart {
 			case "checkitemizedtotalamount":
 				billingAccounts.checkItemizedTotalAmount(args);
 				break;
-				
+			case "occupancybyhotel":
+				configReports.occHotel(args);
+				break;
+			case "occupancybycity":
+				configReports.occCity(args);
+				break;	
+			case "occupancybyroom":
+				configReports.occRoom(args);
+				break;	
+//			case "occupancybydaterange":
+//				configReports.occRange(args);
+//				break;	
+			case "staffinfobyrole":
+				configReports.showStaff(args);
+				break;
+			case "staffpercustomer":
+				configReports.custStaff(args);
+				break;
+			case "getrevenue":
+				configReports.custStaff(args);
+				break;
 			default:
 				System.out.println("Invalid command.  Available options:");
 				printHelp();

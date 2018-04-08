@@ -3,7 +3,10 @@ package com.dataconfig;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.databaserepo.InformationProcessingDAO;
+import com.databaserepo.ReportsDAO;
 import com.dataobject.Customer;
 import com.dataobject.Hotel;
 import com.dataobject.Room;
@@ -17,12 +20,9 @@ import com.dataobject.Staff;
 
 public class ConfigReportsData {
 	
-	private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
-        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
-        return sDate;
-    }
 	
 	public void occHotel(String args[]) {
+		
 /*
  * SELECT HOTELS.HOTEL_ID, SUM(CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END) AS OCCUPANCY,
  * SUM(CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END)/ COUNT(HOTELS.HOTEL_ID) AS PERCENT_OCCUPANCY 
@@ -35,10 +35,11 @@ public class ConfigReportsData {
  * 
  * when to use "[]" for String/args?
  */
-		Date date = new Date();
-		int dbFlag = Integer.parseInt(args[2]);
+		String checkInDate = args[1];
+		String checkOutDate = args[2];
+		int dbFlag = Integer.parseInt(args[3]);
 		ReportsDAO reportsDAO = new ReportsDAO();
-		ReportsDAO.occHotel(date, dbFlag);
+		reportsDAO.occHotel(checkInDate, checkOutDate, dbFlag);
 	}
 	
 	public void occCity(String args[]){
@@ -54,13 +55,14 @@ public class ConfigReportsData {
  *   
  *   does getCity need to have an argument?
  */
-		Date date = new Date();
-		int dbFlag = Integer.parseInt(args[1]);
-		ReportsDAO reportsDAO=new ReportsDAO();
-		ReportsDAO.occCity(dbFlag);
+		String checkInDate = args[1];
+		String checkOutDate = args[2];
+		int dbFlag = Integer.parseInt(args[3]);
+		ReportsDAO reportsDAO = new ReportsDAO();
+		reportsDAO.occCity(checkInDate, checkOutDate, dbFlag);
 	}
 
-	public void occRoomCat(String args[]){
+	public void occRoom(String args[]){
 /*
  * SELECT ROOM_HAS.ROOM_CATEGORY_ID, SUM( CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END)
  *  AS OCCUPANCY,SUM( CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END)/ COUNT(HOTELS.HOTEL_ID) 
@@ -74,10 +76,11 @@ public class ConfigReportsData {
  *  
  *  
  */
-		Date date = new Date();
-		int dbFlag = Integer.parseInt(args[1]);
-		ReportsDAO reportsDAO=new ReportsDAO();
-		ReportsDAO.occCity(dbFlag);
+		String checkInDate = args[1];
+		String checkOutDate = args[2];
+		int dbFlag = Integer.parseInt(args[3]);
+		ReportsDAO reportsDAO = new ReportsDAO();
+		reportsDAO.occRoom(checkInDate, checkOutDate, dbFlag);
 	}
 	
 	public void occDateRng(String args[]){
@@ -98,7 +101,7 @@ public class ConfigReportsData {
 		Date endDate = new Date();
 		int dbFlag = Integer.parseInt(args[1]);
 		ReportsDAO reportsDAO=new ReportsDAO();
-		ReportsDAO.occDateRng(dbFlag);
+		//reportsDAO.occDateRng(dbFlag);
 	}
 
 	public void showStaff(String[] args) {
@@ -110,7 +113,7 @@ public class ConfigReportsData {
  */
 		int dbFlag = Integer.parseInt(args[1]);
 		ReportsDAO reportsDAO=new ReportsDAO();
-		ReportsDAO.showStaff(dbFlag);
+		reportsDAO.showStaff(dbFlag);
 	}
 /*
  * SELECT HOTEL_ID, NIGHTLY_RATE* DATEDIFF(CHECK_OUT, CHECK_IN) AS TOTAL_REVENUE FROM ASSIGNS 
@@ -128,7 +131,7 @@ public class ConfigReportsData {
 		Date endDate = new Date();
 		int dbFlag = Integer.parseInt(args[1]);
 		ReportsDAO reportsDAO=new ReportsDAO();
-		ReportsDAO.revHotel(dbFlag);
+		//reportsDAO.revHotel(dbFlag);
 	}
 
 	public void custStaff(String[] args) {
@@ -144,12 +147,11 @@ public class ConfigReportsData {
  * output: string of each staff member (service and front desk) who served customer
 
  */
-		Int customerID = new Date();
-		Date checkIn = new Date();
-		int dbFlag = Integer.parseInt(args[1]);
-		ReportsDAO reportsDAO=new ReportsDAO();
-		ReportsDAO.custStaff(dbFlag);
-		
+		String checkInDate = args[1];
+		int custId = Integer.parseInt(args[2]);
+		int dbFlag = Integer.parseInt(args[3]);
+		ReportsDAO reportsDAO = new ReportsDAO();
+		reportsDAO.custStaff(checkInDate, custId, dbFlag);
 	}
 
 	
