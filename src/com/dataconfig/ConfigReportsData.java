@@ -127,11 +127,11 @@ public class ConfigReportsData {
  * modify user input.
  */
 	public void revHotel(String[] args) {
-		Date startDate = new Date();
-		Date endDate = new Date();
-		int dbFlag = Integer.parseInt(args[1]);
-		ReportsDAO reportsDAO=new ReportsDAO();
-		//reportsDAO.revHotel(dbFlag);
+		String startDate = args[1];
+		String endDate = args[2];
+		int dbFlag = Integer.parseInt(args[3]);
+		ReportsDAO reportsDAO = new ReportsDAO();
+		reportsDAO.revHotel(startDate, endDate, dbFlag);
 	}
 
 	public void custStaff(String[] args) {

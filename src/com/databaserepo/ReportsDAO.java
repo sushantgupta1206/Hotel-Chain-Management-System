@@ -256,5 +256,47 @@ public class ReportsDAO {
 		}
 		
 	}
+
+	public void revHotel(String startDate, String endDate, int dbFlag) {
+		// TODO Auto-generated method stub
+		String sourceMethod = "revHotel";
+		//List<> hotelOccupancy = new ArrayList<>();
+		Connection dbConn = null;
+		ResultSet selectQueryRS = null;
+		PreparedStatement stmt = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			String selectStatement = " SELECT HOTEL_ID, NIGHTLY_RATE* DATEDIFF(CHECK_OUT, CHECK_IN) AS TOTAL_REVENUE FROM ASSIGNS " 
+ + "NATURAL JOIN "+DBConnectUtils.DBSCHEMA+"ROOMS WHERE ASSIGNS.CHECK_IN BETWEEN ? AND ? " 
+ + "AND ASSIGNS.CHECK_OUT BETWEEN ? AND ? GROUP BY HOTEL_ID" ;
+			stmt = dbConn.prepareStatement(selectStatement);
+			stmt.setString(1,  startDate);
+			stmt.setString(2, endDate);
+			selectQueryRS = stmt.executeQuery();
+			while (selectQueryRS.next()) {
+				//Hotel hotel = new Hotel();
+				int hotelId = selectQueryRS.getInt("HOTEL_ID");
+				int revenue = selectQueryRS.getInt("REVENUE");
+				//float percent = selectQueryRS.getFloat("PERCENT_OCCUPANCY");
+				System.out.println(hotelId + " " + revenue);
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}		
+	}
 	
 }

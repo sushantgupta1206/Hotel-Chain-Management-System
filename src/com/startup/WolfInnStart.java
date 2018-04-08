@@ -162,7 +162,7 @@ public class WolfInnStart {
 				configReports.custStaff(args);
 				break;
 			case "getrevenue":
-				configReports.custStaff(args);
+				configReports.revHotel(args);
 				break;
 			default:
 				System.out.println("Invalid command.  Available options:");
