@@ -369,8 +369,6 @@ public class ConfigInformationProcessingData {
 
 	public void assignRoom(String[] args) {
 		// TODO Auto-generated method stub
-		//Sushant will write the code
-		Assigns assigns = new Assigns();
 		int staffId = Integer.parseInt(args[1]);
 		int customerId = Integer.parseInt(args[2]);
 		int noOfGuests = Integer.parseInt(args[3]);
@@ -379,7 +377,7 @@ public class ConfigInformationProcessingData {
 		int dbFlag = Integer.parseInt(args[6]);
 		if(staffId > 0 && customerId > 0 && noOfGuests > 0 && roomNo > 0 && hotelId > 0){
 			InformationProcessingDAO informationProcessingDAO = new InformationProcessingDAO();
-			informationProcessingDAO.assignRoom(assigns, staffId, customerId, noOfGuests, roomNo, hotelId, dbFlag);		
+			informationProcessingDAO.assignRoom(staffId, customerId, noOfGuests, roomNo, hotelId, dbFlag);		
 		}else {
 			System.out.println("Not valid data");
 		}
