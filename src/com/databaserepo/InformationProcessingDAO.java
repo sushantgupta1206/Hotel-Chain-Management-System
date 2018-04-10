@@ -887,6 +887,7 @@ public class InformationProcessingDAO {
 		return responsenumberOfUpdatedRows;
 	}
 	
+	@SuppressWarnings("resource")
 	public void assignRoomAndSetAvailability(int staffId, int customerId, int noOfGuests, int roomNo, int hotelId, int dbFlag){
 		String sourceMethod = "assignRoom";
 		
@@ -914,37 +915,43 @@ public class InformationProcessingDAO {
 		
 		
 		String insertDataQuery = "INSERT INTO "+DBConnectUtils.DBSCHEMA+".ASSIGNS(STAFF_ID, CUSTOMER_ID,CHECK_IN,CHECK_OUT, NO_OF_GUESTS, HOTEL_ID, ROOM_NO) "+
-				"SELECT 7,1,'2017-09-15 02:15:00','2017-09-15 02:15:00', 1,1,111 FROM  "+DBConnectUtils.DBSCHEMA+".ROOMS AS R WHERE R.ROOM_NO=111 AND HOTEL_ID=1 AND "+
+				"SELECT ?,?,'2017-09-15 02:15:00','2017-09-15 02:15:00', ?,?,? FROM  "+DBConnectUtils.DBSCHEMA+".ROOMS AS R WHERE R.ROOM_NO=? AND HOTEL_ID=? AND "+
 				"MAX_OCCUPANCY>=1 AND AVAILABILITY=0";
 		
 		int generatedKey = 0;
 			
 			preparedStatement = dbConn.prepareStatement(insertDataQuery,Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.execute();
+			preparedStatement.setInt(1, staffId);
+			preparedStatement.setInt(2, customerId);
+			preparedStatement.setInt(3, noOfGuests);
+			preparedStatement.setInt(4, hotelId);
+			preparedStatement.setInt(5, roomNo);
+			preparedStatement.setInt(6, roomNo);
+			preparedStatement.setInt(7, hotelId);
+			boolean insertExecuted = preparedStatement.execute();
 			rs = preparedStatement.getGeneratedKeys();
 			if (rs.next()) {
 			    System.out.println(generatedKey);
+			    insertExecuted = true;
 			}
 			
-		
-			String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOMS SET AVAILABILITY=1 WHERE ROOM_NO=111 AND HOTEL_ID=1";
+		 if(insertExecuted){
+			String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOMS SET AVAILABILITY=1 WHERE ROOM_NO=? AND HOTEL_ID=?";
 			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement.setInt(1, roomNo);
+			preparedStatement.setInt(2, hotelId);
 			int numberOfUpdatedRows = preparedStatement.executeUpdate();
 			System.out.println(numberOfUpdatedRows);
-			/*preparedStatement.setInt(1, staffId);
-			preparedStatement.setInt(2, customerId);
-			preparedStatement.setInt(3, noOfGuests);
-			preparedStatement.setInt(4, roomNo);
-			preparedStatement.setInt(5, hotelId);
-			
-			
-		
-		log.exiting(sourceClass, sourceMethod, generatedKey);*/		
+		log.exiting(sourceClass, sourceMethod, generatedKey);	
 			dbConn.commit();
+		 }else{
+			 System.out.println("Somebody booked the room.");
+		 }
 		}catch (SQLException e) {
 			System.out.println("The transaction will be rolled back because :"+e.getMessage()); //Prints the error message if something goes wrong when updating.
 		}finally {
 			try {
+				dbConn.setAutoCommit(true);
 				if (preparedStatement != null) {
 					preparedStatement.close();
 				} 

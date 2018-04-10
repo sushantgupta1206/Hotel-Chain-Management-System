@@ -372,8 +372,8 @@ public class ConfigInformationProcessingData {
 		int staffId = Integer.parseInt(args[1]);
 		int customerId = Integer.parseInt(args[2]);
 		int noOfGuests = Integer.parseInt(args[3]);
-		int roomNo = Integer.parseInt(args[4]);
-		int hotelId = Integer.parseInt(args[5]);
+		int hotelId = Integer.parseInt(args[4]);
+		int roomNo = Integer.parseInt(args[5]);
 		int dbFlag = Integer.parseInt(args[6]);
 		if(staffId > 0 && customerId > 0 && noOfGuests > 0 && roomNo > 0 && hotelId > 0){
 			InformationProcessingDAO informationProcessingDAO = new InformationProcessingDAO();
