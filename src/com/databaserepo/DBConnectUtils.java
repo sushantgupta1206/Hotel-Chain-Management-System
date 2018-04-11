@@ -25,8 +25,8 @@ public class DBConnectUtils {
     private static final String password = "group4";    
 
 
-	//public static String DBSCHEMA="db2inst2";
-    public static String DBSCHEMA="ljackma";
+	public static String DBSCHEMA="db2inst2";
+    //public static String DBSCHEMA="ljackma";
 	public final Connection getConnection(int flag) throws SQLException {
 		String sourceMethod = "getConnection";
 

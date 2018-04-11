@@ -61,6 +61,8 @@ public class WolfInnStart {
 				break;
 			
 			case "addstaff":
+				//java -jar WolfInn.jar addstaff 14 919 Kartik "Rasin St" 1983-04-02 "Catering" "Catering Staff"  21 11 2
+				//java -jar WolfInn.jar addstaff 12 919 Kartik "Rasin St" 1983-04-02 "Management" "Manager"  21 11 2
 				try {
 					configHotel.addStaff(args);
 				} catch (ParseException e) {

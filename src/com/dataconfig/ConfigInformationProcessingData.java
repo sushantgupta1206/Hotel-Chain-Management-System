@@ -198,13 +198,13 @@ public class ConfigInformationProcessingData {
 		String department = args[6];
 		String title = args[7];
 		int age = Integer.parseInt(args[8]);
+		int hotelId=Integer.parseInt(args[9]);
+		int dbFlag = Integer.parseInt(args[10]);
 		
-		int dbFlag = Integer.parseInt(args[9]);
-		
-		if(staffId > 0 && phone.length() == 10 && phone != null && name != null && name.length() <= 50 && address != null && address.length() <= 50 && 
-				department != null && department.length() <= 20 && title != null && title.length() <= 20 && age > 0 && date != null){
+		if(staffId > 0 && phone.length()>0 && phone != null && name != null && name.length() <= 50 && address != null && address.length() <= 50 && 
+				department != null && department.length() <= 20 && title != null && title.length() <= 20 && age > 0 && date != null && hotelId>0){
 			InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-			System.out.println("Added hotel: "+informationProcessingDAO.addStaff(staff, dbFlag));
+			informationProcessingDAO.addStaffToHotel(staff,hotelId, dbFlag);
 		}else {
 			System.out.println("Not valid data");
 		}
