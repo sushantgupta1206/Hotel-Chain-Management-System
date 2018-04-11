@@ -23,7 +23,10 @@ public class ConfigInformationProcessingData {
         return sDate;
     }
 	
-	
+        /*
+            input: Hotel ID, Hotel Phone, Hotel Name, Hotel Address, Hotel City, Hotel to be updated
+            output: N/A (Updates an existing hotel)
+        */	
 	public void updateHotel(String[] args) {
 		Hotel hotelData = new Hotel();
 		hotelData.setId(Integer.parseInt(args[1]));
@@ -35,8 +38,7 @@ public class ConfigInformationProcessingData {
 		int dbFlag = Integer.parseInt(args[7]);
 		int hotelId = Integer.parseInt(args[1]);
 		String phone = args[2];
-		String name = args[3];
-		
+		String name = args[3];		
 		
 		if(hotelId > 0 && phone.length() == 10 && phone != null && name != null && name.length() <= 50 && oldHotelId > 0){
 			InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
@@ -46,12 +48,20 @@ public class ConfigInformationProcessingData {
 		}
 	}
 	
+        /*
+            input: N/A
+            output: Display all existing hotels
+        */        
 	public void showHotels(String args[]){
 		int dbFlag = Integer.parseInt(args[1]);
 		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 		informationProcessingDAO.showHotels(dbFlag);
 	}
 
+        /*
+            input: Hotel ID
+            output: Show information on specific hotel
+        */        
 	public void showHotel(String args[]){
 		Hotel hotelData = new Hotel();
 		hotelData.setId(Integer.parseInt(args[1]));
@@ -65,6 +75,10 @@ public class ConfigInformationProcessingData {
 		}
 	}
 	
+        /*
+            input: Hotel ID, Hotel Phone, Hotel Name, Hotel Address, Hotel City
+            output: N/A (Adds a new hotel to table)
+        */        
 	public void addHotel(String args[]){
 		Hotel hotelData = new Hotel();
 		hotelData.setId(Integer.parseInt(args[1]));
@@ -88,6 +102,10 @@ public class ConfigInformationProcessingData {
 		}		
 	}
 
+        /*
+            input: Hotel ID
+            output: N/A (Deletes a specific hotel)
+        */          
 	public void deleteHotel(String[] args) {
 		Hotel hotelData = new Hotel();
 		hotelData.setId(Integer.parseInt(args[1]));
@@ -103,6 +121,10 @@ public class ConfigInformationProcessingData {
 		}
 	}
 
+        /*
+            input: Room Number, Hotel ID, Max Occupancy, Nightly Rate
+            output: N/A (Adds a new room to table)
+        */          
 	public void addRoom(String[] args) {
 		int roomNo=Integer.parseInt(args[1]);
 		int hotelId=Integer.parseInt(args[2]);
@@ -118,6 +140,10 @@ public class ConfigInformationProcessingData {
 		}
 	}
 
+        /*
+            input: Room Number, Hotel ID, Max Occupancy, Nightly Rate, Availability, Number of room to be updated, ID of hotel of room to be updated
+            output: N/A (Updates a specific room's information)
+        */         
 	public void updateRoom(String[] args) {
 		Room room = new Room();
 		room.setRoomNum(Integer.parseInt(args[1]));
@@ -144,12 +170,20 @@ public class ConfigInformationProcessingData {
 		}
 	}
 
+        /*
+            input: N/A
+            output: Display all existing rooms
+        */         
 	public void showRooms(String[] args) {
 		int dbFlag = Integer.parseInt(args[1]);
 		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 		informationProcessingDAO.showRooms(dbFlag);
 	}
 
+        /*
+            input: Room Number, Hotel ID
+            output: N/A (Delets a specific room)
+        */         
 	public void deleteRoom(String[] args) {
 		Room room = new Room();
 		room.setRoomNum(Integer.parseInt(args[1]));
@@ -167,6 +201,10 @@ public class ConfigInformationProcessingData {
 		}
 	}
 
+        /*
+            input: Staff ID, Staff Phone, Staff Name, Staff Address, Staff Department, Staff Title, Staff Age
+            output: N/A (Adds a new staff member to table)
+        */         
 	public void addStaff(String[] args) throws ParseException {
 		Staff staff = new Staff();
 		staff.setStaffId(Integer.parseInt(args[1]));
@@ -199,6 +237,10 @@ public class ConfigInformationProcessingData {
 		}
 	}
 
+        /*
+            input: Staff ID, Staff Phone, Staff Name, Staff Address, Date, Staff Department, Staff Title, Staff Age, ID of staff to update
+            output: N/A (Updates information of a specific staff)
+        */          
 	public void updateStaff(String[] args) throws ParseException {
 		Staff staff = new Staff();
 		staff.setStaffId(Integer.parseInt(args[1]));
@@ -234,12 +276,20 @@ public class ConfigInformationProcessingData {
 		}
 	}
 
+        /*
+            input: N/A
+            output: Displays information on existing staff
+        */          
 	public void showStaffs(String[] args) {
 		int dbFlag = Integer.parseInt(args[1]);
 		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 		informationProcessingDAO.showStaffs(dbFlag);
 	}
 
+        /*
+            input: Staff ID
+            output: N/A (Deletes a specific staff)
+        */          
 	public void deleteStaff(String[] args) {
 		Staff staff = new Staff();
 		staff.setStaffId(Integer.parseInt(args[1]));
@@ -253,6 +303,10 @@ public class ConfigInformationProcessingData {
 		}
 	}
 
+        /*
+            input: Customer ID, Customer Phone, Customer Name, Customer Email, Date
+            output: N/A (Adds a new customer to table)
+        */          
 	public void addCustomer(String[] args) throws ParseException {
 		Customer customer =  new Customer();
 		customer.setCustomerId(Integer.parseInt(args[1]));
@@ -278,6 +332,10 @@ public class ConfigInformationProcessingData {
 		}	
 	}
 
+        /*
+            input: Customer ID, Customer Phone, Customer Name, Customer Email, Date, ID of customer to update
+            output: N/A (Updates a customer's information)
+        */           
 	public void updateCustomer(String[] args) throws ParseException {
 		Customer customer =  new Customer();
 		customer.setCustomerId(Integer.parseInt(args[1]));
@@ -303,12 +361,20 @@ public class ConfigInformationProcessingData {
 		}
 	}
 
+        /*
+            input: N/A
+            output: Shows all customers
+        */           
 	public void showCustomers(String[] args) {
 		int dbFlag = Integer.parseInt(args[1]);
 		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 		informationProcessingDAO.showCustomers(dbFlag);
 	}
 
+        /*
+            input: Customer ID
+            output: N/A (Deletes a specific customer)
+        */           
 	public void deleteCustomer(String[] args) {
 		Customer customer =  new Customer();
 		customer.setCustomerId(Integer.parseInt(args[1]));
@@ -322,6 +388,10 @@ public class ConfigInformationProcessingData {
 		}
 	}
 
+        /*
+            input: Room Number, Hotel ID
+            output: Displays availability of specific room
+        */           
 	public void checkRoomAvailability(String[] args) {
 		int roomNo = Integer.parseInt(args[1]);
 		int hotelId = Integer.parseInt(args[2]);
@@ -335,6 +405,10 @@ public class ConfigInformationProcessingData {
 		}
 	}
 
+        /*
+            input: Room Type, Hotel ID
+            output: Displays available rooms of a certain type in hotel
+        */           
 	public void checkRoomTypeAvailability(String[] args) {
 		String roomType = args[1];
 		int hotelId = Integer.parseInt(args[2]);
@@ -348,6 +422,10 @@ public class ConfigInformationProcessingData {
 		}
 	}
 
+        /*
+            input: Updated availability, Room Number, Hotel ID
+            output: N/A (Changes availability of a specific room)
+        */           
 	public void setRoomAvailability(String[] args) {
 		int availability = Integer.parseInt(args[1]);
 		int roomNo = Integer.parseInt(args[2]);
@@ -361,8 +439,11 @@ public class ConfigInformationProcessingData {
 		}	
 	}
 
+        /*
+            input: Staff ID, Customer ID, Number of Guests, Hotel ID, Room Number
+            output: N/A (Assigns room to customer)
+        */           
 	public void assignRoom(String[] args) {
-		// TODO Auto-generated method stub
 		int staffId = Integer.parseInt(args[1]);
 		int customerId = Integer.parseInt(args[2]);
 		int noOfGuests = Integer.parseInt(args[3]);

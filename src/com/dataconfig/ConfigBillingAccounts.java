@@ -3,6 +3,10 @@ package com.dataconfig;
 import com.databaserepo.BillingAccountsDAO;
 
 public class ConfigBillingAccounts {
+        /*
+            input: Bill ID, Amount, Discounted Amount, Billing Address
+            output: N/A (Adds a new bill to table)
+        */
 	public void addBill(String[] args) {
 		int billId = Integer.parseInt(args[1]);
 		int amt = Integer.parseInt(args[2]);
@@ -19,6 +23,10 @@ public class ConfigBillingAccounts {
                 }
 	}
 	
+        /*
+            input: Bill ID, Amount, Discounted Amount, Billing Address
+            output: N/A (Changes information on a specific bill)
+        */
 	public void updateBill(String[] args) {
 		int amt = Integer.parseInt(args[1]);
 		int discountedAmt = Integer.parseInt(args[2]);
@@ -35,6 +43,10 @@ public class ConfigBillingAccounts {
                 }
 	}
 
+        /*
+            input: Bill ID
+            output: N/A (Deletes a specific bill from table)
+        */
 	public void deleteBill(String[] args) {
 		int billId = Integer.parseInt(args[1]);
 		int dbFlag = Integer.parseInt(args[2]);
@@ -48,6 +60,10 @@ public class ConfigBillingAccounts {
                 }
 	}
 
+        /*
+            input: Customer ID, Bill ID, Payment ID, Payer SSN
+            output: N/A (Adds a payment method for customer)
+        */
 	public void addPay(String[] args) {
 		int customerId = Integer.parseInt(args[1]);
 		int billId = Integer.parseInt(args[2]);
@@ -64,6 +80,10 @@ public class ConfigBillingAccounts {
                 }
 	}
 
+        /*
+            input: Staff ID, Bill ID
+            output: N/A (Adds a new note on who generated a bill)
+        */
 	public void addGenerate(String[] args) {
 		int staffId = Integer.parseInt(args[1]);
 		int billId = Integer.parseInt(args[2]);
@@ -77,6 +97,10 @@ public class ConfigBillingAccounts {
                 }
 	}
 
+        /*
+            input: Customer ID
+            output: Gives total amount that a customer owns
+        */        
 	public void checkTotalAmount(String[] args) {
 		int customerId = Integer.parseInt(args[1]);
 		int dbFlag = Integer.parseInt(args[2]);
@@ -90,6 +114,10 @@ public class ConfigBillingAccounts {
                 }
 	}
 
+        /*
+            input: Customer ID
+            output: Gives itemized receipt of specific customer (Services, cost of stay)
+        */        
 	public void checkItemizedTotalAmount(String[] args) {
 		int customerId = Integer.parseInt(args[1]);
 		int dbFlag = Integer.parseInt(args[2]);
