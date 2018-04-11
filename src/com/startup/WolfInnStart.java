@@ -48,12 +48,15 @@ public class WolfInnStart {
 				configHotel.addRoom(args);
 				break;
 			case "updateroom":
+				//java -jar WolfInn.jar updateroom 11 11 4 110 0 11 11 2
 				configHotel.updateRoom(args);
 				break;
 			case "showrooms":
+				//java -jar WolfInn.jar showrooms 2
 				configHotel.showRooms(args);
 				break;
 			case "deleteroom":
+				//java -jar WolfInn.jar deleteroom 11 11 2
 				configHotel.deleteRoom(args);
 				break;
 			

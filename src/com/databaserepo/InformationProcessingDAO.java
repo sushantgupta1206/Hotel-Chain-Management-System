@@ -50,9 +50,9 @@ public class InformationProcessingDAO {
 			preparedStatement.setString(4, address);
 			preparedStatement.setString(5, city);
 			preparedStatement.execute();
-			System.out.println("Hotel record: "+ hotelId+" inserted by query executed :"+insertHotelDataQuery);
+			System.out.println("Hotel record: "+ hotelId+" inserted. query executed :"+insertHotelDataQuery);
 		} catch (Exception e) {
-			System.out.println("Hotel record: "+ hotelId+" didn't inserted by query executed :"+insertHotelDataQuery);
+			System.out.println("Hotel record: "+ hotelId+" didn't inserted. query executed :"+insertHotelDataQuery);
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 		} finally {
 			try {
@@ -206,6 +206,7 @@ public class InformationProcessingDAO {
 				System.out.println("No records found numberOfUpdatedRows: "+numberOfUpdatedRows);
 			}
 		} catch (Exception e) {
+			System.out.println("Updated unsuccessfully numberOfUpdatedRows: "+numberOfUpdatedRows);
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 		} finally {
 			try {
@@ -216,7 +217,6 @@ public class InformationProcessingDAO {
 					dbConn.close();
 				}
 			}catch (Exception e) {
-				System.out.println("Updated unsuccessfully numberOfUpdatedRows: "+numberOfUpdatedRows);
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 			}
 		}
@@ -271,7 +271,7 @@ public class InformationProcessingDAO {
 	 */
 	public int addRoom(int roomNo, int hotelId, int maxOccu, int nightRate, int dbFlag) {
 		String sourceMethod = "addRoom";
-		String insertHotelDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".ROOMS ( ROOM_NO, HOTEL_ID, MAX_OCCUPANCY, NIGHTLY_RATE ) VALUES (?,?,?,?)";
+		String insertHotelDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".ROOMS ( ROOM_NO, HOTEL_ID, MAX_OCCUPANCY, NIGHTLY_RATE,AVAILABILITY ) VALUES (?,?,?,?,1)";
 		PreparedStatement preparedStatement = null;
 		int generatedKey = 0;
 		Connection dbConn = null;
@@ -285,8 +285,9 @@ public class InformationProcessingDAO {
 			preparedStatement.setInt(4, nightRate);
 			preparedStatement.execute();
 			rs = preparedStatement.getGeneratedKeys();
-			System.out.println(" Room inserted: Query: "+insertHotelDataQuery);
+			System.out.println("Room inserted: "+ roomNo+" query executed :"+insertHotelDataQuery);
 		} catch (Exception e) {
+			System.out.println("Room didn't inserted: "+ roomNo+" query executed :"+insertHotelDataQuery);
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 		} finally {
 			try {
@@ -309,12 +310,16 @@ public class InformationProcessingDAO {
 
 	
 	/**Update Room record by Room Num and Hotel Id
-	 * @param room
+	 * @param roomNo
+	 * @param hotelId
+	 * @param maxOccu
+	 * @param nightRate
+	 * @param setAvailability
 	 * @param oldRoomNum
 	 * @param oldHotelId
 	 * @param dbFlag
 	 */
-	public void updateRoom(Room room, int oldRoomNum, int oldHotelId, int dbFlag) {
+	public void updateRoom(int roomNo,int hotelId,int maxOccu,int nightRate,int setAvailability, int oldRoomNum, int oldHotelId, int dbFlag) {
 		String sourceMethod = "updateRoom";
 		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOMS SET ROOM_NO = ?, HOTEL_ID = ?,MAX_OCCUPANCY=?, NIGHTLY_RATE=?, AVAILABILITY=? WHERE ROOM_NO = ? AND HOTEL_ID = ?";
 		PreparedStatement preparedStatement = null;
@@ -323,15 +328,21 @@ public class InformationProcessingDAO {
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
 			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
-			preparedStatement.setInt(1, room.getRoomNum());
-			preparedStatement.setInt(2, room.getHotelId());
-			preparedStatement.setInt(3, room.getMaxOccu());
-			preparedStatement.setInt(4, room.getNightRate());
-			preparedStatement.setInt(5, room.getAvailability());
+			preparedStatement.setInt(1, roomNo);
+			preparedStatement.setInt(2, hotelId);
+			preparedStatement.setInt(3, maxOccu);
+			preparedStatement.setInt(4, nightRate);
+			preparedStatement.setInt(5, setAvailability);
 			preparedStatement.setInt(6, oldRoomNum);
 			preparedStatement.setInt(7, oldHotelId);
 			numberOfUpdatedRows = preparedStatement.executeUpdate();
+			if(numberOfUpdatedRows>0){
+				System.out.println("Updated successfully numberOfUpdatedRows: "+numberOfUpdatedRows);
+			}else{
+				System.out.println("No records found numberOfUpdatedRows: "+numberOfUpdatedRows);
+			}
 		} catch (Exception e) {
+			System.out.println("Updated unsuccessfully numberOfUpdatedRows: "+numberOfUpdatedRows);
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 		} finally {
 			try {
@@ -358,12 +369,15 @@ public class InformationProcessingDAO {
 		List<Room> roomDetails = new ArrayList<Room>();
 		ResultSet selectQueryRS = null;
 		Connection dbConn = null;
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
-			stmt = dbConn.createStatement();
 			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".ROOMS";
-			selectQueryRS = stmt.executeQuery(selectStatement);
+			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			selectQueryRS = stmt.executeQuery();
+			if (!selectQueryRS.isBeforeFirst()) {
+				System.out.println("No rooms found");
+			}else{
 			while (selectQueryRS.next()) {
 				Room room=new Room();
 				room.setRoomNum(selectQueryRS.getInt("ROOM_NO"));
@@ -373,6 +387,7 @@ public class InformationProcessingDAO {
 				room.setAvailability(selectQueryRS.getInt("AVAILABILITY"));
 				roomDetails.add(room);
 				System.out.println(room);
+			}
 			}
 		} catch (Exception e) {
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
@@ -396,10 +411,11 @@ public class InformationProcessingDAO {
 	
 	
 	/**Delete room by room num and hotel id
-	 * @param room
+	 * @param roomNo
+	 * @param hotelId
 	 * @param dbFlag
 	 */
-	public void deleteRoom(Room room, int dbFlag) {
+	public void deleteRoom(int roomNo, int hotelId, int dbFlag) {
 		String sourceMethod = "deleteRoom";
 		String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ROOM_NO = ? AND HOTEL_ID = ?";
 		PreparedStatement preparedStatement = null;
@@ -408,10 +424,16 @@ public class InformationProcessingDAO {
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
 			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
-			preparedStatement.setInt(1, room.getRoomNum());
-			preparedStatement.setInt(2, room.getHotelId());
+			preparedStatement.setInt(1, roomNo);
+			preparedStatement.setInt(2, hotelId);
 			numberOfDeletedRows = preparedStatement.executeUpdate();
+			if(numberOfDeletedRows>0){
+				System.out.println("Deleted successfully numberOfUpdatedRows: "+numberOfDeletedRows);
+			}else{
+				System.out.println("No records found numberOfUpdatedRows: "+numberOfDeletedRows);
+			}
 		} catch (Exception e) {
+			System.out.println("Deleted successfully numberOfUpdatedRows: "+numberOfDeletedRows);
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 		} finally {
 			try {

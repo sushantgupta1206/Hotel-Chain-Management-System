@@ -118,7 +118,7 @@ public class ConfigInformationProcessingData {
 		
 		if(roomNo > 0 && hotelId > 0 && maxOccu > 0 && nightRate >= 0){
 			InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-			System.out.println("Added Room: "+informationProcessingDAO.addRoom(roomNo, hotelId, maxOccu, nightRate, dbFlag));
+			informationProcessingDAO.addRoom(roomNo, hotelId, maxOccu, nightRate, dbFlag);
 		}else{
 			System.out.println("Not valid data");
 		}
@@ -129,26 +129,19 @@ public class ConfigInformationProcessingData {
             output: N/A (Updates a specific room's information)
         */         
 	public void updateRoom(String[] args) {
-		Room room = new Room();
-		room.setRoomNum(Integer.parseInt(args[1]));
-		room.setHotelId(Integer.parseInt(args[2]));
-		room.setMaxOccu(Integer.parseInt(args[3]));
-		room.setNightRate(Integer.parseInt(args[4]));
-		room.setAvailability(Integer.parseInt(args[5]));
-		
+		int roomNo = Integer.parseInt(args[1]);
+		int hotelId = Integer.parseInt(args[2]);
+		int maxOccu = Integer.parseInt(args[3]);
+		int nightRate = Integer.parseInt(args[4]);
+		int setAvailability = Integer.parseInt(args[5]);
 		int oldRoomNum=Integer.parseInt(args[6]);
 		int oldHotelId=Integer.parseInt(args[7]);
 		int dbFlag = Integer.parseInt(args[8]);
-		int setAvailability = Integer.parseInt(args[5]);
-		int nightRate = Integer.parseInt(args[4]);
-		int maxOccu = Integer.parseInt(args[3]);
-		int roomNo = Integer.parseInt(args[1]);
-		int hotelId = Integer.parseInt(args[2]);
 		
 		if((setAvailability == 0 || setAvailability == 1) && roomNo > 0 && hotelId > 0 && maxOccu > 0 && nightRate >= 0 &&
 				oldRoomNum > 0 && oldHotelId > 0){
 			InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-			informationProcessingDAO.updateRoom(room, oldRoomNum, oldHotelId, dbFlag);
+			informationProcessingDAO.updateRoom(roomNo, hotelId, maxOccu, nightRate, setAvailability, oldRoomNum, oldHotelId, dbFlag);
 		}else{
 			System.out.println("Not valid data");
 		}
@@ -169,17 +162,13 @@ public class ConfigInformationProcessingData {
             output: N/A (Delets a specific room)
         */         
 	public void deleteRoom(String[] args) {
-		Room room = new Room();
-		room.setRoomNum(Integer.parseInt(args[1]));
-		room.setHotelId(Integer.parseInt(args[2]));
-		int dbFlag = Integer.parseInt(args[3]);
-		
 		int roomNo = Integer.parseInt(args[1]);
 		int hotelId = Integer.parseInt(args[2]);
+		int dbFlag = Integer.parseInt(args[3]);
 		
 		if(roomNo > 0 && hotelId > 0){
 			InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-			informationProcessingDAO.deleteRoom(room, dbFlag);
+			informationProcessingDAO.deleteRoom(roomNo, hotelId, dbFlag);
 		}else {
 			System.out.println("Not valid data");
 		}
