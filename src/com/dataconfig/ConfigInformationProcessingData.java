@@ -28,21 +28,18 @@ public class ConfigInformationProcessingData {
             output: N/A (Updates an existing hotel)
         */	
 	public void updateHotel(String[] args) {
-		Hotel hotelData = new Hotel();
-		hotelData.setId(Integer.parseInt(args[1]));
-		hotelData.setPhone(args[2]);
-		hotelData.setName(args[3]);
-		hotelData.setAddress(args[4]);
-		hotelData.setCity(args[5]);
-		int oldHotelId=Integer.parseInt(args[6]);
-		int dbFlag = Integer.parseInt(args[7]);
 		int hotelId = Integer.parseInt(args[1]);
 		String phone = args[2];
-		String name = args[3];		
+		String name = args[3];
+		String address = args[4];
+		String city = args[5];
+		int oldHotelId=Integer.parseInt(args[6]);
+		int dbFlag = Integer.parseInt(args[7]);
+				
 		
-		if(hotelId > 0 && phone.length() == 10 && phone != null && name != null && name.length() <= 50 && oldHotelId > 0){
+		if(hotelId > 0 && phone.length() >0 && phone != null && name != null && name.length() <= 50 && oldHotelId > 0){
 			InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-			informationProcessingDAO.updateHotel(hotelData, oldHotelId, dbFlag);
+			informationProcessingDAO.updateHotel(hotelId, phone, name, address, city, oldHotelId, dbFlag);
 		}else{
 			System.out.println("Not valid data");
 		}
@@ -97,15 +94,12 @@ public class ConfigInformationProcessingData {
             output: N/A (Deletes a specific hotel)
         */          
 	public void deleteHotel(String[] args) {
-		Hotel hotelData = new Hotel();
-		hotelData.setId(Integer.parseInt(args[1]));
-		
-		int dbFlag = Integer.parseInt(args[2]);
 		int hotelId = Integer.parseInt(args[1]);
+		int dbFlag = Integer.parseInt(args[2]);
 		
 		if(hotelId > 0){
 			InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-			informationProcessingDAO.deleteHotel(hotelData, dbFlag);
+			informationProcessingDAO.deleteHotel(hotelId, dbFlag);
 		}else{
 			System.out.println("Not valid data");
 		}

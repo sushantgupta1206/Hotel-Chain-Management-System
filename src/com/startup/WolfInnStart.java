@@ -35,13 +35,16 @@ public class WolfInnStart {
 				configHotel.showHotels(args);
 				break;
 			case "updatehotel":
+				//java -jar WolfInn.jar updatehotel 11 913 "Hilton" "46 West" Raleigh 11 2
 				configHotel.updateHotel(args);
 				break;
 			case "deletehotel":
+				//java -jar WolfInn.jar deletehotel 11 2
 				configHotel.deleteHotel(args);
 				break;
 
 			case "addroom":
+				//java -jar WolfInn.jar addroom 1172 11 3 140 2
 				configHotel.addRoom(args);
 				break;
 			case "updateroom":
