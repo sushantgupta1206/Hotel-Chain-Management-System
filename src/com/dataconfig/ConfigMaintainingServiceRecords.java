@@ -17,6 +17,10 @@ public class ConfigMaintainingServiceRecords {
 		convertDateToCurrent();
 	}
 	
+        /*
+            input: Customer ID, Staff ID, Service ID
+            output: N/A (Adds a new service type)
+        */        
 	public void addProvidesServices(String[] args) {
 		int customerId = Integer.parseInt(args[1]);
 		int staffId = Integer.parseInt(args[2]);
@@ -32,6 +36,10 @@ public class ConfigMaintainingServiceRecords {
                 }
 	}
 	
+        /*
+            input: Service ID, Staff ID, Service Time, Customer ID
+            output: N/A (Updates a currently provided service)
+        */        
 	public void updateProvidesServices(String[] args) {
 		int serviceID = Integer.parseInt(args[1]);
 		int staffId = Integer.parseInt(args[2]);
