@@ -70,6 +70,7 @@ public class WolfInnStart {
 				}
 				break;
 			case "updatestaff":
+				//java -jar WolfInn.jar updatestaff 15 919 Kartik "Rasin St" 1983-04-02 "Management" "Manager" 21 14 2
 				try {
 					configHotel.updateStaff(args);
 				} catch (ParseException e) {
@@ -78,9 +79,11 @@ public class WolfInnStart {
 				}
 				break;
 			case "showstaffs":
+				//java -jar WolfInn.jar showstaffs 2
 				configHotel.showStaffs(args);
 				break;
 			case "deletestaff":
+				//java -jar WolfInn.jar deletestaff 15 2
 				configHotel.deleteStaff(args);
 				break;
 				

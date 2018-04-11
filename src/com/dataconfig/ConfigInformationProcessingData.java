@@ -240,7 +240,7 @@ public class ConfigInformationProcessingData {
 		int oldStaffId=Integer.parseInt(args[9]);
 		int dbFlag = Integer.parseInt(args[10]);
 		
-		if(staffId > 0 && phone.length() == 10 && phone != null && name != null && name.length() <= 50 && address != null && address.length() <= 50 && 
+		if(staffId > 0 && phone.length()>0 && phone != null && name != null && name.length() <= 50 && address != null && address.length() <= 50 && 
 				department != null && department.length() <= 20 && title != null && title.length() <= 20 && age > 0 && date != null){
 			InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 			informationProcessingDAO.updateStaff(staff, oldStaffId, dbFlag);
