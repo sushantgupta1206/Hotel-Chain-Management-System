@@ -413,7 +413,7 @@ public class ConfigInformationProcessingData {
 
         /*
             input: Room Type, Hotel ID
-            output: Displays availability of all rooms in a hotel of a specific type
+            output: Displays available rooms of a certain type in hotel
         */           
 	public void checkRoomTypeAvailability(String[] args) {
 		String roomType = args[1];
