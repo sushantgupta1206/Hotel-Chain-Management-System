@@ -30,7 +30,7 @@ public class ConfigInformationProcessingData {
 	public void updateHotel(String[] args) {
 		Hotel hotelData = new Hotel();
 		hotelData.setId(Integer.parseInt(args[1]));
-		hotelData.setPhone(Integer.parseInt(args[2]));
+		hotelData.setPhone(args[2]);
 		hotelData.setName(args[3]);
 		hotelData.setAddress(args[4]);
 		hotelData.setCity(args[5]);
@@ -63,13 +63,11 @@ public class ConfigInformationProcessingData {
             output: Show information on specific hotel
         */        
 	public void showHotel(String args[]){
-		Hotel hotelData = new Hotel();
-		hotelData.setId(Integer.parseInt(args[1]));
 		int hotelId = Integer.parseInt(args[1]);
 		int dbFlag = Integer.parseInt(args[2]);
 		if(hotelId > 0){
 			InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-			informationProcessingDAO.showHotel(hotelData,dbFlag);	
+			informationProcessingDAO.showHotel(hotelId,dbFlag);	
 		}else{
 			System.out.println("Not valid data");
 		}
@@ -80,23 +78,15 @@ public class ConfigInformationProcessingData {
             output: N/A (Adds a new hotel to table)
         */        
 	public void addHotel(String args[]){
-		Hotel hotelData = new Hotel();
-		hotelData.setId(Integer.parseInt(args[1]));
-		hotelData.setPhone(Integer.parseInt(args[2]));
-		hotelData.setName(args[3]);
-		hotelData.setAddress(args[4]);
-		hotelData.setCity(args[5]);
-		int dbFlag = Integer.parseInt(args[6]);
-		
 		int hotelId = Integer.parseInt(args[1]);
 		String phone = args[2];
 		String name = args[3];
 		String address = args[4];
 		String city = args[5];
-		
-		if(hotelId > 0 && phone.length() == 10 && phone != null && name != null && name.length() <= 50 && address != null && address.length() <= 50 && city != null && city.length() <= 20){
+		int dbFlag = Integer.parseInt(args[6]);
+		if(hotelId > 0 && phone.length() > 1 && phone != null && name != null && name.length() <= 50 && address != null && address.length() <= 50 && city != null && city.length() <= 20){
 			InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-			System.out.println("Added hotel: "+informationProcessingDAO.addHotel(hotelData, dbFlag));	
+			informationProcessingDAO.addHotel(hotelId, phone, name, address, city, dbFlag);	
 		}else{
 			System.out.println("Not valid data");
 		}		

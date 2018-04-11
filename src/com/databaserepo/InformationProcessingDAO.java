@@ -28,31 +28,31 @@ public class InformationProcessingDAO {
 	
 	
 	/**Insert Hotel Record.
-	 * @param hotelData
+	 * @param hotelId
+	 * @param phone
+	 * @param name
+	 * @param address
+	 * @param city
 	 * @param dbFlag
-	 * @return
 	 */
-	public int addHotel(Hotel hotelData, int dbFlag){
+	public void addHotel(int hotelId, String phone,String name,String address,String city, int dbFlag){
 		String sourceMethod = "addHotel";
 		String insertHotelDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".HOTELS ( HOTEL_ID, PHONE, NAME, ADDRESS, CITY ) VALUES (?,?,?,?,?)";
 		PreparedStatement preparedStatement = null;
-		int generatedKey = 0;
 		Connection dbConn = null;
 		ResultSet rs = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
 			preparedStatement = dbConn.prepareStatement(insertHotelDataQuery,Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setInt(1, hotelData.getId());
-			preparedStatement.setInt(2, hotelData.getPhone());
-			preparedStatement.setString(3, hotelData.getName());
-			preparedStatement.setString(4, hotelData.getAddress());
-			preparedStatement.setString(5, hotelData.getCity());
+			preparedStatement.setInt(1, hotelId);
+			preparedStatement.setString(2, phone);
+			preparedStatement.setString(3, name);
+			preparedStatement.setString(4, address);
+			preparedStatement.setString(5, city);
 			preparedStatement.execute();
-			rs = preparedStatement.getGeneratedKeys();
-			if (rs.next()) {
-			    generatedKey = hotelData.getId();
-			}
+			System.out.println("Hotel record: "+ hotelId+" inserted by query executed :"+insertHotelDataQuery);
 		} catch (Exception e) {
+			System.out.println("Hotel record: "+ hotelId+" didn't inserted by query executed :"+insertHotelDataQuery);
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 		} finally {
 			try {
@@ -69,8 +69,7 @@ public class InformationProcessingDAO {
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 			}
 		}
-		log.exiting(sourceClass, sourceMethod, generatedKey);
-		return generatedKey;
+		log.exiting(sourceClass, sourceMethod);
 	}
 
 
@@ -83,21 +82,25 @@ public class InformationProcessingDAO {
 		List<Hotel> hotelDetails = new ArrayList<Hotel>();
 		ResultSet selectQueryRS = null;
 		Connection dbConn = null;
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
-			stmt = dbConn.createStatement();
 			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".HOTELS";
-			selectQueryRS = stmt.executeQuery(selectStatement);
-			while (selectQueryRS.next()) {
-				Hotel hotel = new Hotel();
-				hotel.setId(selectQueryRS.getInt("HOTEL_ID"));
-				hotel.setPhone(selectQueryRS.getInt("PHONE"));
-				hotel.setName(selectQueryRS.getString("NAME"));
-				hotel.setAddress(selectQueryRS.getString("ADDRESS"));
-				hotel.setCity(selectQueryRS.getString("CITY"));
-				hotelDetails.add(hotel);
-				System.out.println(hotel);
+			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			selectQueryRS = stmt.executeQuery();
+			if (!selectQueryRS.isBeforeFirst()) {
+				System.out.println("No hotels found");
+			}else{
+				while (selectQueryRS.next()) {
+					Hotel hotel = new Hotel();
+					hotel.setId(selectQueryRS.getInt("HOTEL_ID"));
+					hotel.setPhone(selectQueryRS.getString("PHONE"));
+					hotel.setName(selectQueryRS.getString("NAME"));
+					hotel.setAddress(selectQueryRS.getString("ADDRESS"));
+					hotel.setCity(selectQueryRS.getString("CITY"));
+					hotelDetails.add(hotel);
+					System.out.println(hotel);
+				}
 			}
 		} catch (Exception e) {
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
@@ -123,10 +126,10 @@ public class InformationProcessingDAO {
 
 	
 	/**Show Hotel record By Id.
-	 * @param hotelData
+	 * @param hotelId
 	 * @param dbFlag
 	 */
-	public void showHotel(Hotel hotelData, int dbFlag) {
+	public void showHotel(int hotelId, int dbFlag) {
 		String sourceMethod = "showHotel";
 		PreparedStatement stmt = null;
 		Connection dbConn = null;
@@ -134,19 +137,22 @@ public class InformationProcessingDAO {
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
 			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".HOTELS WHERE HOTEL_ID=?";
-			stmt = dbConn.prepareStatement(selectStatement);
-			stmt.setInt(1, hotelData.getId());
-			selectQueryRS = stmt.executeQuery();
-			while (selectQueryRS.next()) {
-				Hotel hotel = new Hotel();
-				hotel.setId(selectQueryRS.getInt("HOTEL_ID"));
-				hotel.setPhone(selectQueryRS.getInt("PHONE"));
-				hotel.setName(selectQueryRS.getString("NAME"));
-				hotel.setAddress(selectQueryRS.getString("ADDRESS"));
-				hotel.setCity(selectQueryRS.getString("CITY"));
-				System.out.println(hotel);
+			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			stmt.setInt(1, hotelId);
+			selectQueryRS=stmt.executeQuery();
+			if (!selectQueryRS.isBeforeFirst()) {
+				System.out.println("No hotel found");
+			}else{
+				while (selectQueryRS.next()) {
+					Hotel hotel = new Hotel();
+					hotel.setId(selectQueryRS.getInt("HOTEL_ID"));
+					hotel.setPhone(selectQueryRS.getString("PHONE"));
+					hotel.setName(selectQueryRS.getString("NAME"));
+					hotel.setAddress(selectQueryRS.getString("ADDRESS"));
+					hotel.setCity(selectQueryRS.getString("CITY"));
+					System.out.println(hotel);
+				}
 			}
-			
 		} catch (Exception e) {
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 		} finally {
@@ -184,7 +190,7 @@ public class InformationProcessingDAO {
 			dbConn = dbUtil.getConnection(dbFlag);
 			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
 			preparedStatement.setInt(1, hotelData.getId());
-			preparedStatement.setInt(2, hotelData.getPhone());
+			preparedStatement.setString(2, hotelData.getPhone());
 			preparedStatement.setString(3, hotelData.getName());
 			preparedStatement.setString(4, hotelData.getAddress());
 			preparedStatement.setString(5, hotelData.getCity());

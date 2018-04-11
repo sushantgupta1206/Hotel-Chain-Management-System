@@ -23,12 +23,15 @@ public class WolfInnStart {
 		if (args.length > 0) {
 			switch (args[0]) {
 			case "addhotel":
+				//java -jar WolfInn.jar addhotel 11 "919" "Hilton" "46 West" Raleigh 2
 				configHotel.addHotel(args);
 				break;
 			case "showhotel":
+				//java -jar WolfInn.jar showhotel 11 2
 				configHotel.showHotel(args);
 				break;
 			case "showhotels":
+				//java -jar WolfInn.jar showhotels 2
 				configHotel.showHotels(args);
 				break;
 			case "updatehotel":
@@ -177,7 +180,7 @@ public class WolfInnStart {
 	 * Help to execute commands
 	 */
 	private static void printHelp() {
-		System.out.println("java -jar WolfInn.jar addhotel [<Id> <Phone> <Name> <Address> <City> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar addhotel [<Id> <3 DIGIT Phone> <Name> <Address> <City> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar showhotel [<For which Hotel Id> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar showhotels [<DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar updatehotel [<Id> <Phone> <Name> <Address> <City> <For which Hotel Id> <DBflag=2 for MariaDB>]");

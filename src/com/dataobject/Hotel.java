@@ -2,7 +2,7 @@ package com.dataobject;
 
 public class Hotel {
 	private int id;
-	private int phone;
+	private String phone;
 	private String name;
 	private String address;
 	private String city;
@@ -15,11 +15,11 @@ public class Hotel {
 		this.id = id;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
