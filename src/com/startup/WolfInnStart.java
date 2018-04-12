@@ -173,6 +173,7 @@ public class WolfInnStart {
 				configReports.showStaff(args);
 				break;
 			case "staffpercustomer":
+				//java -jar WolfInn.jar staffpercustomer "2017-05-10 16:10:00" 1002 2
 				configReports.custStaff(args);
 				break;
 			case "getrevenue":
@@ -215,5 +216,7 @@ public class WolfInnStart {
 		System.out.println("java -jar WolfInn.jar checkRoomAvailability [<ROOM_NO> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar checkRoomTypeAvailability [<ROOM_TYPE_NAME> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar setRoomAvailability [<AVAILABILITY> <ROOM_NO> <HOTEL_ID> <DBflag=2 for MariaDB>]");
+
+		System.out.println("java -jar WolfInn.jar staffpercustomer [<CHECKIN> <CUSTOMER ID> <DBflag=2 for MariaDB>");
 	}
 }

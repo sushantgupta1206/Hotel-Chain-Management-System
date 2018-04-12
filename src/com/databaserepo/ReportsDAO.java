@@ -214,30 +214,42 @@ public class ReportsDAO {
 		}
 	}
 
+	/**
+	 * @param checkInDate
+	 * @param custId
+	 * @param dbFlag
+	 */
 	public void custStaff(String checkInDate, int custId, int dbFlag) {
-		// TODO Auto-generated method stub
 		String sourceMethod = "custStaff";
 		ResultSet selectQueryRS = null;
 		Connection dbConn = null;
 		PreparedStatement stmt = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
-			String selectStatement = "SELECT ASSIGNS.STAFF_ID FROM "+DBConnectUtils.DBSCHEMA+"ASSIGNS JOIN "+DBConnectUtils.DBSCHEMA+"PROVIDES ON ASSIGNS.CUSTOMER_ID = PROVIDES.CUSTOMER_ID "
- + "AND PROVIDES.TIMESTATE BETWEEN ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT WHERE PROVIDES.CUSTOMER_ID = ? " 
- + "AND ASSIGNS.CHECK_IN = ? UNION SELECT PROVIDES.STAFF_ID FROM "+DBConnectUtils.DBSCHEMA+"ASSIGNS JOIN " 
- + ""+DBConnectUtils.DBSCHEMA+"PROVIDES ON ASSIGNS.CUSTOMER_ID = PROVIDES.CUSTOMER_ID AND PROVIDES.TIMESTATE BETWEEN "
- + "ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT WHERE PROVIDES.CUSTOMER_ID = ? AND " 
- + "ASSIGNS.CHECK_IN = ?";
-			stmt = dbConn.prepareStatement(selectStatement);
-			stmt.setString(1,  checkInDate);
-			stmt.setInt(2, custId);
+			String selectStatement = "SELECT ASSIGNS.STAFF_ID FROM "+DBConnectUtils.DBSCHEMA+".ASSIGNS JOIN "+DBConnectUtils.DBSCHEMA+".PROVIDES ON ASSIGNS.CUSTOMER_ID = PROVIDES.CUSTOMER_ID "
+						 + "AND PROVIDES.TIMESTATE BETWEEN ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT WHERE PROVIDES.CUSTOMER_ID = ? " 
+						 + "AND ASSIGNS.CHECK_IN = ? UNION SELECT PROVIDES.STAFF_ID FROM "+DBConnectUtils.DBSCHEMA+".ASSIGNS JOIN " 
+						 +  DBConnectUtils.DBSCHEMA+".PROVIDES ON ASSIGNS.CUSTOMER_ID = PROVIDES.CUSTOMER_ID AND PROVIDES.TIMESTATE BETWEEN "
+						 + "ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT WHERE PROVIDES.CUSTOMER_ID = ? AND " 
+						 + "ASSIGNS.CHECK_IN = ?";
+			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			stmt.setInt(1, custId);
+			stmt.setString(2,  checkInDate);
+			stmt.setInt(3, custId);
+			stmt.setString(4,  checkInDate);
 			selectQueryRS = stmt.executeQuery();
 			
-			while (selectQueryRS.next()) {
-				int staffId = selectQueryRS.getInt("STAFF_ID");
-				System.out.println(staffId);
+			if (!selectQueryRS.isBeforeFirst()) {
+				System.out.println("No staff found serving this customer");
+			}else{
+				System.out.println("Staff found serving this customer");
+				while (selectQueryRS.next()) {
+					int staffId = selectQueryRS.getInt("STAFF_ID");
+					System.out.println(staffId);
+				}
 			}
 		} catch (Exception e) {
+			System.out.println("Wrong parameters");
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 		} finally {
 			try {
@@ -257,30 +269,39 @@ public class ReportsDAO {
 		
 	}
 
+	/**
+	 * @param startDate
+	 * @param endDate
+	 * @param dbFlag
+	 */
 	public void revHotel(String startDate, String endDate, int dbFlag) {
-		// TODO Auto-generated method stub
 		String sourceMethod = "revHotel";
-		//List<> hotelOccupancy = new ArrayList<>();
 		Connection dbConn = null;
 		ResultSet selectQueryRS = null;
 		PreparedStatement stmt = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
-			String selectStatement = " SELECT HOTEL_ID, NIGHTLY_RATE* DATEDIFF(CHECK_OUT, CHECK_IN) AS TOTAL_REVENUE FROM ASSIGNS " 
- + "NATURAL JOIN "+DBConnectUtils.DBSCHEMA+"ROOMS WHERE ASSIGNS.CHECK_IN BETWEEN ? AND ? " 
- + "AND ASSIGNS.CHECK_OUT BETWEEN ? AND ? GROUP BY HOTEL_ID" ;
-			stmt = dbConn.prepareStatement(selectStatement);
+			String selectStatement = " SELECT HOTEL_ID, NIGHTLY_RATE* DATEDIFF(CHECK_OUT, CHECK_IN) AS TOTAL_REVENUE FROM "+DBConnectUtils.DBSCHEMA+".ASSIGNS " 
+						 + "NATURAL JOIN "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ASSIGNS.CHECK_IN BETWEEN ? AND ? " 
+						 + "AND ASSIGNS.CHECK_OUT BETWEEN ? AND ? GROUP BY HOTEL_ID" ;
+			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			stmt.setString(1,  startDate);
 			stmt.setString(2, endDate);
+			stmt.setString(3,  startDate);
+			stmt.setString(4, endDate);
 			selectQueryRS = stmt.executeQuery();
-			while (selectQueryRS.next()) {
-				//Hotel hotel = new Hotel();
-				int hotelId = selectQueryRS.getInt("HOTEL_ID");
-				int revenue = selectQueryRS.getInt("REVENUE");
-				//float percent = selectQueryRS.getFloat("PERCENT_OCCUPANCY");
-				System.out.println(hotelId + " " + revenue);
+			if (!selectQueryRS.isBeforeFirst()) {
+				System.out.println("No Hotels Revenue");
+			}else{
+				System.out.println("Hotels Revenue");
+				while (selectQueryRS.next()) {
+					int hotelId = selectQueryRS.getInt("HOTEL_ID");
+					int revenue = selectQueryRS.getInt("TOTAL_REVENUE");
+					System.out.println(hotelId + " " + revenue);
+				}
 			}
 		} catch (Exception e) {
+			System.out.println("Wrong parameters");
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 		} finally {
 			try {
