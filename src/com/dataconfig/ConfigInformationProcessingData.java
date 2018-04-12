@@ -114,11 +114,11 @@ public class ConfigInformationProcessingData {
 		int hotelId=Integer.parseInt(args[2]);
 		int maxOccu=Integer.parseInt(args[3]); 
 		int nightRate=Integer.parseInt(args[4]);
-		int dbFlag = Integer.parseInt(args[5]);
-		
-		if(roomNo > 0 && hotelId > 0 && maxOccu > 0 && nightRate >= 0){
+		int roomCat = Integer.parseInt(args[5]);
+		int dbFlag = Integer.parseInt(args[6]);		
+		if(roomNo > 0 && hotelId > 0 && maxOccu > 0 && nightRate >= 0 && roomCat>0){
 			InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-			informationProcessingDAO.addRoom(roomNo, hotelId, maxOccu, nightRate, dbFlag);
+			informationProcessingDAO.addRoom(roomNo, hotelId, maxOccu, nightRate, roomCat, dbFlag);
 		}else{
 			System.out.println("Not valid data");
 		}
@@ -429,5 +429,11 @@ public class ConfigInformationProcessingData {
 		}else {
 			System.out.println("Not valid data");
 		}
+		}
+	
+		public void showAllRoomCat(String[] args) {
+			int dbFlag = Integer.parseInt(args[1]);
+			InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+			informationProcessingDAO.showAllRoomCatgeory(dbFlag);
 		}
 }

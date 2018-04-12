@@ -44,7 +44,7 @@ public class WolfInnStart {
 				break;
 
 			case "addroom":
-				//java -jar WolfInn.jar addroom 1172 11 3 140 2
+				//java -jar WolfInn.jar addroom 1172 11 3 140 1 2
 				configHotel.addRoom(args);
 				break;
 			case "updateroom":
@@ -85,6 +85,10 @@ public class WolfInnStart {
 			case "deletestaff":
 				//java -jar WolfInn.jar deletestaff 15 2
 				configHotel.deleteStaff(args);
+				break;
+			case "showAllRoomCat":
+				//java -jar WolfInn.jar showAllRoomCat 2
+				configHotel.showAllRoomCat(args);
 				break;
 				
 				
@@ -208,12 +212,12 @@ public class WolfInnStart {
 		System.out.println("java -jar WolfInn.jar updatehotel [<Id> <Phone> <Name> <Address> <City> <For which Hotel Id> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar deletehotel [<For which Hotel Id> <DBflag=2 for MariaDB>]");
 		
-		System.out.println("java -jar WolfInn.jar addroom [<ROOM_NO> <HOTEL_ID> <MAX_OCCUPANCY> <NIGHTLY_RATE> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar addroom [<ROOM_NO> <HOTEL_ID> <MAX_OCCUPANCY> <NIGHTLY_RATE> <ROOM_CATEGORY> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar updateroom [<ROOM_NO> <HOTEL_ID> <MAX_OCCUPANCY> <NIGHTLY_RATE> <AVAILABILITY> <For which Room Num> <For which Hotel Id> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar showrooms [<DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar deleteroom [<For which Room Num> <For which Hotel Id> <DBflag=2 for MariaDB>]");
 		
-		System.out.println("java -jar WolfInn.jar addstaff [<STAFF_ID> <PHONE> <NAME> <ADDRESS> <DOB> <DEPARTMENT> <TITLE> <AGE> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar addstaff [<STAFF_ID> <PHONE> <NAME> <ADDRESS> <DOB> <DEPARTMENT> <TITLE> <AGE> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar updatestaff [<STAFF_ID> <PHONE> <NAME> <ADDRESS> <DOB> <DEPARTMENT> <TITLE> <AGE> <For which STAFF_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar showstaffs [<DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar deletestaff [<For which Staff Id> <DBflag=2 for MariaDB>]");

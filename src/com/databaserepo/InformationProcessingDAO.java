@@ -51,7 +51,7 @@ public class InformationProcessingDAO {
 				preparedStatement.setString(4, address);
 				preparedStatement.setString(5, city);
 				preparedStatement.execute();
-				System.out.println("Hotel record: "+ hotelId+" inserted. query executed :"+insertHotelDataQuery);
+				System.out.println("Hotel record: "+ hotelId+" inserted. . Query executed :"+insertHotelDataQuery);
 			} catch (Exception e) {
 				System.out.println("Hotel record: "+ hotelId+" didn't inserted. query executed :"+insertHotelDataQuery);
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
@@ -276,43 +276,68 @@ public class InformationProcessingDAO {
 	 * @param dbFlag
 	 * @return
 	 */
-	public int addRoom(int roomNo, int hotelId, int maxOccu, int nightRate, int dbFlag) {
+	@SuppressWarnings("resource")
+	public void addRoom(int roomNo, int hotelId, int maxOccu, int nightRate, int roomCat, int dbFlag) {
 		String sourceMethod = "addRoom";
-		String insertRoomDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".ROOMS ( ROOM_NO, HOTEL_ID, MAX_OCCUPANCY, NIGHTLY_RATE,AVAILABILITY ) VALUES (?,?,?,?,1)";
-		PreparedStatement preparedStatement = null;
-		int generatedKey = 0;
-		Connection dbConn = null;
-		ResultSet rs = null;
-		try {
-			dbConn = dbUtil.getConnection(dbFlag);
-			preparedStatement = dbConn.prepareStatement(insertRoomDataQuery,Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setInt(1, roomNo);
-			preparedStatement.setInt(2, hotelId);
-			preparedStatement.setInt(3, maxOccu);
-			preparedStatement.setInt(4, nightRate);
-			preparedStatement.execute();
-			rs = preparedStatement.getGeneratedKeys();
-			System.out.println("Room inserted: "+ roomNo+" query executed :"+insertRoomDataQuery);
-		} catch (Exception e) {
-			System.out.println("Room didn't inserted: "+ roomNo+" query executed :"+insertRoomDataQuery);
-			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-		} finally {
+		if(!showRoom(roomNo, hotelId, dbFlag) && showRoomCatgeory(roomCat, dbFlag)){
+				String insertRoomDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".ROOMS ( ROOM_NO, HOTEL_ID, MAX_OCCUPANCY, NIGHTLY_RATE,AVAILABILITY ) VALUES (?,?,?,?,1)";
+				PreparedStatement preparedStatement = null;
+				Connection dbConn = null;
+				ResultSet rs = null;
 			try {
-				if (rs != null) {
-					rs.close();
+				dbConn = dbUtil.getConnection(dbFlag);
+				dbConn.setAutoCommit(false);
+				preparedStatement = dbConn.prepareStatement(insertRoomDataQuery);
+				preparedStatement.setInt(1, roomNo);
+				preparedStatement.setInt(2, hotelId);
+				preparedStatement.setInt(3, maxOccu);
+				preparedStatement.setInt(4, nightRate);
+				preparedStatement.execute();
+				System.out.println("Room inserted: "+ roomNo+" . Query executed :"+insertRoomDataQuery);
+				
+				
+				String insertSHDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".ROOM_HAS (ROOM_NO, HOTEL_ID, ROOM_CATEGORY_ID) VALUES (?,?,?)";
+				preparedStatement = dbConn.prepareStatement(insertSHDataQuery);
+				preparedStatement.setInt(1, roomNo);
+				preparedStatement.setInt(2, hotelId);
+				preparedStatement.setInt(3, roomCat);
+				preparedStatement.execute();
+				System.out.println("Room inserted with Room category: "+roomCat+" . Query executed: " + insertSHDataQuery);
+				dbConn.commit();
+				
+			} catch (SQLException e) {
+				try {
+					dbConn.rollback();
+				} catch (SQLException e1) {
+					System.out.println("The transaction will be rolled back because :");
+					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 				}
-				if (preparedStatement != null) {
-					preparedStatement.close();
-				} 
-				if (dbConn != null) {
-					dbConn.close();
-				}
-			}catch (Exception e) {
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+				// Prints the error message if something goes wrong when updating.
+			} finally {
+				try {
+					dbConn.setAutoCommit(true);
+					if (preparedStatement != null) {
+						preparedStatement.close();
+					}
+					if (dbConn != null) {
+						/*
+						 * Since we are using a connection.commit() or
+						 * connection.rollback() prior to the close so, the
+						 * connection remains in progress when we try to close. This
+						 * step will help to close the transactions. It is in final
+						 * block so that it always executes and the program doesn't
+						 * throw any exception while closing connection.
+						 */
+						dbConn.close();
+					}
+				} catch (Exception e) {
+					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+				}
 			}
 		}
-		log.exiting(sourceClass, sourceMethod, generatedKey);
-		return generatedKey;
+		log.exiting(sourceClass, sourceMethod);
+		
 	}
 
 	
@@ -415,7 +440,142 @@ public class InformationProcessingDAO {
 		}
 	}
 
+	/**Show Hotel record By Id.
+	 * @param hotelId
+	 * @param dbFlag
+	 */
+	public boolean showRoom(int roomNo, int hotelId, int dbFlag) {
+		String sourceMethod = "showRoom";
+		PreparedStatement stmt = null;
+		Connection dbConn = null;
+		ResultSet selectQueryRS = null;
+		List<Room> roomDetails = new ArrayList<Room>();
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ROOM_NO=? AND HOTEL_ID=?";
+			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			stmt.setInt(1, roomNo);
+			stmt.setInt(2, hotelId);
+			selectQueryRS=stmt.executeQuery();
+			if (!selectQueryRS.isBeforeFirst()) {
+				System.out.println("No room found");
+				return false;
+			}else{
+				System.out.println("Room found");
+				while (selectQueryRS.next()) {
+					Room room=new Room();
+					room.setRoomNum(selectQueryRS.getInt("ROOM_NO"));
+					room.setHotelId(selectQueryRS.getInt("HOTEL_ID"));
+					room.setMaxOccu(selectQueryRS.getInt("MAX_OCCUPANCY"));
+					room.setNightRate(selectQueryRS.getInt("NIGHTLY_RATE"));
+					room.setAvailability(selectQueryRS.getInt("AVAILABILITY"));
+					roomDetails.add(room);
+					System.out.println(room);
+				}
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		return true;
+	}
+
+	public boolean showRoomCatgeory(int roomCat, int dbFlag){
+		String sourceMethod = "showRoomCatgeory";
+		PreparedStatement stmt = null;
+		Connection dbConn = null;
+		ResultSet selectQueryRS = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".ROOM_CATEGORY WHERE ID=?";
+			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			stmt.setInt(1, roomCat);
+			selectQueryRS=stmt.executeQuery();
+			if (!selectQueryRS.isBeforeFirst()) {
+				System.out.println("No room category found");
+				return false;
+			}else{
+				System.out.println("Room category found");
+				while (selectQueryRS.next()) {
+					int id = selectQueryRS.getInt("ID");
+					String type= selectQueryRS.getString("TYPE");
+					System.out.println("ID: "+id+" Type: "+type );
+				}
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		return true;
+	}
 	
+	
+	public boolean showAllRoomCatgeory(int dbFlag){
+		String sourceMethod = "showAllRoomCatgeory";
+		PreparedStatement stmt = null;
+		Connection dbConn = null;
+		ResultSet selectQueryRS = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".ROOM_CATEGORY";
+			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			selectQueryRS=stmt.executeQuery();
+			if (!selectQueryRS.isBeforeFirst()) {
+				System.out.println("No room category found");
+				return false;
+			}else{
+				System.out.println("Id 	Type" );
+				while (selectQueryRS.next()) {
+					int id = selectQueryRS.getInt("ID");
+					String type= selectQueryRS.getString("TYPE");
+					System.out.println(id+"	 "+type );
+				}
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		return true;
+	}
 	
 	/**Delete room by room num and hotel id
 	 * @param roomNo
@@ -486,14 +646,14 @@ public class InformationProcessingDAO {
 				preparedStatement.setString(7, staff.getTitle());
 				preparedStatement.setInt(8, staff.getAge());
 				preparedStatement.execute();
-				System.out.println("Staff inserted: " + staff.getStaffId() + " query executed :" + insertDataQuery);
+				System.out.println("Staff inserted: " + staff.getStaffId() + " . Query executed :" + insertDataQuery);
 				
 				String insertSHDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".SHWORKSFOR (STAFF_ID, HOTEL_ID) VALUES (?,?)";
 				preparedStatement = dbConn.prepareStatement(insertSHDataQuery);
 				preparedStatement.setInt(1, staff.getStaffId());
 				preparedStatement.setInt(2, hotelId);
 				preparedStatement.execute();
-				System.out.println("Staff inserted to hotel: "+ hotelId +" staff: " + staff.getStaffId() + " query executed :" + insertSHDataQuery);
+				System.out.println("Staff inserted to hotel: "+ hotelId +" staff: " + staff.getStaffId() + " . Query executed :" + insertSHDataQuery);
 				
 				if(staff.getTitle().trim().equals("Manager")){
 					String insertDataQuery1 = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".MANAGER (STAFF_ID, HOTEL_ID) VALUES (?,?)";
@@ -501,20 +661,20 @@ public class InformationProcessingDAO {
 					preparedStatement.setInt(1, staff.getStaffId());
 					preparedStatement.setInt(2, hotelId);
 					preparedStatement.execute();
-					System.out.println("Manager inserted: " + staff.getStaffId() + " query executed :" + insertDataQuery1);
+					System.out.println("Manager inserted: " + staff.getStaffId() + " . Query executed :" + insertDataQuery1);
 					
 				}else if(staff.getTitle().trim().equals("Front Desk Staff")){
 					String insertDataQuery1 = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".FRONTDESKREP (STAFF_ID) VALUES (?)";
 					preparedStatement = dbConn.prepareStatement(insertDataQuery1);
 					preparedStatement.setInt(1, staff.getStaffId());
 					preparedStatement.execute();
-					System.out.println("Front Desk Staff inserted: " + staff.getStaffId() + " query executed :" + insertDataQuery1);
+					System.out.println("Front Desk Staff inserted: " + staff.getStaffId() + " . Query executed :" + insertDataQuery1);
 				}else{
 					String insertDataQuery1 = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".SERVICE_STAFF (STAFF_ID) VALUES (?)";
 					preparedStatement = dbConn.prepareStatement(insertDataQuery1);
 					preparedStatement.setInt(1, staff.getStaffId());
 					preparedStatement.execute();
-					System.out.println("Service staff inserted: " + staff.getStaffId() + " query executed :" + insertDataQuery1);
+					System.out.println("Service staff inserted: " + staff.getStaffId() + " . Query executed :" + insertDataQuery1);
 				}
 				
 				dbConn.commit();
