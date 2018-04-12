@@ -34,28 +34,33 @@ public class ReportsDAO {
  * outputs: string of hotel IDs, occupancy and percent occupancy
  */
 		String sourceMethod = "occHotel";
-		//List<> hotelOccupancy = new ArrayList<>();
 		Connection dbConn = null;
 		ResultSet selectQueryRS = null;
 		PreparedStatement stmt = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
-			String selectStatement = " SELECT HOTELS.HOTEL_ID, "
+			String selectStatement = " SELECT HOTELS.HOTEL_ID,  "
 					+ "SUM(CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END) AS OCCUPANCY, "
-					+ "SUM(CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END)/ COUNT(HOTELS.HOTEL_ID) AS PERCENT_OCCUPANCY"
+					+ "SUM(CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END)/ COUNT(HOTELS.HOTEL_ID) AS PERCENT_OCCUPANCY "
 					+"FROM  "+DBConnectUtils.DBSCHEMA+".ASSIGNS RIGHT OUTER JOIN ( "+DBConnectUtils.DBSCHEMA+".HOTELS NATURAL JOIN  "+DBConnectUtils.DBSCHEMA+".ROOMS) ON CHECK_IN <= ? "
-					+ "AND CHECK_OUT >= ? AND ASSIGNS.HOTEL_ID = HOTELS.HOTEL_ID AND"
+					+ "AND CHECK_OUT >= ? AND ASSIGNS.HOTEL_ID = HOTELS.HOTEL_ID AND "
 					+ "ASSIGNS.ROOM_NO = ROOMS.ROOM_NO GROUP BY HOTELS.HOTEL_ID";
 			stmt = dbConn.prepareStatement(selectStatement);
 			stmt.setString(1,  checkInDate);
 			stmt.setString(2, checkOutDate);
 			selectQueryRS = stmt.executeQuery();
-			while (selectQueryRS.next()) {
-				//Hotel hotel = new Hotel();
-				int hotelId = selectQueryRS.getInt("HOTEL_ID");
-				int occupancy = selectQueryRS.getInt("OCCUPANCY");
-				float percent = selectQueryRS.getFloat("PERCENT_OCCUPANCY");
-				System.out.println(hotelId + " " + occupancy + " " + percent);
+			if (!selectQueryRS.isBeforeFirst()) {
+				System.out.println("No list found");
+			}else{
+				System.out.println("List found");
+				System.out.println("HOTEL_ID  OCCUPANCY  PERCENT_OCCUPANCY");
+				while (selectQueryRS.next()) {
+					//Hotel hotel = new Hotel();
+					int hotelId = selectQueryRS.getInt("HOTEL_ID");
+					int occupancy = selectQueryRS.getInt("OCCUPANCY");
+					float percent = selectQueryRS.getFloat("PERCENT_OCCUPANCY");
+					System.out.println(hotelId + "   		 " + occupancy + "    		 " + percent);
+				}
 			}
 		} catch (Exception e) {
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
@@ -83,30 +88,32 @@ public class ReportsDAO {
 	 */
 	
 	public void occCity(String checkInDate, String checkOutDate, int dbFlag) {
-		// TODO Auto-generated method stub
-		
 				String sourceMethod = "occCity";
-				//List<> hotelOccupancy = new ArrayList<>();
 				Connection dbConn = null;
 				ResultSet selectQueryRS = null;
 				PreparedStatement stmt = null;
 				try {
 					dbConn = dbUtil.getConnection(dbFlag);
 					String selectStatement = " SELECT HOTELS.CITY, SUM( CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END) AS OCCUPANCY, "
- + "SUM( CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END)/ COUNT(HOTELS.HOTEL_ID) AS PERCENT_OCCUPANCY " 
- +  "FROM  "+DBConnectUtils.DBSCHEMA+".ASSIGNS RIGHT OUTER JOIN ( "+DBConnectUtils.DBSCHEMA+".HOTELS NATURAL JOIN  "+DBConnectUtils.DBSCHEMA+".ROOMS) ON CHECK_IN <= ? " 
- +  "AND CHECK_OUT >= ? AND ASSIGNS.HOTEL_ID = HOTELS.HOTEL_ID AND "
- +  "ASSIGNS.ROOM_NO = ROOMS.ROOM_NO GROUP BY HOTELS.CITY" ;
-					stmt = dbConn.prepareStatement(selectStatement);
+						 + "SUM( CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END)/ COUNT(HOTELS.HOTEL_ID) AS PERCENT_OCCUPANCY " 
+						 +  "FROM  "+DBConnectUtils.DBSCHEMA+".ASSIGNS RIGHT OUTER JOIN ( "+DBConnectUtils.DBSCHEMA+".HOTELS NATURAL JOIN  "+DBConnectUtils.DBSCHEMA+".ROOMS) ON CHECK_IN <= ? " 
+						 +  "AND CHECK_OUT >= ? AND ASSIGNS.HOTEL_ID = HOTELS.HOTEL_ID AND "
+						 +  "ASSIGNS.ROOM_NO = ROOMS.ROOM_NO GROUP BY HOTELS.CITY" ;
+					stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 					stmt.setString(1,  checkInDate);
 					stmt.setString(2, checkOutDate);
 					selectQueryRS = stmt.executeQuery();
-					while (selectQueryRS.next()) {
-						//Hotel hotel = new Hotel();
-						String hotelCity = selectQueryRS.getString("CITY");
-						int occupancy = selectQueryRS.getInt("OCCUPANCY");
-						float percent = selectQueryRS.getFloat("PERCENT_OCCUPANCY");
-						System.out.println(hotelCity + " " + occupancy + " " + percent);
+					if (!selectQueryRS.isBeforeFirst()) {
+						System.out.println("No list found");
+					}else{
+						System.out.println("List found");
+						System.out.println("CITY  		OCCUPANCY  		PERCENT_OCCUPANCY");
+						while (selectQueryRS.next()) {
+							String hotelCity = selectQueryRS.getString("CITY");
+							int occupancy = selectQueryRS.getInt("OCCUPANCY");
+							float percent = selectQueryRS.getFloat("PERCENT_OCCUPANCY");
+							System.out.println(hotelCity + "    	" + occupancy + "    	" + percent);
+						}
 					}
 				} catch (Exception e) {
 					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
@@ -129,32 +136,36 @@ public class ReportsDAO {
 	}
 
 	public void occRoom(String checkInDate, String checkOutDate, int dbFlag) {
-		// TODO Auto-generated method stub
 		String sourceMethod = "occRoom";
-		//List<> hotelOccupancy = new ArrayList<>();
 		Connection dbConn = null;
 		ResultSet selectQueryRS = null;
 		PreparedStatement stmt = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
 			String selectStatement = " SELECT ROOM_HAS.ROOM_CATEGORY_ID, SUM( CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END) "
- +  "AS OCCUPANCY,SUM( CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END)/ COUNT(HOTELS.HOTEL_ID) "
- +  "AS PERCENT_OCCUPANCY FROM  "+DBConnectUtils.DBSCHEMA+".ASSIGNS RIGHT OUTER JOIN ( "+DBConnectUtils.DBSCHEMA+".HOTELS NATURAL JOIN  "+DBConnectUtils.DBSCHEMA+".ROOMS) LEFT OUTER JOIN " 
- +  "ROOM_HAS ON ROOMS.ROOM_NO = ROOM_HAS.ROOM_NO AND  ROOMS.HOTEL_ID = ROOM_HAS.HOTEL_ID "  
- +  "ON CHECK_IN <= ? AND CHECK_OUT >= ? AND " 
- +  "ASSIGNS.HOTEL_ID = HOTELS.HOTEL_ID AND ASSIGNS.ROOM_NO = ROOMS.ROOM_NO GROUP BY ROOM_HAS.ROOM_CATEGORY_ID";
-			stmt = dbConn.prepareStatement(selectStatement);
+				 +  "AS OCCUPANCY,SUM( CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END)/ COUNT(HOTELS.HOTEL_ID) "
+				 +  "AS PERCENT_OCCUPANCY FROM  "+DBConnectUtils.DBSCHEMA+".ASSIGNS RIGHT OUTER JOIN ( "+DBConnectUtils.DBSCHEMA+".HOTELS NATURAL JOIN  "+DBConnectUtils.DBSCHEMA+".ROOMS) LEFT OUTER JOIN " 
+				 +   DBConnectUtils.DBSCHEMA+".ROOM_HAS ON ROOMS.ROOM_NO = ROOM_HAS.ROOM_NO AND  ROOMS.HOTEL_ID = ROOM_HAS.HOTEL_ID "  
+				 +  "ON CHECK_IN <= ? AND CHECK_OUT >= ? AND " 
+				 +  "ASSIGNS.HOTEL_ID = HOTELS.HOTEL_ID AND ASSIGNS.ROOM_NO = ROOMS.ROOM_NO GROUP BY ROOM_HAS.ROOM_CATEGORY_ID";
+			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			stmt.setString(1,  checkInDate);
 			stmt.setString(2, checkOutDate);
 			selectQueryRS = stmt.executeQuery();
-			while (selectQueryRS.next()) {
-				//Hotel hotel = new Hotel();
-				int roomCatId = selectQueryRS.getInt("ROOM_CATEGORY_ID");
-				int occupancy = selectQueryRS.getInt("OCCUPANCY");
-				float percent = selectQueryRS.getFloat("PERCENT_OCCUPANCY");
-				System.out.println(roomCatId + " " + occupancy + " " + percent);
+			if (!selectQueryRS.isBeforeFirst()) {
+				System.out.println("No list found");
+			}else{
+				System.out.println("List found");
+				System.out.println("ROOM_CATEGORY_ID  OCCUPANCY  PERCENT_OCCUPANCY");
+				while (selectQueryRS.next()) {
+					int roomCatId = selectQueryRS.getInt("ROOM_CATEGORY_ID");
+					int occupancy = selectQueryRS.getInt("OCCUPANCY");
+					float percent = selectQueryRS.getFloat("PERCENT_OCCUPANCY");
+					System.out.println(roomCatId + "    	 	" + occupancy + "	 		 " + percent);
+				}
 			}
 		} catch (Exception e) {
+			System.out.println("Wrong parameters");
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 		} finally {
 			try {
@@ -173,9 +184,12 @@ public class ReportsDAO {
 		}
 	}
 
+	/**Show all staffs
+	 * @param dbFlag
+	 */
 	public void showStaff(int dbFlag) {
-		// TODO Auto-generated method stub
 		String sourceMethod = "showStaff";
+		List<Staff> details = new ArrayList<Staff>();
 		ResultSet selectQueryRS = null;
 		Connection dbConn = null;
 		Statement stmt = null;
@@ -184,18 +198,25 @@ public class ReportsDAO {
 			stmt = dbConn.createStatement();
 			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".STAFF ORDER BY TITLE";
 			selectQueryRS = stmt.executeQuery(selectStatement);
-			while (selectQueryRS.next()) {
-				int staffId = selectQueryRS.getInt("STAFF_ID");
-				int phone = selectQueryRS.getInt("PHONE");
-				String name = selectQueryRS.getString("NAME");
-				String address = selectQueryRS.getString("ADDRESS");
-				Date dob = selectQueryRS.getDate("DOB");
-				String dpt = selectQueryRS.getString("DEPARTMENT");
-				String title = selectQueryRS.getString("TITLE");
-				int age = selectQueryRS.getInt("AGE");
-				System.out.println(staffId + " " + phone + " " + name + " " + address + " " + dob + " " + dpt + " " + title + " " + age);
-			}
+			if (!selectQueryRS.isBeforeFirst()) {
+				System.out.println("No staff found");
+			}else{
+				while (selectQueryRS.next()) {
+					Staff detail=new Staff();
+					detail.setStaffId(selectQueryRS.getInt("STAFF_ID"));
+					detail.setPhone(selectQueryRS.getString("PHONE"));
+					detail.setName(selectQueryRS.getString("NAME"));
+					detail.setAddress(selectQueryRS.getString("ADDRESS"));
+					detail.setDob(selectQueryRS.getDate("DOB"));
+					detail.setDepartment(selectQueryRS.getString("DEPARTMENT"));
+					detail.setTitle(selectQueryRS.getString("TITLE"));
+					detail.setAge(selectQueryRS.getInt("AGE"));
+					details.add(detail);
+					System.out.println(detail);
+				}
+		    }
 		} catch (Exception e) {
+			System.out.println("Wrong parameters");
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 		} finally {
 			try {
@@ -212,6 +233,7 @@ public class ReportsDAO {
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 			}
 		}
+		
 	}
 
 	/**
@@ -243,6 +265,7 @@ public class ReportsDAO {
 				System.out.println("No staff found serving this customer");
 			}else{
 				System.out.println("Staff found serving this customer");
+				System.out.println("STAFF_ID");
 				while (selectQueryRS.next()) {
 					int staffId = selectQueryRS.getInt("STAFF_ID");
 					System.out.println(staffId);
@@ -297,7 +320,7 @@ public class ReportsDAO {
 				while (selectQueryRS.next()) {
 					int hotelId = selectQueryRS.getInt("HOTEL_ID");
 					int revenue = selectQueryRS.getInt("TOTAL_REVENUE");
-					System.out.println(hotelId + " " + revenue);
+					System.out.println(hotelId + "		 " + revenue);
 				}
 			}
 		} catch (Exception e) {

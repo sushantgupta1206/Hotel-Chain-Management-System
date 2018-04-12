@@ -157,19 +157,28 @@ public class WolfInnStart {
 			case "checkitemizedtotalamount":
 				billingAccounts.checkItemizedTotalAmount(args);
 				break;
+			
+			
 			case "occupancybyhotel":
+				//java -jar WolfInn.jar  occupancybyhotel  "2017-05-10 23:59:59" "2017-05-13 09:59:59" 2
+				//java -jar WolfInn.jar  occupancybyhotel  "2017-05-11" "2017-05-13" 2
 				configReports.occHotel(args);
 				break;
 			case "occupancybycity":
+				//java -jar WolfInn.jar  occupancybycity  "2017-05-10 23:59:59" "2017-05-13 09:59:59" 2
+				//java -jar WolfInn.jar  occupancybycity  "2017-05-11" "2017-05-13" 2
 				configReports.occCity(args);
 				break;	
-			case "occupancybyroom":
+			case "occupancybyroomtype":
+				//java -jar WolfInn.jar  occupancybyroomtype  "2017-05-10 23:59:59" "2017-05-13 09:59:59" 2
+				//java -jar WolfInn.jar  occupancybyroomtype  "2017-05-11" "2017-05-13" 2
 				configReports.occRoom(args);
 				break;	
 //			case "occupancybydaterange":
 //				configReports.occRange(args);
 //				break;	
 			case "staffinfobyrole":
+				//java -jar WolfInn.jar staffinfobyrole 2
 				configReports.showStaff(args);
 				break;
 			case "staffpercustomer":
@@ -177,6 +186,7 @@ public class WolfInnStart {
 				configReports.custStaff(args);
 				break;
 			case "getrevenue":
+				//java -jar WolfInn.jar getrevenue "2017-01-10 16:10:00" "2018-01-10 16:10:00" 2
 				configReports.revHotel(args);
 				break;
 			default:
@@ -217,6 +227,10 @@ public class WolfInnStart {
 		System.out.println("java -jar WolfInn.jar checkRoomTypeAvailability [<ROOM_TYPE_NAME> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar setRoomAvailability [<AVAILABILITY> <ROOM_NO> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 
+		System.out.println("java -jar WolfInn.jar occupancybyhotel  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar occupancybycity  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar occupancybyroomtype  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar staffpercustomer [<CHECKIN> <CUSTOMER ID> <DBflag=2 for MariaDB>");
+		System.out.println("java -jar WolfInn.jar getrevenue [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
 	}
 }
