@@ -139,7 +139,7 @@ public class WolfInnStart {
 				serviceRecords.updateProvidesServices(args);
 				break;
 
-				
+			//java -jar WolfInn.jar addbill 6 1001 '2017-05-10 15:17:00' 2 "blah d" 2	
 			case "addbill":
 				billingAccounts.addBill(args);
 				break;

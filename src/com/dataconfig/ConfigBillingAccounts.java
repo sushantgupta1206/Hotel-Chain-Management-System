@@ -3,47 +3,54 @@ package com.dataconfig;
 import com.databaserepo.BillingAccountsDAO;
 
 public class ConfigBillingAccounts {
-        /*
-            input: Bill ID, Amount, Discounted Amount, Billing Address
-            output: N/A (Adds a new bill to table)
-        */
-	public void addBill(String[] args) {
-		int billId = Integer.parseInt(args[1]);
-		int amt = Integer.parseInt(args[2]);
-		int discountedAmt = Integer.parseInt(args[3]);
-		String billingAddress = args[4];
-		int dbFlag = Integer.parseInt(args[5]);
-                
-                if (billingAddress != null && billId > 0 && amt > 0 && discountedAmt >= 0 && dbFlag > 0) {
-                    BillingAccountsDAO billingAccountsDAO = new BillingAccountsDAO();
-                    billingAccountsDAO.addBill(billId, amt, discountedAmt, billingAddress, dbFlag);
-                }
-                else {
-                    System.out.println("Not valid data");
-                }
-	}
-	
-        /*
-            input: Bill ID, Amount, Discounted Amount, Billing Address
-            output: N/A (Changes information on a specific bill)
-        */
-	public void updateBill(String[] args) {
-		int amt = Integer.parseInt(args[1]);
-		int discountedAmt = Integer.parseInt(args[2]);
-		String billingAddress =args[3];
-		int billId = Integer.parseInt(args[4]);
-		int dbFlag = Integer.parseInt(args[5]);
-                
-                if (billingAddress != null && billId > 0 && amt > 0 && discountedAmt >= 0 && dbFlag > 0) {                
-                    BillingAccountsDAO billingAccountsDAO = new BillingAccountsDAO();
-                    billingAccountsDAO.updateBill(amt, discountedAmt, billingAddress, billId, dbFlag);
-                }
-                else {
-                    System.out.println("Not valid data");
-                }
-	}
+	   /*
+    input: bill ID, customer ID, check in time, payment method id, billing 
 
-        /*
+address
+    output: N/A (Adds a new bill to table)
+*/
+public void addBill(String[] args) {
+	int billId = Integer.parseInt(args[1]);
+	int custID = Integer.parseInt(args[2]);
+	String checkIn = args[3];
+	int payMethodID = Integer.parseInt(args[4]);
+	String billingAddress = args[5];
+	int dbFlag = Integer.parseInt(args[6]);  
+	if (billingAddress != null && billId > 0 && dbFlag > 0) {
+		BillingAccountsDAO billingAccountsDAO = new 
+		BillingAccountsDAO();
+		billingAccountsDAO.addBill(billId, custID, checkIn, payMethodID, billingAddress, dbFlag);
+	}
+	else{
+		System.out.println("Not valid data");	
+	}
+}
+
+/*
+    input: bill ID, customer ID, check in time, payment method id, billing 
+
+address
+    output: string telling user the number of updates made
+*/
+public void updateBill(String[] args) {
+int billId = Integer.parseInt(args[1]);
+int custID = Integer.parseInt(args[2]);
+String checkIn = args[3];
+int payMethodID = Integer.parseInt(args[4]);
+String billingAddress = args[5];
+int dbFlag = Integer.parseInt(args[6]);  
+if (billingAddress != null && billId > 0 && dbFlag > 0) {
+	BillingAccountsDAO billingAccountsDAO = new 
+
+BillingAccountsDAO();
+	billingAccountsDAO.addBill(billId, custID, checkIn, payMethodID, 
+
+billingAddress, dbFlag);
+}
+else {
+	System.out.println("Not valid data");	
+}
+}        /*
             input: Bill ID
             output: N/A (Deletes a specific bill from table)
         */
@@ -69,11 +76,12 @@ public class ConfigBillingAccounts {
 		int billId = Integer.parseInt(args[2]);
 		int payId = Integer.parseInt(args[3]);
 		int payPersonSSN = Integer.parseInt(args[4]);
-		int dbFlag = Integer.parseInt(args[5]);
+		int creditNum = Integer.parseInt(args[5]);
+		int dbFlag = Integer.parseInt(args[6]);
                 
                 if (customerId > 0 && billId > 0 && payId > 0 && String.valueOf(payPersonSSN).length() == 7 && dbFlag > 0) {
                     BillingAccountsDAO billingAccountsDAO = new BillingAccountsDAO();
-                    billingAccountsDAO.payBill(customerId, billId, payId, payPersonSSN, dbFlag);
+                    billingAccountsDAO.payBill(customerId, billId, payId, payPersonSSN, creditNum,dbFlag);
                 }
                 else {
                     System.out.println("Not valid data");
