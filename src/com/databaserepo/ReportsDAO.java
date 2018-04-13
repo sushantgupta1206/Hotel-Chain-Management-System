@@ -211,6 +211,8 @@ public class ReportsDAO {
 			    		+ " BY OCCUPANCY_DATE";
 				stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 				stmt.setDate(1,  iDate);
+				stmt.setDate(2,  iDate);
+				stmt.setDate(3,  iDate);
 				selectQueryRS = stmt.executeQuery();
 				if (!selectQueryRS.isBeforeFirst()) {
 					System.out.println("No list found");
