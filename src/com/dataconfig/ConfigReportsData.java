@@ -79,7 +79,7 @@ public class ConfigReportsData {
  *  NOTE! Will need to execute this query for each day in date range and take union of results.
  *  So, will need to build query statement in application based on user input.
  */
-		if (args.length ==2) {	
+		if (args.length ==4) {	
 			String firstDate = args[1];
 			String lastDate = args[2];
 			int dbFlag = Integer.parseInt(args[3]);

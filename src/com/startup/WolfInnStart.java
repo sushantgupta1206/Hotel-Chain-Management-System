@@ -179,9 +179,10 @@ public class WolfInnStart {
 				//java -jar WolfInn.jar  occupancybyroomtype  "2017-05-11" "2017-05-13" 2
 				configReports.occRoom(args);
 				break;	
-//			case "occupancybydaterange":
-//				configReports.occRange(args);
-//				break;	
+			case "occupancybydaterange":
+				//java -jar WolfInn.jar  occupancybydaterange  "2017-05-10" "2017-05-13" 2
+				configReports.occDateRng(args);
+				break;	
 			case "staffinfobyrole":
 				//java -jar WolfInn.jar staffinfobyrole 2
 				configReports.showStaff(args);

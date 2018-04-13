@@ -220,7 +220,7 @@ public class ReportsDAO {
 					System.out.println("List found");
 					System.out.println("OCCUPANCY_DATE  OCCUPANCY  PERCENT_OCCUPANCY");
 					while (selectQueryRS.next()) {
-						int roomCatId = selectQueryRS.getInt("OCCUPANCY_DATE");
+						String roomCatId = selectQueryRS.getString("OCCUPANCY_DATE");
 						int occupancy = selectQueryRS.getInt("OCCUPANCY");
 						float percent = selectQueryRS.getFloat("PERCENT_OCCUPANCY");
 						System.out.println(roomCatId + "    	 	" + occupancy + "	 		 " + percent);
