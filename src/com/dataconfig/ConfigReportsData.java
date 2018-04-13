@@ -82,27 +82,6 @@ public class ConfigReportsData {
 		if (args.length ==2) {	
 			String firstDate = args[1];
 			String lastDate = args[2];
-			try {
-				java.util.Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(firstDate);
-				System.out.println(date1);
-				java.util.Date date2= new SimpleDateFormat("yyyy-MM-dd").parse(lastDate);
-				System.out.println(date2);
-				
-				Calendar start = Calendar.getInstance();
-				start.setTime(date1);
-				Calendar end = Calendar.getInstance();
-				end.setTime(date2);
-
-				for (Date date = start.getTime(); start.before(end) || start.equals(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
-				    System.out.println(convertUtilToSql(date));
-				    
-				}
-				
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
 			int dbFlag = Integer.parseInt(args[3]);
 			ReportsDAO reportsDAO=new ReportsDAO();
 			reportsDAO.occDateRng(firstDate, lastDate, dbFlag);
@@ -161,8 +140,4 @@ public class ConfigReportsData {
 		}
 	}
 
-	private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
-        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
-        return sDate;
-	}
 }

@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.dataobject.Customer;
@@ -183,6 +183,67 @@ public class ReportsDAO {
 			}
 		}
 	}
+	
+	public void occDateRng(String firstDate, String lastDate, int dbFlag) {
+		String sourceMethod = "occDateRng";
+		Connection dbConn = null;
+		ResultSet selectQueryRS = null;
+		PreparedStatement stmt = null;
+		try {
+			java.util.Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(firstDate);
+			System.out.println(date1);
+			java.util.Date date2= new SimpleDateFormat("yyyy-MM-dd").parse(lastDate);
+			System.out.println(date2);
+			
+			Calendar start = Calendar.getInstance();
+			start.setTime(date1);
+			Calendar end = Calendar.getInstance();
+			end.setTime(date2);
+
+			for (Date date = start.getTime(); start.before(end) || start.equals(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
+				java.sql.Date iDate= convertUtilToSql(date);
+			    
+			    dbConn = dbUtil.getConnection(dbFlag);
+					    
+				String selectStatement = " SELECT ? AS OCCUPANCY_DATE, SUM( CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END) AS OCCUPANCY,SUM( CASE WHEN "
+					    + " ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END)/ COUNT(HOTELS.HOTEL_ID) AS PERCENT_OCCUPANCY FROM ASSIGNS RIGHT OUTER JOIN (HOTELS NATURAL JOIN ROOMS) ON "
+			    		+ " CHECK_IN <= ? AND CHECK_OUT >= ? AND ASSIGNS.HOTEL_ID = HOTELS.HOTEL_ID AND ASSIGNS.ROOM_NO = ROOMS.ROOM_NO GROUP "
+			    		+ " BY OCCUPANCY_DATE";
+				stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+				stmt.setDate(1,  iDate);
+				selectQueryRS = stmt.executeQuery();
+				if (!selectQueryRS.isBeforeFirst()) {
+					System.out.println("No list found");
+				}else{
+					System.out.println("List found");
+					System.out.println("OCCUPANCY_DATE  OCCUPANCY  PERCENT_OCCUPANCY");
+					while (selectQueryRS.next()) {
+						int roomCatId = selectQueryRS.getInt("OCCUPANCY_DATE");
+						int occupancy = selectQueryRS.getInt("OCCUPANCY");
+						float percent = selectQueryRS.getFloat("PERCENT_OCCUPANCY");
+						System.out.println(roomCatId + "    	 	" + occupancy + "	 		 " + percent);
+					}
+				}
+			  }
+			} catch (Exception e) {
+				System.out.println("Wrong parameters");
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			} finally {
+				try {
+					if (selectQueryRS != null) {
+						selectQueryRS.close();
+					}
+					if (stmt != null) {
+						stmt.close();
+					} 
+					if (dbConn != null) {
+						dbConn.close();
+					}
+				} catch (Exception e) {
+					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+				}
+			}
+	}
 
 	/**Show all staffs
 	 * @param dbFlag
@@ -343,9 +404,10 @@ public class ReportsDAO {
 		}		
 	}
 
-	public void occDateRng(String firstDate, String lastDate, int dbFlag) {
-		// TODO Auto-generated method stub
-		
+	
+	private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
+        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+        return sDate;
 	}
 	
 }
