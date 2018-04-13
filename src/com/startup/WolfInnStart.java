@@ -236,7 +236,9 @@ public class WolfInnStart {
 		System.out.println("java -jar WolfInn.jar occupancybyhotel  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar occupancybycity  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar occupancybyroomtype  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
-		System.out.println("java -jar WolfInn.jar staffpercustomer [<CHECKIN> <CUSTOMER ID> <DBflag=2 for MariaDB>");
+		System.out.println("java -jar WolfInn.jar occupancybydaterange  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar staffinfobyrole [<DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar staffpercustomer [<CHECKIN> <CUSTOMER ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar getrevenue [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
 	}
 }
