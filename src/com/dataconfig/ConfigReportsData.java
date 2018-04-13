@@ -1,4 +1,5 @@
 
+
 package com.dataconfig;
 
 import java.text.ParseException;
@@ -26,11 +27,15 @@ public class ConfigReportsData {
 	 * 
 	 */
 	public void occHotel(String args[]) {
-		String checkInDate = args[1];
-		String checkOutDate = args[2];
-		int dbFlag = Integer.parseInt(args[3]);
-		ReportsDAO reportsDAO = new ReportsDAO();
-		reportsDAO.occHotel(checkInDate, checkOutDate, dbFlag);
+		if (args.length ==4) {	
+			String checkInDate = args[1];
+			String checkOutDate = args[2];
+			int dbFlag = Integer.parseInt(args[3]);
+			ReportsDAO reportsDAO = new ReportsDAO();
+			reportsDAO.occHotel(checkInDate, checkOutDate, dbFlag);
+		}else{
+			System.out.println("Parameters mismatch");
+		}
 	}
 	
 	/* 
@@ -39,11 +44,15 @@ public class ConfigReportsData {
 	 *   
 	 */
 	public void occCity(String args[]){
-		String checkInDate = args[1];
-		String checkOutDate = args[2];
-		int dbFlag = Integer.parseInt(args[3]);
-		ReportsDAO reportsDAO = new ReportsDAO();
-		reportsDAO.occCity(checkInDate, checkOutDate, dbFlag);
+		if (args.length ==4) {	
+			String checkInDate = args[1];
+			String checkOutDate = args[2];
+			int dbFlag = Integer.parseInt(args[3]);
+			ReportsDAO reportsDAO = new ReportsDAO();
+			reportsDAO.occCity(checkInDate, checkOutDate, dbFlag);
+		}else{
+			System.out.println("Parameters mismatch");
+		}
 	}
 
 	/*
@@ -51,11 +60,15 @@ public class ConfigReportsData {
 	 *  output: string of room category IDs, occupancy and percent occupancy
 	 */
 	public void occRoom(String args[]){
-		String checkInDate = args[1];
-		String checkOutDate = args[2];
-		int dbFlag = Integer.parseInt(args[3]);
-		ReportsDAO reportsDAO = new ReportsDAO();
-		reportsDAO.occRoom(checkInDate, checkOutDate, dbFlag);
+		if (args.length ==4) {	
+			String checkInDate = args[1];
+			String checkOutDate = args[2];
+			int dbFlag = Integer.parseInt(args[3]);
+			ReportsDAO reportsDAO = new ReportsDAO();
+			reportsDAO.occRoom(checkInDate, checkOutDate, dbFlag);
+		}else{
+			System.out.println("Parameters mismatch");
+		}
 	}
 	
 	public void occDateRng(String args[]){
@@ -66,11 +79,15 @@ public class ConfigReportsData {
  *  NOTE! Will need to execute this query for each day in date range and take union of results.
  *  So, will need to build query statement in application based on user input.
  */
-		Date startDate = new Date();
-		Date endDate = new Date();
-		int dbFlag = Integer.parseInt(args[1]);
-		ReportsDAO reportsDAO=new ReportsDAO();
-		//reportsDAO.occDateRng(dbFlag);
+		if (args.length ==2) {	
+			Date startDate = new Date();
+			Date endDate = new Date();
+			int dbFlag = Integer.parseInt(args[1]);
+			ReportsDAO reportsDAO=new ReportsDAO();
+			//reportsDAO.occDateRng(dbFlag);
+		}else{
+			System.out.println("Parameters mismatch");
+		}
 	}
 
 	/*
@@ -78,9 +95,13 @@ public class ConfigReportsData {
 	 * output: string of all staff information by title
 	 */
 	public void showStaff(String[] args) {
-		int dbFlag = Integer.parseInt(args[1]);
-		ReportsDAO reportsDAO=new ReportsDAO();
-		reportsDAO.showStaff(dbFlag);
+		if (args.length ==2) {	
+			int dbFlag = Integer.parseInt(args[1]);
+			ReportsDAO reportsDAO=new ReportsDAO();
+			reportsDAO.showStaff(dbFlag);
+		}else{
+			System.out.println("Parameters mismatch");
+		}
 	}
 
 /*
@@ -91,11 +112,15 @@ public class ConfigReportsData {
  * modify user input.
  */
 	public void revHotel(String[] args) {
-		String startDate = args[1];
-		String endDate = args[2];
-		int dbFlag = Integer.parseInt(args[3]);
-		ReportsDAO reportsDAO = new ReportsDAO();
-		reportsDAO.revHotel(startDate, endDate, dbFlag);
+		if (args.length ==4) {	
+			String startDate = args[1];
+			String endDate = args[2];
+			int dbFlag = Integer.parseInt(args[3]);
+			ReportsDAO reportsDAO = new ReportsDAO();
+			reportsDAO.revHotel(startDate, endDate, dbFlag);
+		}else{
+			System.out.println("Parameters mismatch");
+		}
 	}
 
 	/*
@@ -104,11 +129,15 @@ public class ConfigReportsData {
 	 * output: string of each staff member (service and front desk) who served customer
 	 */
 	public void custStaff(String[] args) {
-		String checkInDate = args[1];
-		int custId = Integer.parseInt(args[2]);
-		int dbFlag = Integer.parseInt(args[3]);
-		ReportsDAO reportsDAO = new ReportsDAO();
-		reportsDAO.custStaff(checkInDate, custId, dbFlag);
+		if (args.length ==4) {
+			String checkInDate = args[1];
+			int custId = Integer.parseInt(args[2]);
+			int dbFlag = Integer.parseInt(args[3]);
+			ReportsDAO reportsDAO = new ReportsDAO();
+			reportsDAO.custStaff(checkInDate, custId, dbFlag);
+		}else{
+			System.out.println("Parameters mismatch");
+		}
 	}
 
 	

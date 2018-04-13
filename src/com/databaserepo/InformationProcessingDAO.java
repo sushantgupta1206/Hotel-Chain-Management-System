@@ -146,6 +146,7 @@ public class InformationProcessingDAO {
 				System.out.println("No hotel found");
 				return false;
 			}else{
+				System.out.println("Hotel found");
 				while (selectQueryRS.next()) {
 					Hotel hotel = new Hotel();
 					hotel.setId(selectQueryRS.getInt("HOTEL_ID"));
@@ -279,7 +280,7 @@ public class InformationProcessingDAO {
 	@SuppressWarnings("resource")
 	public void addRoom(int roomNo, int hotelId, int maxOccu, int nightRate, int roomCat, int dbFlag) {
 		String sourceMethod = "addRoom";
-		if(!showRoom(roomNo, hotelId, dbFlag) && showRoomCatgeory(roomCat, dbFlag)){
+		if(!showRoom(roomNo, hotelId, dbFlag) && showRoomCatgeory(roomCat, dbFlag) && showHotel(hotelId, dbFlag)){
 				String insertRoomDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".ROOMS ( ROOM_NO, HOTEL_ID, MAX_OCCUPANCY, NIGHTLY_RATE,AVAILABILITY ) VALUES (?,?,?,?,1)";
 				PreparedStatement preparedStatement = null;
 				Connection dbConn = null;
@@ -628,7 +629,7 @@ public class InformationProcessingDAO {
 	@SuppressWarnings("resource")
 	public void addStaffToHotel(Staff staff, int hotelId, int dbFlag) {
 		String sourceMethod = "addStaff";
-		if(!showStaff(staff.getStaffId(), dbFlag)){
+		if(!showStaff(staff.getStaffId(), dbFlag) && showHotel(hotelId, dbFlag)){
 			PreparedStatement preparedStatement = null;
 			Connection dbConn = null;
 			ResultSet rs = null;
