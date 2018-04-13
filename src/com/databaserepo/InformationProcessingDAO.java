@@ -921,45 +921,44 @@ public class InformationProcessingDAO {
 	 * @param dbFlag
 	 * @return
 	 */
-	public int addCustomer(Customer customer, int dbFlag) {
+	public void addCustomer(Customer customer, int dbFlag) {
 		String sourceMethod = "addCustomer";
-		String insertDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".CUSTOMER (CUSTOMER_ID, PHONE, NAME, EMAIL_ADDRESS, DOB) VALUES (?,?,?,?,?)";
-		PreparedStatement preparedStatement = null;
-		int generatedKey = 0;
-		Connection dbConn = null;
-		ResultSet rs = null;
-		try {
-			dbConn = dbUtil.getConnection(dbFlag);
-			preparedStatement = dbConn.prepareStatement(insertDataQuery,Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setInt(1, customer.getCustomerId());
-			preparedStatement.setString(2, customer.getPhone());
-			preparedStatement.setString(3, customer.getName());
-			preparedStatement.setString(4, customer.getEmail());
-			preparedStatement.setDate(5, customer.getDob());
-			preparedStatement.execute();
-			rs = preparedStatement.getGeneratedKeys();
-			if (rs.next()) {
-			    generatedKey = customer.getCustomerId();
-			}
-		} catch (Exception e) {
-			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-		} finally {
+		if(!showCustomer(customer.getCustomerId(), dbFlag)){
+			String insertDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".CUSTOMER (CUSTOMER_ID, PHONE, NAME, EMAIL_ADDRESS, DOB) VALUES (?,?,?,?,?)";
+			PreparedStatement preparedStatement = null;
+			Connection dbConn = null;
+			ResultSet rs = null;
 			try {
-				if (rs != null) {
-					rs.close();
+				dbConn = dbUtil.getConnection(dbFlag);
+				preparedStatement = dbConn.prepareStatement(insertDataQuery,Statement.RETURN_GENERATED_KEYS);
+				preparedStatement.setInt(1, customer.getCustomerId());
+				preparedStatement.setString(2, customer.getPhone());
+				preparedStatement.setString(3, customer.getName());
+				preparedStatement.setString(4, customer.getEmail());
+				preparedStatement.setDate(5, customer.getDob());
+				preparedStatement.execute();
+				
+				System.out.println("Customer record: "+ customer.getCustomerId()+" inserted. . Query executed :"+insertDataQuery);
+				} catch (Exception e) {
+					System.out.println("Customer record: "+ customer.getCustomerId()+" didn't inserted. query executed :"+insertDataQuery);
+					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+				} finally {
+					try {
+						if (rs != null) {
+							rs.close();
+						}
+						if (preparedStatement != null) {
+							preparedStatement.close();
+						} 
+						if (dbConn != null) {
+							dbConn.close();
+						}
+					}catch (Exception e) {
+						log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+					}
 				}
-				if (preparedStatement != null) {
-					preparedStatement.close();
-				} 
-				if (dbConn != null) {
-					dbConn.close();
-				}
-			}catch (Exception e) {
-				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-			}
 		}
-		log.exiting(sourceClass, sourceMethod, generatedKey);
-		return generatedKey;
+		log.exiting(sourceClass, sourceMethod);
 	}
 
 
@@ -1007,6 +1006,52 @@ public class InformationProcessingDAO {
 		}
 	}
 
+	
+	public boolean showCustomer(int customerId, int dbFlag) {
+		String sourceMethod = "showCustomer";
+		PreparedStatement stmt = null;
+		Connection dbConn = null;
+		ResultSet selectQueryRS = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".CUSTOMER WHERE CUSTOMER_ID=?";
+			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			stmt.setInt(1, customerId);
+			selectQueryRS=stmt.executeQuery();
+			if (!selectQueryRS.isBeforeFirst()) {
+				System.out.println("No Customer found");
+				return false;
+			}else{
+				System.out.println("Customer found");
+				while (selectQueryRS.next()) {
+					Customer detail=new Customer();
+					detail.setCustomerId(selectQueryRS.getInt("CUSTOMER_ID"));
+					detail.setPhone(selectQueryRS.getString("PHONE"));
+					detail.setName(selectQueryRS.getString("NAME"));
+					detail.setEmail(selectQueryRS.getString("EMAIL_ADDRESS"));
+					detail.setDob(selectQueryRS.getDate("DOB"));
+					System.out.println(detail);
+				}
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		return true;
+	}
 
 
 	/**Delete customer by customer id
@@ -1015,31 +1060,33 @@ public class InformationProcessingDAO {
 	 */
 	public void deleteCustomer(Customer customer, int dbFlag) {
 		String sourceMethod = "deleteCustomer";
-		String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".CUSTOMER WHERE CUSTOMER_ID = ?";
-		PreparedStatement preparedStatement = null;
-		int numberOfDeletedRows = 0;
-		Connection dbConn = null;
-		try {
-			dbConn = dbUtil.getConnection(dbFlag);
-			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
-			preparedStatement.setInt(1, customer.getCustomerId());
-			numberOfDeletedRows = preparedStatement.executeUpdate();
-		} catch (Exception e) {
-			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-		} finally {
+		if(showCustomer(customer.getCustomerId(), dbFlag)){
+			String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".CUSTOMER WHERE CUSTOMER_ID = ?";
+			PreparedStatement preparedStatement = null;
+			int numberOfDeletedRows = 0;
+			Connection dbConn = null;
 			try {
-				if (preparedStatement != null) {
-					preparedStatement.close();
-				} 
-				if (dbConn != null) {
-					dbConn.close();
-				}
-			}catch (Exception e) {
+				dbConn = dbUtil.getConnection(dbFlag);
+				preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+				preparedStatement.setInt(1, customer.getCustomerId());
+				numberOfDeletedRows = preparedStatement.executeUpdate();
+			} catch (Exception e) {
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			} finally {
+				try {
+					if (preparedStatement != null) {
+						preparedStatement.close();
+					} 
+					if (dbConn != null) {
+						dbConn.close();
+					}
+				}catch (Exception e) {
+					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+				}
 			}
+			log.exiting(sourceClass, sourceMethod, numberOfDeletedRows);
+			System.out.println("numberOfDeletedRows: "+numberOfDeletedRows);
 		}
-		log.exiting(sourceClass, sourceMethod, numberOfDeletedRows);
-		System.out.println("numberOfDeletedRows: "+numberOfDeletedRows);
 	}
 
 
@@ -1051,36 +1098,38 @@ public class InformationProcessingDAO {
 	 */
 	public void updateCustomer(Customer customer, int oldCustomerId, int dbFlag) {
 		String sourceMethod = "updateCustomer";
-		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".CUSTOMER SET CUSTOMER_ID = ?, PHONE = ?, NAME = ?, EMAIL_ADDRESS = ?, DOB = ? WHERE CUSTOMER_ID = ?";
-		PreparedStatement preparedStatement = null;
-		int numberOfUpdatedRows = 0;
-		Connection dbConn = null;
-		try {
-			dbConn = dbUtil.getConnection(dbFlag);
-			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
-			preparedStatement.setInt(1, customer.getCustomerId());
-			preparedStatement.setString(2, customer.getPhone());
-			preparedStatement.setString(3, customer.getName());
-			preparedStatement.setString(4, customer.getEmail());
-			preparedStatement.setDate(5, customer.getDob());
-			preparedStatement.setInt(6, oldCustomerId);
-			numberOfUpdatedRows = preparedStatement.executeUpdate();
-		} catch (Exception e) {
-			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-		} finally {
+		if(showCustomer(customer.getCustomerId(), dbFlag)){
+			String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".CUSTOMER SET CUSTOMER_ID = ?, PHONE = ?, NAME = ?, EMAIL_ADDRESS = ?, DOB = ? WHERE CUSTOMER_ID = ?";
+			PreparedStatement preparedStatement = null;
+			int numberOfUpdatedRows = 0;
+			Connection dbConn = null;
 			try {
-				if (preparedStatement != null) {
-					preparedStatement.close();
-				} 
-				if (dbConn != null) {
-					dbConn.close();
-				}
-			}catch (Exception e) {
+				dbConn = dbUtil.getConnection(dbFlag);
+				preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+				preparedStatement.setInt(1, customer.getCustomerId());
+				preparedStatement.setString(2, customer.getPhone());
+				preparedStatement.setString(3, customer.getName());
+				preparedStatement.setString(4, customer.getEmail());
+				preparedStatement.setDate(5, customer.getDob());
+				preparedStatement.setInt(6, oldCustomerId);
+				numberOfUpdatedRows = preparedStatement.executeUpdate();
+			} catch (Exception e) {
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			} finally {
+				try {
+					if (preparedStatement != null) {
+						preparedStatement.close();
+					} 
+					if (dbConn != null) {
+						dbConn.close();
+					}
+				}catch (Exception e) {
+					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+				}
 			}
+			log.exiting(sourceClass, sourceMethod, numberOfUpdatedRows);
+			System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
 		}
-		log.exiting(sourceClass, sourceMethod, numberOfUpdatedRows);
-		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
 	}
 	
 	/**Pass roomNo and hotelId as argument and get response as room type is available or not
@@ -1089,43 +1138,47 @@ public class InformationProcessingDAO {
 	 * @param dbFlag
 	 * @return
 	 */
-	public String checkRoomAvailability(int roomNo, int hotelId, int dbFlag) {
+	public void checkRoomAvailability(int roomNo, int hotelId, int dbFlag) {
 		String sourceMethod = "checkRoomAvailability";
-		PreparedStatement stmt = null;
-		Connection dbConn = null;
-		ResultSet selectQueryRS = null;
-		String response = null;
-		try {
-			dbConn = dbUtil.getConnection(dbFlag);
-			String selectStatement = "SELECT (CASE WHEN AVAILABILITY=0 THEN 'FALSE' ELSE 'TRUE' END) AS AVAILABILITY FROM "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ROOM_NO=? AND HOTEL_ID=?";
-			stmt = dbConn.prepareStatement(selectStatement);
-			stmt.setInt(1, roomNo);
-			stmt.setInt(2, hotelId);
-			selectQueryRS = stmt.executeQuery();
-			while (selectQueryRS.next()) {
-				response = selectQueryRS.getString("AVAILABILITY");
-				System.out.println(response);
-			}
-			
-		} catch (Exception e) {
-			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-		} finally {
+		if(showRoom(roomNo, hotelId, dbFlag)){
+			PreparedStatement stmt = null;
+			Connection dbConn = null;
+			ResultSet selectQueryRS = null;
 			try {
-				if (selectQueryRS != null) {
-					selectQueryRS.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				} 
-				if (dbConn != null) {
-					dbConn.close();
+				dbConn = dbUtil.getConnection(dbFlag);
+				String selectStatement = "SELECT (CASE WHEN AVAILABILITY=0 THEN 'FALSE' ELSE 'TRUE' END) AS AVAILABILITY FROM "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ROOM_NO=? AND HOTEL_ID=?";
+				stmt = dbConn.prepareStatement(selectStatement);
+				stmt.setInt(1, roomNo);
+				stmt.setInt(2, hotelId);
+				selectQueryRS = stmt.executeQuery();
+				if (!selectQueryRS.isBeforeFirst()) {
+					System.out.println("No list found");
+				}else{
+					System.out.println("List found");
+					System.out.println("AVAILABILITY");
+					while (selectQueryRS.next()) {
+						String avail = selectQueryRS.getString("AVAILABILITY");
+						System.out.println(avail);
+					}
 				}
 			} catch (Exception e) {
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			} finally {
+				try {
+					if (selectQueryRS != null) {
+						selectQueryRS.close();
+					}
+					if (stmt != null) {
+						stmt.close();
+					} 
+					if (dbConn != null) {
+						dbConn.close();
+					}
+				} catch (Exception e) {
+					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+				}
 			}
 		}
-		return response;
-		
 	}
 
 
@@ -1136,45 +1189,53 @@ public class InformationProcessingDAO {
 	 * @param dbFlag
 	 * @return
 	 */
-	public String checkRoomTypeAvailability(String roomType, int hotelId, int dbFlag) {
+	public void checkRoomTypeAvailability(String roomType, int hotelId, int dbFlag) {
 		String sourceMethod = "checkRoomTypeAvailability";
-		PreparedStatement stmt = null;
-		Connection dbConn = null;
-		ResultSet selectQueryRS = null;
-		String response = null;
-		try {
-			dbConn = dbUtil.getConnection(dbFlag);
-			String selectStatement = "SELECT R.ROOM_NO, R.HOTEL_ID, RC.TYPE, (CASE WHEN AVAILABILITY=0 THEN 'FALSE' ELSE "+
-									"'TRUE' END) AS AVAILABILITY FROM "+DBConnectUtils.DBSCHEMA+".ROOMS AS R, "+DBConnectUtils.DBSCHEMA+".ROOM_HAS AS RH, "+DBConnectUtils.DBSCHEMA+". ROOM_CATEGORY AS RC "+
-									"WHERE R.ROOM_NO=RH.ROOM_NO AND R.HOTEL_ID=RH.HOTEL_ID AND "+
-									"RH.ROOM_CATEGORY_ID=RC.ID AND RC.TYPE=? AND R.HOTEL_ID=?";
-			stmt = dbConn.prepareStatement(selectStatement);
-			stmt.setString(1, roomType);
-			stmt.setInt(2, hotelId);
-			selectQueryRS = stmt.executeQuery();
-			while (selectQueryRS.next()) {
-				response = selectQueryRS.getString("ROOM_NO");
-				System.out.println(response);
-			}
-			
-		} catch (Exception e) {
-			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-		} finally {
+		if(showHotel(hotelId, dbFlag)){
+			PreparedStatement stmt = null;
+			Connection dbConn = null;
+			ResultSet selectQueryRS = null;
 			try {
-				if (selectQueryRS != null) {
-					selectQueryRS.close();
+				dbConn = dbUtil.getConnection(dbFlag);
+				String selectStatement = "SELECT R.ROOM_NO, R.HOTEL_ID, RC.TYPE, (CASE WHEN AVAILABILITY=0 THEN 'FALSE' ELSE "+
+										"'TRUE' END) AS AVAILABILITY FROM "+DBConnectUtils.DBSCHEMA+".ROOMS AS R, "+DBConnectUtils.DBSCHEMA+".ROOM_HAS AS RH, "+DBConnectUtils.DBSCHEMA+". ROOM_CATEGORY AS RC "+
+										"WHERE R.ROOM_NO=RH.ROOM_NO AND R.HOTEL_ID=RH.HOTEL_ID AND "+
+										"RH.ROOM_CATEGORY_ID=RC.ID AND RC.TYPE=? AND R.HOTEL_ID=?";
+				stmt = dbConn.prepareStatement(selectStatement);
+				stmt.setString(1, roomType);
+				stmt.setInt(2, hotelId);
+				selectQueryRS = stmt.executeQuery();
+				if (!selectQueryRS.isBeforeFirst()) {
+					System.out.println("No list found");
+				}else{
+					System.out.println("List found");
+					System.out.println("ROOM_NO		HOTEL_ID  	AVAILABILITY");
+					while (selectQueryRS.next()) {
+						int roomNo = selectQueryRS.getInt("ROOM_NO");
+						int hId = selectQueryRS.getInt("HOTEL_ID");
+						String avail = selectQueryRS.getString("AVAILABILITY");
+						System.out.println(roomNo+"		"+hId+ "	"+avail);
+					}
 				}
-				if (stmt != null) {
-					stmt.close();
-				} 
-				if (dbConn != null) {
-					dbConn.close();
-				}
+				
 			} catch (Exception e) {
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			} finally {
+				try {
+					if (selectQueryRS != null) {
+						selectQueryRS.close();
+					}
+					if (stmt != null) {
+						stmt.close();
+					} 
+					if (dbConn != null) {
+						dbConn.close();
+					}
+				} catch (Exception e) {
+					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+				}
 			}
 		}
-		return response;
 	}
 
 

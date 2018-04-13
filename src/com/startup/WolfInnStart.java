@@ -95,6 +95,7 @@ public class WolfInnStart {
 				
 			case "addcustomer":
 				try {
+					//java -jar WolfInn.jar addcustomer 7 9299191234 "Mark Ruby" "mruby@email.com" "1990-02-01" 2
 					configHotel.addCustomer(args);
 				} catch (ParseException e) {
 					e.printStackTrace();
@@ -102,25 +103,29 @@ public class WolfInnStart {
 				break;
 			case "updatecustomer":
 				try {
+					//java -jar WolfInn.jar updatecustomer 7 913 "Mark Ruby" "mruby@email.com" "1990-02-01" 7 2
 					configHotel.updateCustomer(args);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
 			case "showcustomers":
+				//java -jar WolfInn.jar showcustomers 2
 				configHotel.showCustomers(args);
 				break;
 			case "deletecustomer":
+				//java -jar WolfInn.jar deletecustomer 7 2
 				configHotel.deleteCustomer(args);
 				break;
 				
 			
 			case "checkRoomAvailability":
+				//java -jar WolfInn.jar checkRoomAvailability 11 11 2
 				configHotel.checkRoomAvailability(args);
 				break;
 				
 			case "checkRoomTypeAvailability":
+				//java -jar WolfInn.jar checkRoomAvailability 11 11 2
 				configHotel.checkRoomTypeAvailability(args);
 				break;
 				

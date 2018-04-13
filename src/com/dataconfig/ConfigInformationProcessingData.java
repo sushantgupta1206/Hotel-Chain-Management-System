@@ -349,9 +349,9 @@ public class ConfigInformationProcessingData {
 			customer.setDob(convertUtilToSql(date1));
 			int dbFlag = Integer.parseInt(args[6]);
 			
-			if(customerId > 0 && phone.length() == 10 && phone != null && name != null && name.length() <= 50 && email != null && email.matches(regexEmail) && email.length() <= 50){
+			if(customerId > 0 && phone.length()>0 && phone != null && name != null && name.length() <= 50 && email != null && email.matches(regexEmail) && email.length() <= 50){
 				InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-				System.out.println("Added hotel: "+informationProcessingDAO.addCustomer(customer, dbFlag));
+				informationProcessingDAO.addCustomer(customer, dbFlag);
 			}else {
 				System.out.println("Not valid data");
 			}
@@ -382,7 +382,7 @@ public class ConfigInformationProcessingData {
 			String email = args[4];
 			int dbFlag = Integer.parseInt(args[7]);
 			
-			if(customerId > 0 && phone.length() == 10 && phone != null && name != null && name.length() <= 50 && email != null && email.matches(regexEmail) && email.length() <= 50){
+			if(customerId > 0 && phone.length() >0 && phone != null && name != null && name.length() <= 50 && email != null && email.matches(regexEmail) && email.length() <= 50){
 				InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 				informationProcessingDAO.updateCustomer(customer, oldCustomerId, dbFlag);
 			}else {
