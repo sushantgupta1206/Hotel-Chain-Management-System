@@ -342,5 +342,10 @@ public class ReportsDAO {
 			}
 		}		
 	}
+
+	public void occDateRng(String firstDate, String lastDate, int dbFlag) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
