@@ -75,7 +75,6 @@ public class WolfInnStart {
 				try {
 					configHotel.updateStaff(args);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
@@ -125,7 +124,7 @@ public class WolfInnStart {
 				break;
 				
 			case "checkRoomTypeAvailability":
-				//java -jar WolfInn.jar checkRoomAvailability 11 11 2
+				//java -jar WolfInn.jar checkRoomAvailability "Economy" 11 2
 				configHotel.checkRoomTypeAvailability(args);
 				break;
 				
@@ -139,13 +138,15 @@ public class WolfInnStart {
 				
 				
 			case "providesservices":
+				//java -jar WolfInn.jar providesservices 7 5 1 2
 				serviceRecords.addProvidesServices(args);
 				break;
 			case "updateservices":
+				//java -jar WolfInn.jar updateservices 1 5 "2017-05-10 15:17:00" 7 2
 				serviceRecords.updateProvidesServices(args);
 				break;
 
-			//java -jar WolfInn.jar addbill 6 1001 '2017-05-10 15:17:00' 2 "blah d" 2	
+			//java -jar WolfInn.jar addbill 6 1001 "2017-05-10 15:17:00" 2 "blah d" 2	
 			case "addbill":
 				billingAccounts.addBill(args);
 				break;
@@ -233,6 +234,9 @@ public class WolfInnStart {
 		System.out.println("java -jar WolfInn.jar updatecustomer [<CUSTOMER_ID> <PHONE> <NAME> <EMAIL_ADDRESS> <DOB> <For which CUSTOMER_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar showcustomers [<DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar deletecustomer [<For which CUSTOMER_ID> <DBflag=2 for MariaDB>]");
+		
+		System.out.println("java -jar WolfInn.jar providesservices <For which CUSTOMER_ID> <For which STAFF_ID> <For which SERVICE_ID> <DBflag=2 for MariaDB>");
+		System.out.println("java -jar WolfInn.jar updateservices <SERVICE_ID> <STAFF_ID> <For WHICH SERVICE TIME> <For which CUSTOMER_ID>  <DBflag=2 for MariaDB>");
 		
 		System.out.println("java -jar WolfInn.jar checkRoomAvailability [<ROOM_NO> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar checkRoomTypeAvailability [<ROOM_TYPE_NAME> <HOTEL_ID> <DBflag=2 for MariaDB>]");

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.dataobject.Assigns;
 import com.dataobject.Customer;
 import com.dataobject.Hotel;
 import com.dataobject.Room;
@@ -1277,102 +1276,96 @@ public class InformationProcessingDAO {
 	@SuppressWarnings("resource")
 	public void assignRoomAndSetAvailability(int staffId, int customerId, int noOfGuests, int roomNo, int hotelId, int dbFlag){
 		String sourceMethod = "assignRoomAndSetAvailability";
-
-		PreparedStatement stmt = null;
-		Connection dbConn = null;
-		ResultSet selectQueryRS = null;
-		ResultSet rs = null;
-		PreparedStatement preparedStatement = null;
-		try {
-			dbConn = dbUtil.getConnection(dbFlag);
-			final int previousIsolationLevel = dbConn.getTransactionIsolation();
-			if (previousIsolationLevel != 2) {
-				dbConn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
-			}
-			dbConn.setAutoCommit(false);
-			String selectStatement = "SELECT * FROM " + DBConnectUtils.DBSCHEMA
-					+ ".ROOMS WHERE ROOM_NO=? AND HOTEL_ID=? AND MAX_OCCUPANCY>=? AND AVAILABILITY=0";
-			System.out.println(selectStatement);
-			stmt = dbConn.prepareStatement(selectStatement);
-			stmt.setInt(1, roomNo);
-			stmt.setInt(2, hotelId);
-			stmt.setInt(3, noOfGuests);
-			selectQueryRS = stmt.executeQuery();
-			
-			while (selectQueryRS.next()) {
-				String response = selectQueryRS.getString("ROOM_NO");
-				System.out.println(response);
-			}
-
-			String insertDataQuery = "INSERT INTO " + DBConnectUtils.DBSCHEMA
-					+ ".ASSIGNS(STAFF_ID, CUSTOMER_ID,CHECK_IN,CHECK_OUT, NO_OF_GUESTS, HOTEL_ID, ROOM_NO) "
-					+ "SELECT ?,?,'2017-09-15 02:15:00','2017-09-15 02:15:00', ?,?,? FROM  " + DBConnectUtils.DBSCHEMA
-					+ ".ROOMS AS R WHERE R.ROOM_NO=? AND HOTEL_ID=? AND " + "MAX_OCCUPANCY>=? AND AVAILABILITY=0";
-
-			int generatedKey = 0;
-
-			preparedStatement = dbConn.prepareStatement(insertDataQuery, Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setInt(1, staffId);
-			preparedStatement.setInt(2, customerId);
-			preparedStatement.setInt(3, noOfGuests);
-			preparedStatement.setInt(4, hotelId);
-			preparedStatement.setInt(5, roomNo);
-			preparedStatement.setInt(6, roomNo);
-			preparedStatement.setInt(7, hotelId);
-			preparedStatement.setInt(8, noOfGuests);
-			System.out.println(insertDataQuery);
-			int insertExecuted = preparedStatement.executeUpdate();
-			rs = preparedStatement.getGeneratedKeys();
-			if (rs.next()) {
-				System.out.println(generatedKey);
-				//insertExecuted = true;
-			}
-
-				String updateDeleteRequestStatement = "UPDATE " + DBConnectUtils.DBSCHEMA
-						+ ".ROOMS SET AVAILABILITY=1 WHERE ROOM_NO=? AND HOTEL_ID=?";
-				preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
-				preparedStatement.setInt(1, roomNo);
-				preparedStatement.setInt(2, hotelId);
-				int numberOfUpdatedRows = preparedStatement.executeUpdate();
-				System.out.println(numberOfUpdatedRows);
-				log.exiting(sourceClass, sourceMethod, generatedKey);
-				dbConn.commit();
+		if(showCustomer(customerId, dbFlag) && showStaff(staffId, dbFlag) && showRoom(roomNo, hotelId, dbFlag)){
+			PreparedStatement stmt = null;
+			Connection dbConn = null;
+			ResultSet selectQueryRS = null;
+			ResultSet rs = null;
+			PreparedStatement preparedStatement = null;
+			try {
+				dbConn = dbUtil.getConnection(dbFlag);
+				final int previousIsolationLevel = dbConn.getTransactionIsolation();
+				if (previousIsolationLevel != 2) {
+					dbConn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+				}
+				dbConn.setAutoCommit(false);
+				String selectStatement = "SELECT * FROM " + DBConnectUtils.DBSCHEMA
+						+ ".ROOMS WHERE ROOM_NO=? AND HOTEL_ID=? AND MAX_OCCUPANCY>=? AND AVAILABILITY=0";
+				System.out.println(selectStatement);
+				stmt = dbConn.prepareStatement(selectStatement);
+				stmt.setInt(1, roomNo);
+				stmt.setInt(2, hotelId);
+				stmt.setInt(3, noOfGuests);
+				selectQueryRS = stmt.executeQuery();
 				
-		} catch (SQLException e) {
-			try {
-				dbConn.rollback();
-			} catch (SQLException e1) {
-				System.out.println("The transaction will be rolled back because :" + e.getMessage());
-			}
-			// Prints the error message if something goes wrong when updating.
-		} finally {
-			try {
-				dbConn.setAutoCommit(true);
-				if (preparedStatement != null) {
-					preparedStatement.close();
+				while (selectQueryRS.next()) {
+					String response = selectQueryRS.getString("ROOM_NO");
+					System.out.println(response);
 				}
-				if (dbConn != null) {
-					/*
-					 * Since we are using a connection.commit() or
-					 * connection.rollback() prior to the close so, the
-					 * connection remains in progress when we try to close. This
-					 * step will help to close the transactions. It is in final
-					 * block so that it always executes and the program doesn't
-					 * throw any exception while closing connection.
-					 */
-					dbConn.close();
+	
+				String insertDataQuery = "INSERT INTO " + DBConnectUtils.DBSCHEMA
+						+ ".ASSIGNS(STAFF_ID, CUSTOMER_ID,CHECK_IN,CHECK_OUT, NO_OF_GUESTS, HOTEL_ID, ROOM_NO) "
+						+ "SELECT ?,?,'2017-09-15 02:15:00','2017-09-15 02:15:00', ?,?,? FROM  " + DBConnectUtils.DBSCHEMA
+						+ ".ROOMS AS R WHERE R.ROOM_NO=? AND HOTEL_ID=? AND " + "MAX_OCCUPANCY>=? AND AVAILABILITY=0";
+	
+				int generatedKey = 0;
+	
+				preparedStatement = dbConn.prepareStatement(insertDataQuery, Statement.RETURN_GENERATED_KEYS);
+				preparedStatement.setInt(1, staffId);
+				preparedStatement.setInt(2, customerId);
+				preparedStatement.setInt(3, noOfGuests);
+				preparedStatement.setInt(4, hotelId);
+				preparedStatement.setInt(5, roomNo);
+				preparedStatement.setInt(6, roomNo);
+				preparedStatement.setInt(7, hotelId);
+				preparedStatement.setInt(8, noOfGuests);
+				System.out.println(insertDataQuery);
+				int insertExecuted = preparedStatement.executeUpdate();
+				rs = preparedStatement.getGeneratedKeys();
+				if (rs.next()) {
+					System.out.println(generatedKey);
+					//insertExecuted = true;
 				}
-			} catch (Exception e) {
-				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+	
+					String updateDeleteRequestStatement = "UPDATE " + DBConnectUtils.DBSCHEMA
+							+ ".ROOMS SET AVAILABILITY=1 WHERE ROOM_NO=? AND HOTEL_ID=?";
+					preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+					preparedStatement.setInt(1, roomNo);
+					preparedStatement.setInt(2, hotelId);
+					int numberOfUpdatedRows = preparedStatement.executeUpdate();
+					System.out.println(numberOfUpdatedRows);
+					log.exiting(sourceClass, sourceMethod, generatedKey);
+					dbConn.commit();
+					
+			} catch (SQLException e) {
+				try {
+					dbConn.rollback();
+				} catch (SQLException e1) {
+					System.out.println("The transaction will be rolled back because :" + e.getMessage());
+				}
+				// Prints the error message if something goes wrong when updating.
+			} finally {
+				try {
+					dbConn.setAutoCommit(true);
+					if (preparedStatement != null) {
+						preparedStatement.close();
+					}
+					if (dbConn != null) {
+						/*
+						 * Since we are using a connection.commit() or
+						 * connection.rollback() prior to the close so, the
+						 * connection remains in progress when we try to close. This
+						 * step will help to close the transactions. It is in final
+						 * block so that it always executes and the program doesn't
+						 * throw any exception while closing connection.
+						 */
+						dbConn.close();
+					}
+				} catch (Exception e) {
+					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+				}
 			}
 		}
-	}
-
-
-
-	public void assignRoom(int staffId, int customerId, int noOfGuests, int roomNo, int hotelId, int dbFlag) {
-		String sourceMethod = "assignRoom";	
-		assignRoomAndSetAvailability(staffId, customerId, noOfGuests, roomNo, hotelId, dbFlag);
 	}
 	
 }

@@ -505,7 +505,7 @@ public class ConfigInformationProcessingData {
 				int dbFlag = Integer.parseInt(args[6]);
 				if(staffId > 0 && customerId > 0 && noOfGuests > 0 && roomNo > 0 && hotelId > 0){
 					InformationProcessingDAO informationProcessingDAO = new InformationProcessingDAO();
-					informationProcessingDAO.assignRoom(staffId, customerId, noOfGuests, roomNo, hotelId, dbFlag);		
+					informationProcessingDAO.assignRoomAndSetAvailability(staffId, customerId, noOfGuests, roomNo, hotelId, dbFlag);		
 				}else {
 					System.out.println("Not valid data");
 				}
