@@ -36,6 +36,7 @@ public class InformationProcessingDAO {
 	 */
 	public void addHotel(int hotelId, String phone,String name,String address,String city, int dbFlag){
 		String sourceMethod = "addHotel";	
+		//If the hotel doesn't exist in db then only it should attempt to insert. showhotel method returns true if exists.
 		if(!showHotel(hotelId, dbFlag)){
 			String insertHotelDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".HOTELS ( HOTEL_ID, PHONE, NAME, ADDRESS, CITY ) VALUES (?,?,?,?,?)";
 			PreparedStatement preparedStatement = null;
@@ -50,9 +51,9 @@ public class InformationProcessingDAO {
 				preparedStatement.setString(4, address);
 				preparedStatement.setString(5, city);
 				preparedStatement.execute();
-				System.out.println("Hotel record: "+ hotelId+" inserted. . Query executed :"+insertHotelDataQuery);
+				System.out.println("Hotel record: "+ hotelId+" inserted. Query executed correctly:");
 			} catch (Exception e) {
-				System.out.println("Hotel record: "+ hotelId+" didn't inserted. query executed :"+insertHotelDataQuery);
+				System.out.println("Hotel record: "+ hotelId+" didn't inserted. query didn't executed correctly.");
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 			} finally {
 				try {
@@ -162,7 +163,7 @@ public class InformationProcessingDAO {
 
 
 	
-	/**Show Hotel record By Id.
+	/**Show Hotel record By Id. showhotel method returns true if exists and false if doesn't exist in database.
 	 * @param hotelId
 	 * @param dbFlag
 	 */
@@ -181,7 +182,7 @@ public class InformationProcessingDAO {
 				System.out.println("No hotel found");
 				return false;
 			}else{
-				System.out.println("Hotel found");
+				System.out.println("Hotel found.");
 				while (selectQueryRS.next()) {
 					Hotel hotel = new Hotel();
 					hotel.setId(selectQueryRS.getInt("HOTEL_ID"));
