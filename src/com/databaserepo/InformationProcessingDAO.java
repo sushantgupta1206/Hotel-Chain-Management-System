@@ -317,10 +317,10 @@ public class InformationProcessingDAO {
 	 * @return
 	 */
 	@SuppressWarnings("resource")
-	public void addRoom(int roomNo, int hotelId, int maxOccu, int nightRate, int roomCat, int dbFlag) {
+	public void addRoom(int roomNo, int hotelId, int maxOccu, int nightRate, int roomCat, int availability, int dbFlag) {
 		String sourceMethod = "addRoom";
 		if(!showRoom(roomNo, hotelId, dbFlag) && showRoomCatgeory(roomCat, dbFlag) && showHotel(hotelId, dbFlag)){
-				String insertRoomDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".ROOMS ( ROOM_NO, HOTEL_ID, MAX_OCCUPANCY, NIGHTLY_RATE,AVAILABILITY ) VALUES (?,?,?,?,1)";
+				String insertRoomDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".ROOMS ( ROOM_NO, HOTEL_ID, MAX_OCCUPANCY, NIGHTLY_RATE,AVAILABILITY ) VALUES (?,?,?,?,?)";
 				PreparedStatement preparedStatement = null;
 				Connection dbConn = null;
 				ResultSet rs = null;
@@ -332,6 +332,7 @@ public class InformationProcessingDAO {
 				preparedStatement.setInt(2, hotelId);
 				preparedStatement.setInt(3, maxOccu);
 				preparedStatement.setInt(4, nightRate);
+				preparedStatement.setInt(5, availability);
 				preparedStatement.execute();
 				System.out.println("Room inserted: "+ roomNo+" . Query executed :"+insertRoomDataQuery);
 				

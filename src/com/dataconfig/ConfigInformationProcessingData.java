@@ -149,16 +149,17 @@ if (args.length ==4) {
             output: N/A (Adds a new room to table)
         */          
 	public void addRoom(String[] args) {
-		if (args.length ==7) {
+		if (args.length ==8) {
 			int roomNo=Integer.parseInt(args[1]);
 			int hotelId=Integer.parseInt(args[2]);
 			int maxOccu=Integer.parseInt(args[3]); 
 			int nightRate=Integer.parseInt(args[4]);
 			int roomCat = Integer.parseInt(args[5]);
-			int dbFlag = Integer.parseInt(args[6]);		
+			int availability  = Integer.parseInt(args[6]);
+			int dbFlag = Integer.parseInt(args[7]);		
 			if(roomNo > 0 && hotelId > 0 && maxOccu > 0 && nightRate >= 0 && roomCat>0){
 				InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-				informationProcessingDAO.addRoom(roomNo, hotelId, maxOccu, nightRate, roomCat, dbFlag);
+				informationProcessingDAO.addRoom(roomNo, hotelId, maxOccu, nightRate, roomCat, availability, dbFlag);
 			}else{
 				System.out.println("Not valid data");
 			}
