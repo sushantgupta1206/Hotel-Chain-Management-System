@@ -90,7 +90,9 @@ public class WolfInnStart {
 				//java -jar WolfInn.jar showAllRoomCat 2
 				configHotel.showAllRoomCat(args);
 				break;
-				
+			case "addManager":
+				configHotel.addManager(args);
+				break;	
 				
 			case "addcustomer":
 				try {
@@ -124,7 +126,7 @@ public class WolfInnStart {
 				break;
 				
 			case "checkRoomTypeAvailability":
-				//java -jar WolfInn.jar checkRoomAvailability "Economy" 11 2
+				//java -jar WolfInn.jar checkRoomTypeAvailability "Economy" 11 2
 				configHotel.checkRoomTypeAvailability(args);
 				break;
 				
@@ -145,7 +147,6 @@ public class WolfInnStart {
 				//java -jar WolfInn.jar updateservices 1 5 "2017-05-10 15:17:00" 7 2
 				serviceRecords.updateProvidesServices(args);
 				break;
-
 			//java -jar WolfInn.jar addbill 6 1001 "2017-05-10 15:17:00" 2 "blah d" 2	
 			case "addbill":
 				billingAccounts.addBill(args);
@@ -154,6 +155,7 @@ public class WolfInnStart {
 			case "updatebill":
 				billingAccounts.updateBill(args);
 				break;
+			// java -jar WolfInn.jar deletebill 5 2
 			case "deletebill":
 				billingAccounts.deleteBill(args);
 				break;
@@ -216,6 +218,7 @@ public class WolfInnStart {
 	 */
 	private static void printHelp() {
 		System.out.println("java -jar WolfInn.jar addhotel [<Id> <3 DIGIT Phone> <Name> <Address> <City> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar addManager [<HOTEL_ID> <MANAGER_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar showhotel [<For which Hotel Id> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar showhotels [<DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar updatehotel [<Id> <Phone> <Name> <Address> <City> <For which Hotel Id> <DBflag=2 for MariaDB>]");

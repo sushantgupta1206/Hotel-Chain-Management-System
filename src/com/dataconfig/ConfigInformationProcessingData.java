@@ -103,6 +103,26 @@ public class ConfigInformationProcessingData {
 			System.out.println("Parameters mismatch");
 		}
 	}
+	
+    /*
+    input: Hotel ID, Manager ID
+    output: N/A (Adds a new manager to table)
+*/        
+public void addManager(String args[]){
+if (args.length ==4) {
+	int hotelId = Integer.parseInt(args[1]);
+	int managerId = Integer.parseInt(args[2]);
+	int dbFlag = Integer.parseInt(args[3]);
+	if(hotelId > 0 && managerId >0){
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		informationProcessingDAO.addManager(hotelId, managerId, dbFlag);	
+	}else{
+		System.out.println("Not valid data");
+	}
+}else{
+	System.out.println("Parameters mismatch");
+}
+}
 
         /*
             input: Hotel ID
