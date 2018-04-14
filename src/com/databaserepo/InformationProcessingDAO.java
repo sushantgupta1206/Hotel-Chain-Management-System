@@ -392,14 +392,16 @@ public class InformationProcessingDAO {
 	 * @param oldHotelId
 	 * @param dbFlag
 	 */
-	public void updateRoom(int roomNo,int hotelId,int maxOccu,int nightRate,int setAvailability, int oldRoomNum, int oldHotelId, int dbFlag) {
+	public void updateRoom(int roomNo,int hotelId,int maxOccu,int nightRate,int setAvailability, int roomCategory, int oldRoomNum, int oldHotelId, int dbFlag) {
 		String sourceMethod = "updateRoom";
-		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOMS SET ROOM_NO = ?, HOTEL_ID = ?,MAX_OCCUPANCY=?, NIGHTLY_RATE=?, AVAILABILITY=? WHERE ROOM_NO = ? AND HOTEL_ID = ?";
 		PreparedStatement preparedStatement = null;
+		PreparedStatement preparedStatement1 = null;
 		int numberOfUpdatedRows = 0;
 		Connection dbConn = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
+			dbConn.setAutoCommit(false);
+			String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOMS SET ROOM_NO = ?, HOTEL_ID = ?,MAX_OCCUPANCY=?, NIGHTLY_RATE=?, AVAILABILITY=? WHERE ROOM_NO = ? AND HOTEL_ID = ?";
 			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
 			preparedStatement.setInt(1, roomNo);
 			preparedStatement.setInt(2, hotelId);
@@ -409,29 +411,51 @@ public class InformationProcessingDAO {
 			preparedStatement.setInt(6, oldRoomNum);
 			preparedStatement.setInt(7, oldHotelId);
 			numberOfUpdatedRows = preparedStatement.executeUpdate();
+			String updateRoomCategory = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOM_HAS SET ROOM_CATEGORY_ID=? WHERE ROOM_NO = ? AND HOTEL_ID = ?";
+			preparedStatement1 = dbConn.prepareStatement(updateRoomCategory);
+			preparedStatement1.setInt(1, roomCategory);
+			preparedStatement1.setInt(2, roomNo);
+			preparedStatement1.setInt(3, hotelId);
+			numberOfUpdatedRows = numberOfUpdatedRows + preparedStatement1.executeUpdate();
+			dbConn.commit();
 			if(numberOfUpdatedRows>0){
 				System.out.println("Updated successfully numberOfUpdatedRows: "+numberOfUpdatedRows);
 			}else{
 				System.out.println("No records found numberOfUpdatedRows: "+numberOfUpdatedRows);
 			}
-		} catch (Exception e) {
-			System.out.println("Updated unsuccessfully numberOfUpdatedRows: "+numberOfUpdatedRows);
+			
+		} catch (SQLException e) {
+			try {
+				dbConn.rollback();
+			} catch (SQLException e1) {
+				System.out.println("The transaction will be rolled back because :");
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			// Prints the error message if something goes wrong when updating.
 		} finally {
 			try {
+				dbConn.setAutoCommit(true);
 				if (preparedStatement != null) {
 					preparedStatement.close();
-				} 
+				}
 				if (dbConn != null) {
+					/*
+					 * Since we are using a connection.commit() or
+					 * connection.rollback() prior to the close so, the
+					 * connection remains in progress when we try to close. This
+					 * step will help to close the transactions. It is in final
+					 * block so that it always executes and the program doesn't
+					 * throw any exception while closing connection.
+					 */
 					dbConn.close();
 				}
-			}catch (Exception e) {
+			} catch (Exception e) {
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 			}
 		}
-		log.exiting(sourceClass, sourceMethod, numberOfUpdatedRows);
-		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
 	}
+	
 
 	
 	/**Show All Rooms

@@ -173,20 +173,21 @@ if (args.length ==4) {
             output: N/A (Updates a specific room's information)
         */         
 	public void updateRoom(String[] args) {
-		if (args.length ==9) {
+		if (args.length ==10) {
 			int roomNo = Integer.parseInt(args[1]);
 			int hotelId = Integer.parseInt(args[2]);
 			int maxOccu = Integer.parseInt(args[3]);
 			int nightRate = Integer.parseInt(args[4]);
 			int setAvailability = Integer.parseInt(args[5]);
-			int oldRoomNum=Integer.parseInt(args[6]);
-			int oldHotelId=Integer.parseInt(args[7]);
-			int dbFlag = Integer.parseInt(args[8]);
+			int roomCategory = Integer.parseInt(args[6]);
+			int oldRoomNum=Integer.parseInt(args[7]);
+			int oldHotelId=Integer.parseInt(args[8]);
+			int dbFlag = Integer.parseInt(args[9]);
 			
 			if((setAvailability == 0 || setAvailability == 1) && roomNo > 0 && hotelId > 0 && maxOccu > 0 && nightRate >= 0 &&
 					oldRoomNum > 0 && oldHotelId > 0){
 				InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-				informationProcessingDAO.updateRoom(roomNo, hotelId, maxOccu, nightRate, setAvailability, oldRoomNum, oldHotelId, dbFlag);
+				informationProcessingDAO.updateRoom(roomNo, hotelId, maxOccu, nightRate, setAvailability, roomCategory, oldRoomNum, oldHotelId, dbFlag);
 			}else{
 				System.out.println("Not valid data");
 			}
