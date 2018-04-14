@@ -138,5 +138,10 @@ else {
                     System.out.println("Not valid data");  
                 }
 	}
+
+	public void checkoutCustomer(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

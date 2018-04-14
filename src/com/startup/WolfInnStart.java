@@ -174,7 +174,10 @@ public class WolfInnStart {
 			case "checkitemizedtotalamount":
 				billingAccounts.checkItemizedTotalAmount(args);
 				break;
-			
+			case "checkoutcustomer":
+				billingAccounts.checkoutCustomer(args);
+				break;
+				
 			
 			case "occupancybyhotel":
 				//java -jar WolfInn.jar  occupancybyhotel  "2017-05-10 23:59:59" "2017-05-13 09:59:59" 2
