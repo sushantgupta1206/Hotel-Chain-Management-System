@@ -51,7 +51,7 @@ public class InformationProcessingDAO {
 				preparedStatement.setString(4, address);
 				preparedStatement.setString(5, city);
 				preparedStatement.execute();
-				System.out.println("Hotel record: "+ hotelId+" inserted. Query executed correctly:");
+				System.out.println("Hotel inserted with Id: "+ hotelId+" Query executed correctly.");
 			} catch (Exception e) {
 				System.out.println("Hotel record: "+ hotelId+" didn't inserted. query didn't executed correctly.");
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
@@ -71,7 +71,10 @@ public class InformationProcessingDAO {
 				}
 			}
 			log.exiting(sourceClass, sourceMethod);
+		}else{
+			System.out.println("Hotel already found so cannot insert again.");
 		}
+		
 	}
 
 	/**Insert Manager Record.
@@ -179,7 +182,7 @@ public class InformationProcessingDAO {
 			stmt.setInt(1, hotelId);
 			selectQueryRS=stmt.executeQuery();
 			if (!selectQueryRS.isBeforeFirst()) {
-				System.out.println("No hotel found");
+				System.out.println("No hotel found with this Id.");
 				return false;
 			}else{
 				System.out.println("Hotel found.");
