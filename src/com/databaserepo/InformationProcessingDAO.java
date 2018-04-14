@@ -662,11 +662,12 @@ public class InformationProcessingDAO {
 	@SuppressWarnings("resource")
 	public void addStaffToHotel(Staff staff, int hotelId, int dbFlag) {
 		String sourceMethod = "addStaff";
-		if(!showHotel(hotelId, dbFlag)){
+		if(showHotel(hotelId, dbFlag)){
 			PreparedStatement preparedStatement = null;
 			Connection dbConn = null;
 			ResultSet rs = null;
 			try {
+				System.out.println("TRY 1");
 				dbConn = dbUtil.getConnection(dbFlag);
 				dbConn.setAutoCommit(false);
 				String insertDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".STAFF (STAFF_ID, PHONE, NAME, ADDRESS, DOB, DEPARTMENT, TITLE, AGE) VALUES (?,?,?,?,?,?,?,?)";
@@ -717,6 +718,7 @@ public class InformationProcessingDAO {
 				try {
 					dbConn.rollback();
 				} catch (SQLException e1) {
+					System.out.println("TRY 3");
 					System.out.println("The transaction will be rolled back because :");
 					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 				}
