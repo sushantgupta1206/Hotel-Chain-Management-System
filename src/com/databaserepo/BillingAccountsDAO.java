@@ -158,12 +158,12 @@ public class BillingAccountsDAO {
 
 	public void deleteBill(int billId, int dbFlag) {
 		String sourceMethod = "deleteBill";
-		String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".BILLS WHERE BILL_ID = ?";
 		PreparedStatement preparedStatement = null;
 		int numberOfDeletedRows = 0;
 		Connection dbConn = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
+			String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".BILLS WHERE BILL_ID = ?";
 			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
 			preparedStatement.setInt(1, billId);
 			numberOfDeletedRows = preparedStatement.executeUpdate();

@@ -150,6 +150,7 @@ public class WolfInnStart {
 			case "addbill":
 				billingAccounts.addBill(args);
 				break;
+			//java -jar WolfInn.jar updatebill 5 1001 '2017-05-10?' 2 "1234 blah st" 2
 			case "updatebill":
 				billingAccounts.updateBill(args);
 				break;
