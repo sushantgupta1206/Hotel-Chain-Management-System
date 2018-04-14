@@ -73,7 +73,43 @@ public class InformationProcessingDAO {
 		log.exiting(sourceClass, sourceMethod);
 	}
 
-
+	/**Insert Manager Record.
+	 * @param hotelId
+	 * @param managerId
+	 */
+	public void addManager(int hotelId, int managerId, int dbFlag){
+		String sourceMethod = "addManager";	
+		String insertManagerQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".MANAGER (STAFF_ID, HOTEL_ID) VALUES (?,?)";
+		PreparedStatement preparedStatement = null;
+		Connection dbConn = null;
+		ResultSet rs = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(insertManagerQuery,Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setInt(1, hotelId);
+			preparedStatement.setInt(2, managerId);
+			preparedStatement.execute();
+			System.out.println("Manager record: "+ hotelId+" inserted. . Query executed :"+insertManagerQuery);
+		} catch (Exception e) {
+			System.out.println("Manager record: "+ hotelId+" didn't inserted. query executed :"+insertManagerQuery);
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod);
+	}
 	
 	/**Show all Hotel records.
 	 * @param dbFlag
@@ -628,7 +664,7 @@ public class InformationProcessingDAO {
 	@SuppressWarnings("resource")
 	public void addStaffToHotel(Staff staff, int hotelId, int dbFlag) {
 		String sourceMethod = "addStaff";
-		if(!showStaff(staff.getStaffId(), dbFlag) && showHotel(hotelId, dbFlag)){
+		if(!showHotel(hotelId, dbFlag)){
 			PreparedStatement preparedStatement = null;
 			Connection dbConn = null;
 			ResultSet rs = null;
@@ -1273,8 +1309,9 @@ public class InformationProcessingDAO {
 		return responsenumberOfUpdatedRows;
 	}
 	
+	//
 	@SuppressWarnings("resource")
-	public void assignRoomAndSetAvailability(int staffId, int customerId, int noOfGuests, int roomNo, int hotelId, int dbFlag){
+	public void assignRoomAndSetAvailability(int staffId, int customerId, int noOfGuests, int roomNo, int hotelId,String checkInDate,String checkOutDate, int dbFlag){
 		String sourceMethod = "assignRoomAndSetAvailability";
 		if(showCustomer(customerId, dbFlag) && showStaff(staffId, dbFlag) && showRoom(roomNo, hotelId, dbFlag)){
 			PreparedStatement stmt = null;
@@ -1289,55 +1326,66 @@ public class InformationProcessingDAO {
 					dbConn.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 				}
 				dbConn.setAutoCommit(false);
-				String selectStatement = "SELECT * FROM " + DBConnectUtils.DBSCHEMA
-						+ ".ROOMS WHERE ROOM_NO=? AND HOTEL_ID=? AND MAX_OCCUPANCY>=? AND AVAILABILITY=0";
+				/*String selectStatement = "SELECT * FROM " + DBConnectUtils.DBSCHEMA
+						+ ".ROOMS WHERE ROOM_NO=? AND HOTEL_ID=? AND MAX_OCCUPANCY>=? AND AVAILABILITY=1";*/
+				String selectStatement = "SELECT * FROM  "+DBConnectUtils.DBSCHEMA+".ROOMS AS R INNER JOIN  "+DBConnectUtils.DBSCHEMA+".SHWORKSFOR AS SWF WHERE R.HOTEL_ID=SWF.HOTEL_ID AND "
+						+ "R.ROOM_NO=? AND R.HOTEL_ID=? AND MAX_OCCUPANCY>=? AND AVAILABILITY=1 AND STAFF_ID=?";
 				System.out.println(selectStatement);
 				stmt = dbConn.prepareStatement(selectStatement);
 				stmt.setInt(1, roomNo);
 				stmt.setInt(2, hotelId);
 				stmt.setInt(3, noOfGuests);
+				stmt.setInt(4, staffId);
 				selectQueryRS = stmt.executeQuery();
-				
-				while (selectQueryRS.next()) {
-					String response = selectQueryRS.getString("ROOM_NO");
-					System.out.println(response);
+				if (!selectQueryRS.isBeforeFirst()) {
+					System.out.println("Room not available or guests more than occupancy");
+				}else{
+					System.out.println("Room available and guests not more than occupancy");
+					System.out.println("ROOM_NO		HOTEL_ID");
+					while (selectQueryRS.next()) {
+						int roomN = selectQueryRS.getInt("ROOM_NO");
+						int hotelI = selectQueryRS.getInt("HOTEL_ID");
+						System.out.println(roomN+"		"+hotelI);
+					}
+		
+					String insertDataQuery = "INSERT INTO " + DBConnectUtils.DBSCHEMA
+							+ ".ASSIGNS(STAFF_ID, CUSTOMER_ID,CHECK_IN,CHECK_OUT, NO_OF_GUESTS, HOTEL_ID, ROOM_NO) "
+							+ "SELECT ?,?,?,?,?,?,? FROM  " + DBConnectUtils.DBSCHEMA
+							+ ".ROOMS AS R INNER JOIN  "+DBConnectUtils.DBSCHEMA+".SHWORKSFOR AS SWF WHERE R.HOTEL_ID=SWF.HOTEL_ID AND "
+									+ " R.ROOM_NO=? AND R.HOTEL_ID=? AND " + "MAX_OCCUPANCY>=? AND AVAILABILITY=1 AND STAFF_ID=?";
+		
+					System.out.println("Assigns record inserted. . Query executed :"+insertDataQuery);
+					preparedStatement = dbConn.prepareStatement(insertDataQuery, Statement.RETURN_GENERATED_KEYS);
+					preparedStatement.setInt(1, staffId);
+					preparedStatement.setInt(2, customerId);
+					preparedStatement.setString(3, checkInDate);
+					preparedStatement.setString(4, checkOutDate);
+					preparedStatement.setInt(5, noOfGuests);
+					preparedStatement.setInt(6, hotelId);
+					preparedStatement.setInt(7, roomNo);
+					preparedStatement.setInt(8, roomNo);
+					preparedStatement.setInt(9, hotelId);
+					preparedStatement.setInt(10, noOfGuests);
+					preparedStatement.setInt(11, staffId);
+					preparedStatement.execute();
+					System.out.println("Assigns record inserted. . Query executed :"+insertDataQuery);
+		
+						String updateDeleteRequestStatement = "UPDATE " + DBConnectUtils.DBSCHEMA
+								+ ".ROOMS SET AVAILABILITY=0 WHERE ROOM_NO=? AND HOTELS_ID=?";
+						preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
+						preparedStatement.setInt(1, roomNo);
+						preparedStatement.setInt(2, hotelId);
+						int numberOfUpdatedRows = preparedStatement.executeUpdate();
+						if(numberOfUpdatedRows>0){
+							System.out.println("Room availability changed to not available."+numberOfUpdatedRows);
+						}else{
+							System.out.println("No records found numberOfUpdatedRows: "+numberOfUpdatedRows);
+						}
+						log.exiting(sourceClass, sourceMethod);
+						dbConn.commit();
 				}
-	
-				String insertDataQuery = "INSERT INTO " + DBConnectUtils.DBSCHEMA
-						+ ".ASSIGNS(STAFF_ID, CUSTOMER_ID,CHECK_IN,CHECK_OUT, NO_OF_GUESTS, HOTEL_ID, ROOM_NO) "
-						+ "SELECT ?,?,'2017-09-15 02:15:00','2017-09-15 02:15:00', ?,?,? FROM  " + DBConnectUtils.DBSCHEMA
-						+ ".ROOMS AS R WHERE R.ROOM_NO=? AND HOTEL_ID=? AND " + "MAX_OCCUPANCY>=? AND AVAILABILITY=0";
-	
-				int generatedKey = 0;
-	
-				preparedStatement = dbConn.prepareStatement(insertDataQuery, Statement.RETURN_GENERATED_KEYS);
-				preparedStatement.setInt(1, staffId);
-				preparedStatement.setInt(2, customerId);
-				preparedStatement.setInt(3, noOfGuests);
-				preparedStatement.setInt(4, hotelId);
-				preparedStatement.setInt(5, roomNo);
-				preparedStatement.setInt(6, roomNo);
-				preparedStatement.setInt(7, hotelId);
-				preparedStatement.setInt(8, noOfGuests);
-				System.out.println(insertDataQuery);
-				int insertExecuted = preparedStatement.executeUpdate();
-				rs = preparedStatement.getGeneratedKeys();
-				if (rs.next()) {
-					System.out.println(generatedKey);
-					//insertExecuted = true;
-				}
-	
-					String updateDeleteRequestStatement = "UPDATE " + DBConnectUtils.DBSCHEMA
-							+ ".ROOMS SET AVAILABILITY=1 WHERE ROOM_NO=? AND HOTEL_ID=?";
-					preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
-					preparedStatement.setInt(1, roomNo);
-					preparedStatement.setInt(2, hotelId);
-					int numberOfUpdatedRows = preparedStatement.executeUpdate();
-					System.out.println(numberOfUpdatedRows);
-					log.exiting(sourceClass, sourceMethod, generatedKey);
-					dbConn.commit();
-					
 			} catch (SQLException e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 				try {
 					dbConn.rollback();
 				} catch (SQLException e1) {

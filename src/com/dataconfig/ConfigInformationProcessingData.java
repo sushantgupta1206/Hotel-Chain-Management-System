@@ -103,6 +103,26 @@ public class ConfigInformationProcessingData {
 			System.out.println("Parameters mismatch");
 		}
 	}
+	
+    /*
+    input: Hotel ID, Manager ID
+    output: N/A (Adds a new manager to table)
+*/        
+public void addManager(String args[]){
+if (args.length ==4) {
+	int hotelId = Integer.parseInt(args[1]);
+	int managerId = Integer.parseInt(args[2]);
+	int dbFlag = Integer.parseInt(args[3]);
+	if(hotelId > 0 && managerId >0){
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		informationProcessingDAO.addManager(hotelId, managerId, dbFlag);	
+	}else{
+		System.out.println("Not valid data");
+	}
+}else{
+	System.out.println("Parameters mismatch");
+}
+}
 
         /*
             input: Hotel ID
@@ -496,16 +516,18 @@ public class ConfigInformationProcessingData {
             output: N/A (Assigns room to customer)
         */           
 	public void assignRoom(String[] args) {
-			if (args.length ==7) {
+			if (args.length ==9) {
 				int staffId = Integer.parseInt(args[1]);
 				int customerId = Integer.parseInt(args[2]);
-				int noOfGuests = Integer.parseInt(args[3]);
-				int hotelId = Integer.parseInt(args[4]);
-				int roomNo = Integer.parseInt(args[5]);
-				int dbFlag = Integer.parseInt(args[6]);
+				String checkInDate = args[3];
+				String checkOutDate = args[4];
+				int noOfGuests = Integer.parseInt(args[5]);
+				int hotelId = Integer.parseInt(args[6]);
+				int roomNo = Integer.parseInt(args[7]);
+				int dbFlag = Integer.parseInt(args[8]);
 				if(staffId > 0 && customerId > 0 && noOfGuests > 0 && roomNo > 0 && hotelId > 0){
 					InformationProcessingDAO informationProcessingDAO = new InformationProcessingDAO();
-					informationProcessingDAO.assignRoomAndSetAvailability(staffId, customerId, noOfGuests, roomNo, hotelId, dbFlag);		
+					informationProcessingDAO.assignRoomAndSetAvailability(staffId, customerId, noOfGuests, roomNo, hotelId,checkInDate,checkOutDate,dbFlag);		
 				}else {
 					System.out.println("Not valid data");
 				}
