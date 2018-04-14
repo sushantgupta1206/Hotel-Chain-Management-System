@@ -93,12 +93,13 @@ public class WolfInnStart {
 			case "addManager":
 				configHotel.addManager(args);
 				break;	
-				
+
 			case "addcustomer":
 				try {
 					//java -jar WolfInn.jar addcustomer 7 9299191234 "Mark Ruby" "mruby@email.com" "1990-02-01" 2
 					configHotel.addCustomer(args);
 				} catch (ParseException e) {
+					System.out.println("DATE NOT CORRECT FORMAT");
 					e.printStackTrace();
 				}
 				break;
@@ -107,6 +108,7 @@ public class WolfInnStart {
 					//java -jar WolfInn.jar updatecustomer 7 913 "Mark Ruby" "mruby@email.com" "1990-02-01" 7 2
 					configHotel.updateCustomer(args);
 				} catch (ParseException e) {
+					System.out.println("DATE NOT CORRECT FORMAT");
 					e.printStackTrace();
 				}
 				break;
@@ -135,6 +137,7 @@ public class WolfInnStart {
 				break;
 				
 			case "assignroom":
+				//java -jar WolfInn.jar assignroom 1001 101 "2018-05-10 15:17:00" "2018-05-11 15:17:00" 5 0001 01 2
 				configHotel.assignRoom(args);
 				break;
 				
@@ -245,6 +248,7 @@ public class WolfInnStart {
 		System.out.println("java -jar WolfInn.jar checkRoomAvailability [<ROOM_NO> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar checkRoomTypeAvailability [<ROOM_TYPE_NAME> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar setRoomAvailability [<AVAILABILITY> <ROOM_NO> <HOTEL_ID> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar assignroom [<STAFF_ID> <CUSTOMER_ID> <CHECK_IN> <CHECK_OUT> <NO_OF_GUESTS> <HOTEL_ID> <ROOM_NO> <DBflag=2 for MariaDB>]");
 
 		System.out.println("java -jar WolfInn.jar occupancybyhotel  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar occupancybycity  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
