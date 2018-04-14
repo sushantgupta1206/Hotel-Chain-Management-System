@@ -90,13 +90,16 @@ public class WolfInnStart {
 				//java -jar WolfInn.jar showAllRoomCat 2
 				configHotel.showAllRoomCat(args);
 				break;
-				
-				
+			case "addManager":
+				configHotel.addManager(args);
+				break;	
+
 			case "addcustomer":
 				try {
 					//java -jar WolfInn.jar addcustomer 7 9299191234 "Mark Ruby" "mruby@email.com" "1990-02-01" 2
 					configHotel.addCustomer(args);
 				} catch (ParseException e) {
+					System.out.println("DATE NOT CORRECT FORMAT");
 					e.printStackTrace();
 				}
 				break;
@@ -105,6 +108,7 @@ public class WolfInnStart {
 					//java -jar WolfInn.jar updatecustomer 7 913 "Mark Ruby" "mruby@email.com" "1990-02-01" 7 2
 					configHotel.updateCustomer(args);
 				} catch (ParseException e) {
+					System.out.println("DATE NOT CORRECT FORMAT");
 					e.printStackTrace();
 				}
 				break;
@@ -124,7 +128,7 @@ public class WolfInnStart {
 				break;
 				
 			case "checkRoomTypeAvailability":
-				//java -jar WolfInn.jar checkRoomAvailability "Economy" 11 2
+				//java -jar WolfInn.jar checkRoomTypeAvailability "Economy" 11 2
 				configHotel.checkRoomTypeAvailability(args);
 				break;
 				
@@ -133,6 +137,7 @@ public class WolfInnStart {
 				break;
 				
 			case "assignroom":
+				//java -jar WolfInn.jar assignroom 1001 101 "2018-05-10 15:17:00" "2018-05-11 15:17:00" 5 0001 01 2
 				configHotel.assignRoom(args);
 				break;
 				
@@ -145,14 +150,15 @@ public class WolfInnStart {
 				//java -jar WolfInn.jar updateservices 1 5 "2017-05-10 15:17:00" 7 2
 				serviceRecords.updateProvidesServices(args);
 				break;
-
 			//java -jar WolfInn.jar addbill 6 1001 "2017-05-10 15:17:00" 2 "blah d" 2	
 			case "addbill":
 				billingAccounts.addBill(args);
 				break;
+			//java -jar WolfInn.jar updatebill 5 1001 '2017-05-10?' 2 "1234 blah st" 2
 			case "updatebill":
 				billingAccounts.updateBill(args);
 				break;
+			// java -jar WolfInn.jar deletebill 5 2
 			case "deletebill":
 				billingAccounts.deleteBill(args);
 				break;
@@ -215,6 +221,7 @@ public class WolfInnStart {
 	 */
 	private static void printHelp() {
 		System.out.println("java -jar WolfInn.jar addhotel [<Id> <3 DIGIT Phone> <Name> <Address> <City> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar addManager [<HOTEL_ID> <MANAGER_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar showhotel [<For which Hotel Id> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar showhotels [<DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar updatehotel [<Id> <Phone> <Name> <Address> <City> <For which Hotel Id> <DBflag=2 for MariaDB>]");
@@ -241,6 +248,7 @@ public class WolfInnStart {
 		System.out.println("java -jar WolfInn.jar checkRoomAvailability [<ROOM_NO> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar checkRoomTypeAvailability [<ROOM_TYPE_NAME> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar setRoomAvailability [<AVAILABILITY> <ROOM_NO> <HOTEL_ID> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar assignroom [<STAFF_ID> <CUSTOMER_ID> <CHECK_IN> <CHECK_OUT> <NO_OF_GUESTS> <HOTEL_ID> <ROOM_NO> <DBflag=2 for MariaDB>]");
 
 		System.out.println("java -jar WolfInn.jar occupancybyhotel  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar occupancybycity  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");

@@ -35,39 +35,37 @@ public class InformationProcessingDAO {
 	 * @param dbFlag
 	 */
 	public void addHotel(int hotelId, String phone,String name,String address,String city, int dbFlag){
-		String sourceMethod = "addHotel";
-		if(!showHotel(hotelId, dbFlag)){	
-			String insertHotelDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".HOTELS ( HOTEL_ID, PHONE, NAME, ADDRESS, CITY ) VALUES (?,?,?,?,?)";
-			PreparedStatement preparedStatement = null;
-			Connection dbConn = null;
-			ResultSet rs = null;
+		String sourceMethod = "addHotel";	
+		String insertHotelDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".HOTELS ( HOTEL_ID, PHONE, NAME, ADDRESS, CITY ) VALUES (?,?,?,?,?)";
+		PreparedStatement preparedStatement = null;
+		Connection dbConn = null;
+		ResultSet rs = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(insertHotelDataQuery,Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setInt(1, hotelId);
+			preparedStatement.setString(2, phone);
+			preparedStatement.setString(3, name);
+			preparedStatement.setString(4, address);
+			preparedStatement.setString(5, city);
+			preparedStatement.execute();
+			System.out.println("Hotel record: "+ hotelId+" inserted. . Query executed :"+insertHotelDataQuery);
+		} catch (Exception e) {
+			System.out.println("Hotel record: "+ hotelId+" didn't inserted. query executed :"+insertHotelDataQuery);
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
 			try {
-				dbConn = dbUtil.getConnection(dbFlag);
-				preparedStatement = dbConn.prepareStatement(insertHotelDataQuery,Statement.RETURN_GENERATED_KEYS);
-				preparedStatement.setInt(1, hotelId);
-				preparedStatement.setString(2, phone);
-				preparedStatement.setString(3, name);
-				preparedStatement.setString(4, address);
-				preparedStatement.setString(5, city);
-				preparedStatement.execute();
-				System.out.println("Hotel record: "+ hotelId+" inserted. . Query executed :"+insertHotelDataQuery);
-			} catch (Exception e) {
-				System.out.println("Hotel record: "+ hotelId+" didn't inserted. query executed :"+insertHotelDataQuery);
-				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-			} finally {
-				try {
-					if (rs != null) {
-						rs.close();
-					}
-					if (preparedStatement != null) {
-						preparedStatement.close();
-					} 
-					if (dbConn != null) {
-						dbConn.close();
-					}
-				}catch (Exception e) {
-					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+				if (rs != null) {
+					rs.close();
 				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 			}
 		}
 		log.exiting(sourceClass, sourceMethod);
@@ -664,11 +662,12 @@ public class InformationProcessingDAO {
 	@SuppressWarnings("resource")
 	public void addStaffToHotel(Staff staff, int hotelId, int dbFlag) {
 		String sourceMethod = "addStaff";
-		if(!showHotel(hotelId, dbFlag)){
+		if(showHotel(hotelId, dbFlag)){
 			PreparedStatement preparedStatement = null;
 			Connection dbConn = null;
 			ResultSet rs = null;
 			try {
+				System.out.println("TRY 1");
 				dbConn = dbUtil.getConnection(dbFlag);
 				dbConn.setAutoCommit(false);
 				String insertDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".STAFF (STAFF_ID, PHONE, NAME, ADDRESS, DOB, DEPARTMENT, TITLE, AGE) VALUES (?,?,?,?,?,?,?,?)";
@@ -719,6 +718,7 @@ public class InformationProcessingDAO {
 				try {
 					dbConn.rollback();
 				} catch (SQLException e1) {
+					System.out.println("TRY 3");
 					System.out.println("The transaction will be rolled back because :");
 					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 				}
