@@ -10,15 +10,17 @@ address
     output: N/A (Adds a new bill to table)
 */
 public void payBill(String[] args) {
-	int billId = Integer.parseInt(args[1]);
-	int custID = Integer.parseInt(args[2]);
-	String checkIn = args[3];
-	int payMethodID = Integer.parseInt(args[4]);
-	String billingAddress = args[5];
-	int dbFlag = Integer.parseInt(args[6]);  
-	if (billingAddress != null && billId > 0 && dbFlag > 0) {
+	int custID = Integer.parseInt(args[1]);
+	String checkIn = args[2];
+	int payMethodID = Integer.parseInt(args[3]);
+	String billingAddress = args[4];
+	String paySSN = args[5];
+	int roomNo = Integer.parseInt(args[6]);
+	int hotelID = Integer.parseInt(args[7]);
+	int dbFlag = Integer.parseInt(args[8]);  
+	if (billingAddress != null && dbFlag > 0) {
 		BillingAccountsDAO billingAccountsDAO = new BillingAccountsDAO();
-		billingAccountsDAO.payBill(billId, custID, checkIn, payMethodID, billingAddress, dbFlag);
+		billingAccountsDAO.checkOut(custID, checkIn, payMethodID, billingAddress, paySSN, roomNo, hotelID, dbFlag);
 	}
 	else{
 		System.out.println("Not valid data");	

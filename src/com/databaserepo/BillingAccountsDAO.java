@@ -3,6 +3,7 @@ package com.databaserepo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,8 +17,8 @@ public class BillingAccountsDAO {
 	private static String sourceClass = InformationProcessingDAO.class.getName();
 	private static Logger log = Logger.getLogger(sourceClass);
 	
-	
-	public String payBill(int billID, int custID, String checkIn, int payMethodID, String billingAddress, int dbFlag){
+
+	public String checkOut(int custID, String checkIn, int payMethodID, String billingAddress, String paySSN, int roomNo, int hotelID, int dbFlag){
 	/*
 	 * input: billID, customerID, checkIn time, payment method, billing address, dbflag
 	 * purpose: add a bill for a customer's stay to the database
@@ -28,11 +29,13 @@ public class BillingAccountsDAO {
 		String sourceMethod = "addBill";
 		PreparedStatement preparedStatement1 = null;
 		PreparedStatement preparedStatement2 = null;
+		PreparedStatement preparedStatement3 = null;
 		Connection dbConn = null;
-		ResultSet rs1 = null;
+		ResultSet rsBill = null;
 		ResultSet rs2 = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
+			dbConn.setAutoCommit(false);
 			String getAmtQuery = "SELECT SUM(B.COST) + DATEDIFF(A.CHECK_OUT, A.CHECK_IN)*A.NIGHTLY_RATE FROM "
 					+ "(SELECT * FROM "+DBConnectUtils.DBSCHEMA+".PROVIDES JOIN "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS ON "
 					+ "SERVICE_RECORDS.SERVICE_RECORD_ID = PROVIDES.SERVICE_ID) AS B JOIN "
@@ -54,38 +57,63 @@ public class BillingAccountsDAO {
 			} else {
 				discountedAmt = 0;
 			}
-			String insertBillQuery = "INSERT INTO "+DBConnectUtils.DBSCHEMA+".BILLS (BILL_ID, AMOUNT, DISCOUNTED_AMT, BILLING_ADDRESS) VALUES(?,?,?,?)";
-			final int BILL_ID_COLUMN = 1;
-			final int AMOUNT_COLUMN = 2;
-			final int DISCOUNTED_AMT_COLUMN = 3;
-			final int BILLING_ADDRESS_COLUMN = 4;
+			String insertBillQuery = "INSERT INTO "+DBConnectUtils.DBSCHEMA+".BILLS (AMOUNT, DISCOUNTED_AMT, BILLING_ADDRESS) VALUES(?,?,?)";
+			final int AMOUNT_COLUMN = 1;
+			final int DISCOUNTED_AMT_COLUMN = 2;
+			final int BILLING_ADDRESS_COLUMN = 3;
 			preparedStatement1 = dbConn.prepareStatement(insertBillQuery,Statement.RETURN_GENERATED_KEYS);
-			preparedStatement1.setInt(BILL_ID_COLUMN, billID);
 			preparedStatement1.setInt(AMOUNT_COLUMN, amt);
 			preparedStatement1.setInt(DISCOUNTED_AMT_COLUMN, discountedAmt);
 			preparedStatement1.setString(BILLING_ADDRESS_COLUMN, billingAddress);
 			preparedStatement1.execute();
-			rs1 = preparedStatement1.getGeneratedKeys();
-		} catch (Exception e) {
+			rsBill = preparedStatement1.getGeneratedKeys();
+			int akey = 0;
+			while(rsBill.next()){
+				akey = Integer.parseInt(rsBill.getString(1));
+			}
+			String insertPayQuery = "INSERT INTO "+DBConnectUtils.DBSCHEMA+".PAYS () VALUES(?,?,?,?)";
+			preparedStatement3 = dbConn.prepareStatement(insertPayQuery,Statement.RETURN_GENERATED_KEYS);
+			preparedStatement3.setInt(1, custID);
+			preparedStatement3.setInt(2, akey);
+			preparedStatement3.setInt(3, payMethodID);
+			preparedStatement3.setString(4, paySSN);
+			preparedStatement3.execute();
+			rsBill = preparedStatement1.getGeneratedKeys();
+			String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOMS SET AVAILABILITY=? WHERE ROOM_NO=? AND HOTEL_ID=?";
+			preparedStatement3 = dbConn.prepareStatement(updateDeleteRequestStatement);
+			preparedStatement3.setInt(1, 0);
+			preparedStatement3.setInt(2, roomNo);
+			preparedStatement3.setInt(3, hotelID);
+			preparedStatement3.executeUpdate();
+			dbConn.commit();
+			System.out.println("Check out complete. Bill paid. Room set to available.");
+		} catch (SQLException e) {
+			try {
+				dbConn.rollback();
+			} catch (SQLException e1) {
+				System.out.println("The transaction will be rolled back because :");
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			// Prints the error message if something goes wrong when updating.
 		} finally {
 			try {
-				if (rs1 != null) {
-					rs1.close();
-				}
+				dbConn.setAutoCommit(true);
 				if (preparedStatement1 != null) {
 					preparedStatement1.close();
-				} 
-				if (rs2 != null) {
-					rs2.close();
 				}
-				if (preparedStatement2 != null) {
-					preparedStatement2.close();
-				} 
 				if (dbConn != null) {
+					/*
+					 * Since we are using a connection.commit() or
+					 * connection.rollback() prior to the close so, the
+					 * connection remains in progress when we try to close. This
+					 * step will help to close the transactions. It is in final
+					 * block so that it always executes and the program doesn't
+					 * throw any exception while closing connection.
+					 */
 					dbConn.close();
 				}
-			}catch (Exception e) {
+			} catch (Exception e) {
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 			}
 		}
