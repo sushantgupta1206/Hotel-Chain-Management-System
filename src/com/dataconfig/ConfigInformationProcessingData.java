@@ -549,7 +549,7 @@ if (args.length ==4) {
 		}
 
 		public void releaseRoom(String[] args) {
-			if (args.length ==9) {
+			if (args.length ==4) {
 				int hotelId = Integer.parseInt(args[1]);
 				int roomNo = Integer.parseInt(args[2]);
 				int dbFlag = Integer.parseInt(args[3]);
