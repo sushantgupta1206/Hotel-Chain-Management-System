@@ -186,7 +186,7 @@ public class BillingAccountsDAO {
 		
 	}
 
-		public void checkItemizedTotalAmount(int customerId, int dbFlag) {
+		public void checkItemizedTotalAmount(int customerId, String checkIn, int dbFlag) {
 		String sourceMethod = "checkItemizedTotalAmount";
 		PreparedStatement stmt = null;
 		Connection dbConn = null;
@@ -198,14 +198,15 @@ public class BillingAccountsDAO {
 					+ "JOIN "+DBConnectUtils.DBSCHEMA+".ASSIGNS ON "
 				+	"PROVIDES.CUSTOMER_ID=ASSIGNS.CUSTOMER_ID) INNER JOIN "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS ON "
 						+ "PROVIDES.SERVICE_ID=SERVICE_RECORDS.SERVICE_RECORD_ID) WHERE "
-			+"PROVIDES.CUSTOMER_ID=? AND PROVIDES.TIMESTATE BETWEEN ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT "
-			+"UNION SELECT ASSIGNS.CUSTOMER_ID, 'ROOM' AS 'SERVICE_NAME' ,'SERVICE_ID' AS SERVICE_ID , DATEDIFF(ASSIGNS.CHECK_OUT, ASSIGNS.CHECK_IN) as 'No_Days', "
+			+"PROVIDES.CUSTOMER_ID=?  AND ASSIGNS.CHECK_IN LIKE ? AND PROVIDES.TIMESTATE BETWEEN ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT "
+			+"UNION SELECT ASSIGNS.CUSTOMER_ID, 'ROOM' AS 'SERVICE_NAME' ,' ' AS SERVICE_ID , DATEDIFF(ASSIGNS.CHECK_OUT, ASSIGNS.CHECK_IN) as 'No_Days', "
 			+ "ROOMS.NIGHTLY_RATE AS 'RATE' FROM ("+DBConnectUtils.DBSCHEMA+".ASSIGNS INNER JOIN "+DBConnectUtils.DBSCHEMA+".ROOMS ON "
 					+ "ASSIGNS.ROOM_NO=ROOMS.ROOM_NO AND ASSIGNS.HOTEL_ID=ROOMS.HOTEL_ID) WHERE ASSIGNS.CUSTOMER_ID=?";
 
 			stmt = dbConn.prepareStatement(selectStatement);
 			stmt.setInt(1, customerId);
-			stmt.setInt(2, customerId);
+			stmt.setString(2, checkIn);
+			stmt.setInt(3, customerId);
 			selectQueryRS = stmt.executeQuery();
 			System.out.println("CUSTOMER_ID    SERVICE_NAME		SERVICE_ID   No_of_Days    RATE ");
 			while (selectQueryRS.next()) {
@@ -214,7 +215,7 @@ public class BillingAccountsDAO {
 				String servId= selectQueryRS.getString("SERVICE_ID");
 				int nod= selectQueryRS.getInt("No_Days");
 				int amount= selectQueryRS.getInt("RATE");
-				System.out.println(custId+"	 	"+servname+"	"+servId + " 	"+nod+" 	" +amount);
+				System.out.println(custId+"	 	"+servname+"			"+servId + " 		"+nod+" 	" +amount);
 			}
 			
 		} catch (Exception e) {

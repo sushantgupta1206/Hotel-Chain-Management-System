@@ -70,11 +70,12 @@ public void updatePayBill(String[] args) {
         */        
 	public void checkItemizedTotalAmount(String[] args) {
 		int customerId = Integer.parseInt(args[1]);
-		int dbFlag = Integer.parseInt(args[2]);
+		String checkIn = args[2];
+		int dbFlag = Integer.parseInt(args[3]);
                 
                 if (customerId > 0 && dbFlag > 0) {
                     BillingAccountsDAO billingAccountsDAO = new BillingAccountsDAO();
-                    billingAccountsDAO.checkItemizedTotalAmount(customerId, dbFlag);
+                    billingAccountsDAO.checkItemizedTotalAmount(customerId, checkIn,dbFlag);
                 }
                 else {
                     System.out.println("Not valid data");  
