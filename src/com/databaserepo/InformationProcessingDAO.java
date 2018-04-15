@@ -1385,7 +1385,6 @@ public class InformationProcessingDAO {
 							+ ".ROOMS AS R INNER JOIN  "+DBConnectUtils.DBSCHEMA+".SHWORKSFOR AS SWF WHERE R.HOTEL_ID=SWF.HOTEL_ID AND "
 									+ " R.ROOM_NO=? AND R.HOTEL_ID=? AND " + "MAX_OCCUPANCY>=? AND AVAILABILITY=1 AND STAFF_ID=?";
 		
-					System.out.println("Assigns record inserted. . Query executed :"+insertDataQuery);
 					preparedStatement = dbConn.prepareStatement(insertDataQuery, Statement.RETURN_GENERATED_KEYS);
 					preparedStatement.setInt(1, staffId);
 					preparedStatement.setInt(2, customerId);
@@ -1399,7 +1398,7 @@ public class InformationProcessingDAO {
 					preparedStatement.setInt(10, noOfGuests);
 					preparedStatement.setInt(11, staffId);
 					preparedStatement.execute();
-					System.out.println("Assigns record inserted. . Query executed :"+insertDataQuery);
+					System.out.println("Assigns record in process of inserted.");
 		
 						String updateDeleteRequestStatement = "UPDATE " + DBConnectUtils.DBSCHEMA
 								+ ".ROOMS SET AVAILABILITY=0 WHERE ROOM_NO=? AND HOTEL_ID=?";

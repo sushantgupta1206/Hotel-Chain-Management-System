@@ -549,7 +549,14 @@ if (args.length ==4) {
 		}
 
 		public void releaseRoom(String[] args) {
-			// TODO Auto-generated method stub
-			
+			if (args.length ==9) {
+				int hotelId = Integer.parseInt(args[1]);
+				int roomNo = Integer.parseInt(args[2]);
+				int dbFlag = Integer.parseInt(args[3]);
+				InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+				informationProcessingDAO.setRoomAvailability(1, roomNo, hotelId, dbFlag);
+			}else{
+				System.out.println("Parameters mismatch");
+			}
 		}
 }

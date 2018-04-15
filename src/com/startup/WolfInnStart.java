@@ -123,7 +123,7 @@ public class WolfInnStart {
 				
 			
 			case "checkRoomAvailability":
-				//java -jar WolfInn.jar checkRoomAvailability 11 11 2
+				//java -jar WolfInn.jar checkRoomAvailability 1172 11 2
 				configHotel.checkRoomAvailability(args);
 				break;
 				
@@ -137,7 +137,7 @@ public class WolfInnStart {
 				break;
 				
 			case "assignroom":
-				//java -jar WolfInn.jar assignroom 1001 101 "2018-05-10 15:17:00" "2018-05-11 15:17:00" 5 0001 01 2
+				//java -jar WolfInn.jar assignroom 12 7 "2018-05-10 15:17:00" "2018-05-11 15:17:00" 3 11 1172 2
 				configHotel.assignRoom(args);
 				break;
 			case "releaseroom":
