@@ -310,13 +310,13 @@ public class BillingAccountsDAO {
 									"INNER JOIN  "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS AS SERVICE_RECORDS ON PROVIDES.SERVICE_ID=SERVICE_RECORDS.SERVICE_RECORD_ID) "+
 									"WHERE CUSTOMER.CUSTOMER_ID=?";
 			*/
-			String selectStatement = "SELECT PROVIDES.CUSTOMER_ID, PROVIDES.SERVICE_ID, '' AS 'Number of Days', SERVICE_RECORDS.COST AS 'RATE' "
+			String selectStatement = "SELECT PROVIDES.CUSTOMER_ID, PROVIDES.SERVICE_ID, '' AS 'No_Days', SERVICE_RECORDS.COST AS 'RATE' "
 					+ "FROM (("+DBConnectUtils.DBSCHEMA+".PROVIDES INNER "
 					+ "JOIN "+DBConnectUtils.DBSCHEMA+".ASSIGNS ON "
 				+	"PROVIDES.CUSTOMER_ID=ASSIGNS.CUSTOMER_ID) INNER JOIN "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS ON "
 						+ "PROVIDES.SERVICE_ID=SERVICE_RECORDS.SERVICE_RECORD_ID) WHERE "
 			+"PROVIDES.CUSTOMER_ID=? AND PROVIDES.TIMESTATE BETWEEN ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT "
-			+"UNION SELECT ASSIGNS.CUSTOMER_ID, 'Room' AS SERVICE_ID , DATEDIFF(ASSIGNS.CHECK_OUT, ASSIGNS.CHECK_IN) as 'Number of Days', "
+			+"UNION SELECT ASSIGNS.CUSTOMER_ID, 'Room' AS SERVICE_ID , DATEDIFF(ASSIGNS.CHECK_OUT, ASSIGNS.CHECK_IN) as 'No_Days', "
 			+ "ROOMS.NIGHTLY_RATE AS 'RATE' FROM ("+DBConnectUtils.DBSCHEMA+".ASSIGNS INNER JOIN "+DBConnectUtils.DBSCHEMA+".ROOMS ON "
 					+ "ASSIGNS.ROOM_NO=ROOMS.ROOM_NO AND ASSIGNS.HOTEL_ID=ROOMS.HOTEL_ID) WHERE ASSIGNS.CUSTOMER_ID=?";
 
@@ -327,7 +327,7 @@ public class BillingAccountsDAO {
 			while (selectQueryRS.next()) {
 				int custId= selectQueryRS.getInt("CUSTOMER_ID");
 				int servId= selectQueryRS.getInt("SERVICE_ID");
-				int nod= selectQueryRS.getInt("Number of Days");
+				int nod= selectQueryRS.getInt("No_Days");
 				int amount= selectQueryRS.getInt("RATE");
 				System.out.println(custId+" "+servId + " "+nod+" " +amount);
 			}
