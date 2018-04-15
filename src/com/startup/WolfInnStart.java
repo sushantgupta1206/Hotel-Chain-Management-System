@@ -160,33 +160,19 @@ public class WolfInnStart {
 				break;
 			//java -jar WolfInn.jar addbill 6 1001 "2017-05-10 15:17:00" 2 "blah d" 2	
 			case "addbill":
-				billingAccounts.addBill(args);
+				billingAccounts.payBill(args);
 				break;
 			//java -jar WolfInn.jar updatebill 5 1001 '2017-05-10?' 2 "1234 blah st" 2
 			case "updatebill":
-				billingAccounts.updateBill(args);
+				billingAccounts.updatePayBill(args);
 				break;
 			// java -jar WolfInn.jar deletebill 5 2
 			case "deletebill":
-				billingAccounts.deleteBill(args);
+				billingAccounts.deletePayBill(args);
 				break;
-			case "addpay":
-				billingAccounts.addPay(args);
-				break;
-			case "addgenerate":
-				billingAccounts.addGenerate(args);
-				break;
-			case "checktotalamount":
-				// java -jar WolfInn.jar checktotalamount 5 2
-				billingAccounts.checkTotalAmount(args);
-				break;	
 			case "checkitemizedtotalamount":
 				// java -jar WolfInn.jar checkitemizedtotalamount 5 2
 				billingAccounts.checkItemizedTotalAmount(args);
-				break;
-			case "checkoutcustomer":
-				// java -jar WolfInn.jar checkoutcustomer 5 2
-				billingAccounts.checkoutCustomer(args);
 				break;
 			case "checktotalamountduringstay":
 				// java -jar WolfInn.jar checktotalamount 5 2

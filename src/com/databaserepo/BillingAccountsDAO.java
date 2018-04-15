@@ -17,7 +17,7 @@ public class BillingAccountsDAO {
 	private static Logger log = Logger.getLogger(sourceClass);
 	
 	
-	public String addBill(int billID, int custID, String checkIn, int payMethodID, String billingAddress, int dbFlag){
+	public String payBill(int billID, int custID, String checkIn, int payMethodID, String billingAddress, int dbFlag){
 	/*
 	 * input: billID, customerID, checkIn time, payment method, billing address, dbflag
 	 * purpose: add a bill for a customer's stay to the database
@@ -93,7 +93,7 @@ public class BillingAccountsDAO {
 		return "Added Billing Records";
 	}
 	
-	public void updateBill(int billID, int custID, String checkIn, int payMethodID, String billingAddress, int dbFlag) {
+	public void updatePayBill(int billID, int custID, String checkIn, int payMethodID, String billingAddress, int dbFlag) {
 		/*
 		 * input: billID, amount, discounted amount, billing address
 		 * purpose: update a bill row in the database
@@ -156,7 +156,7 @@ public class BillingAccountsDAO {
 		System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
 	}
 
-	public void deleteBill(int billId, int dbFlag) {
+	public void deletePayBill(int billId, int dbFlag) {
 		String sourceMethod = "deleteBill";
 		PreparedStatement preparedStatement = null;
 		int numberOfDeletedRows = 0;
@@ -186,118 +186,7 @@ public class BillingAccountsDAO {
 		
 	}
 
-	public String payBill(int customerId, int billId, int payId, int payPersonSSN, int creditNum, int dbFlag) {
-		String sourceMethod = "payBill";
-		String insertHotelDataQuery = "INSERT INTO "+DBConnectUtils.DBSCHEMA+".PAYS ( CUSTOMER_ID, BILL_ID, PAY_ID, PAYPERSONSSN, CREDIT_NUM) VALUES(?,?,?,?,?)";
-		PreparedStatement preparedStatement = null;
-		Connection dbConn = null;
-		ResultSet rs = null;
-		try {
-			dbConn = dbUtil.getConnection(dbFlag);
-			preparedStatement = dbConn.prepareStatement(insertHotelDataQuery,Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setInt(1, customerId);
-			preparedStatement.setInt(2, billId);
-			preparedStatement.setInt(3, payId);
-			preparedStatement.setInt(4, payPersonSSN);
-			preparedStatement.setInt(5, creditNum);
-			preparedStatement.execute();
-			rs = preparedStatement.getGeneratedKeys();
-		} catch (Exception e) {
-			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (preparedStatement != null) {
-					preparedStatement.close();
-				} 
-				if (dbConn != null) {
-					dbConn.close();
-				}
-			}catch (Exception e) {
-				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-			}
-		}
-		log.exiting(sourceClass, sourceMethod, "Added");
-		return "Added Pay Records";
-	}
-
-	public String addGenerate(int staffId, int billId, int dbFlag) {
-		String sourceMethod = "addGenerate";
-		String insertHotelDataQuery = "INSERT INTO "+DBConnectUtils.DBSCHEMA+".GENERATES ( STAFF_ID, BILL_ID) VALUES(?,?)";
-		PreparedStatement preparedStatement = null;
-		Connection dbConn = null;
-		ResultSet rs = null;
-		try {
-			dbConn = dbUtil.getConnection(dbFlag);
-			preparedStatement = dbConn.prepareStatement(insertHotelDataQuery,Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setInt(1, staffId);
-			preparedStatement.setInt(2, billId);
-			preparedStatement.execute();
-			rs = preparedStatement.getGeneratedKeys();
-		} catch (Exception e) {
-			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (preparedStatement != null) {
-					preparedStatement.close();
-				} 
-				if (dbConn != null) {
-					dbConn.close();
-				}
-			}catch (Exception e) {
-				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-			}
-		}
-		log.exiting(sourceClass, sourceMethod, "Added");
-		return "Added Who Generates Records";
-	}
-
-	public void checkTotalAmount(int customerId, int dbFlag) {
-		String sourceMethod = "checkTotalAmount";
-		PreparedStatement stmt = null;
-		Connection dbConn = null;
-		ResultSet selectQueryRS = null;
-		try {
-			dbConn = dbUtil.getConnection(dbFlag);
-			String selectStatement = "SELECT CUSTOMER.NAME, BILLS.AMOUNT, CASE WHEN PAYMENT.PAY_METHOD = 'hotel credit' THEN AMOUNT-DISCOUNTED_AMT ELSE AMOUNT END AS Total_Amount_Due_After_Discount "+
-										"FROM (( "+DBConnectUtils.DBSCHEMA+".CUSTOMER AS CUSTOMER INNER JOIN "+DBConnectUtils.DBSCHEMA+".PAYS AS PAYS ON CUSTOMER.CUSTOMER_ID=PAYS.CUSTOMER_ID "+
-										"INNER JOIN  "+DBConnectUtils.DBSCHEMA+".PAYMENT AS PAYMENT ON PAYS.PAY_ID=PAYMENT.PAY_ID) INNER JOIN  "+DBConnectUtils.DBSCHEMA+".BILLS AS BILLS ON BILLS.BILL_ID=PAYS.BILL_ID) "+
-										"WHERE CUSTOMER.CUSTOMER_ID=?";
-			stmt = dbConn.prepareStatement(selectStatement);
-			stmt.setInt(1, customerId);
-			selectQueryRS = stmt.executeQuery();
-			while (selectQueryRS.next()) {
-				String name= selectQueryRS.getString("NAME");
-				int amount= selectQueryRS.getInt("AMOUNT");
-				int totalamount= selectQueryRS.getInt("Total_Amount_Due_After_Discount");
-				System.out.println(name + " "+amount+" "+totalamount);
-			}
-			
-		} catch (Exception e) {
-			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-		} finally {
-			try {
-				if (selectQueryRS != null) {
-					selectQueryRS.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				} 
-				if (dbConn != null) {
-					dbConn.close();
-				}
-			} catch (Exception e) {
-				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-			}
-		}
-	}
-
-	public void checkItemizedTotalAmount(int customerId, int dbFlag) {
+		public void checkItemizedTotalAmount(int customerId, int dbFlag) {
 		String sourceMethod = "checkItemizedTotalAmount";
 		PreparedStatement stmt = null;
 		Connection dbConn = null;
@@ -347,45 +236,34 @@ public class BillingAccountsDAO {
 		}
 	}
 	
-	public void checkTotalAmountDuringStay(int customerId, int dbFlag) {
+	public void checkTotalAmountDuringStay(int customerId, String checkIn, int dbFlag) {
 		String sourceMethod = "checkItemizedTotalAmount";
 		PreparedStatement stmt = null;
 		Connection dbConn = null;
 		ResultSet selectQueryRS = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
-			String selectStatement = "SELECT PROVIDES.CUSTOMER_ID,SERVICE_RECORDS.NAME AS 'SERVICE_NAME', PROVIDES.SERVICE_ID, 0 AS 'No_Days', SERVICE_RECORDS.COST AS 'RATE' "
-					+ "FROM (("+DBConnectUtils.DBSCHEMA+".PROVIDES INNER "
-					+ "JOIN "+DBConnectUtils.DBSCHEMA+".ASSIGNS ON "
-				+	"PROVIDES.CUSTOMER_ID=ASSIGNS.CUSTOMER_ID) INNER JOIN "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS ON "
-						+ "PROVIDES.SERVICE_ID=SERVICE_RECORDS.SERVICE_RECORD_ID) WHERE "
-			+"PROVIDES.CUSTOMER_ID=? AND PROVIDES.TIMESTATE BETWEEN ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT "
-			+"UNION SELECT ASSIGNS.CUSTOMER_ID, 'ROOM' AS 'SERVICE_NAME' ,'SERVICE_ID' AS SERVICE_ID , DATEDIFF(ASSIGNS.CHECK_OUT, ASSIGNS.CHECK_IN) as 'No_Days', "
-			+ "ROOMS.NIGHTLY_RATE AS 'RATE' FROM ("+DBConnectUtils.DBSCHEMA+".ASSIGNS INNER JOIN "+DBConnectUtils.DBSCHEMA+".ROOMS ON "
-					+ "ASSIGNS.ROOM_NO=ROOMS.ROOM_NO AND ASSIGNS.HOTEL_ID=ROOMS.HOTEL_ID) WHERE ASSIGNS.CUSTOMER_ID=?";
-
-			stmt = dbConn.prepareStatement(selectStatement);
-			stmt.setInt(1, customerId);
+			String getAmtQuery = "SELECT SUM(B.COST) + DATEDIFF(A.CHECK_OUT, A.CHECK_IN)*A.NIGHTLY_RATE FROM "
+					+ "(SELECT * FROM "+DBConnectUtils.DBSCHEMA+".PROVIDES JOIN "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS ON "
+					+ "SERVICE_RECORDS.SERVICE_RECORD_ID = PROVIDES.SERVICE_ID) AS B JOIN "
+					+ "(SELECT ASSIGNS.CUSTOMER_ID, ASSIGNS.CHECK_IN, ASSIGNS.CHECK_OUT, NIGHTLY_RATE FROM "
+					+DBConnectUtils.DBSCHEMA+".ASSIGNS NATURAL JOIN "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ASSIGNS.CHECK_IN LIKE ?) AS A ON B.CUSTOMER_ID = A.CUSTOMER_ID WHERE B.TIMESTATE "
+					+ "BETWEEN A.CHECK_IN AND A.CHECK_OUT AND B.CUSTOMER_ID = ?;";
+			final int AMOUNT_RESULT_COLUMN = 1;
+			stmt = dbConn.prepareStatement(getAmtQuery);
+			int totalamount=0;
+			int discountedAmt = 0;
+			stmt.setString(1, checkIn);
 			stmt.setInt(2, customerId);
 			selectQueryRS = stmt.executeQuery();
-			System.out.println("CUSTOMER_ID    SERVICE_NAME		SERVICE_ID   No_of_Days    RATE ");
-			int totalamount=0;
-			while (selectQueryRS.next()) {
-				int custId= selectQueryRS.getInt("CUSTOMER_ID");
-				String servname= selectQueryRS.getString("SERVICE_NAME");
-				String servId= selectQueryRS.getString("SERVICE_ID");
-				int nod= selectQueryRS.getInt("No_Days");
-				int amount= selectQueryRS.getInt("RATE");
-				
-				
-				System.out.println(custId+"	 	"+servname+"	"+servId + " 	"+nod+" 	" +amount);
-				if (servname.equals("ROOM")){
-					totalamount +=nod*amount;
-				}else{
-					totalamount +=amount;
-				}
+			if(selectQueryRS.next()){
+				totalamount = selectQueryRS.getInt(AMOUNT_RESULT_COLUMN);
+				discountedAmt = Math.round(totalamount*0.95f);
+				System.out.println("TOTAL:" + totalamount);
+				System.out.println("TOTAL IF USING HOTEL CREDIT:" + discountedAmt);
+			}else{
+				System.out.println("No results returned.");
 			}
-			System.out.println(totalamount);
 			
 		} catch (Exception e) {
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
