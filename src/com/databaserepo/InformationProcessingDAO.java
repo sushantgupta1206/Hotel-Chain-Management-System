@@ -1407,13 +1407,13 @@ public class InformationProcessingDAO {
 
 	public String setRoomAvailability(int availability, int roomNo, int hotelId, int dbFlag) {
 		String sourceMethod = "setRoomAvailability";
-		String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOMS SET AVAILABILITY=? WHERE ROOM_NO=? AND HOTEL_ID=?";
 		PreparedStatement preparedStatement = null;
 		int numberOfUpdatedRows = 0;
 		String responsenumberOfUpdatedRows = null;
 		Connection dbConn = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
+			String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOMS SET AVAILABILITY=? WHERE ROOM_NO=? AND HOTEL_ID=?";
 			preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
 			preparedStatement.setInt(1, availability);
 			preparedStatement.setInt(2, roomNo);

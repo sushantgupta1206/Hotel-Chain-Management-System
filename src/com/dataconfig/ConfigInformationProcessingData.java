@@ -523,7 +523,7 @@ if (args.length ==4) {
 			int roomNo = Integer.parseInt(args[2]);
 			int hotelId = Integer.parseInt(args[3]);
 			int dbFlag = Integer.parseInt(args[4]);
-			if(availability > 0 && roomNo > 0 && hotelId > 0){
+			if(availability == 0 || availability == 1 && roomNo > 0 && hotelId > 0){
 				InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 				informationProcessingDAO.setRoomAvailability(availability, roomNo, hotelId, dbFlag);
 			}else {
