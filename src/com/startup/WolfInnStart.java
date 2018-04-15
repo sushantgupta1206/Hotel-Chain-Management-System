@@ -188,6 +188,10 @@ public class WolfInnStart {
 				// java -jar WolfInn.jar checkoutcustomer 5 2
 				billingAccounts.checkoutCustomer(args);
 				break;
+			case "checktotalamountduringstay":
+				// java -jar WolfInn.jar checktotalamount 5 2
+				billingAccounts.checkTotalAmountDuringStay(args);
+				break;	
 				
 			
 			case "occupancybyhotel":

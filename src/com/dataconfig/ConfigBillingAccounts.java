@@ -121,6 +121,19 @@ else {
                     System.out.println("Not valid data");   
                 }
 	}
+	
+	public void checkTotalAmountDuringStay(String[] args) {
+		int customerId = Integer.parseInt(args[1]);
+		int dbFlag = Integer.parseInt(args[2]);
+                
+                if (customerId > 0 && dbFlag > 0) {
+                    BillingAccountsDAO billingAccountsDAO = new BillingAccountsDAO();
+                    billingAccountsDAO.checkTotalAmountDuringStay(customerId, dbFlag);
+                }
+                else {
+                    System.out.println("Not valid data");   
+                }
+	}
 
         /*
             input: Customer ID
