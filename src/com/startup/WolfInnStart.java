@@ -127,6 +127,11 @@ public class WolfInnStart {
 				configHotel.checkRoomAvailability(args);
 				break;
 				
+			case "checkRoomsAvailability":
+				//java -jar WolfInn.jar checkRoomAvailability 1172 11 2
+				configHotel.checkRoomsAvailability(args);
+				break;
+				
 			case "checkRoomTypeAvailability":
 				//java -jar WolfInn.jar checkRoomTypeAvailability "Economy" 11 2
 				configHotel.checkRoomTypeAvailability(args);

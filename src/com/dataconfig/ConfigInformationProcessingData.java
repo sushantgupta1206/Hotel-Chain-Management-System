@@ -471,6 +471,27 @@ if (args.length ==4) {
 		}
 	}
 
+	 /*
+    input: Room Numbers, Hotel ID
+    output: Displays availability of specific rooms
+*/           
+public void checkRoomsAvailability(String[] args) {
+if (args.length ==4) {
+	String roomNos = args[1];
+	int hotelId = Integer.parseInt(args[2]);
+	int dbFlag = Integer.parseInt(args[3]);
+	if(roomNos.length() > 0 && hotelId > 0){
+		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+		informationProcessingDAO.checkRoomsAvailability(roomNos, hotelId, dbFlag);
+	}
+	else {
+		System.out.println("Not valid data");
+	}
+}else{
+	System.out.println("Parameters mismatch");
+}
+}
+
         /*
             input: Room Type, Hotel ID
             output: Displays available rooms of a certain type in hotel

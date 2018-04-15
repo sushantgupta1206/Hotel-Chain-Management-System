@@ -1247,6 +1247,58 @@ public class InformationProcessingDAO {
 		}
 	}
 
+	/**Pass roomNo and hotelId as argument and get response as room type is available or not
+	 * @param roomNo
+	 * @param hotelId
+	 * @param dbFlag
+	 * @return
+	 */
+	public void checkRoomsAvailability(String roomNos, int hotelId, int dbFlag) {
+		String sourceMethod = "checkRoomAvailability";
+		String roomsarr[] =roomNos.split(",");
+		
+		for (int i=0; i<roomsarr.length; i++){
+			if(showRoom(Integer.parseInt(roomsarr[i]), hotelId, dbFlag)){
+				PreparedStatement stmt = null;
+				Connection dbConn = null;
+				ResultSet selectQueryRS = null;
+				try {
+					dbConn = dbUtil.getConnection(dbFlag);
+					String selectStatement = "SELECT (CASE WHEN AVAILABILITY=0 THEN 'FALSE' ELSE 'TRUE' END) AS AVAILABILITY FROM "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ROOM_NO=? AND HOTEL_ID=?";
+					stmt = dbConn.prepareStatement(selectStatement);
+					stmt.setInt(1, Integer.parseInt(roomsarr[i]));
+					stmt.setInt(2, hotelId);
+					selectQueryRS = stmt.executeQuery();
+					if (!selectQueryRS.isBeforeFirst()) {
+						System.out.println("No list found");
+					}else{
+						System.out.println("List found");
+						System.out.println("AVAILABILITY");
+						while (selectQueryRS.next()) {
+							String avail = selectQueryRS.getString("AVAILABILITY");
+							System.out.println(avail);
+						}
+					}
+				} catch (Exception e) {
+					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+				} finally {
+					try {
+						if (selectQueryRS != null) {
+							selectQueryRS.close();
+						}
+						if (stmt != null) {
+							stmt.close();
+						} 
+						if (dbConn != null) {
+							dbConn.close();
+						}
+					} catch (Exception e) {
+						log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+					}
+				}
+			}
+		}
+	}
 
 
 	/**Pass roomType and hotelId as argument and get response as room type is available or not
