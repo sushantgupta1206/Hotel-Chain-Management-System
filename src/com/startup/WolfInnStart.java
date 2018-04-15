@@ -169,12 +169,15 @@ public class WolfInnStart {
 				billingAccounts.addGenerate(args);
 				break;
 			case "checktotalamount":
+				// java -jar WolfInn.jar checktotalamount 5 2
 				billingAccounts.checkTotalAmount(args);
 				break;	
 			case "checkitemizedtotalamount":
+				// java -jar WolfInn.jar checkitemizedtotalamount 5 2
 				billingAccounts.checkItemizedTotalAmount(args);
 				break;
 			case "checkoutcustomer":
+				// java -jar WolfInn.jar checkoutcustomer 5 2
 				billingAccounts.checkoutCustomer(args);
 				break;
 				

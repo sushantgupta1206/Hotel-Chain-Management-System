@@ -319,6 +319,7 @@ public class BillingAccountsDAO {
 
 			stmt = dbConn.prepareStatement(selectStatement);
 			stmt.setInt(1, customerId);
+			stmt.setInt(2, customerId);
 			selectQueryRS = stmt.executeQuery();
 			while (selectQueryRS.next()) {
 				String name= selectQueryRS.getString("NAME");
