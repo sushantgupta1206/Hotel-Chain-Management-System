@@ -141,7 +141,7 @@ public class WolfInnStart {
 				configHotel.assignRoom(args);
 				break;
 			case "releaseroom":
-				//java -jar WolfInn.jar releaseroom 1001 101 
+				//java -jar WolfInn.jar releaseroom 11 1172 2
 				configHotel.releaseRoom(args);
 				break;	
 				
