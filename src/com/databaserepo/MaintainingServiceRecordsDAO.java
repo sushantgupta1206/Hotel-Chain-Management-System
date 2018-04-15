@@ -20,7 +20,9 @@ public class MaintainingServiceRecordsDAO {
 	public void addProvidesServices(int customerId, int staffId, int serviceID,  String serviceTime, int dbFlag){
 		String sourceMethod = "addServices";
 		InformationProcessingDAO informationProcessingDAO = new InformationProcessingDAO();
-		if(informationProcessingDAO.showCustomer(customerId, dbFlag) && informationProcessingDAO.showStaff(staffId, dbFlag)){
+		if(informationProcessingDAO.showCustomer(customerId, dbFlag) && informationProcessingDAO.showStaff(staffId, dbFlag) && 
+				informationProcessingDAO.checkCustomerByTime(customerId,serviceTime, dbFlag)){
+			
 			String insertHotelDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".PROVIDES VALUES(?,?,?,?)";
 			PreparedStatement preparedStatement = null;
 			Connection dbConn = null;

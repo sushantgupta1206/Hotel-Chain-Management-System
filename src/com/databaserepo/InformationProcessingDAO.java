@@ -1073,6 +1073,54 @@ public class InformationProcessingDAO {
 	}
 
 	
+	public boolean checkCustomerByTime(int customerId,String serviceTime, int dbFlag) {
+		String sourceMethod = "showCustomer";
+		PreparedStatement stmt = null;
+		Connection dbConn = null;
+		ResultSet selectQueryRS = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".CUSTOMER INNER JOIN  "+DBConnectUtils.DBSCHEMA+".ASSIGNS "
+					+ "WHERE CUSTOMER.CUSTOMER_ID=ASSIGNS.CUSTOMER_ID AND CUSTOMER.CUSTOMER_ID=? AND ? BETWEEN ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT";
+			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			stmt.setInt(1, customerId);
+			stmt.setString(2, serviceTime);
+			selectQueryRS=stmt.executeQuery();
+			if (!selectQueryRS.isBeforeFirst()) {
+				System.out.println("No Customer found");
+				return false;
+			}else{
+				System.out.println("Customer found");
+				while (selectQueryRS.next()) {
+					Customer detail=new Customer();
+					detail.setCustomerId(selectQueryRS.getInt("CUSTOMER_ID"));
+					detail.setPhone(selectQueryRS.getString("PHONE"));
+					detail.setName(selectQueryRS.getString("NAME"));
+					detail.setEmail(selectQueryRS.getString("EMAIL_ADDRESS"));
+					detail.setDob(selectQueryRS.getDate("DOB"));
+					System.out.println(detail);
+				}
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		return true;
+	}
+
 	public boolean showCustomer(int customerId, int dbFlag) {
 		String sourceMethod = "showCustomer";
 		PreparedStatement stmt = null;
@@ -1118,7 +1166,6 @@ public class InformationProcessingDAO {
 		}
 		return true;
 	}
-
 
 	/**Delete customer by customer id
 	 * @param customer
