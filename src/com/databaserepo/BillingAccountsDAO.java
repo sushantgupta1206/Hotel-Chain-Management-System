@@ -304,19 +304,13 @@ public class BillingAccountsDAO {
 		ResultSet selectQueryRS = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
-			
-			/*String selectStatement = "SELECT CUSTOMER.NAME, SERVICE_RECORDS.NAME AS SERVICENAME, SERVICE_RECORDS.COST,PROVIDES.TIMESTATE "+
-									"FROM (("+DBConnectUtils.DBSCHEMA+".CUSTOMER AS CUSTOMER INNER JOIN "+DBConnectUtils.DBSCHEMA+".PROVIDES AS PROVIDES ON CUSTOMER.CUSTOMER_ID=PROVIDES.CUSTOMER_ID) "+
-									"INNER JOIN  "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS AS SERVICE_RECORDS ON PROVIDES.SERVICE_ID=SERVICE_RECORDS.SERVICE_RECORD_ID) "+
-									"WHERE CUSTOMER.CUSTOMER_ID=?";
-			*/
-			String selectStatement = "SELECT PROVIDES.CUSTOMER_ID, PROVIDES.SERVICE_ID, 0 AS 'No_Days', SERVICE_RECORDS.COST AS 'RATE' "
+			String selectStatement = "SELECT PROVIDES.CUSTOMER_ID,SERVICE_RECORDS.NAME AS 'SERVICE_NAME', PROVIDES.SERVICE_ID, 0 AS 'No_Days', SERVICE_RECORDS.COST AS 'RATE' "
 					+ "FROM (("+DBConnectUtils.DBSCHEMA+".PROVIDES INNER "
 					+ "JOIN "+DBConnectUtils.DBSCHEMA+".ASSIGNS ON "
 				+	"PROVIDES.CUSTOMER_ID=ASSIGNS.CUSTOMER_ID) INNER JOIN "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS ON "
 						+ "PROVIDES.SERVICE_ID=SERVICE_RECORDS.SERVICE_RECORD_ID) WHERE "
 			+"PROVIDES.CUSTOMER_ID=? AND PROVIDES.TIMESTATE BETWEEN ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT "
-			+"UNION SELECT ASSIGNS.CUSTOMER_ID, 'Room' AS SERVICE_ID , DATEDIFF(ASSIGNS.CHECK_OUT, ASSIGNS.CHECK_IN) as 'No_Days', "
+			+"UNION SELECT ASSIGNS.CUSTOMER_ID, 'ROOM' AS 'SERVICE_NAME' ,'SERVICE_ID' AS SERVICE_ID , DATEDIFF(ASSIGNS.CHECK_OUT, ASSIGNS.CHECK_IN) as 'No_Days', "
 			+ "ROOMS.NIGHTLY_RATE AS 'RATE' FROM ("+DBConnectUtils.DBSCHEMA+".ASSIGNS INNER JOIN "+DBConnectUtils.DBSCHEMA+".ROOMS ON "
 					+ "ASSIGNS.ROOM_NO=ROOMS.ROOM_NO AND ASSIGNS.HOTEL_ID=ROOMS.HOTEL_ID) WHERE ASSIGNS.CUSTOMER_ID=?";
 
@@ -324,12 +318,14 @@ public class BillingAccountsDAO {
 			stmt.setInt(1, customerId);
 			stmt.setInt(2, customerId);
 			selectQueryRS = stmt.executeQuery();
+			System.out.println("CUSTOMER_ID    SERVICE_NAME		SERVICE_ID   No_of_Days    RATE ");
 			while (selectQueryRS.next()) {
 				int custId= selectQueryRS.getInt("CUSTOMER_ID");
+				String servname= selectQueryRS.getString("SERVICE_NAME");
 				String servId= selectQueryRS.getString("SERVICE_ID");
 				int nod= selectQueryRS.getInt("No_Days");
 				int amount= selectQueryRS.getInt("RATE");
-				System.out.println(custId+" "+servId + " "+nod+" " +amount);
+				System.out.println(custId+"	 	"+servname+"	"+servId + " 	"+nod+" 	" +amount);
 			}
 			
 		} catch (Exception e) {
@@ -351,4 +347,62 @@ public class BillingAccountsDAO {
 		}
 	}
 	
+	public void checkTotalAmountDuringStay(int customerId, int dbFlag) {
+		String sourceMethod = "checkItemizedTotalAmount";
+		PreparedStatement stmt = null;
+		Connection dbConn = null;
+		ResultSet selectQueryRS = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			String selectStatement = "SELECT PROVIDES.CUSTOMER_ID,SERVICE_RECORDS.NAME AS 'SERVICE_NAME', PROVIDES.SERVICE_ID, 0 AS 'No_Days', SERVICE_RECORDS.COST AS 'RATE' "
+					+ "FROM (("+DBConnectUtils.DBSCHEMA+".PROVIDES INNER "
+					+ "JOIN "+DBConnectUtils.DBSCHEMA+".ASSIGNS ON "
+				+	"PROVIDES.CUSTOMER_ID=ASSIGNS.CUSTOMER_ID) INNER JOIN "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS ON "
+						+ "PROVIDES.SERVICE_ID=SERVICE_RECORDS.SERVICE_RECORD_ID) WHERE "
+			+"PROVIDES.CUSTOMER_ID=? AND PROVIDES.TIMESTATE BETWEEN ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT "
+			+"UNION SELECT ASSIGNS.CUSTOMER_ID, 'ROOM' AS 'SERVICE_NAME' ,'SERVICE_ID' AS SERVICE_ID , DATEDIFF(ASSIGNS.CHECK_OUT, ASSIGNS.CHECK_IN) as 'No_Days', "
+			+ "ROOMS.NIGHTLY_RATE AS 'RATE' FROM ("+DBConnectUtils.DBSCHEMA+".ASSIGNS INNER JOIN "+DBConnectUtils.DBSCHEMA+".ROOMS ON "
+					+ "ASSIGNS.ROOM_NO=ROOMS.ROOM_NO AND ASSIGNS.HOTEL_ID=ROOMS.HOTEL_ID) WHERE ASSIGNS.CUSTOMER_ID=?";
+
+			stmt = dbConn.prepareStatement(selectStatement);
+			stmt.setInt(1, customerId);
+			stmt.setInt(2, customerId);
+			selectQueryRS = stmt.executeQuery();
+			System.out.println("CUSTOMER_ID    SERVICE_NAME		SERVICE_ID   No_of_Days    RATE ");
+			int totalamount=0;
+			while (selectQueryRS.next()) {
+				int custId= selectQueryRS.getInt("CUSTOMER_ID");
+				String servname= selectQueryRS.getString("SERVICE_NAME");
+				String servId= selectQueryRS.getString("SERVICE_ID");
+				int nod= selectQueryRS.getInt("No_Days");
+				int amount= selectQueryRS.getInt("RATE");
+				
+				
+				System.out.println(custId+"	 	"+servname+"	"+servId + " 	"+nod+" 	" +amount);
+				if (servname.equals("ROOM")){
+					totalamount +=nod*amount;
+				}else{
+					totalamount +=amount;
+				}
+			}
+			System.out.println(totalamount);
+			
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+	}
 }
