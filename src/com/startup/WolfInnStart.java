@@ -96,7 +96,7 @@ public class WolfInnStart {
 
 			case "addcustomer":
 				try {
-					//java -jar WolfInn.jar addcustomer 7 9299191234 "Mark Ruby" "mruby@email.com" "1990-02-01" 2
+					//java -jar WolfInn.jar addcustomer 7 929 "Mark Ruby" "mruby@email.com" "1990-02-01" 2
 					configHotel.addCustomer(args);
 				} catch (ParseException e) {
 					System.out.println("DATE NOT CORRECT FORMAT");
@@ -140,7 +140,10 @@ public class WolfInnStart {
 				//java -jar WolfInn.jar assignroom 1001 101 "2018-05-10 15:17:00" "2018-05-11 15:17:00" 5 0001 01 2
 				configHotel.assignRoom(args);
 				break;
-				
+			case "releaseroom":
+				//java -jar WolfInn.jar releaseroom 1001 101 
+				configHotel.releaseRoom(args);
+				break;	
 				
 			case "providesservices":
 				//java -jar WolfInn.jar providesservices 7 5 1 2

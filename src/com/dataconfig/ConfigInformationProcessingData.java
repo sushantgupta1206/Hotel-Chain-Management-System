@@ -547,4 +547,9 @@ if (args.length ==4) {
 				System.out.println("Parameters mismatch");
 			}
 		}
+
+		public void releaseRoom(String[] args) {
+			// TODO Auto-generated method stub
+			
+		}
 }

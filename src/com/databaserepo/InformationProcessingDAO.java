@@ -1402,7 +1402,7 @@ public class InformationProcessingDAO {
 					System.out.println("Assigns record inserted. . Query executed :"+insertDataQuery);
 		
 						String updateDeleteRequestStatement = "UPDATE " + DBConnectUtils.DBSCHEMA
-								+ ".ROOMS SET AVAILABILITY=0 WHERE ROOM_NO=? AND HOTELS_ID=?";
+								+ ".ROOMS SET AVAILABILITY=0 WHERE ROOM_NO=? AND HOTEL_ID=?";
 						preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
 						preparedStatement.setInt(1, roomNo);
 						preparedStatement.setInt(2, hotelId);
