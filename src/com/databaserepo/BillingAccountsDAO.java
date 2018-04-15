@@ -326,7 +326,7 @@ public class BillingAccountsDAO {
 			selectQueryRS = stmt.executeQuery();
 			while (selectQueryRS.next()) {
 				int custId= selectQueryRS.getInt("CUSTOMER_ID");
-				int servId= selectQueryRS.getInt("SERVICE_ID");
+				String servId= selectQueryRS.getString("SERVICE_ID");
 				int nod= selectQueryRS.getInt("No_Days");
 				int amount= selectQueryRS.getInt("RATE");
 				System.out.println(custId+" "+servId + " "+nod+" " +amount);
