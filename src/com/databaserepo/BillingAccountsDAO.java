@@ -310,23 +310,26 @@ public class BillingAccountsDAO {
 									"INNER JOIN  "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS AS SERVICE_RECORDS ON PROVIDES.SERVICE_ID=SERVICE_RECORDS.SERVICE_RECORD_ID) "+
 									"WHERE CUSTOMER.CUSTOMER_ID=?";
 			*/
-			String selectStatement = "SELECT PROVIDES.CUSTOMER_ID, PROVIDES.SERVICE_ID, '' AS 'Number of Days', SERVICE_RECORDS.COST AS 'RATE' FROM (("+DBConnectUtils.DBSCHEMA+".PROVIDES INNER "
+			String selectStatement = "SELECT PROVIDES.CUSTOMER_ID, PROVIDES.SERVICE_ID, '' AS 'Number of Days', SERVICE_RECORDS.COST AS 'RATE' "
+					+ "FROM (("+DBConnectUtils.DBSCHEMA+".PROVIDES INNER "
 					+ "JOIN "+DBConnectUtils.DBSCHEMA+".ASSIGNS ON "
-				+	"PROVIDES.CUSTOMER_ID=ASSIGNS.CUSTOMER_ID) INNER JOIN "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS ON PROVIDES.SERVICE_ID=SERVICE_RECORDS.SERVICE_RECORD_ID) WHERE "
+				+	"PROVIDES.CUSTOMER_ID=ASSIGNS.CUSTOMER_ID) INNER JOIN "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS ON "
+						+ "PROVIDES.SERVICE_ID=SERVICE_RECORDS.SERVICE_RECORD_ID) WHERE "
 			+"PROVIDES.CUSTOMER_ID=? AND PROVIDES.TIMESTATE BETWEEN ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT "
 			+"UNION SELECT ASSIGNS.CUSTOMER_ID, 'Room' AS SERVICE_ID , DATEDIFF(ASSIGNS.CHECK_OUT, ASSIGNS.CHECK_IN) as 'Number of Days', "
-			+ "ROOMS.NIGHTLY_RATE AS 'RATE' FROM ("+DBConnectUtils.DBSCHEMA+".ASSIGNS INNER JOIN "+DBConnectUtils.DBSCHEMA+".ROOMS ON ASSIGNS.ROOM_NO=ROOMS.ROOM_NO AND ASSIGNS.HOTEL_ID=ROOMS.HOTEL_ID) WHERE ASSIGNS.CUSTOMER_ID=?";
+			+ "ROOMS.NIGHTLY_RATE AS 'RATE' FROM ("+DBConnectUtils.DBSCHEMA+".ASSIGNS INNER JOIN "+DBConnectUtils.DBSCHEMA+".ROOMS ON "
+					+ "ASSIGNS.ROOM_NO=ROOMS.ROOM_NO AND ASSIGNS.HOTEL_ID=ROOMS.HOTEL_ID) WHERE ASSIGNS.CUSTOMER_ID=?";
 
 			stmt = dbConn.prepareStatement(selectStatement);
 			stmt.setInt(1, customerId);
 			stmt.setInt(2, customerId);
 			selectQueryRS = stmt.executeQuery();
 			while (selectQueryRS.next()) {
-				String name= selectQueryRS.getString("NAME");
-				String name1= selectQueryRS.getString("SERVICENAME");
-				int amount= selectQueryRS.getInt("COST");
-				String timestate= selectQueryRS.getString("TIMESTATE");
-				System.out.println(name+" "+name1 + " "+amount+" " +timestate);
+				int custId= selectQueryRS.getInt("CUSTOMER_ID");
+				int servId= selectQueryRS.getInt("SERVICE_ID");
+				int nod= selectQueryRS.getInt("Number of Days");
+				int amount= selectQueryRS.getInt("RATE");
+				System.out.println(custId+" "+servId + " "+nod+" " +amount);
 			}
 			
 		} catch (Exception e) {

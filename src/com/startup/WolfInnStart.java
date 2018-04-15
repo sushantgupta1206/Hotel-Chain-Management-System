@@ -151,7 +151,7 @@ public class WolfInnStart {
 				break;	
 				
 			case "providesservices":
-				//java -jar WolfInn.jar providesservices 7 5 1 2
+				//java -jar WolfInn.jar providesservices 7 12 1 2
 				serviceRecords.addProvidesServices(args);
 				break;
 			case "updateservices":

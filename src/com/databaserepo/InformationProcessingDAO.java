@@ -1087,7 +1087,7 @@ public class InformationProcessingDAO {
 			stmt.setString(2, serviceTime);
 			selectQueryRS=stmt.executeQuery();
 			if (!selectQueryRS.isBeforeFirst()) {
-				System.out.println("No Customer found");
+				System.out.println("The Customer has not yet checked in. ");
 				return false;
 			}else{
 				System.out.println("Customer found");
