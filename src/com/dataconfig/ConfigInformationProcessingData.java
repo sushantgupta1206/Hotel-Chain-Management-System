@@ -5,10 +5,7 @@ import java.text.SimpleDateFormat;
 
 import com.databaserepo.InformationProcessingDAO;
 import com.dataobject.Customer;
-import com.dataobject.Hotel;
-import com.dataobject.Room;
 import com.dataobject.Staff;
-import com.dataobject.Assigns;
 
 /**
  * @author Kartik Shah

@@ -2,6 +2,18 @@ package com.dataconfig;
 
 import com.databaserepo.BillingAccountsDAO;
 
+
+/**
+ * @author kartik
+ *
+ */
+
+/*
+ * This class is an interface that assigns user input to java variables. 
+   This class also calls DAO for further processing of the user requests.
+   DAO class (i.e. Process the user requests and supports applications core business logic operation).
+   This class takes information to perform operations on bill. 
+ */
 public class ConfigBillingAccounts {
 	   /*
     input: bill ID, customer ID, check in time, payment method id, billing 

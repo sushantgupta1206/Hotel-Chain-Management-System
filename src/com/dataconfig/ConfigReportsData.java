@@ -1,24 +1,19 @@
 
 package com.dataconfig;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-import com.databaserepo.InformationProcessingDAO;
 import com.databaserepo.ReportsDAO;
-import com.dataobject.Customer;
-import com.dataobject.Hotel;
-import com.dataobject.Room;
-import com.dataobject.Staff;
-
 
 /**
  * @author Leah Jackman
  *
  */
 
+/*
+ * This class is an interface that assigns user input to java variables. 
+   This class also calls DAO for further processing of the user requests.
+   DAO class (i.e. Process the user requests and supports applications core business logic operation).
+   This class takes information to provide reports. 
+ */
 public class ConfigReportsData {
 	
 	/*

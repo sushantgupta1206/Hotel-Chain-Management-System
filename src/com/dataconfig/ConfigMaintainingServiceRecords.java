@@ -5,6 +5,12 @@ import java.text.SimpleDateFormat;
 
 import com.databaserepo.MaintainingServiceRecordsDAO;
 
+/*
+ * This class is an interface that assigns user input to java variables. 
+   This class also calls DAO for further processing of the user requests.
+   DAO class (i.e. Process the user requests and supports applications core business logic operation).
+   This class takes basic information to maintain services and its associated entities. 
+ */
 public class ConfigMaintainingServiceRecords {
 	
 	private static String convertDateToCurrent() {
