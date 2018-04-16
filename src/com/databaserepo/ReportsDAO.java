@@ -18,6 +18,7 @@ import java.util.*;
 /*
  * Contains methods for each reports operation.
  */
+
 public class ReportsDAO {
 	private DBConnectUtils dbUtil = new DBConnectUtils();
 	private static String sourceClass = InformationProcessingDAO.class.getName();
@@ -27,12 +28,13 @@ public class ReportsDAO {
 	 * @param dbFlag
 	 * @return
 	 */
+	
+	/*
+	 * inputs: date, dbflag
+	 * outputs: string of hotel IDs, occupancy and percent occupancy
+	 */
+	
 	public void occHotel(String dateOfReport, int dbFlag){		
-/*
- * note: check in and check out should be the same day/time
- * inputs: date
- * outputs: string of hotel IDs, occupancy and percent occupancy
- */
 		String sourceMethod = "occHotel";
 		Connection dbConn = null;
 		ResultSet selectQueryRS = null;
@@ -82,61 +84,62 @@ public class ReportsDAO {
 	}
 
 	/*
-	 * note: check in and check out should be the same day/time
-	 * inputs: date
+	 * inputs: date, dbflag
 	 * outputs: string of hotel IDs, occupancy and percent occupancy
 	 */
 	
 	public void occCity(String dateOfReport, int dbFlag) {
-				String sourceMethod = "occCity";
-				Connection dbConn = null;
-				ResultSet selectQueryRS = null;
-				PreparedStatement stmt = null;
-				try {
-					dbConn = dbUtil.getConnection(dbFlag);
-					String selectStatement = " SELECT HOTELS.CITY, SUM( CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END) AS OCCUPANCY, "
-						 + "SUM( CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END)/ COUNT(HOTELS.HOTEL_ID) AS PERCENT_OCCUPANCY " 
-						 +  "FROM  "+DBConnectUtils.DBSCHEMA+".ASSIGNS RIGHT OUTER JOIN ( "+DBConnectUtils.DBSCHEMA+".HOTELS NATURAL JOIN  "+DBConnectUtils.DBSCHEMA+".ROOMS) ON CHECK_IN <= ? " 
-						 +  "AND CHECK_OUT > ? AND ASSIGNS.HOTEL_ID = HOTELS.HOTEL_ID AND "
-						 +  "ASSIGNS.ROOM_NO = ROOMS.ROOM_NO GROUP BY HOTELS.CITY" ;
-					stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-					stmt.setString(1,  dateOfReport);
-					stmt.setString(2, dateOfReport);
-					selectQueryRS = stmt.executeQuery();
-					if (!selectQueryRS.isBeforeFirst()) {
-						System.out.println("No list found");
-					}else{
-						System.out.println("List found");
-						System.out.println("CITY  		OCCUPANCY  		PERCENT_OCCUPANCY");
-						while (selectQueryRS.next()) {
-							String hotelCity = selectQueryRS.getString("CITY");
-							int occupancy = selectQueryRS.getInt("OCCUPANCY");
-							float percent = selectQueryRS.getFloat("PERCENT_OCCUPANCY");
-							System.out.println(hotelCity + "    	" + occupancy + "    	" + percent);
-						}
-					}
-				} catch (Exception e) {
-					log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-				} finally {
-					try {
-						if (selectQueryRS != null) {
-							selectQueryRS.close();
-						}
-						if (stmt != null) {
-							stmt.close();
-						} 
-						if (dbConn != null) {
-							dbConn.close();
-						}
-					} catch (Exception e) {
-						log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-					}
+		String sourceMethod = "occCity";
+		Connection dbConn = null;
+		ResultSet selectQueryRS = null;
+		PreparedStatement stmt = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			String selectStatement = " SELECT HOTELS.CITY, SUM( CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END) AS OCCUPANCY, "
+				 + "SUM( CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END)/ COUNT(HOTELS.HOTEL_ID) AS PERCENT_OCCUPANCY " 
+				 +  "FROM  "+DBConnectUtils.DBSCHEMA+".ASSIGNS RIGHT OUTER JOIN ( "+DBConnectUtils.DBSCHEMA+".HOTELS NATURAL JOIN  "+DBConnectUtils.DBSCHEMA+".ROOMS) ON CHECK_IN <= ? " 
+				 +  "AND CHECK_OUT > ? AND ASSIGNS.HOTEL_ID = HOTELS.HOTEL_ID AND "
+				 +  "ASSIGNS.ROOM_NO = ROOMS.ROOM_NO GROUP BY HOTELS.CITY" ;
+			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			stmt.setString(1,  dateOfReport);
+			stmt.setString(2, dateOfReport);
+			selectQueryRS = stmt.executeQuery();
+			if (!selectQueryRS.isBeforeFirst()) {
+				System.out.println("No list found");
+			}else{
+				System.out.println("List found");
+				System.out.println("CITY  		OCCUPANCY  		PERCENT_OCCUPANCY");
+				while (selectQueryRS.next()) {
+					String hotelCity = selectQueryRS.getString("CITY");
+					int occupancy = selectQueryRS.getInt("OCCUPANCY");
+					float percent = selectQueryRS.getFloat("PERCENT_OCCUPANCY");
+					System.out.println(hotelCity + "    	" + occupancy + "    	" + percent);
 				}
-		
+			}
+		} catch (Exception e) {
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (selectQueryRS != null) {
+					selectQueryRS.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			} catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
 	}
-/*
- * 
- */
+	
+	/*
+	 * inputs: date, dbflag
+	 * outputs: list of room types, occupancy and percent occupancy
+	 */
+	
 	public void occRoom(String dateOfReport, int dbFlag) {
 		String sourceMethod = "occRoom";
 		Connection dbConn = null;
@@ -186,6 +189,11 @@ public class ReportsDAO {
 		}
 	}
 	
+	/*
+	 * inputs: date range begin date, date range end date, dbflag
+	 * outputs: a list of days, occupancy and percent occupancy for the given day
+	 */
+	
 	public void occDateRng(String firstDate, String lastDate, int dbFlag) {
 		String sourceMethod = "occDateRng";
 		Connection dbConn = null;
@@ -196,17 +204,13 @@ public class ReportsDAO {
 			System.out.println(date1);
 			java.util.Date date2= new SimpleDateFormat("yyyy-MM-dd").parse(lastDate);
 			System.out.println(date2);
-			
 			Calendar start = Calendar.getInstance();
 			start.setTime(date1);
 			Calendar end = Calendar.getInstance();
 			end.setTime(date2);
-
 			for (Date date = start.getTime(); start.before(end) || start.equals(end); start.add(Calendar.DATE, 1), date = start.getTime()) {
 				java.sql.Date iDate= convertUtilToSql(date);
-			    
-			    dbConn = dbUtil.getConnection(dbFlag);
-					    
+			    dbConn = dbUtil.getConnection(dbFlag);	    
 				String selectStatement = " SELECT ? AS OCCUPANCY_DATE, SUM( CASE WHEN ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END) AS OCCUPANCY,SUM( CASE WHEN "
 					    + " ASSIGNS.ROOM_NO = ROOMS.ROOM_NO THEN 1 ELSE 0 END)/ COUNT(HOTELS.HOTEL_ID) AS PERCENT_OCCUPANCY FROM  "+DBConnectUtils.DBSCHEMA+".ASSIGNS RIGHT "
 					    		+ "OUTER JOIN ( "+DBConnectUtils.DBSCHEMA+".HOTELS NATURAL JOIN  "+DBConnectUtils.DBSCHEMA+".ROOMS) ON "
@@ -253,6 +257,12 @@ public class ReportsDAO {
 	/**Show all staffs
 	 * @param dbFlag
 	 */
+	
+	/*
+	 * inputs: dbflag
+	 * outputs: list of staff members and their personal information grouped by staff role
+	 */
+	
 	public void showStaff(int dbFlag) {
 		String sourceMethod = "showStaff";
 		List<Staff> details = new ArrayList<Staff>();
@@ -298,8 +308,7 @@ public class ReportsDAO {
 			} catch (Exception e) {
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 			}
-		}
-		
+		}	
 	}
 
 	/**
@@ -307,6 +316,12 @@ public class ReportsDAO {
 	 * @param custId
 	 * @param dbFlag
 	 */
+	
+	/*
+	 * inputs: check in, customer id, dbflag
+	 * outputs: a list of all service staff and front desk staff who assisted the customer during their stay
+	 */
+	
 	public void custStaff(String checkInDate, int custId, int dbFlag) {
 		String sourceMethod = "custStaff";
 		ResultSet selectQueryRS = null;
@@ -326,7 +341,6 @@ public class ReportsDAO {
 			stmt.setInt(3, custId);
 			stmt.setString(4,  checkInDate);
 			selectQueryRS = stmt.executeQuery();
-			
 			if (!selectQueryRS.isBeforeFirst()) {
 				System.out.println("No staff found serving this customer");
 			}else{
@@ -354,8 +368,7 @@ public class ReportsDAO {
 			} catch (Exception e) {
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 			}
-		}
-		
+		}	
 	}
 
 	/**
@@ -363,6 +376,13 @@ public class ReportsDAO {
 	 * @param endDate
 	 * @param dbFlag
 	 */
+	
+	/*
+	 * input: start day of revenue report, end day of revenue report
+	 * output: a list of hotel IDs, and revenue
+	 * note: revenue includes cost of room and cost of services
+	 */
+	
 	public void revHotel(String startDate, String endDate, int dbFlag) {
 		String sourceMethod = "revHotel";
 		Connection dbConn = null;
@@ -370,10 +390,7 @@ public class ReportsDAO {
 		PreparedStatement stmt = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
-			
-			//SELECT HOTEL_ID, SUM(BILLS.AMOUNT)AS REVENUE FROM BILLS NATURAL JOIN PAYS NATURAL JOIN ASSIGNS WHERE BILLS.BILL_TIMESTAMP BETWEEN '2017-05-10%' AND '2018-05-05%' GROUP BY HOTEL_ID;
-
-			String selectStatement = " SELECT HOTEL_ID, SUM(BILLS.AMOUNT)AS REVENUE FROM "+DBConnectUtils.DBSCHEMA+".BILLS " 
+			String selectStatement = " SELECT HOTEL_ID, SUM(BILLS.AMOUNT-BILLS.DISCOUNTED_AMT)AS REVENUE FROM "+DBConnectUtils.DBSCHEMA+".BILLS " 
 						 + "NATURAL JOIN "+DBConnectUtils.DBSCHEMA+".PAYS NATURAL JOIN "+DBConnectUtils.DBSCHEMA+".ASSIGNS WHERE BILLS.BILL_TIMESTAMP BETWEEN ? AND ? " 
 						 + "GROUP BY HOTEL_ID" ;
 			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -410,6 +427,9 @@ public class ReportsDAO {
 		}		
 	}
 
+	/*
+	 * used for getting calendar information from string input
+	 */
 	
 	private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
         java.sql.Date sDate = new java.sql.Date(uDate.getTime());

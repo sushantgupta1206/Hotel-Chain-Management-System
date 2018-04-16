@@ -206,18 +206,18 @@ public class WolfInnStart {
 		System.out.println("java -jar WolfInn.jar setRoomAvailability [<AVAILABILITY> <ROOM_NO> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar assignroom [<STAFF_ID> <CUSTOMER_ID> <CHECK_IN> <CHECK_OUT> <NO_OF_GUESTS> <HOTEL_ID> <ROOM_NO> <DBflag=2 for MariaDB>]");
 
-		System.out.println("java -jar WolfInn.jar checkout <custID>, <checkIn>, <payMethodID>, <billingAddress>, <paySSN>, <roomNo>, <hotelID>, <dbFlag>");
-		System.out.println("java -jar WolfInn.jar updatebill <billId>, <custID>, <checkIn>, <payMethodID>, <billingAddress>, <dbFlag>");
-		System.out.println("java -jar WolfInn.jar deletebill <billId> <dbFlag>");
-		System.out.println("java -jar WolfInn.jar checkitemizedtotalamountint <customerId> <checkIn> <dbFlag>");
-		System.out.println("java -jar WolfInn.jar checktotalamountduringstay <customerId> <checkIn> <dbFlag>");
+		System.out.println("java -jar WolfInn.jar checkout [<custID>, <checkIn>, <payMethodID>, <billingAddress>, <paySSN>, <roomNo>], <hotelID>, <dbFlag>");
+		System.out.println("java -jar WolfInn.jar updatebill [<billId>, <custID>, <checkIn>, <payMethodID>, <billingAddress>, <dbFlag>]");
+		System.out.println("java -jar WolfInn.jar deletebill [<billId> <dbFlag>]");
+		System.out.println("java -jar WolfInn.jar checkitemizedtotalamountint [<customerId> <checkIn> <dbFlag>]");
+		System.out.println("java -jar WolfInn.jar checktotalamountduringstay [<customerId> <checkIn> <dbFlag>]");
 		
-		System.out.println("java -jar WolfInn.jar occupancybyhotel  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
-		System.out.println("java -jar WolfInn.jar occupancybycity  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
-		System.out.println("java -jar WolfInn.jar occupancybyroomtype  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
-		System.out.println("java -jar WolfInn.jar occupancybydaterange  [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar occupancybyhotel [<date of report, use time 23:59:59> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar occupancybycity [<date of report, use time 23:59:59> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar occupancybyroomtype [<date of report, use time 23:59:59> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar occupancybydaterange [<report start date> <report end date> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar staffinfobyrole [<DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar staffpercustomer [<CHECKIN> <CUSTOMER ID> <DBflag=2 for MariaDB>]");
-		System.out.println("java -jar WolfInn.jar getrevenue [<CHECKIN> <CHECKOUT> <DBflag=2 for MariaDB>]");
+		System.out.println("java -jar WolfInn.jar getrevenue [<report start date> <report end date> <DBflag=2 for MariaDB>]");
 	}
 }

@@ -14,13 +14,15 @@ import com.databaserepo.ReportsDAO;
    DAO class (i.e. Process the user requests and supports applications core business logic operation).
    This class takes information to provide reports. 
  */
+
+
+/*
+ * inputs: date
+ * outputs: string of hotel IDs, occupancy and percent occupancy
+ */
+
 public class ConfigReportsData {
 	
-	/*
-	 * inputs: date
-	 * outputs: string of hotel IDs, occupancy and percent occupancy
-	 * 
-	 */
 	public void occHotel(String args[]) {
 		if (args.length ==3) {	
 			String dateOfReport = args[1];
@@ -34,9 +36,9 @@ public class ConfigReportsData {
 	
 	/* 
 	 *   input: date
-	 *   output: string of cities, occupancy and percent occupancy
-	 *   
+	 *   output: string of cities, occupancy and percent occupancy   
 	 */
+	
 	public void occCity(String args[]){
 		if (args.length ==3) {	
 			String dateOfReport = args[1];
@@ -63,14 +65,15 @@ public class ConfigReportsData {
 		}
 	}
 	
+	/*
+	 *  input: begin date, end date
+	 *  output: string of dates, occupancy and percent occupancy
+	 *  
+	 *  NOTE! Will need to execute this query for each day in date range and take union of results.
+	 *  So, will need to build query statement in application based on user input.
+	 */
+	
 	public void occDateRng(String args[]){
-/*
- *  input: begin date, end date
- *  output: string of dates, occupancy and percent occupancy
- *  
- *  NOTE! Will need to execute this query for each day in date range and take union of results.
- *  So, will need to build query statement in application based on user input.
- */
 		if (args.length ==4) {	
 			String firstDate = args[1];
 			String lastDate = args[2];
@@ -96,13 +99,30 @@ public class ConfigReportsData {
 		}
 	}
 
-/*
- * input: begin date, end date
- * output: string of hotel ID, and total income
- * 
- * NOTE! if application does not have data format consistent with that in query, will need to 
- * modify user input.
- */
+	/*
+	 * input: customer ID, check in date and time
+	 * output: string of each staff member (service and front desk) who served customer
+	 */
+	
+	public void custStaff(String[] args) {
+		if (args.length ==4) {
+			String checkInDate = args[1];
+			int custId = Integer.parseInt(args[2]);
+			int dbFlag = Integer.parseInt(args[3]);
+			ReportsDAO reportsDAO = new ReportsDAO();
+			reportsDAO.custStaff(checkInDate, custId, dbFlag);
+		}else{
+			System.out.println("Parameters mismatch");
+		}
+	}
+	
+	/*
+	 * input: begin date, end date
+	 * output: string of hotel ID, and total income
+	 * 
+	 * NOTE! if application does not have data format consistent with that in query, will need to 
+	 * modify user input.
+	 */
 	public void revHotel(String[] args) {
 		if (args.length ==4) {	
 			String startDate = args[1];
@@ -115,21 +135,6 @@ public class ConfigReportsData {
 		}
 	}
 
-	/*
-	 * 
-	 * input: customer ID, check in date and time
-	 * output: string of each staff member (service and front desk) who served customer
-	 */
-	public void custStaff(String[] args) {
-		if (args.length ==4) {
-			String checkInDate = args[1];
-			int custId = Integer.parseInt(args[2]);
-			int dbFlag = Integer.parseInt(args[3]);
-			ReportsDAO reportsDAO = new ReportsDAO();
-			reportsDAO.custStaff(checkInDate, custId, dbFlag);
-		}else{
-			System.out.println("Parameters mismatch");
-		}
-	}
+
 
 }
