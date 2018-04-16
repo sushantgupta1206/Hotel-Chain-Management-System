@@ -19,6 +19,11 @@ import com.dataobject.Staff;
  * @author Kartik Shah
  *
  */
+
+/*
+ * This class performs all the core application task and operations for processing basic information of Hotel and its related entities.
+   This class calls DBConnectUtils to get the database connection.
+ */
 public class InformationProcessingDAO {
 	private DBConnectUtils dbUtil = new DBConnectUtils();
 	private static String sourceClass = InformationProcessingDAO.class.getName();
@@ -323,7 +328,6 @@ public class InformationProcessingDAO {
 				String insertRoomDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".ROOMS ( ROOM_NO, HOTEL_ID, MAX_OCCUPANCY, NIGHTLY_RATE,AVAILABILITY ) VALUES (?,?,?,?,?)";
 				PreparedStatement preparedStatement = null;
 				Connection dbConn = null;
-				ResultSet rs = null;
 			try {
 				dbConn = dbUtil.getConnection(dbFlag);
 				dbConn.setAutoCommit(false);
@@ -696,7 +700,6 @@ public class InformationProcessingDAO {
 		if(showHotel(hotelId, dbFlag)){
 			PreparedStatement preparedStatement = null;
 			Connection dbConn = null;
-			ResultSet rs = null;
 			try {
 				System.out.println("TRY 1");
 				dbConn = dbUtil.getConnection(dbFlag);
@@ -1484,7 +1487,6 @@ public class InformationProcessingDAO {
 			PreparedStatement stmt = null;
 			Connection dbConn = null;
 			ResultSet selectQueryRS = null;
-			ResultSet rs = null;
 			PreparedStatement preparedStatement = null;
 			try {
 				dbConn = dbUtil.getConnection(dbFlag);
