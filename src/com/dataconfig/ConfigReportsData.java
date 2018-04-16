@@ -22,12 +22,11 @@ public class ConfigReportsData {
 	 * 
 	 */
 	public void occHotel(String args[]) {
-		if (args.length ==4) {	
-			String checkInDate = args[1];
-			String checkOutDate = args[2];
-			int dbFlag = Integer.parseInt(args[3]);
+		if (args.length ==3) {	
+			String dateOfReport = args[1];
+			int dbFlag = Integer.parseInt(args[2]);
 			ReportsDAO reportsDAO = new ReportsDAO();
-			reportsDAO.occHotel(checkInDate, checkOutDate, dbFlag);
+			reportsDAO.occHotel(dateOfReport, dbFlag);
 		}else{
 			System.out.println("Parameters mismatch");
 		}
@@ -39,12 +38,11 @@ public class ConfigReportsData {
 	 *   
 	 */
 	public void occCity(String args[]){
-		if (args.length ==4) {	
-			String checkInDate = args[1];
-			String checkOutDate = args[2];
-			int dbFlag = Integer.parseInt(args[3]);
+		if (args.length ==3) {	
+			String dateOfReport = args[1];
+			int dbFlag = Integer.parseInt(args[2]);
 			ReportsDAO reportsDAO = new ReportsDAO();
-			reportsDAO.occCity(checkInDate, checkOutDate, dbFlag);
+			reportsDAO.occCity(dateOfReport, dbFlag);
 		}else{
 			System.out.println("Parameters mismatch");
 		}
@@ -55,12 +53,11 @@ public class ConfigReportsData {
 	 *  output: string of room category IDs, occupancy and percent occupancy
 	 */
 	public void occRoom(String args[]){
-		if (args.length ==4) {	
-			String checkInDate = args[1];
-			String checkOutDate = args[2];
-			int dbFlag = Integer.parseInt(args[3]);
+		if (args.length ==3) {	
+			String dateOfReport = args[1];
+			int dbFlag = Integer.parseInt(args[2]);
 			ReportsDAO reportsDAO = new ReportsDAO();
-			reportsDAO.occRoom(checkInDate, checkOutDate, dbFlag);
+			reportsDAO.occRoom(dateOfReport, dbFlag);
 		}else{
 			System.out.println("Parameters mismatch");
 		}
