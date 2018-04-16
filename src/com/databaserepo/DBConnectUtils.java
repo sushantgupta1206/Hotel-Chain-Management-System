@@ -22,7 +22,12 @@ public class DBConnectUtils {
     private static final String user = "ljackma";
     private static final String password = "group4";    
 
-
+    //High Level Design
+    /*
+     * This class is separate because we can configure any database here without making changes to other logic of application code.
+       We created Schema name as constant and static so that we can call this from any other class without class initialization. 
+       We can change schema name to any other name and can work on it from any system.
+     */
     public static String DBSCHEMA="ljackma";
 	public final Connection getConnection(int flag) throws SQLException {
 		String sourceMethod = "getConnection";

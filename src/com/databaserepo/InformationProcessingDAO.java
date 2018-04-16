@@ -40,7 +40,9 @@ public class InformationProcessingDAO {
 	 * without errors but, the second transaction will fail and we catch it and display proper error message to user as well as to developer. 
 	 * We close all the connections in the finally block.
 	 
-	 *
+	 * For select queries we check whether the resultset actually has any data by keeping the pointer before first record.
+	 * We used parameterized query to avoid sql injections and also check data types before database interaction.
+	 * 
 	 * 
 
 	 */
@@ -111,6 +113,7 @@ public class InformationProcessingDAO {
 			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".HOTELS";
 			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			selectQueryRS = stmt.executeQuery();
+			//This is used to check whether the resultset actually has any data
 			if (!selectQueryRS.isBeforeFirst()) {
 				System.out.println("No hotels found");
 			}else{
