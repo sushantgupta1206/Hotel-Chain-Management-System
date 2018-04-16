@@ -1444,40 +1444,41 @@ public class InformationProcessingDAO {
 	
 	//Design Decision and what does this method does:
 	/*
-	 * Input parameters are 1) Staff Id
-	 *  2) Customer Id
-	 *  3) Number of guests going to stay including the customer for that stay.
-	 *  4) The room number that customer has selected
-	 *  5) The hotel id that customer has selected
-	 *  6) The checkin time of customer
-	 *  7) The checkout time of the customer
-	 *  8) Database flag
-	 *  
-	 *  At Step 1: 
-	 *  we check that the customer actually exists in the database. We also check that the staff exists or not. We also check room in that hotel exists or not.
-	 *  
-	 *  At Step 2:
-	 *  Java default gives isolation as read committed but, we check that if the isolation level is not transaction read committed then change it to transaction read committed. 
-	 *  This is because we just want to read the committed data before the start of assign room transaction. We don't want to get dirty data during this process.
-	 *  
-	 *  At Step 3:
-	 *  We change the auto commit to false because we want to rollback a transaction if something goes wrong or execute everything if everything goes right. 
-	 *  So, we want to commit it manually and not automatically.
-	 *  We do a select query to check whether the room is available and the max occupancy of room is more than number of guests. 
-	 *  Also, we check whether that staff works for that hotel. 
-	 *  Select query can be outside of auto commit false because select query is independent of commits. 
-	 *  We have kept select query within auto commit false just because it doesn't hurt to keep there and also it is for our understanding that Select is a part of transaction. 
-	 *   
-	 *  At Step 4:
-	 *  The real transaction starts from here. We insert in assigns table the entry of the customer stay.
-	 *  We update the Rooms table with availability = 0 meaning the room is no longer available. If both these executes properly then in the end we commit both the transaction.
-	 *  
-	 *  At Step 5:
-	 *  If there is an exception, we rollback the whole transaction and nothing persists.
-	 *  
-	 *  At Step 6:
-	 *  We set the auto commit to true always in the finally block because we want other transactions to behave in original manner like execute and persist way automatically.
-	 *  We close all the connection.  
+	 * 
+	   Input parameters are 1) Staff Id
+		 2) Customer Id
+		 3) Number of guests going to stay including the customer for that stay.
+		 4) The room number that customer has selected
+		 5) The hotel id that customer has selected
+		 6) The checkin time of customer
+		 7) The checkout time of the customer
+		 8) Database flag
+		 
+		 At Step 1: 
+		 we check that the customer actually exists in the database. We also check that the staff exists or not. We also check room in that hotel exists or not.
+		 
+		 At Step 2:
+		 Java default gives isolation as read committed but, we check that if the isolation level is not transaction read committed then change it to transaction read committed. 
+		 This is because we just want to read the committed data before the start of assign room transaction. We don't want to get dirty data during this process.
+		 
+		 At Step 3:
+		 We change the auto commit to false because we want to rollback a transaction if something goes wrong or execute everything if everything goes right. 
+		 So, we want to commit it manually and not automatically.
+		 We do a select query to check whether the room is available and the max occupancy of room is more than number of guests. 
+		 Also, we check whether that staff works for that hotel. 
+		 Select query can be outside of auto commit false because select query is independent of commits. 
+		 We have kept select query within auto commit false just because it doesn't hurt to keep there and also it is for our understanding that Select is a part of transaction. 
+		  
+		 At Step 4:
+		 The real transaction starts from here. We insert in assigns table the entry of the customer stay.
+		 We update the Rooms table with availability = 0 meaning the room is no longer available. If both these executes properly then in the end we commit both the transaction.
+		 
+		 At Step 5:
+		 If there is an exception, we rollback the whole transaction and nothing persists.
+		 
+		 At Step 6:
+		 We set the auto commit to true always in the finally block because we want other transactions to behave in original manner like execute and persist way automatically.
+		 We close all the connection.  
 	 */ 
 	@SuppressWarnings("resource")
 	public void assignRoomAndSetAvailability(int staffId, int customerId, int noOfGuests, int roomNo, int hotelId,String checkInDate,String checkOutDate, int dbFlag){
