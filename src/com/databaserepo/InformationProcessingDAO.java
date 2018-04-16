@@ -31,7 +31,7 @@ public class InformationProcessingDAO {
 	
 	/*
 	 * High level design decision
-	 * 1) We check in every insert, update and delete operation whether the record first exists or not. 
+	 * We check in every insert, update and delete operation whether the record first exists or not. 
 	 * For example to insert Hotel we check to see if the hotel id already exists. 
 	 * If it exists then we show output to user that object found if not then the record gets inserted. 
 	 * Reason to do this is to prevent errors before hand for the records which are already committed. 
@@ -40,8 +40,15 @@ public class InformationProcessingDAO {
 	 * without errors but, the second transaction will fail and we catch it and display proper error message to user as well as to developer. 
 	 * We close all the connections in the finally block.
 	 
-	 *
+	 * For select queries we check whether the resultset actually has any data by keeping the pointer before first record.
+	 * We used parameterized query to avoid sql injections and also check data types before database interaction.
 	 * 
+	 * Wherever there are more than one serial inserts or updates we have introduced transactions. For instance, Insert Room record.
+	 * 
+	 * We open the database connection and close the connection after each operation. 
+	 * This is because we aren’t doing connection pooling or centralized connection here. 
+	 * One of the reason why we are not doing connection pooling here is to keep code simple and avoid connection close errors 
+	 * while other transactions are working on it.
 
 	 */
 	
@@ -111,6 +118,7 @@ public class InformationProcessingDAO {
 			String selectStatement = "SELECT * FROM "+DBConnectUtils.DBSCHEMA+".HOTELS";
 			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			selectQueryRS = stmt.executeQuery();
+			//This is used to check whether the resultset actually has any data
 			if (!selectQueryRS.isBeforeFirst()) {
 				System.out.println("No hotels found");
 			}else{
@@ -329,7 +337,7 @@ public class InformationProcessingDAO {
 	}
 
 	
-	/**Insert Room record
+	/**Insert Room record is a transaction because it adds the entry in Rooms table as well as associates which room category the room belongs to.
 	 * @param room
 	 * @param dbFlag
 	 * @return
@@ -399,7 +407,7 @@ public class InformationProcessingDAO {
 	}
 
 	
-	/**Update Room record by Room Num and Hotel Id
+	/**Update Room record by Room Num and Hotel Id. It has transactional updates.
 	 * @param roomNo
 	 * @param hotelId
 	 * @param maxOccu
@@ -701,7 +709,7 @@ public class InformationProcessingDAO {
 	}
 
 	
-	/**Insert staff
+	/**Insert staff. It has transaction in it. 
 	 * @param staff
 	 * @param hotelId
 	 * @param dbFlag
