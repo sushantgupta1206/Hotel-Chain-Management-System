@@ -17,10 +17,16 @@ import java.util.logging.Logger;
  * This class performs all the core application task and operations to maintain services and its associated entities.
    This class calls DBConnectUtils to get the database connection.
  */
+
 public class MaintainingServiceRecordsDAO {
 	private DBConnectUtils dbUtil = new DBConnectUtils();
 	private static String sourceClass = InformationProcessingDAO.class.getName();
 	private static Logger log = Logger.getLogger(sourceClass);
+	
+	/*
+	 * inputs: customer id, staffid, service id, service time, dbflag
+	 * outputs: N/A (adds a row to the provides table)
+	 */
 	
 	public void addProvidesServices(int customerId, int staffId, int serviceID,  String serviceTime, int dbFlag){
 		String sourceMethod = "addServices";
@@ -63,6 +69,11 @@ public class MaintainingServiceRecordsDAO {
 		}
 	}
 	
+	/*
+	 * inputs: service record id, staff id, timestamp, customer id, dbflag
+	 * outputs: N/A (updates a row in the provides table)
+	 */
+	
 	public void updateProvidesServices(int serviceID, int staffId, String serviceTime, int customerId, int dbFlag) {
 		String sourceMethod = "updateProvidesServices";
 		InformationProcessingDAO informationProcessingDAO = new InformationProcessingDAO();
@@ -97,5 +108,4 @@ public class MaintainingServiceRecordsDAO {
 			System.out.println("numberOfUpdatedRows: "+numberOfUpdatedRows);
 		}
 	}
-	
 }
