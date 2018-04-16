@@ -206,8 +206,8 @@ public class WolfInnStart {
 		System.out.println("java -jar WolfInn.jar setRoomAvailability [<AVAILABILITY> <ROOM_NO> <HOTEL_ID> <DBflag=2 for MariaDB>]");
 		System.out.println("java -jar WolfInn.jar assignroom [<STAFF_ID> <CUSTOMER_ID> <CHECK_IN> <CHECK_OUT> <NO_OF_GUESTS> <HOTEL_ID> <ROOM_NO> <DBflag=2 for MariaDB>]");
 
-		System.out.println("java -jar WolfInn.jar checkout [<custID>, <checkIn>, <payMethodID>, <billingAddress>, <paySSN>, <roomNo>], <hotelID>, <dbFlag>");
-		System.out.println("java -jar WolfInn.jar updatebill [<billId>, <custID>, <checkIn>, <payMethodID>, <billingAddress>, <dbFlag>]");
+		System.out.println("java -jar WolfInn.jar checkout [<custID> <checkIn> <payMethodID> <billingAddress> <paySSN> <roomNo>] <hotelID> <checkOut> <dbFlag>");
+		System.out.println("java -jar WolfInn.jar updatebill [<billId> <custID> <checkIn> <payMethodID> <billingAddress> <dbFlag>]");
 		System.out.println("java -jar WolfInn.jar deletebill [<billId> <dbFlag>]");
 		System.out.println("java -jar WolfInn.jar checkitemizedtotalamountint [<customerId> <checkIn> <dbFlag>]");
 		System.out.println("java -jar WolfInn.jar checktotalamountduringstay [<customerId> <checkIn> <dbFlag>]");

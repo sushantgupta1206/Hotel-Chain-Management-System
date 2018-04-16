@@ -19,7 +19,7 @@ public class ConfigBillingAccounts {
 	
 	public void checkOut(String[] args) {
 		/*
-		input: Customer ID, check-in time, payment method, billing address, person paying SSN, room number, hotel, dbFlag
+		input: Customer ID, check-in time, payment method, billing address, person paying SSN, room number, hotel, check-out time, dbFlag
 		output: message to user on success failure of transaction
 		*/
 		int custID = Integer.parseInt(args[1]);
@@ -29,10 +29,11 @@ public class ConfigBillingAccounts {
 		String paySSN = args[5];
 		int roomNo = Integer.parseInt(args[6]);
 		int hotelID = Integer.parseInt(args[7]);
-		int dbFlag = Integer.parseInt(args[8]);  
+		String checkOut = args[8]; 
+		int dbFlag = Integer.parseInt(args[9]);
 		if (billingAddress != null && dbFlag > 0) {
 			BillingAccountsDAO billingAccountsDAO = new BillingAccountsDAO();
-			billingAccountsDAO.checkOut(custID, checkIn, payMethodID, billingAddress, paySSN, roomNo, hotelID, dbFlag);
+			billingAccountsDAO.checkOut(custID, checkIn, payMethodID, billingAddress, paySSN, roomNo, hotelID, checkOut, dbFlag);
 		}
 		else{
 			System.out.println("Not valid data");	

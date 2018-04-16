@@ -50,7 +50,7 @@ public class BillingAccountsDAO {
 		 We close all the connection.
 		 
 	 */
-	public String checkOut(int custID, String checkIn, int payMethodID, String billingAddress, String paySSN, int roomNo, int hotelID, int dbFlag){
+	public String checkOut(int custID, String checkIn, int payMethodID, String billingAddress, String paySSN, int roomNo, int hotelID, String checkOut, int dbFlag){
 		/*
 		 * input: Customer ID, check-in time, payment method, billing address, person paying SSN, room number, hotel, dbFlag
 		 * purpose: check out a customer (add bill, pay bill, change room availability)
@@ -69,18 +69,21 @@ public class BillingAccountsDAO {
 			dbConn = dbUtil.getConnection(dbFlag);
 			//Step 1:
 			dbConn.setAutoCommit(false);
-			String getAmtQuery = "SELECT SUM(B.COST) + DATEDIFF(A.CHECK_OUT, A.CHECK_IN)*A.NIGHTLY_RATE FROM "
-					+ "(SELECT * FROM "+DBConnectUtils.DBSCHEMA+".PROVIDES JOIN "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS ON "
-					+ "SERVICE_RECORDS.SERVICE_RECORD_ID = PROVIDES.SERVICE_ID) AS B JOIN "
-					+ "(SELECT ASSIGNS.CUSTOMER_ID, ASSIGNS.CHECK_IN, ASSIGNS.CHECK_OUT, NIGHTLY_RATE FROM "
-					+DBConnectUtils.DBSCHEMA+".ASSIGNS NATURAL JOIN "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ASSIGNS.CHECK_IN LIKE ?) AS A ON B.CUSTOMER_ID = A.CUSTOMER_ID WHERE B.TIMESTATE "
-					+ "BETWEEN A.CHECK_IN AND A.CHECK_OUT AND B.CUSTOMER_ID = ?;";
+			String getAmtQuery = "SELECT DATEDIFF(ASSIGNS.CHECK_OUT, ASSIGNS.CHECK_IN)*NIGHTLY_RATE"
+					+"+ IFNULL((SELECT SUM(SERVICE_RECORDS.COST) AS TOTALCOST FROM "
+					+ "("+DBConnectUtils.DBSCHEMA+".PROVIDES JOIN "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS ON SERVICE_RECORDS.SERVICE_RECORD_ID = PROVIDES.SERVICE_ID) "
+					+ "JOIN "+DBConnectUtils.DBSCHEMA+".ASSIGNS ON PROVIDES.CUSTOMER_ID = ASSIGNS.CUSTOMER_ID WHERE PROVIDES.TIMESTATE BETWEEN "
+					+ "ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT AND ASSIGNS.CUSTOMER_ID = ? AND ASSIGNS.CHECK_IN LIKE "
+					+ "? GROUP BY ASSIGNS.CUSTOMER_ID, ASSIGNS.CHECK_IN),0) AS RATE FROM "+DBConnectUtils.DBSCHEMA+".ASSIGNS NATURAL "
+					+"JOIN "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ASSIGNS.CHECK_IN LIKE ? AND CUSTOMER_ID = ?";
 			final int AMOUNT_RESULT_COLUMN = 1;
 			preparedStatement2 = dbConn.prepareStatement(getAmtQuery);
 			int amt = 0;
 			int discountedAmt = 0;
-			preparedStatement2.setString(1, checkIn);
-			preparedStatement2.setInt(2, custID);
+			preparedStatement2.setInt(1, custID);
+			preparedStatement2.setString(2, checkIn);
+			preparedStatement2.setString(3, checkIn);
+			preparedStatement2.setInt(4, custID);
 			rs2 = preparedStatement2.executeQuery();//Execute query is used for select query.
 			if(rs2.next()){
 				amt = rs2.getInt(AMOUNT_RESULT_COLUMN); //Get amount
@@ -92,14 +95,16 @@ public class BillingAccountsDAO {
 			}
 			
 			//Step 2:
-			String insertBillQuery = "INSERT INTO "+DBConnectUtils.DBSCHEMA+".BILLS (AMOUNT, DISCOUNTED_AMT, BILLING_ADDRESS) VALUES(?,?,?)";
+			String insertBillQuery = "INSERT INTO "+DBConnectUtils.DBSCHEMA+".BILLS (AMOUNT, DISCOUNTED_AMT, BILLING_ADDRESS,BILL_TIMESTAMP) VALUES(?,?,?,?)";
 			final int AMOUNT_COLUMN = 1;
 			final int DISCOUNTED_AMT_COLUMN = 2;
 			final int BILLING_ADDRESS_COLUMN = 3;
+			final int TIME_COLUMN = 4;
 			preparedStatement1 = dbConn.prepareStatement(insertBillQuery,Statement.RETURN_GENERATED_KEYS);
 			preparedStatement1.setInt(AMOUNT_COLUMN, amt);
 			preparedStatement1.setInt(DISCOUNTED_AMT_COLUMN, discountedAmt);
 			preparedStatement1.setString(BILLING_ADDRESS_COLUMN, billingAddress);
+			preparedStatement1.setString(TIME_COLUMN, checkOut);
 			preparedStatement1.execute();
 			rsBill = preparedStatement1.getGeneratedKeys();
 			int akey = 0;
