@@ -368,14 +368,15 @@ public class ReportsDAO {
 		PreparedStatement stmt = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
-			String selectStatement = " SELECT HOTEL_ID, NIGHTLY_RATE* DATEDIFF(CHECK_OUT, CHECK_IN) AS TOTAL_REVENUE FROM "+DBConnectUtils.DBSCHEMA+".ASSIGNS " 
-						 + "NATURAL JOIN "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ASSIGNS.CHECK_IN BETWEEN ? AND ? " 
-						 + "AND ASSIGNS.CHECK_OUT BETWEEN ? AND ? GROUP BY HOTEL_ID" ;
+			
+			//SELECT HOTEL_ID, SUM(BILLS.AMOUNT)AS REVENUE FROM BILLS NATURAL JOIN PAYS NATURAL JOIN ASSIGNS WHERE BILLS.BILL_TIMESTAMP BETWEEN '2017-05-10%' AND '2018-05-05%' GROUP BY HOTEL_ID;
+
+			String selectStatement = " SELECT HOTEL_ID, SUM(BILLS.AMOUNT)AS REVENUE FROM "+DBConnectUtils.DBSCHEMA+".BILLS " 
+						 + "NATURAL JOIN "+DBConnectUtils.DBSCHEMA+".PAYS NATURAL JOIN "+DBConnectUtils.DBSCHEMA+".ASSIGNS WHERE BILLS.BILL_TIMESTAMP BETWEEN ? AND ? " 
+						 + "GROUP BY HOTEL_ID" ;
 			stmt = dbConn.prepareStatement(selectStatement,ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			stmt.setString(1,  startDate);
 			stmt.setString(2, endDate);
-			stmt.setString(3,  startDate);
-			stmt.setString(4, endDate);
 			selectQueryRS = stmt.executeQuery();
 			if (!selectQueryRS.isBeforeFirst()) {
 				System.out.println("No Hotels Revenue");
@@ -383,7 +384,7 @@ public class ReportsDAO {
 				System.out.println("Hotels Revenue");
 				while (selectQueryRS.next()) {
 					int hotelId = selectQueryRS.getInt("HOTEL_ID");
-					int revenue = selectQueryRS.getInt("TOTAL_REVENUE");
+					int revenue = selectQueryRS.getInt("REVENUE");
 					System.out.println(hotelId + "		 " + revenue);
 				}
 			}
