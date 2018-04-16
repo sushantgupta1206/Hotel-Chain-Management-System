@@ -12,6 +12,13 @@ import com.dataconfig.ConfigReportsData;
  * @author Kartik  Shah
  *
  */
+
+/*
+ * This class is the application starting point. Based on the command a switch case is executed. 
+   Depending on the operations Config class and DAO class is called.
+   Config class (i.e. assign user input to java variables.)
+   DAO class (i.e. Process the user requests and supports applications core business logic operation).
+ */
 public class WolfInnStart {
 	/**Accept arguments from user
 	 * @param args
