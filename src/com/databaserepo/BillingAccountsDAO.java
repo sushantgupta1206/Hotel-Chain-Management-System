@@ -50,7 +50,7 @@ public class BillingAccountsDAO {
 		 We close all the connection.
 		 
 	 */
-	public String checkOut(int custID, String checkIn, int payMethodID, String billingAddress, String paySSN, int roomNo, int hotelID, String checkOut, int dbFlag){
+	public String checkOut(int custID, String checkIn, int payMethodID, String billingAddress, String paySSN, int roomNo, int hotelID, String checkOut, int creditNum, int dbFlag){
 		/*
 		 * input: Customer ID, check-in time, payment method, billing address, person paying SSN, room number, hotel, dbFlag
 		 * purpose: check out a customer (add bill, pay bill, change room availability)
@@ -113,12 +113,13 @@ public class BillingAccountsDAO {
 			}
 			
 			//Step 3:
-			String insertPayQuery = "INSERT INTO "+DBConnectUtils.DBSCHEMA+".PAYS () VALUES(?,?,?,?)";
+			String insertPayQuery = "INSERT INTO "+DBConnectUtils.DBSCHEMA+".PAYS () VALUES(?,?,?,?,?)";
 			preparedStatement3 = dbConn.prepareStatement(insertPayQuery,Statement.RETURN_GENERATED_KEYS);
 			preparedStatement3.setInt(1, custID);
 			preparedStatement3.setInt(2, akey);
 			preparedStatement3.setInt(3, payMethodID);
 			preparedStatement3.setString(4, paySSN);
+			preparedStatement3.setInt(5, creditNum);			
 			preparedStatement3.execute(); //Execute is used to insert query data.
 			
 			//Step 4:

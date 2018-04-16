@@ -30,10 +30,11 @@ public class ConfigBillingAccounts {
 		int roomNo = Integer.parseInt(args[6]);
 		int hotelID = Integer.parseInt(args[7]);
 		String checkOut = args[8]; 
-		int dbFlag = Integer.parseInt(args[9]);
+		int creditNum = Integer.parseInt(args[9]); 
+		int dbFlag = Integer.parseInt(args[10]);
 		if (billingAddress != null && dbFlag > 0) {
 			BillingAccountsDAO billingAccountsDAO = new BillingAccountsDAO();
-			billingAccountsDAO.checkOut(custID, checkIn, payMethodID, billingAddress, paySSN, roomNo, hotelID, checkOut, dbFlag);
+			billingAccountsDAO.checkOut(custID, checkIn, payMethodID, billingAddress, paySSN, roomNo, hotelID, checkOut, creditNum,dbFlag);
 		}
 		else{
 			System.out.println("Not valid data");	
