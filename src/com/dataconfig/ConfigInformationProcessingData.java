@@ -14,10 +14,18 @@ import com.dataobject.Assigns;
  * @author Kartik Shah
  *
  */
+
+/*
+ * This class is an interface that assigns user input to java variables. 
+   This class also calls DAO for further processing of the user requests.
+   DAO class (i.e. Process the user requests and supports applications core business logic operation).
+   This class takes basic information to setup Hotel and its associated entities. 
+ */
 public class ConfigInformationProcessingData {
 	
 	String regexEmail = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})";
 	
+	//Converts Java date to Sql date.
 	private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
         java.sql.Date sDate = new java.sql.Date(uDate.getTime());
         return sDate;
