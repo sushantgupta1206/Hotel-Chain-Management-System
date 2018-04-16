@@ -29,7 +29,21 @@ public class InformationProcessingDAO {
 	private static String sourceClass = InformationProcessingDAO.class.getName();
 	private static Logger log = Logger.getLogger(sourceClass);
 	
-	
+	/*
+	 * High level design decision
+	 * 1) We check in every insert, update and delete operation whether the record first exists or not. 
+	 * For example to insert Hotel we check to see if the hotel id already exists. 
+	 * If it exists then we show output to user that object found if not then the record gets inserted. 
+	 * Reason to do this is to prevent errors before hand for the records which are already committed. 
+	 * If we don’t do this then we will get duplicate keys exception so, this is a preventive check.
+	 * Even after this check if still two transactions try to make inserts on same record then the first transaction which committed will execute 
+	 * without errors but, the second transaction will fail and we catch it and display proper error message to user as well as to developer. 
+	 * We close all the connections in the finally block.
+	 
+	 *
+	 * 
+
+	 */
 	
 	/**Insert Hotel Record.
 	 * @param hotelId
@@ -82,43 +96,6 @@ public class InformationProcessingDAO {
 		
 	}
 
-	/**Insert Manager Record.
-	 * @param hotelId
-	 * @param managerId
-	 */
-	public void addManager(int hotelId, int managerId, int dbFlag){
-		String sourceMethod = "addManager";	
-		String insertManagerQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".MANAGER (STAFF_ID, HOTEL_ID) VALUES (?,?)";
-		PreparedStatement preparedStatement = null;
-		Connection dbConn = null;
-		ResultSet rs = null;
-		try {
-			dbConn = dbUtil.getConnection(dbFlag);
-			preparedStatement = dbConn.prepareStatement(insertManagerQuery,Statement.RETURN_GENERATED_KEYS);
-			preparedStatement.setInt(1, hotelId);
-			preparedStatement.setInt(2, managerId);
-			preparedStatement.execute();
-			System.out.println("Manager record: "+ hotelId+" inserted. . Query executed :"+insertManagerQuery);
-		} catch (Exception e) {
-			System.out.println("Manager record: "+ hotelId+" didn't inserted. query executed :"+insertManagerQuery);
-			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (preparedStatement != null) {
-					preparedStatement.close();
-				} 
-				if (dbConn != null) {
-					dbConn.close();
-				}
-			}catch (Exception e) {
-				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
-			}
-		}
-		log.exiting(sourceClass, sourceMethod);
-	}
 	
 	/**Show all Hotel records.
 	 * @param dbFlag
@@ -273,7 +250,43 @@ public class InformationProcessingDAO {
 		}
 	}
 
-
+	/**Insert Manager Record.
+	 * @param hotelId
+	 * @param managerId
+	 */
+	public void addManager(int hotelId, int managerId, int dbFlag){
+		String sourceMethod = "addManager";	
+		String insertManagerQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".MANAGER (STAFF_ID, HOTEL_ID) VALUES (?,?)";
+		PreparedStatement preparedStatement = null;
+		Connection dbConn = null;
+		ResultSet rs = null;
+		try {
+			dbConn = dbUtil.getConnection(dbFlag);
+			preparedStatement = dbConn.prepareStatement(insertManagerQuery,Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setInt(1, hotelId);
+			preparedStatement.setInt(2, managerId);
+			preparedStatement.execute();
+			System.out.println("Manager record: "+ hotelId+" inserted. . Query executed :"+insertManagerQuery);
+		} catch (Exception e) {
+			System.out.println("Manager record: "+ hotelId+" didn't inserted. query executed :"+insertManagerQuery);
+			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				} 
+				if (dbConn != null) {
+					dbConn.close();
+				}
+			}catch (Exception e) {
+				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
+			}
+		}
+		log.exiting(sourceClass, sourceMethod);
+	}
 	
 	/**Delete Hotel Record by ID
 	 * @param hotelId
