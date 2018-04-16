@@ -13,7 +13,10 @@ import java.util.logging.Logger;
  *
  */
 
-
+/*
+ * This class performs all the core application task and operations to maintain services and its associated entities.
+   This class calls DBConnectUtils to get the database connection.
+ */
 public class MaintainingServiceRecordsDAO {
 	private DBConnectUtils dbUtil = new DBConnectUtils();
 	private static String sourceClass = InformationProcessingDAO.class.getName();

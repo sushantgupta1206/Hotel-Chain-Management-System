@@ -1442,7 +1442,7 @@ public class InformationProcessingDAO {
 		return responsenumberOfUpdatedRows;
 	}
 	
-	//Design Decision and what does this method does:
+	//Design Decision and what does assignRoomAndSetAvailability method does:
 	/*
 	 * 
 	   Input parameters are 1) Staff Id
@@ -1467,11 +1467,13 @@ public class InformationProcessingDAO {
 		 We do a select query to check whether the room is available and the max occupancy of room is more than number of guests. 
 		 Also, we check whether that staff works for that hotel. 
 		 Select query can be outside of auto commit false because select query is independent of commits. 
-		 We have kept select query within auto commit false just because it doesn't hurt to keep there and also it is for our understanding that Select is a part of transaction. 
+		 We have kept select query within auto commit false just because it doesn't hurt to keep there and also it is for 
+		 our understanding that Select is a part of transaction. 
 		  
 		 At Step 4:
 		 The real transaction starts from here. We insert in assigns table the entry of the customer stay.
-		 We update the Rooms table with availability = 0 meaning the room is no longer available. If both these executes properly then in the end we commit both the transaction.
+		 We update the Rooms table with availability = 0 meaning the room is no longer available. 
+		 If both these executes properly then in the end we commit both the transaction.
 		 
 		 At Step 5:
 		 If there is an exception, we rollback the whole transaction and nothing persists.
@@ -1502,12 +1504,13 @@ public class InformationProcessingDAO {
 				String selectStatement = "SELECT * FROM  "+DBConnectUtils.DBSCHEMA+".ROOMS AS R INNER JOIN  "+DBConnectUtils.DBSCHEMA+".SHWORKSFOR AS SWF WHERE R.HOTEL_ID=SWF.HOTEL_ID AND "
 						+ "R.ROOM_NO=? AND R.HOTEL_ID=? AND MAX_OCCUPANCY>=? AND AVAILABILITY=1 AND STAFF_ID=?";
 				System.out.println(selectStatement);
-				stmt = dbConn.prepareStatement(selectStatement);
+				stmt = dbConn.prepareStatement(selectStatement); //Prepared statement is used to avoid sql injection and to validate the data type
 				stmt.setInt(1, roomNo);
 				stmt.setInt(2, hotelId);
 				stmt.setInt(3, noOfGuests);
 				stmt.setInt(4, staffId);
-				selectQueryRS = stmt.executeQuery();
+				selectQueryRS = stmt.executeQuery(); //Execute query is used for select query.
+				//Below condition is checked to see if the result set has any record.
 				if (!selectQueryRS.isBeforeFirst()) {
 					System.out.println("Room not available or guests more than occupancy");
 				}else{
@@ -1538,7 +1541,7 @@ public class InformationProcessingDAO {
 					preparedStatement.setInt(9, hotelId);
 					preparedStatement.setInt(10, noOfGuests);
 					preparedStatement.setInt(11, staffId);
-					preparedStatement.execute();
+					preparedStatement.execute(); //Execute is used to insert query data.
 					System.out.println("Assigns record in process of inserted.");
 		
 						String updateDeleteRequestStatement = "UPDATE " + DBConnectUtils.DBSCHEMA
@@ -1546,7 +1549,7 @@ public class InformationProcessingDAO {
 						preparedStatement = dbConn.prepareStatement(updateDeleteRequestStatement);
 						preparedStatement.setInt(1, roomNo);
 						preparedStatement.setInt(2, hotelId);
-						int numberOfUpdatedRows = preparedStatement.executeUpdate();
+						int numberOfUpdatedRows = preparedStatement.executeUpdate(); //Execute update is used for update query
 						if(numberOfUpdatedRows>0){
 							System.out.println("Room availability changed to not available."+numberOfUpdatedRows);
 						}else{
@@ -1574,10 +1577,10 @@ public class InformationProcessingDAO {
 					}
 					if (dbConn != null) {
 						/*
-						 * Since we are using a connection.commit() or
-						 * connection.rollback() prior to the close so, the
+						 * Since we are using a dbConn.commit() or
+						 * dbConn.rollback() prior to the close so, the
 						 * connection remains in progress when we try to close. This
-						 * step will help to close the transactions. It is in final
+						 * step will help to close the connection. It is in final
 						 * block so that it always executes and the program doesn't
 						 * throw any exception while closing connection.
 						 */

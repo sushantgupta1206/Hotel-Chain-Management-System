@@ -10,6 +10,10 @@ import java.util.logging.Logger;
  * @author Kartik Shah
  *
  */
+
+/*
+ * This class provides Database connection when we provide specific database drivers, username and password.
+ */
 public class DBConnectUtils {
 	private static String sourceClass = DBConnectUtils.class.getName();
 	private static Logger log = Logger.getLogger(sourceClass);
@@ -24,7 +28,8 @@ public class DBConnectUtils {
 		String sourceMethod = "getConnection";
 
 		if (flag == -12) {
-			// If DB2 connection practice version
+			//Flag = -12 is a random selected number if programmer wants to use DB2 connection practice version. 
+			//It should use DB2 database credentials.
 			DBSCHEMA="ljackma";
 			Connection dbConn = getDB2Connection();
 			log.exiting(sourceClass, sourceMethod);
@@ -38,8 +43,8 @@ public class DBConnectUtils {
 		}
 	}
 
+	//Provides Maria DB connection
 	private Connection getMariaDBConnection() {
-		// TODO Auto-generated method stub
 		try {
 			Connection connection = DriverManager.getConnection(jdbcURL, user, password);
 			return connection;
@@ -47,12 +52,10 @@ public class DBConnectUtils {
             oops.printStackTrace();
             return null;
         }
-		
-		//return null;
 	}
 
 	private Connection getDB2Connection() throws SQLException {
-		//Replaced all Maria db connection with db2.
+		//Replace all Maria db connection with db2.
 		return getMariaDBConnection();
 	}
 }

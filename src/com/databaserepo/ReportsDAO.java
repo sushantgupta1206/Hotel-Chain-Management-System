@@ -4,19 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.dataobject.Customer;
-import com.dataobject.Hotel;
-import com.dataobject.Room;
 import com.dataobject.Staff;
 import java.util.*;
 
 /**
  * @author Leah Jackman
  *
+ */
+
+/*
+ * Contains methods for each reports operation.
  */
 public class ReportsDAO {
 	private DBConnectUtils dbUtil = new DBConnectUtils();

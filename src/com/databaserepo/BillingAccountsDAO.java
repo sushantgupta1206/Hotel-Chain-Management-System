@@ -18,14 +18,45 @@ public class BillingAccountsDAO {
 	private static Logger log = Logger.getLogger(sourceClass);
 	
 
-	public String checkOut(int custID, String checkIn, int payMethodID, String billingAddress, String paySSN, int roomNo, int hotelID, int dbFlag){
+	//Design Decision and what does assignRoomAndSetAvailability method does:
 	/*
-	 * input: billID, customerID, checkIn time, payment method, billing address, dbflag
+	 * 
+	 * input: customerID, checkIn time, payment method, billing address, paying person ssn, room number, hotel id, dbflag
 	 * purpose: add a bill for a customer's stay to the database
 	 * Note: amount is set based on the getAmtQuery which calculates the cost of the room and services used.
 	 * Note:discounted amount is set based on the payment method. If the method is hotel credit then a 5% discount is applied.
 	 * 
+	 * At Step 1:
+		 We change the auto commit to false because we want to rollback a transaction if something goes wrong or execute everything if everything goes right. 
+		 So, we want to commit it manually and not automatically.
+		 We do a select query to check the total amount obtained from the services that the customer used 
+		 and total number of nights he stayed multiply by nightly rate of that room. 
+		 Select query can be outside of auto commit false because select query is independent of commits. 
+		 We have kept select query within auto commit false just because it doesn't hurt to keep there and also it is for 
+		 our understanding that Select is a part of transaction.
+		 
+		 At Step 2:
+		 The real transaction starts from here. We insert in bills table the record. 
+		 Basically, generate the bill(Select query in Step 1 and insert bill record in Step 2). 
+		 It will generate a bill id that will be used in next step.
+		 
+		 At Step 3:
+		 Transaction still continues and isn't committed yet. 
+		 We inserted the record in pays table to map bill using bill id( from Step 2) and payment details.
+
+		 At Step 4:
+		 We update the Rooms table with availability = 1 meaning the room is available.
+		 If above all these executes properly then in the end we commit the transaction.
+		 
+ 		 At Step 5:
+		 If there is an exception, we rollback the whole transaction and nothing persists.
+		 
+		 At Step 6:
+		 We set the auto commit to true always in the finally block because we want other transactions to behave in original manner like execute and persist way automatically.
+		 We close all the connection.
+		 
 	 */
+	public String checkOut(int custID, String checkIn, int payMethodID, String billingAddress, String paySSN, int roomNo, int hotelID, int dbFlag){
 		String sourceMethod = "addBill";
 		PreparedStatement preparedStatement1 = null;
 		PreparedStatement preparedStatement2 = null;
@@ -35,6 +66,7 @@ public class BillingAccountsDAO {
 		ResultSet rs2 = null;
 		try {
 			dbConn = dbUtil.getConnection(dbFlag);
+			//Step 1:
 			dbConn.setAutoCommit(false);
 			String getAmtQuery = "SELECT SUM(B.COST) + DATEDIFF(A.CHECK_OUT, A.CHECK_IN)*A.NIGHTLY_RATE FROM "
 					+ "(SELECT * FROM "+DBConnectUtils.DBSCHEMA+".PROVIDES JOIN "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS ON "
@@ -48,15 +80,17 @@ public class BillingAccountsDAO {
 			int discountedAmt = 0;
 			preparedStatement2.setString(1, checkIn);
 			preparedStatement2.setInt(2, custID);
-			rs2 = preparedStatement2.executeQuery();
+			rs2 = preparedStatement2.executeQuery();//Execute query is used for select query.
 			if(rs2.next()){
-				amt = rs2.getInt(AMOUNT_RESULT_COLUMN);
+				amt = rs2.getInt(AMOUNT_RESULT_COLUMN); //Get amount
 			}
 			if(payMethodID == 2){
-				discountedAmt = Math.round(amt*0.05f);
+				discountedAmt = Math.round(amt*0.05f); //Get discounted amount if payment method is hotel credit card.
 			} else {
 				discountedAmt = 0;
 			}
+			
+			//Step 2:
 			String insertBillQuery = "INSERT INTO "+DBConnectUtils.DBSCHEMA+".BILLS (AMOUNT, DISCOUNTED_AMT, BILLING_ADDRESS) VALUES(?,?,?)";
 			final int AMOUNT_COLUMN = 1;
 			final int DISCOUNTED_AMT_COLUMN = 2;
@@ -69,26 +103,30 @@ public class BillingAccountsDAO {
 			rsBill = preparedStatement1.getGeneratedKeys();
 			int akey = 0;
 			while(rsBill.next()){
-				akey = Integer.parseInt(rsBill.getString(1));
+				akey = Integer.parseInt(rsBill.getString(1));  //Return Auto generated Bill Id Key
 			}
+			
+			//Step 3:
 			String insertPayQuery = "INSERT INTO "+DBConnectUtils.DBSCHEMA+".PAYS () VALUES(?,?,?,?)";
 			preparedStatement3 = dbConn.prepareStatement(insertPayQuery,Statement.RETURN_GENERATED_KEYS);
 			preparedStatement3.setInt(1, custID);
 			preparedStatement3.setInt(2, akey);
 			preparedStatement3.setInt(3, payMethodID);
 			preparedStatement3.setString(4, paySSN);
-			preparedStatement3.execute();
-			rsBill = preparedStatement1.getGeneratedKeys();
+			preparedStatement3.execute(); //Execute is used to insert query data.
+			
+			//Step 4:
 			String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOMS SET AVAILABILITY=? WHERE ROOM_NO=? AND HOTEL_ID=?";
 			preparedStatement3 = dbConn.prepareStatement(updateDeleteRequestStatement);
 			preparedStatement3.setInt(1, 0);
 			preparedStatement3.setInt(2, roomNo);
 			preparedStatement3.setInt(3, hotelID);
-			preparedStatement3.executeUpdate();
+			preparedStatement3.executeUpdate(); //Execute update is used for update query
 			dbConn.commit();
 			System.out.println("Check out complete. Bill paid. Room set to available.");
 		} catch (SQLException e) {
 			try {
+				//Step 5:
 				dbConn.rollback();
 			} catch (SQLException e1) {
 				System.out.println("The transaction will be rolled back because :");
@@ -98,16 +136,17 @@ public class BillingAccountsDAO {
 			// Prints the error message if something goes wrong when updating.
 		} finally {
 			try {
+				//Step 6:
 				dbConn.setAutoCommit(true);
 				if (preparedStatement1 != null) {
 					preparedStatement1.close();
 				}
 				if (dbConn != null) {
 					/*
-					 * Since we are using a connection.commit() or
-					 * connection.rollback() prior to the close so, the
+					 * Since we are using a dbConn.commit() or
+					 * dbConn.rollback() prior to the close so, the
 					 * connection remains in progress when we try to close. This
-					 * step will help to close the transactions. It is in final
+					 * step will help to close the connections. It is in final
 					 * block so that it always executes and the program doesn't
 					 * throw any exception while closing connection.
 					 */
@@ -118,6 +157,7 @@ public class BillingAccountsDAO {
 			}
 		}
 		log.exiting(sourceClass, sourceMethod, "Added");
+		System.out.println("Added Billing Records");
 		return "Added Billing Records";
 	}
 	
