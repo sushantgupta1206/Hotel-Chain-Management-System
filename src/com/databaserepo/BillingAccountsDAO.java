@@ -20,12 +20,6 @@ public class BillingAccountsDAO {
 
 	//Design Decision and what does assignRoomAndSetAvailability method does:
 	/*
-	 * 
-	 * input: customerID, checkIn time, payment method, billing address, paying person ssn, room number, hotel id, dbflag
-	 * purpose: add a bill for a customer's stay to the database
-	 * Note: amount is set based on the getAmtQuery which calculates the cost of the room and services used.
-	 * Note:discounted amount is set based on the payment method. If the method is hotel credit then a 5% discount is applied.
-	 * 
 	 * At Step 1:
 		 We change the auto commit to false because we want to rollback a transaction if something goes wrong or execute everything if everything goes right. 
 		 So, we want to commit it manually and not automatically.
@@ -57,7 +51,14 @@ public class BillingAccountsDAO {
 		 
 	 */
 	public String checkOut(int custID, String checkIn, int payMethodID, String billingAddress, String paySSN, int roomNo, int hotelID, int dbFlag){
-		String sourceMethod = "addBill";
+		/*
+		 * input: Customer ID, check-in time, payment method, billing address, person paying SSN, room number, hotel, dbFlag
+		 * purpose: check out a customer (add bill, pay bill, change room availability)
+		 * Note: amount is set based on the getAmtQuery which calculates the cost of the room and services used.
+		 * Note:discounted amount is set based on the payment method. If the method is hotel credit then a 5% discount is applied.
+		 */
+		
+		String sourceMethod = "checkout";
 		PreparedStatement preparedStatement1 = null;
 		PreparedStatement preparedStatement2 = null;
 		PreparedStatement preparedStatement3 = null;
@@ -163,7 +164,7 @@ public class BillingAccountsDAO {
 	
 	public void updatePayBill(int billID, int custID, String checkIn, int payMethodID, String billingAddress, int dbFlag) {
 		/*
-		 * input: billID, amount, discounted amount, billing address
+		 * input: bill ID, customer ID, check-in time, billing address, dbflag
 		 * purpose: update a bill row in the database
 		 * note: amount and discounted amount are recalculated to ensure accuracy of update.
 		 */
@@ -225,7 +226,12 @@ public class BillingAccountsDAO {
 	}
 
 	public void deletePayBill(int billId, int dbFlag) {
-		String sourceMethod = "deleteBill";
+		/*
+		 * input: bill ID, dbflag
+		 * purpose: deletes a bill from the bills table. 
+		 * note: Bill ID records will be deleted from all child tables by foreign key constraint
+		 */
+		String sourceMethod = "deletebill";
 		PreparedStatement preparedStatement = null;
 		int numberOfDeletedRows = 0;
 		Connection dbConn = null;
@@ -254,8 +260,12 @@ public class BillingAccountsDAO {
 		
 	}
 
-		public void checkItemizedTotalAmount(int customerId, String checkIn, int dbFlag) {
-		String sourceMethod = "checkItemizedTotalAmount";
+	public void checkItemizedTotalAmount(int customerId, String checkIn, int dbFlag) {
+		/*
+		 * input: customer ID, check-in time, dbflag
+		 * purpose: returns itemized bill (rate of room, number of days room occupied, services used and cost of services)
+		 */	
+		String sourceMethod = "checkitemizedtotalamount";
 		PreparedStatement stmt = null;
 		Connection dbConn = null;
 		ResultSet selectQueryRS = null;
@@ -264,17 +274,18 @@ public class BillingAccountsDAO {
 			String selectStatement = "SELECT PROVIDES.CUSTOMER_ID,SERVICE_RECORDS.NAME AS 'SERVICE_NAME', PROVIDES.SERVICE_ID, 0 AS 'No_Days', SERVICE_RECORDS.COST AS 'RATE' "
 					+ "FROM (("+DBConnectUtils.DBSCHEMA+".PROVIDES INNER "
 					+ "JOIN "+DBConnectUtils.DBSCHEMA+".ASSIGNS ON "
-				+	"PROVIDES.CUSTOMER_ID=ASSIGNS.CUSTOMER_ID) INNER JOIN "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS ON "
-						+ "PROVIDES.SERVICE_ID=SERVICE_RECORDS.SERVICE_RECORD_ID) WHERE "
-			+"PROVIDES.CUSTOMER_ID=?  AND ASSIGNS.CHECK_IN LIKE ? AND PROVIDES.TIMESTATE BETWEEN ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT "
-			+"UNION SELECT ASSIGNS.CUSTOMER_ID, 'ROOM' AS 'SERVICE_NAME' ,' ' AS SERVICE_ID , DATEDIFF(ASSIGNS.CHECK_OUT, ASSIGNS.CHECK_IN) as 'No_Days', "
-			+ "ROOMS.NIGHTLY_RATE AS 'RATE' FROM ("+DBConnectUtils.DBSCHEMA+".ASSIGNS INNER JOIN "+DBConnectUtils.DBSCHEMA+".ROOMS ON "
-					+ "ASSIGNS.ROOM_NO=ROOMS.ROOM_NO AND ASSIGNS.HOTEL_ID=ROOMS.HOTEL_ID) WHERE ASSIGNS.CUSTOMER_ID=?";
+					+ "PROVIDES.CUSTOMER_ID=ASSIGNS.CUSTOMER_ID) INNER JOIN "+DBConnectUtils.DBSCHEMA+".SERVICE_RECORDS ON "
+					+ "PROVIDES.SERVICE_ID=SERVICE_RECORDS.SERVICE_RECORD_ID) WHERE "
+					+ "PROVIDES.CUSTOMER_ID=?  AND ASSIGNS.CHECK_IN LIKE ? AND PROVIDES.TIMESTATE BETWEEN ASSIGNS.CHECK_IN AND ASSIGNS.CHECK_OUT "
+					+ "UNION SELECT ASSIGNS.CUSTOMER_ID, 'ROOM' AS 'SERVICE_NAME' ,' ' AS SERVICE_ID , DATEDIFF(ASSIGNS.CHECK_OUT, ASSIGNS.CHECK_IN) as 'No_Days', "
+					+ "ROOMS.NIGHTLY_RATE AS 'RATE' FROM ("+DBConnectUtils.DBSCHEMA+".ASSIGNS INNER JOIN "+DBConnectUtils.DBSCHEMA+".ROOMS ON "
+					+ "ASSIGNS.ROOM_NO=ROOMS.ROOM_NO AND ASSIGNS.HOTEL_ID=ROOMS.HOTEL_ID) WHERE ASSIGNS.CUSTOMER_ID=? AND ASSIGNS.CHECK_IN LIKE ?";
 
 			stmt = dbConn.prepareStatement(selectStatement);
 			stmt.setInt(1, customerId);
 			stmt.setString(2, checkIn);
 			stmt.setInt(3, customerId);
+			stmt.setString(4, checkIn);
 			selectQueryRS = stmt.executeQuery();
 			System.out.println("CUSTOMER_ID    SERVICE_NAME		SERVICE_ID   No_of_Days    RATE ");
 			while (selectQueryRS.next()) {
@@ -306,7 +317,12 @@ public class BillingAccountsDAO {
 	}
 	
 	public void checkTotalAmountDuringStay(int customerId, String checkIn, int dbFlag) {
-		String sourceMethod = "checkItemizedTotalAmount";
+		/*
+		 * input: customer ID, check-in time, dbflag
+		 * purpose: returns total amount due to customer
+		 * note: two returns - 1) total amount 2) total amount if using hotel credit (5% discount, rounded to nearest $)
+		 */	
+		String sourceMethod = "checktotalamountduringstay";
 		PreparedStatement stmt = null;
 		Connection dbConn = null;
 		ResultSet selectQueryRS = null;
