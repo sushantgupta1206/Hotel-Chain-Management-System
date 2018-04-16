@@ -79,9 +79,9 @@ public class WolfInnStart {
 			case "showAllRoomCat":
 				configHotel.showAllRoomCat(args);
 				break;
-			case "addManager":
+/*			case "addManager":
 				configHotel.addManager(args);
-				break;
+				break;*/
 			case "addcustomer":
 				try {
 					configHotel.addCustomer(args);

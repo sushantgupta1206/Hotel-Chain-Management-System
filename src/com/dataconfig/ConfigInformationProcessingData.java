@@ -18,6 +18,7 @@ import com.dataobject.Staff;
    DAO class (i.e. Process the user requests and supports applications core business logic operation).
    This class takes basic information to setup Hotel and its associated entities. 
  */
+
 public class ConfigInformationProcessingData {
 	
 	String regexEmail = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})";
@@ -28,10 +29,12 @@ public class ConfigInformationProcessingData {
         return sDate;
     }
 	
-        /*
-            input: Hotel ID, Hotel Phone, Hotel Name, Hotel Address, Hotel City, Hotel to be updated
-            output: N/A (Updates an existing hotel)
-        */	
+    /*
+     * input: Hotel ID, Hotel Phone, Hotel Name, Hotel Address, Hotel City, old Hotel Id, dbflag
+     * output: N/A (Updates an existing hotel) 
+     * note: Hotel ID is the primary key. The old value is needed in case the update is to the Hotel ID   
+    */	
+	
 	public void updateHotel(String[] args) {
 		if (args.length ==8) {
 			int hotelId = Integer.parseInt(args[1]);
@@ -40,8 +43,7 @@ public class ConfigInformationProcessingData {
 			String address = args[4];
 			String city = args[5];
 			int oldHotelId=Integer.parseInt(args[6]);
-			int dbFlag = Integer.parseInt(args[7]);
-					
+			int dbFlag = Integer.parseInt(args[7]);		
 			if(hotelId > 0 && phone.length() >0 && phone != null && name != null && name.length() <= 50 && oldHotelId > 0){
 				InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 				informationProcessingDAO.updateHotel(hotelId, phone, name, address, city, oldHotelId, dbFlag);
@@ -53,10 +55,11 @@ public class ConfigInformationProcessingData {
 		}
 	}
 	
-        /*
-            input: N/A
-            output: Display all existing hotels
-        */        
+    /*
+     * input: dbflag
+     * output: Display all existing hotels  
+    */   
+	
 	public void showHotels(String args[]){
 		if (args.length ==2) {
 			int dbFlag = Integer.parseInt(args[1]);
@@ -67,10 +70,11 @@ public class ConfigInformationProcessingData {
 		}
 	}
 
-        /*
-            input: Hotel ID
-            output: Show information on specific hotel
-        */        
+    /*
+     * input: Hotel ID, dbflag
+     * output: Show information on specific hotel   
+    */     
+	
 	public void showHotel(String args[]){
 		if (args.length ==3) {
 			int hotelId = Integer.parseInt(args[1]);
@@ -86,10 +90,10 @@ public class ConfigInformationProcessingData {
 		}
 	}
 	
-        /*
-            input: Hotel ID, Hotel Phone, Hotel Name, Hotel Address, Hotel City
-            output: N/A (Adds a new hotel to table)
-        */        
+    /*
+     * input: Hotel ID, Hotel Phone, Hotel Name, Hotel Address, Hotel City, dbflag
+     * output: N/A (Adds a new hotel to table)    
+    */        
 	public void addHotel(String args[]){
 		if (args.length ==7) {
 			int hotelId = Integer.parseInt(args[1]);
@@ -110,29 +114,11 @@ public class ConfigInformationProcessingData {
 	}
 	
     /*
-    input: Hotel ID, Manager ID
-    output: N/A (Adds a new manager to table)
-*/        
-public void addManager(String args[]){
-if (args.length ==4) {
-	int hotelId = Integer.parseInt(args[1]);
-	int managerId = Integer.parseInt(args[2]);
-	int dbFlag = Integer.parseInt(args[3]);
-	if(hotelId > 0 && managerId >0){
-		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-		informationProcessingDAO.addManager(hotelId, managerId, dbFlag);	
-	}else{
-		System.out.println("Not valid data");
-	}
-}else{
-	System.out.println("Parameters mismatch");
-}
-}
-
-        /*
-            input: Hotel ID
-            output: N/A (Deletes a specific hotel)
-        */          
+     * input: Hotel ID, dbflag
+     * output: N/A (Deletes a specific hotel)  
+     * note: deleting a hotel is a cascading action 
+    */  
+	
 	public void deleteHotel(String[] args) {
 		if (args.length ==3) {
 			int hotelId = Integer.parseInt(args[1]);
@@ -149,10 +135,11 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: Room Number, Hotel ID, Max Occupancy, Nightly Rate
-            output: N/A (Adds a new room to table)
-        */          
+    /*
+     * input: Room Number, Hotel ID, Max Occupancy, Nightly Rate, availability, dbflag
+     * output: N/A (Adds a new room to table)  
+    */   
+	
 	public void addRoom(String[] args) {
 		if (args.length ==8) {
 			int roomNo=Integer.parseInt(args[1]);
@@ -173,10 +160,12 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: Room Number, Hotel ID, Max Occupancy, Nightly Rate, Availability, Number of room to be updated, ID of hotel of room to be updated
-            output: N/A (Updates a specific room's information)
-        */         
+    /*
+     * input: Room Number, Hotel ID, Max Occupancy, Nightly Rate, Availability, old Room Number, old Hotel ID, dbflag
+     * output: N/A (Updates a specific room's information) 
+     * note: (room number, hotel id) is the primary key. old room number and hotel id values are needed in case those fields are updated.
+    */      
+	
 	public void updateRoom(String[] args) {
 		if (args.length ==10) {
 			int roomNo = Integer.parseInt(args[1]);
@@ -201,10 +190,11 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: N/A
-            output: Display all existing rooms
-        */         
+    /*
+     * input: dbflag
+     * output: Display all existing rooms 
+    */
+	
 	public void showRooms(String[] args) {
 		if (args.length ==2) {
 			int dbFlag = Integer.parseInt(args[1]);
@@ -215,16 +205,16 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: Room Number, Hotel ID
-            output: N/A (Delets a specific room)
-        */         
+    /*
+     * input: Room Number, Hotel ID, dbflag
+     * output: N/A (Deletes a specific room)  
+    */    
+	
 	public void deleteRoom(String[] args) {
 		if (args.length ==4) {
 			int roomNo = Integer.parseInt(args[1]);
 			int hotelId = Integer.parseInt(args[2]);
 			int dbFlag = Integer.parseInt(args[3]);
-			
 			if(roomNo > 0 && hotelId > 0){
 				InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 				informationProcessingDAO.deleteRoom(roomNo, hotelId, dbFlag);
@@ -236,10 +226,11 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: Staff ID, Staff Phone, Staff Name, Staff Address, Staff Department, Staff Title, Staff Age
-            output: N/A (Adds a new staff member to table)
-        */         
+    /*
+     * input: Staff ID, Staff Phone, Staff Name, Staff Address, Date of Birth, Staff Department, Staff Title, Staff Age, dbflag
+     * output: N/A (Adds a new staff member to table)    
+    */ 
+	
 	public void addStaff(String[] args) throws ParseException {
 		if (args.length ==11) {
 			Staff staff = new Staff();
@@ -253,7 +244,6 @@ if (args.length ==4) {
 			staff.setDepartment(args[6]);
 			staff.setTitle(args[7]);
 			staff.setAge(Integer.parseInt(args[8]));
-			
 			int staffId = Integer.parseInt(args[1]);
 			String phone = args[2];
 			String name = args[3];
@@ -263,7 +253,6 @@ if (args.length ==4) {
 			int age = Integer.parseInt(args[8]);
 			int hotelId=Integer.parseInt(args[9]);
 			int dbFlag = Integer.parseInt(args[10]);
-			
 			if(staffId > 0 && phone.length()>0 && phone != null && name != null && name.length() <= 50 && address != null && address.length() <= 50 && 
 					department != null && department.length() <= 20 && title != null && title.length() <= 20 && age > 0 && date != null && hotelId>0){
 				InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
@@ -276,10 +265,12 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: Staff ID, Staff Phone, Staff Name, Staff Address, Date, Staff Department, Staff Title, Staff Age, ID of staff to update
-            output: N/A (Updates information of a specific staff)
-        */          
+    /*
+     * input: Staff ID, Staff Phone, Staff Name, Staff Address, Date, Staff Department, Staff Title, Staff Age, ID of staff to update
+     * output: N/A (Updates information of a specific staff)
+     * note: old staff id is needed in case that value is updated (it is the primary key)  
+    */      
+	
 	public void updateStaff(String[] args) throws ParseException {
 		if (args.length ==11) {
 			Staff staff = new Staff();
@@ -319,10 +310,11 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: N/A
-            output: Displays information on existing staff
-        */          
+    /*
+     * input: dbflag
+     * output: Displays information on existing staff  
+    */          
+	
 	public void showStaffs(String[] args) {
 		if (args.length ==2) {
 			int dbFlag = Integer.parseInt(args[1]);
@@ -333,10 +325,11 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: Staff ID
-            output: N/A (Deletes a specific staff)
-        */          
+    /*
+     * input: Staff ID, dbflag
+     * output: N/A (Deletes a specific staff)   
+    */
+	
 	public void deleteStaff(String[] args) {
 		if (args.length ==3) {
 			Staff staff = new Staff();
@@ -354,10 +347,10 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: Customer ID, Customer Phone, Customer Name, Customer Email, Date
-            output: N/A (Adds a new customer to table)
-        */          
+    /*
+     * input: Customer ID, Customer Phone, Customer Name, Customer Email, Date, dbflag
+     * output: N/A (Adds a new customer to table)  
+    */          
 	public void addCustomer(String[] args) throws ParseException {
 		if (args.length ==7) {
 			Customer customer =  new Customer();
@@ -365,17 +358,14 @@ if (args.length ==4) {
 			customer.setPhone(args[2]);
 			customer.setName(args[3]);
 			customer.setEmail(args[4]);
-			
 			int customerId = Integer.parseInt(args[1]);
 			String phone = args[2];
 			String name = args[3];
 			String email = args[4];
 			String date=args[5];
-			
 			java.util.Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(date);
 			customer.setDob(convertUtilToSql(date1));
 			int dbFlag = Integer.parseInt(args[6]);
-			
 			if(customerId > 0 && phone.length()>0 && phone != null && name != null && name.length() <= 50 && email != null && email.matches(regexEmail) && email.length() <= 50){
 				InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 				informationProcessingDAO.addCustomer(customer, dbFlag);
@@ -387,10 +377,12 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: Customer ID, Customer Phone, Customer Name, Customer Email, Date, ID of customer to update
-            output: N/A (Updates a customer's information)
-        */           
+    /*
+     * input: Customer ID, Customer Phone, Customer Name, Customer Email, Date, ID of customer to update, dbflag
+     * output: N/A (Updates a customer's information)  
+     * note: old customer id is needed in case update is to that value (id is primary key) 
+    */       
+	
 	public void updateCustomer(String[] args) throws ParseException {
 		if (args.length ==8) {
 			Customer customer =  new Customer();
@@ -401,14 +393,12 @@ if (args.length ==4) {
 			String date=args[5];
 			java.util.Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(date);
 			customer.setDob(convertUtilToSql(date1));
-			
 			int oldCustomerId=Integer.parseInt(args[6]);
 			int customerId = Integer.parseInt(args[1]);
 			String phone = args[2];
 			String name = args[3];
 			String email = args[4];
 			int dbFlag = Integer.parseInt(args[7]);
-			
 			if(customerId > 0 && phone.length() >0 && phone != null && name != null && name.length() <= 50 && email != null && email.matches(regexEmail) && email.length() <= 50){
 				InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
 				informationProcessingDAO.updateCustomer(customer, oldCustomerId, dbFlag);
@@ -420,10 +410,11 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: N/A
-            output: Shows all customers
-        */           
+    /*
+     * input: dbflag
+     * output: Shows all customers   
+    */           
+	
 	public void showCustomers(String[] args) {
 		if (args.length ==2) {
 			int dbFlag = Integer.parseInt(args[1]);
@@ -434,10 +425,11 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: Customer ID
-            output: N/A (Deletes a specific customer)
-        */           
+    /*
+     * input: Customer ID, dbflag
+     * output: N/A (Deletes a specific customer)
+    */  
+	
 	public void deleteCustomer(String[] args) {
 		if (args.length ==3) {
 			Customer customer =  new Customer();
@@ -455,10 +447,11 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: Room Number, Hotel ID
-            output: Displays availability of specific room
-        */           
+    /*
+     * input: Room Number, Hotel ID, dbflag
+     * output: Displays availability of specific room  
+    */     
+	
 	public void checkRoomAvailability(String[] args) {
 		if (args.length ==4) {
 			int roomNo = Integer.parseInt(args[1]);
@@ -477,30 +470,30 @@ if (args.length ==4) {
 	}
 
 	 /*
-    input: Room Numbers, Hotel ID
-    output: Displays availability of specific rooms
-*/           
-public void checkRoomsAvailability(String[] args) {
-if (args.length ==4) {
-	String roomNos = args[1];
-	int hotelId = Integer.parseInt(args[2]);
-	int dbFlag = Integer.parseInt(args[3]);
-	if(roomNos.length() > 0 && hotelId > 0){
-		InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
-		informationProcessingDAO.checkRoomsAvailability(roomNos, hotelId, dbFlag);
+	  * input: Room Numbers, Hotel ID
+	  * output: Displays availability of specific rooms
+	  */           
+	public void checkRoomsAvailability(String[] args) {
+		if (args.length ==4) {
+			String roomNos = args[1];
+			int hotelId = Integer.parseInt(args[2]);
+			int dbFlag = Integer.parseInt(args[3]);
+			if(roomNos.length() > 0 && hotelId > 0){
+				InformationProcessingDAO informationProcessingDAO=new InformationProcessingDAO();
+				informationProcessingDAO.checkRoomsAvailability(roomNos, hotelId, dbFlag);
+			}
+			else {
+				System.out.println("Not valid data");
+			}
+		}else{
+			System.out.println("Parameters mismatch");
+		}
 	}
-	else {
-		System.out.println("Not valid data");
-	}
-}else{
-	System.out.println("Parameters mismatch");
-}
-}
 
-        /*
-            input: Room Type, Hotel ID
-            output: Displays available rooms of a certain type in hotel
-        */           
+    /*
+     * input: Room Type, Hotel ID, dbflag
+     * output: Displays available rooms of a certain type in hotel   
+    */           
 	public void checkRoomTypeAvailability(String[] args) {
 		if (args.length ==4) {
 			String roomType = args[1];
@@ -518,10 +511,11 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: Updated availability, Room Number, Hotel ID
-            output: N/A (Changes availability of a specific room)
-        */           
+    /*
+     * input: Updated availability, Room Number, Hotel ID, dbflag
+     * output: N/A (Changes availability of a specific room)        
+    */    
+	
 	public void setRoomAvailability(String[] args) {
 		if (args.length ==5) {
 			int availability = Integer.parseInt(args[1]);
@@ -539,10 +533,11 @@ if (args.length ==4) {
 		}
 	}
 
-        /*
-            input: Staff ID, Customer ID, Number of Guests, Hotel ID, Room Number
-            output: N/A (Assigns room to customer)
-        */           
+    /*
+     * input: Staff ID, Customer ID, check in date, check ouot date, Number of Guests, Hotel ID, Room Number, dbflag
+     * output: N/A (Assigns room to customer)  
+    */     
+	
 	public void assignRoom(String[] args) {
 			if (args.length ==9) {
 				int staffId = Integer.parseInt(args[1]);

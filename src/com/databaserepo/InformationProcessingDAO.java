@@ -60,6 +60,7 @@ public class InformationProcessingDAO {
 	 * @param city
 	 * @param dbFlag
 	 */
+	
 	public void addHotel(int hotelId, String phone,String name,String address,String city, int dbFlag){
 		String sourceMethod = "addHotel";	
 		//If the hotel doesn't exist in db then only it should attempt to insert. showhotel method returns true if exists.
@@ -103,10 +104,10 @@ public class InformationProcessingDAO {
 		
 	}
 
-	
 	/**Show all Hotel records.
 	 * @param dbFlag
 	 */
+	
 	public void showHotels(int dbFlag) {
 		String sourceMethod = "showHotels";
 		List<Hotel> hotelDetails = new ArrayList<Hotel>();
@@ -154,12 +155,11 @@ public class InformationProcessingDAO {
 		
 	}
 
-
-	
 	/**Show Hotel record By Id. showhotel method returns true if exists and false if doesn't exist in database.
 	 * @param hotelId
 	 * @param dbFlag
 	 */
+	
 	public boolean showHotel(int hotelId, int dbFlag) {
 		String sourceMethod = "showHotel";
 		PreparedStatement stmt = null;
@@ -206,8 +206,6 @@ public class InformationProcessingDAO {
 		return true;
 	}
 
-
-	
 	/**Update Hotel Record by ID
 	 * @param hotelId
 	 * @param phone
@@ -217,6 +215,7 @@ public class InformationProcessingDAO {
 	 * @param oldHotelId
 	 * @param dbFlag
 	 */
+	
 	public void updateHotel(int hotelId, String phone,String name,String address,String city, int oldHotelId, int dbFlag) {
 		String sourceMethod = "updateHotel";
 		if(showHotel(hotelId, dbFlag)){
@@ -258,10 +257,11 @@ public class InformationProcessingDAO {
 		}
 	}
 
-	/**Insert Manager Record.
+/*	*//**Insert Manager Record.
 	 * @param hotelId
 	 * @param managerId
-	 */
+	 *//*
+	
 	public void addManager(int hotelId, int managerId, int dbFlag){
 		String sourceMethod = "addManager";	
 		String insertManagerQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".MANAGER (STAFF_ID, HOTEL_ID) VALUES (?,?)";
@@ -294,12 +294,13 @@ public class InformationProcessingDAO {
 			}
 		}
 		log.exiting(sourceClass, sourceMethod);
-	}
+	}*/
 	
 	/**Delete Hotel Record by ID
 	 * @param hotelId
 	 * @param dbFlag
 	 */
+	
 	public void deleteHotel(int hotelId, int dbFlag) {
 		String sourceMethod = "deleteHotels";
 		if(showHotel(hotelId, dbFlag)){
@@ -342,6 +343,7 @@ public class InformationProcessingDAO {
 	 * @param dbFlag
 	 * @return
 	 */
+	
 	@SuppressWarnings("resource")
 	public void addRoom(int roomNo, int hotelId, int maxOccu, int nightRate, int roomCat, int availability, int dbFlag) {
 		String sourceMethod = "addRoom";
@@ -360,8 +362,6 @@ public class InformationProcessingDAO {
 				preparedStatement.setInt(5, availability);
 				preparedStatement.execute();
 				System.out.println("Room inserted: "+ roomNo+" . Query executed :"+insertRoomDataQuery);
-				
-				
 				String insertSHDataQuery = " INSERT INTO "+DBConnectUtils.DBSCHEMA+".ROOM_HAS (ROOM_NO, HOTEL_ID, ROOM_CATEGORY_ID) VALUES (?,?,?)";
 				preparedStatement = dbConn.prepareStatement(insertSHDataQuery);
 				preparedStatement.setInt(1, roomNo);
@@ -370,7 +370,6 @@ public class InformationProcessingDAO {
 				preparedStatement.execute();
 				System.out.println("Room inserted with Room category: "+roomCat+" . Query executed: " + insertSHDataQuery);
 				dbConn.commit();
-				
 			} catch (SQLException e) {
 				try {
 					dbConn.rollback();
@@ -402,11 +401,9 @@ public class InformationProcessingDAO {
 				}
 			}
 		}
-		log.exiting(sourceClass, sourceMethod);
-		
+		log.exiting(sourceClass, sourceMethod);	
 	}
 
-	
 	/**Update Room record by Room Num and Hotel Id. It has transactional updates.
 	 * @param roomNo
 	 * @param hotelId
@@ -417,6 +414,7 @@ public class InformationProcessingDAO {
 	 * @param oldHotelId
 	 * @param dbFlag
 	 */
+	
 	public void updateRoom(int roomNo,int hotelId,int maxOccu,int nightRate,int setAvailability, int roomCategory, int oldRoomNum, int oldHotelId, int dbFlag) {
 		String sourceMethod = "updateRoom";
 		PreparedStatement preparedStatement = null;
@@ -481,11 +479,10 @@ public class InformationProcessingDAO {
 		}
 	}
 	
-
-	
 	/**Show All Rooms
 	 * @param dbFlag
 	 */
+	
 	public void showRooms(int dbFlag) {
 		String sourceMethod = "showRooms";
 		List<Room> roomDetails = new ArrayList<Room>();
@@ -509,7 +506,7 @@ public class InformationProcessingDAO {
 				room.setAvailability(selectQueryRS.getInt("AVAILABILITY"));
 				roomDetails.add(room);
 				System.out.println(room);
-			}
+				}
 			}
 		} catch (Exception e) {
 			log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
@@ -534,6 +531,7 @@ public class InformationProcessingDAO {
 	 * @param hotelId
 	 * @param dbFlag
 	 */
+	
 	public boolean showRoom(int roomNo, int hotelId, int dbFlag) {
 		String sourceMethod = "showRoom";
 		PreparedStatement stmt = null;
@@ -672,6 +670,7 @@ public class InformationProcessingDAO {
 	 * @param hotelId
 	 * @param dbFlag
 	 */
+	
 	public void deleteRoom(int roomNo, int hotelId, int dbFlag) {
 		String sourceMethod = "deleteRoom";
 		String updateDeleteRequestStatement = "DELETE FROM "+DBConnectUtils.DBSCHEMA+".ROOMS WHERE ROOM_NO = ? AND HOTEL_ID = ?";
@@ -715,6 +714,7 @@ public class InformationProcessingDAO {
 	 * @param dbFlag
 	 * @return
 	 */
+	
 	@SuppressWarnings("resource")
 	public void addStaffToHotel(Staff staff, int hotelId, int dbFlag) {
 		String sourceMethod = "addStaff";
@@ -804,11 +804,10 @@ public class InformationProcessingDAO {
 		log.exiting(sourceClass, sourceMethod);
 	}
 
-
-
 	/**Show all staffs
 	 * @param dbFlag
 	 */
+	
 	public void showStaffs(int dbFlag) {
 		String sourceMethod = "showStaffs";
 		List<Staff> details = new ArrayList<Staff>();
@@ -860,6 +859,7 @@ public class InformationProcessingDAO {
 	/**Show all staffs
 	 * @param dbFlag
 	 */
+	
 	public boolean showStaff(int staffId, int dbFlag) {
 		String sourceMethod = "showStaff";
 		ResultSet selectQueryRS = null;
@@ -905,16 +905,14 @@ public class InformationProcessingDAO {
 				log.logp(Level.SEVERE, sourceClass, sourceMethod, e.getMessage(), e);
 			}
 		}
-		return true;
-		
+		return true;	
 	}
-
-
 
 	/**Delete staff record by staff id 
 	 * @param staff
 	 * @param dbFlag
 	 */
+	
 	public void deleteStaff(Staff staff, int dbFlag) {
 		String sourceMethod = "deleteStaff";
 		if(showStaff(staff.getStaffId(), dbFlag)){
@@ -952,13 +950,12 @@ public class InformationProcessingDAO {
 		}
 	}
 
-
-
 	/**Update staff record by staff id
 	 * @param staff
 	 * @param oldStaffId
 	 * @param dbFlag
 	 */
+	
 	public void updateStaff(Staff staff, int oldStaffId, int dbFlag) {
 		String sourceMethod = "updateRoom";
 		if(showStaff(staff.getStaffId(), dbFlag)){
@@ -1004,13 +1001,12 @@ public class InformationProcessingDAO {
 		}
 	}
 
-
-
 	/**Add customer record
 	 * @param customer
 	 * @param dbFlag
 	 * @return
 	 */
+	
 	public void addCustomer(Customer customer, int dbFlag) {
 		String sourceMethod = "addCustomer";
 		if(!showCustomer(customer.getCustomerId(), dbFlag)){
@@ -1051,11 +1047,10 @@ public class InformationProcessingDAO {
 		log.exiting(sourceClass, sourceMethod);
 	}
 
-
-
 	/**Show all customers
 	 * @param dbFlag
 	 */
+	
 	public void showCustomers(int dbFlag) {
 		String sourceMethod = "showCustomers";
 		List<Customer> details = new ArrayList<Customer>();
@@ -1195,6 +1190,7 @@ public class InformationProcessingDAO {
 	 * @param customer
 	 * @param dbFlag
 	 */
+	
 	public void deleteCustomer(Customer customer, int dbFlag) {
 		String sourceMethod = "deleteCustomer";
 		if(showCustomer(customer.getCustomerId(), dbFlag)){
@@ -1226,13 +1222,12 @@ public class InformationProcessingDAO {
 		}
 	}
 
-
-
 	/**Update Customer record by customer id
 	 * @param customer
 	 * @param oldCustomerId
 	 * @param dbFlag
 	 */
+	
 	public void updateCustomer(Customer customer, int oldCustomerId, int dbFlag) {
 		String sourceMethod = "updateCustomer";
 		if(showCustomer(customer.getCustomerId(), dbFlag)){
@@ -1275,6 +1270,7 @@ public class InformationProcessingDAO {
 	 * @param dbFlag
 	 * @return
 	 */
+	
 	public void checkRoomAvailability(int roomNo, int hotelId, int dbFlag) {
 		String sourceMethod = "checkRoomAvailability";
 		if(showRoom(roomNo, hotelId, dbFlag)){
@@ -1324,6 +1320,7 @@ public class InformationProcessingDAO {
 	 * @param dbFlag
 	 * @return
 	 */
+	
 	public void checkRoomsAvailability(String roomNos, int hotelId, int dbFlag) {
 		String sourceMethod = "checkRoomAvailability";
 		String roomsarr[] =roomNos.split(",");
@@ -1378,6 +1375,7 @@ public class InformationProcessingDAO {
 	 * @param dbFlag
 	 * @return
 	 */
+	
 	public void checkRoomTypeAvailability(String roomType, int hotelId, int dbFlag) {
 		String sourceMethod = "checkRoomTypeAvailability";
 		if(showHotel(hotelId, dbFlag)){
@@ -1426,8 +1424,6 @@ public class InformationProcessingDAO {
 			}
 		}
 	}
-
-
 
 	public String setRoomAvailability(int availability, int roomNo, int hotelId, int dbFlag) {
 		String sourceMethod = "setRoomAvailability";
