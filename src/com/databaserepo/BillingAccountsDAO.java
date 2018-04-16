@@ -118,7 +118,7 @@ public class BillingAccountsDAO {
 			//Step 4:
 			String updateDeleteRequestStatement = "UPDATE "+DBConnectUtils.DBSCHEMA+".ROOMS SET AVAILABILITY=? WHERE ROOM_NO=? AND HOTEL_ID=?";
 			preparedStatement3 = dbConn.prepareStatement(updateDeleteRequestStatement);
-			preparedStatement3.setInt(1, 0);
+			preparedStatement3.setInt(1, 1);
 			preparedStatement3.setInt(2, roomNo);
 			preparedStatement3.setInt(3, hotelID);
 			preparedStatement3.executeUpdate(); //Execute update is used for update query
